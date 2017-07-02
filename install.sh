@@ -4,6 +4,7 @@ ln -s ~/dotfiles/vimrc ~/.vimrc
 ln -s ~/dotfiles/zshrc ~/.zshrc
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 tmux source-file ~/.tmux.conf
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/
 
 #set aliases
 {
@@ -14,3 +15,5 @@ tmux source-file ~/.tmux.conf
     echo 'alias weather="curl http://wttr.in/philadelphia\?u"'
     echo 'alias diff="colordiff"'
 }  >> ~/.oh-my-zsh/custom/aliases.zsh
+
+source ~/.zshrc
