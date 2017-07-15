@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #install
-sudo apt-get install vim-nox tmux htop tree zsh git
+sudo apt-get install vim-nox tmux htop tree zsh git source-highlight
 
 #install oh-my-zsh
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
