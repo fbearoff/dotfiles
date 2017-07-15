@@ -3,8 +3,13 @@
 #install
 sudo apt-get install vim-nox tmux htop tree zsh git
 
-#sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+#install oh-my-zsh
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
+#remove default .zshrc
+rm ~/.zshrc
+
+#link dotfiles
 ln -s ~/dotfiles/vimrc ~/.vimrc
 ln -s ~/dotfiles/zshrc ~/.zshrc
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
