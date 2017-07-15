@@ -52,8 +52,9 @@ ZSH_THEME="bira"
 plugins=(git sudo screen colorize zsh-syntax-highlighting)
 
 # User configuration
-
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESS=' -R '
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
