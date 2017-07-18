@@ -27,6 +27,7 @@ set laststatus=2
 set wildmode=longest,list,full
 set wildmenu
 set pastetoggle=<F2>
+set timeoutlen=1000 ttimeoutlen=0
 " key mappings
 map <C-j> <C-W>j
 map <C-k> <C-W>k
