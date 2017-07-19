@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #install
-sudo apt-get install vim-nox tmux htop tree zsh git source-highlight
+sudo apt-get install vim-nox tmux htop tree zsh git source-highlight ranger
 
 #install oh-my-zsh
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
@@ -10,6 +10,7 @@ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/to
 rm ~/.zshrc
 
 #link dotfiles
+ln -s ~/dotfiles/ranger ~/.config/ranger/rc.conf
 ln -s ~/dotfiles/vimrc ~/.vimrc
 ln -s ~/dotfiles/zshrc ~/.zshrc
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
