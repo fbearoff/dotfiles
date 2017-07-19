@@ -1,10 +1,21 @@
 directory: ~/music
-library: ~/music/musiclibrary.db
+library: ~/.config/beets/musiclibrary.db
 asciify_paths: yes
-plugins: bandcamp
+format_album: $year - $albumartist - $album
+original_date: yes
+sort_album: albumartist+ year+ album+
+plugins: fetchart embedart bandcamp
 
-
+import:
+    write: yes
+    copy: yes
+    incremental: yes
+    log: ~/.config/beets/import.log
 
 paths:
     default: $albumartist/$year-$album/$track-$artist-$title
     comp: Various Artists/$year-$album/$track-$artist-$title
+    singleton: $albumartist/$year-$album/$track-$artist-$title
+
+embedart:
+    ifempty: yes
