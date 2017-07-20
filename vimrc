@@ -29,6 +29,7 @@ set wildmenu
 set pastetoggle=<F2>
 set timeoutlen=1000 ttimeoutlen=0
 " key mappings
+nnoremap Q <nop>
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
