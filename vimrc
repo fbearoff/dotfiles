@@ -4,6 +4,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
           \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
+
+" vim settings
 filetype indent plugin on
 syntax on
 set ignorecase
@@ -28,6 +30,7 @@ set wildmode=longest,list,full
 set wildmenu
 set pastetoggle=<F2>
 set timeoutlen=1000 ttimeoutlen=0
+
 " key mappings
 nnoremap Q <nop>
 map <C-j> <C-W>j
@@ -35,6 +38,7 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 map <leader>sudo :w !sudo tee % <CR><CR>
+
 " VimPlug
 call plug#begin()
 Plug 'https://github.com/ajmwagar/vim-deus.git'
@@ -48,10 +52,14 @@ Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
 Plug 'https://github.com/Yggdroot/indentLine.git'
 Plug 'https://github.com/ervandew/supertab.git'
-"Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'https://github.com/edkolev/tmuxline.vim.git'
 call plug#end()
+
+" appearance
 set background=dark
 colorscheme deus
+let g:airline_theme='bubblegum'
+
 "Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -60,10 +68,23 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
+
 " IndentLine
 let g:indentLine_enabled = 1
 map <leader>ig :IndentLinesToggle<CR>
+
+" SuperTab
 let g:SuperTabDefaultCompletionType = "context"
+
+" tmuxline
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+      \'c'    : ['#(whoami)', '#(uptime | cut -d " " -f2,3,4,5 | cut -d "," -f1)'],
+      \'win'  : ['#I', '#W'],
+      \'cwin' : ['#I', '#W', '#F'],
+      \'y'    : ['%R\ %p', '%a', '%d/%m/%Y'],
+      \'z'    : '#H'}
