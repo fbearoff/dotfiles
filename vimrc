@@ -19,6 +19,7 @@ set shiftwidth=4
 set expandtab
 set smarttab
 set hlsearch
+set incsearch
 set relativenumber
 set number
 set ruler
