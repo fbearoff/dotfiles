@@ -29,16 +29,23 @@ set ffs=unix
 set laststatus=2
 set wildmode=longest,list,full
 set wildmenu
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.tmp/*,*/.sass-cache/*,*/node_modules/*,*.keep,*.DS_Store,*/.git/*
 set pastetoggle=<F2>
 set timeoutlen=1000 ttimeoutlen=0
+set cursorline
+set showmatch
 
 " key mappings
+let mapleader=","
 nnoremap Q <nop>
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-map <leader>sudo :w !sudo tee % <CR><CR>
+nnoremap i :noh<cr>i
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
 
 " VimPlug
 call plug#begin()
@@ -54,6 +61,7 @@ Plug 'https://github.com/tpope/vim-commentary.git'
 Plug 'https://github.com/Yggdroot/indentLine.git'
 Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/edkolev/tmuxline.vim.git'
+Plug 'https://github.com/ctrlpvim/ctrlp.vim.git', { 'on': 'CtrlP' }
 call plug#end()
 
 " appearance
@@ -89,3 +97,11 @@ let g:tmuxline_preset = {
       \'cwin' : ['#I', '#W', '#F'],
       \'y'    : ['%R\ %p', '%a', '%d/%m/%Y'],
       \'z'    : '#H'}
+
+" CtrlP
+if executable("ag")
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+let g:ctrlp_show_hidden = 1
+map <C-p> :CtrlP<CR>

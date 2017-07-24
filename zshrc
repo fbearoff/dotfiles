@@ -85,10 +85,12 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 #-------- Color Manpages
-export LESS_TERMCAP_mb=$'\E[01;31m'             # begin blinking
-export LESS_TERMCAP_md=$'\E[01;31m'             # begin bold
-export LESS_TERMCAP_me=$'\E[0m'                 # end mode
-export LESS_TERMCAP_se=$'\E[0m'                 # end standout-mode
-export LESS_TERMCAP_so=$'\E[01;44;33m'          # begin standout-mode - info box
-export LESS_TERMCAP_ue=$'\E[0m'                 # end underline
-export LESS_TERMCAP_us=$'\E[01;32m'             # begin underline
+man() {
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    command man "$@"
+}
