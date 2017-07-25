@@ -34,6 +34,8 @@ set pastetoggle=<F2>
 set timeoutlen=1000 ttimeoutlen=0
 set cursorline
 set showmatch
+set lazyredraw
+set history=500
 
 " key mappings
 let mapleader=","
@@ -46,6 +48,10 @@ nnoremap i :noh<cr>i
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+command W w !sudo tee % > /dev/null
+map <F7> :setlocal spell! spelllang=en_us<CR>
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " VimPlug
 call plug#begin()
@@ -69,6 +75,7 @@ set background=dark
 colorscheme deus
 let g:airline_theme='bubblegum'
 
+"Plugins
 "Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
