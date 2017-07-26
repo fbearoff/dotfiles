@@ -36,6 +36,7 @@ set cursorline
 set showmatch
 set lazyredraw
 set history=500
+set backspace=indent,eol,start
 
 " key mappings
 let mapleader=","
@@ -45,6 +46,7 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 nnoremap i :noh<cr>i
+nnoremap <Space> i<Space><Esc>l
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
@@ -68,14 +70,21 @@ Plug 'https://github.com/Yggdroot/indentLine.git'
 Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/edkolev/tmuxline.vim.git'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git', { 'on': 'CtrlP' }
+Plug 'https://github.com/chrisbra/csv.vim.git'
 call plug#end()
 
 " appearance
 set background=dark
 colorscheme deus
-let g:airline_theme='bubblegum'
 
 "Plugins
+" Airline
+let g:airline_theme='bubblegum'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#fnamecollapse = 1
+let g:airline#extensions#csv#column_display = 'Name'
+
 "Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -112,3 +121,8 @@ if executable("ag")
 endif
 let g:ctrlp_show_hidden = 1
 map <C-p> :CtrlP<CR>
+
+" CSV
+let g:csv_highlight_column = 'y'
+:let b:csv_arrange_use_all_rows = 1
+let g:csv_autocmd_arrange = 1
