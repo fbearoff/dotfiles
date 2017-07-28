@@ -111,7 +111,7 @@ let g:tmuxline_preset = {
       \'c'    : ['#(whoami)', '#(uptime | cut -d " " -f2,3,4,5 | cut -d "," -f1)'],
       \'win'  : ['#I', '#W'],
       \'cwin' : ['#I', '#W', '#F'],
-      \'y'    : ['%R\ %p', '%a', '%d/%m/%Y'],
+      \'y'    : ['%r', '%a', '%d/%m/%Y'],
       \'z'    : '#H'}
 
 " CtrlP
