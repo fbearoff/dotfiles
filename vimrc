@@ -71,6 +71,7 @@ Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/edkolev/tmuxline.vim.git'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git', { 'on': 'CtrlP' }
 Plug 'https://github.com/chrisbra/csv.vim.git'
+Plug 'https://github.com/chriskempson/base16-vim.git'
 call plug#end()
 
 " appearance
@@ -79,7 +80,7 @@ colorscheme deus
 
 "Plugins
 " Airline
-let g:airline_theme='bubblegum'
+let g:airline_theme='deus'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#fnamecollapse = 1
