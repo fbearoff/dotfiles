@@ -11,7 +11,7 @@ syntax on
 set ignorecase
 set showcmd
 set smartcase
-set mouse=a
+"set mouse=a
 set so=10
 set tabstop=4
 set softtabstop=4
@@ -71,7 +71,7 @@ Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/edkolev/tmuxline.vim.git'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git', { 'on': 'CtrlP' }
 Plug 'https://github.com/chrisbra/csv.vim.git'
-Plug 'https://github.com/chriskempson/base16-vim.git'
+Plug 'https://github.com/luochen1990/rainbow.git'
 call plug#end()
 
 " appearance
@@ -122,6 +122,9 @@ if executable("ag")
 endif
 let g:ctrlp_show_hidden = 1
 map <C-p> :CtrlP<CR>
+
+"Rainbow Parenthesis
+let g:rainbow_active = 1
 
 " CSV
 let g:csv_highlight_column = 'y'
