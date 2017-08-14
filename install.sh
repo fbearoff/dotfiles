@@ -15,8 +15,13 @@ ln -s ~/dotfiles/vimrc ~/.vimrc
 ln -s ~/dotfiles/zshrc ~/.zshrc
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 tmux source-file ~/.tmux.conf
+
+#setup zsh plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/rupa/z.git ~/.oh-my-zsh/custom/plugins/z
+
+#setup ranger scope file
+ranger --copy-config=scope
 
 #set aliases
 {

@@ -8,7 +8,7 @@ alias k kill
 alias ka kill all
 alias p put
 alias g get
-alias pg pget -n 5
+alias pg pget -n 8
 alias m mirror
 alias mpg mirror --use-pget-n=8
 alias mpl mirror --parallel=5
