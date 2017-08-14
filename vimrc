@@ -109,7 +109,7 @@ let g:SuperTabDefaultCompletionType = "context"
 " tmuxline
 let g:tmuxline_preset = {
       \'a'    : '#S',
-      \'c'    : ['#(whoami)', '#(uptime | cut -d " " -f2,3,4,5 | cut -d "," -f1)'],
+      \'c'    : ['#(whoami)', '#(uptime | cut -d " " -f3,4,5,6,7 | cut -d "," -f1,2)'],
       \'win'  : ['#I', '#W'],
       \'cwin' : ['#I', '#W', '#F'],
       \'y'    : ['%r', '%a', '%d/%m/%Y'],
