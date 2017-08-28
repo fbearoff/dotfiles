@@ -8,6 +8,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 " vim settings
 filetype indent plugin on
 syntax on
+set clipboard=unnamedplus
 set ignorecase
 set showcmd
 set smartcase
