@@ -1,0 +1,207 @@
+###---i3 Options---###
+focus_follows_mouse no
+font pango:DejaVuSansMono Nerd Font 11
+hide_edge_borders smart
+for_window [class="^.*"] border pixel 0
+#smart_gaps on
+#smart_borders no_gaps
+gaps inner 10
+gaps outer 5
+
+# set variables
+set $mod Mod4
+set $term urxvt
+set $browser firefox
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+###---Dropdown/Scratchpad Window---###
+for_window [instance="dropdown"] floating enable
+for_window [instance="dropdown"] resize set 625 400
+for_window [instance="dropdown"] move position center
+for_window [instance="dropdown"] move scratchpad
+exec --no-startup-id $term -name dropdown -e tmux
+
+# Basic Bindings
+bindsym $mod+Return 		exec $term
+bindsym $mod+Shift+Return 	exec $term -e tmux
+
+bindsym $mod+minus          split vertical ;; exec $term
+
+bindsym $mod+space 		    focus mode_toggle
+bindsym $mod+Shift+space 	floating toggle
+
+###---Letter Keys---###
+
+#bindsym $mod+a 		
+#bindsym $mod+Shift+a 	
+
+#bindsym $mod+b
+#bindsym $mod+Shift+b 	
+
+#bindsym $mod+c
+#bindsym $mod+Shift+c
+
+bindsym $mod+d			    exec rofi -show run
+bindsym $mod+Shift+d 		gaps inner current set 0; gaps outer current set 0
+
+#bindsym $mod+e
+bindsym $mod+Shift+e 		exec i3-msg exit
+
+#bindsym $mod+f
+#bindsym $mod+Shift+f
+
+#bindsym $mod+g
+#bindsym $mod+Shigt+g
+
+bindsym $mod+h 			    focus left
+bindsym $mod+Shift+h 		move left
+
+bindsym $mod+i 			    exec $term -e htop
+bindsym $mod+Shift+i 		resize grow height 10 px or 10 ppt
+
+bindsym $mod+j 			    focus down
+bindsym $mod+Shift+j 		move down
+
+bindsym $mod+k 			    focus up
+bindsym $mod+Shift+k 		move up
+
+bindsym $mod+l 			    focus right
+bindsym $mod+Shift+l 		move right
+
+bindsym $mod+m 			    exec dm-tool lock
+#bindsym $mod+Shift+m
+
+#bindsym $mod+n
+#bindsym $mod+Shift+n
+
+#bindsym $mod+o
+bindsym $mod+Shift+o       resize grow width 10 px or 10 ppt
+
+#bipdsym $mod+p
+#bindsym $mod+Shift+p
+
+bindsym $mod+q 			   kill
+bindsym $mod+Shift+q       kill
+
+bindsym $mod+r 			   exec $term -e ranger
+bindsym $mod+Shift+r       restart
+
+bindsym $mod+s			   gaps inner current plus 5
+bindsym $mod+Shift+s       gaps inner current minus 5
+
+#bindsym $mod+t
+#bindsym $mod+Shift+t
+
+bindsym $mod+u 			   [instance="dropdown"] scratchpad show; move position center
+bindsym $mod+Shift+u       resize shrink height 10 px or 10 ppt
+
+#bindsym $mod+v
+#bindsym $mod+Shift+v
+
+bindsym $mod+w 			   exec $browser
+#bindsym $mod+Shift+w
+
+#bindsym $mod+x
+#bindsym $mod+Shift+x
+
+#bindsym $mod+y
+bindsym $mod+Shift+y       resize shrink width 10 px or 10ppt
+
+#bindsym $mod+z
+bindsym $mod+z 			   fullscreen toggle
+
+###---Function Buttons---###
+#bindsym F1
+#bindsym F2
+#bindsym F3
+#bindsym F4
+#bindsym F5
+#bindsym F6
+#bindsym F7
+#bindsym F8
+#bindsym F9
+#bindsym F10
+#bindsym F11
+#bindsym F12
+
+#bindsym $mod+F1
+#bindsym $mod+F2
+bindsym $mod+F3			    exec --no-startup-id arandr
+#bindsym $mod+F4		    exec --no-startup-id sudo zzz
+#bindsym $mod+F5		    exec --no-startup-id sudo sv restart NetworkManager
+#bindsym $mod+F6
+#bindsym $mod+F7
+#bindsym $mod+F8
+#bindsym $mod+F9
+#bindsym $mod+F10
+#bindsym $mod+F11
+#bindsym $mod+F12
+
+###---Arrow Keys---###
+bindsym $mod+Left   		focus left
+bindsym $mod+Shift+Left 	move left
+
+bindsym $mod+Right 		    focus right
+bindsym $mod+Shift+Right 	move right
+
+bindsym $mod+Down 		    focus down
+bindsym $mod+Shift+Down 	move down
+
+bindsym $mod+Up 		    focus up
+bindsym $mod+Shift+Up 		move up
+
+###---Workspaces---###
+set $workspace1 "1 "
+set $workspace2 "2 "
+set $workspace3 "3 "
+set $workspace10 "10 "
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace $workspace10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# window assignments
+for_window [class="Firefox"] move to workspace $workspace2
+for_window [class="Deluge"] move to workspace $workspace3
+for_window [class="qutebrowser"] move to workspace $workspace2
+
+###---External scripts---###
+#wallpaper
+exec_always --no-statup-id feh --bg-scale ~/Pictures/space.png
+#Composite manager
+exec --no-startup-id compton 
+#Hide mouse
+exec --no-startup-id unclutter
+#Network Manager Applet
+exec --no-startup-id nm-applet
+#Autolock
+exec --no-startup-id xautolock -time 5 -locker dm-tool lock
+###---i3bar---###
+bar {
+	status_command i3blocks
+}
+#i3block bindings
+bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+bindsym --release Num_Lock exec pkill -SIGRTMIN+11 i3blocks
