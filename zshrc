@@ -49,7 +49,7 @@ ZSH_THEME="bira"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z sudo screen zsh-syntax-highlighting)
+plugins=(git z sudo vi-mode screen zsh-syntax-highlighting)
 
 # User configuration
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
@@ -94,3 +94,23 @@ man() {
     LESS_TERMCAP_us=$'\e[01;32m' \
     command man "$@"
 }
+
+
+# enable vim mode on commmand line
+bindkey -v
+
+# no delay entering normal mode
+# https://coderwall.com/p/h63etq
+# https://github.com/pda/dotzsh/blob/master/keyboard.zsh#L10
+# 10ms for key sequences
+KEYTIMEOUT=1
+
+# show vim status
+# http://zshwiki.org/home/examples/zlewidgets
+function zle-line-init zle-keymap-select {
+    RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
+    RPS2=$RPS1
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
