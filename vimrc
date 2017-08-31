@@ -12,7 +12,6 @@ set clipboard=unnamedplus
 set ignorecase
 set showcmd
 set smartcase
-"set mouse=a
 set so=10
 set tabstop=4
 set softtabstop=4
@@ -79,6 +78,13 @@ call plug#end()
 set background=dark
 colorscheme deus
 
+let hostname = substitute(system('hostname'), '\n', '', '')
+if hostname == "antergos"
+    set mouse=a
+    colorscheme slate
+    highlight clear SignColumn
+endif
+
 "Plugins
 " Airline
 let g:airline_theme='deus'
@@ -86,6 +92,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#fnamecollapse = 1
 let g:airline#extensions#csv#column_display = 'Name'
+let g:airline_powerline_fonts = 1
 
 "Syntastic
 set statusline+=%#warningmsg#
@@ -103,6 +110,9 @@ let NERDTreeShowHidden=1
 " IndentLine
 let g:indentLine_enabled = 1
 map <leader>ig :IndentLinesToggle<CR>
+
+" Better Whitespace
+autocmd BufEnter * EnableStripWhitespaceOnSave
 
 " SuperTab
 let g:SuperTabDefaultCompletionType = "context"
