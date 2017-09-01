@@ -34,11 +34,11 @@ bindsym $mod+Shift+space 	floating toggle
 
 ###---Letter Keys---###
 
-#bindsym $mod+a 		
-#bindsym $mod+Shift+a 	
+#bindsym $mod+a
+#bindsym $mod+Shift+a
 
 #bindsym $mod+b
-#bindsym $mod+Shift+b 	
+#bindsym $mod+Shift+b
 
 #bindsym $mod+c
 #bindsym $mod+Shift+c
@@ -140,16 +140,16 @@ bindsym $mod+F3			    exec --no-startup-id arandr
 #bindsym $mod+F12
 
 ###---Arrow Keys---###
-bindsym $mod+Left   		focus left
+bindsym $mod+Left   		move workspace to output left
 bindsym $mod+Shift+Left 	move left
 
-bindsym $mod+Right 		    focus right
+bindsym $mod+Right 		    move workspace to output right
 bindsym $mod+Shift+Right 	move right
 
-bindsym $mod+Down 		    focus down
+bindsym $mod+Down 		    workspace next
 bindsym $mod+Shift+Down 	move down
 
-bindsym $mod+Up 		    focus up
+bindsym $mod+Up 		    workspace prev
 bindsym $mod+Shift+Up 		move up
 
 ###---Workspaces---###
@@ -189,15 +189,17 @@ for_window [class="qutebrowser"] move to workspace $workspace2
 
 ###---External scripts---###
 #wallpaper
-exec_always --no-statup-id feh --bg-scale ~/Pictures/space.png
+exec_always --no-statup-id feh --bg-scale ~/Pictures/wallpaper.png
 #Composite manager
-exec --no-startup-id compton 
+exec --no-startup-id compton
 #Hide mouse
 exec --no-startup-id unclutter
 #Network Manager Applet
 exec --no-startup-id nm-applet
 #Autolock
 exec --no-startup-id xautolock -time 5 -locker dm-tool lock
+#Set display
+exec --no-startup-id sh ~/.config/scripts/screen.sh
 ###---i3bar---###
 bar {
 	status_command i3blocks
