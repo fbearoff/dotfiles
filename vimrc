@@ -79,7 +79,7 @@ set background=dark
 colorscheme deus
 
 let hostname = substitute(system('hostname'), '\n', '', '')
-if hostname == "antergos"
+if hostname == "Thinky"
     set mouse=a
     colorscheme slate
     highlight clear SignColumn
@@ -99,7 +99,7 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 

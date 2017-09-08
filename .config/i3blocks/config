@@ -25,21 +25,9 @@
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
 command=/usr/lib/i3blocks/$BLOCK_NAME
-separator_block_width=15
+separator_block_width=10
 markup=none
 
-# Volume indicator
-#
-# The first parameter sets the step (and units to display)
-# The second parameter overrides the mixer selection
-# See the script for details.
-[volume]
-#label=VOL
-label=
-instance=Master
-#instance=PCM
-interval=once
-signal=10
 
 # Memory usage
 #
@@ -70,39 +58,49 @@ interval=10
 separator=false
 
 [wifi]
-#instance=wlp3s0
+instance=wlp3s0
 interval=10
+label=
 separator=false
 
 [bandwidth]
 command=~/.config/i3blocks/bandwidth
 interval=5
+separator=true
+
+[bluetooth]
+command=~/.config/i3blocks/bluetooth
+label=
+interval=10
 # CPU usage
 #
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [cpu_usage]
-label=CPU
+command=~/.config/i3blocks/cpu_usage
+label=
 interval=10
-min_width=CPU: 100.00%
-#separator=false
+#min_width= 100.0%
+separator=true
 
-#[load_average]
-#interval=10
+# [load_average]
+# interval=1
+# separator=true
 
 # Battery indicator
 #
 # The battery instance defaults to 0.
 [battery]
-label=BAT
-#label=⚡
+#label=BAT
+label=⚡
 #instance=1
 interval=30
+separator=true
 
-# Date Time
-#
-[time]
-command=date '+%I:%M %p %m-%d-%Y'
+# Brightness
+[brightness]
+command=~/.config/i3blocks/brightness
+label=
 interval=5
 
 # Generic media player support
@@ -125,12 +123,33 @@ interval=5
 # Support multiple chips, though lm-sensors.
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
-#[temperature]
-#label=TEMP
-#interval=10
+[temperature]
+label=
+interval=10
 
 # Key indicators
+
+# Volume indicator
+# The first parameter sets the step (and units to display)
+# The second parameter overrides the mixer selection
+# See the script for details.
+
+[audio]
+command=~/.config/i3blocks/audio
+interval=2
+separator=false
+
+[microphone]
+command=~/.config/i3blocks/microphone
+#label=
+interval=2
+
+# Date Time
 #
+[time]
+command=date '+%I:%M %p %m-%d-%Y'
+interval=5
+
 # Add the following bindings to i3 config file:
 #
 # bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
