@@ -12,7 +12,7 @@ set ignorecase
 set showcmd
 set smartcase
 set so=10
-set tabstop=4
+set tabstop=8
 set softtabstop=4
 set shiftwidth=4
 set expandtab
@@ -36,6 +36,8 @@ set showmatch
 set lazyredraw
 set history=500
 set backspace=indent,eol,start
+set backupdir=~/.vim/tmp
+set directory=~/.vim/tmp
 
 " key mappings
 let mapleader=","
