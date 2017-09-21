@@ -3,27 +3,30 @@ focus_follows_mouse no
 font pango:RobotoMono Nerd Font 9
 hide_edge_borders smart
 for_window [class="^.*"] border pixel 0
-#smart_gaps on
+smart_gaps on
 #smart_borders no_gaps
 gaps inner 10
 gaps outer 5
 
-# set variables
+###---Variables---###
 set $mod Mod4
 set $term urxvt
 set $browser firefox
 set $alt_browser qutebrowser
 set $flash --no-startup-id bash ~/.config/scripts/flash_win.sh
+###---Modes---###
+mode  "Passthrough Mode - Press Mod+F12 to exit" {
+        bindsym $mod+F12 mode "default"
+}
 
-#For PULSEAUDIO/PAMIXER
+#Audio Controls
 set $inc --no-startup-id pamixer --allow-boost -i 5
 set $biginc --no-startup-id pamixer --allow-boost -i 15
 set $dec --no-startup-id pamixer --allow-boost -d 5
 set $bigdec --no-startup-id pamixer --allow-boost -d 15
-set $mute --no-startup-id pamixer --allow-boost -t
-set $micmute --no-startup-id amixer -q -d sset Capture toggle
+set $mute --no-startup-id amixer -q set Master toggle
+set $micmute --no-startup-id amixer -q set Capture toggle
 set $truemute --no-startup-id pamixer -m
-#set $audio --no-startup-id bash ~/.config/Scripts/audio_pulse.sh
 
 ###---Dropdown/Scratchpad Window---###
 for_window [instance="dropdown"] floating enable
@@ -104,13 +107,13 @@ bindsym $mod+s			   gaps inner current plus 5
 bindsym $mod+Shift+s       gaps inner current minus 5
 
 bindsym $mod+t             exec thunar
-#bindsym $mod+Shift+t
+bindsym $mod+Shift+t       exec deluge
 
 bindsym $mod+u 			   [instance="dropdown"] scratchpad show; move position center
 bindsym $mod+Shift+u       resize shrink height 10 px or 10 ppt
 
 #bindsym $mod+v
-#bindsym $mod+Shift+v
+bindsym $mod+Shift+v       exec virtualbox --startvm Windows --scale
 
 bindsym $mod+w 			   exec $browser
 bindsym $mod+Shift+w       exec $alt_browser
@@ -121,8 +124,8 @@ bindsym $mod+Shift+w       exec $alt_browser
 #bindsym $mod+y
 bindsym $mod+Shift+y       resize shrink width 10 px or 10ppt
 
-#bindsym $mod+z
-bindsym $mod+z 			   fullscreen toggle
+bindsym $mod+z             fullscreen toggle
+#bindsym $mod+Shift+z
 
 ###---Function Buttons---###
 #bindsym F1
@@ -139,9 +142,9 @@ bindsym $mod+z 			   fullscreen toggle
 #bindsym F12
 
 #bindsym $mod+F1
-#bindsym $mod+F2
+bindsym $mod+F2             exec i3lock-fancy
 bindsym $mod+F3			    exec --no-startup-id arandr
-#bindsym $mod+F4		    exec --no-startup-id sudo zzz
+#bindsym $mod+F4
 bindsym $mod+F5		        exec --no-startup-id sudo systemctl restart NetworkManager
 #bindsym $mod+F6
 #bindsym $mod+F7
@@ -149,7 +152,7 @@ bindsym $mod+F5		        exec --no-startup-id sudo systemctl restart NetworkMana
 #bindsym $mod+F9
 #bindsym $mod+F10
 #bindsym $mod+F11
-#bindsym $mod+F12
+bindsym $mod+F12			mode "Passthrough Mode - Press Mod+F12 to exit"
 
 ###---Arrow Keys---###
 bindsym $mod+Left   		move workspace to output left
@@ -168,7 +171,6 @@ bindsym $mod+Shift+Up 		move up
 floating_modifier $mod
 bindsym --whole-window $mod+button2 kill
 
-
 ###---Extra XF86 Keys---###
 #These are the extra media keys that some keyboards have.
 bindsym XF86AudioMute		exec $mute
@@ -180,31 +182,31 @@ bindsym XF86PowerOff		exec sudo shutdown -h now
 #bindsym XF86Paste		exec
 #bindsym XF86Cut		exec
 #bindsym XF86MenuKB		exec
-bindsym XF86Calculator		exec $term -e R -q
-#bindsym XF86Sleep		exec sudo zzz
+#bindsym XF86Calculator
+#bindsym XF86Sleep
 #bindsym XF86WakeUp		exec
 bindsym XF86Explorer		exec $term -e ranger
 #bindsym XF86Send		exec
 #bindsym XF86Xfer		exec
 bindsym XF86WWW			exec --no-startup-id $browser
 #bindsym XF86DOS		exec
-#bindsym XF86ScreenSaver		exec --no-startup-id ~/.config/i3/lock.sh
-#bindsym XF86RotateWindows	exec
-#bindsym XF86TaskPane		exec
-#bindsym XF86Favorites		exec
+#bindsym XF86ScreenSaver
+#bindsym XF86RotateWindows
+#bindsym XF86TaskPane
+#bindsym XF86Favorites
 bindsym XF86MyComputer		exec $term -e ranger
-#bindsym XF86Back		exec
-#bindsym XF86Forward		exec
-#bindsym XF86Eject		exec sudo umount -R /mnt
+#bindsym XF86Back
+#bindsym XF86Forward
+#bindsym XF86Eject
 bindsym XF86AudioNext		exec $next
 bindsym XF86AudioPlay		exec $pause
 bindsym XF86AudioPrev		exec $prev
 bindsym XF86AudioStop		exec $pause
-#bindsym XF86AudioRecord		exec $audio
-bindsym XF86AudioRewind		exec $lilbak
-bindsym XF86AudioForward	exec $lilfor
-#bindsym XF86Phone		exec
-#bindsym XF86Tools		exec
+#bindsym XF86AudioRecord
+#bindsym XF86AudioRewind
+#bindsym XF86AudioForward
+#bindsym XF86Phone
+#bindsym XF86Tools
 bindsym XF86HomePage		exec $browser
 bindsym XF86Reload		restart
 #bindsym XF86ScrollUp		exec
@@ -222,13 +224,13 @@ bindsym XF86Reload		restart
 #bindsym XF86Launch9		exec
 bindsym XF86AudioMicMute	exec $micmute
 #bindsym XF86TouchpadToggle	exec
-bindsym XF86TouchpadOn		exec --no-startup-id exec synclient TouchpadOff=0
-bindsym XF86TouchpadOff		exec --no-startup-id exec synclient TouchpadOff=1
-bindsym XF86Suspend		exec --no-startup-id ~/.config/i3/lock.sh
+#bindsym XF86TouchpadOn		exec --no-startup-id exec synclient TouchpadOff=0
+#bindsym XF86TouchpadOff		exec --no-startup-id exec synclient TouchpadOff=1
+#bindsym XF86Suspend
 bindsym XF86Close		kill
 bindsym XF86WebCam		exec mpv /dev/video0
 bindsym XF86Mail		exec $term -e mutt
-bindsym XF86Messenger		exec $term -e weechat
+#bindsym XF86Messenger
 bindsym XF86Search		exec $browser https://google.com
 #bindsym XF86Go			exec
 #bindsym XF86Finance		exec
@@ -244,10 +246,11 @@ bindsym XF86KbdBrightnessUp	exec --no-startup-id xbacklight -inc 15
 #bindsym XF86Reply		exec
 #bindsym XF86MailForward	exec
 #bindsym XF86Save		exec
-bindsym XF86Documents		exec $term -e ranger ~/Documents
+#bindsym XF86Documents
 #bindsym XF86Battery		exec
 #bindsym XF86Bluetooth		exec
 bindsym XF86WLAN exec --no-startup-id sudo systemctl restart NetworkManager
+
 ###---Workspaces---###
 set $workspace1 "1 "
 set $workspace2 "2 "
@@ -255,6 +258,8 @@ set $workspace3 "3 "
 set $workspace4 "4 "
 set $workspace5 "5 "
 set $workspace6 "6 "
+set $workspace7 "7 "
+set $workspace8 "8 "
 set $workspace10 "10 "
 
 # switch to workspace
@@ -264,8 +269,8 @@ bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
 bindsym $mod+5 workspace $workspace5
 bindsym $mod+6 workspace $workspace6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace $workspace10
 
@@ -276,17 +281,11 @@ bindsym $mod+Shift+3 move container to workspace $workspace3
 bindsym $mod+Shift+4 move container to workspace $workspace4
 bindsym $mod+Shift+5 move container to workspace $workspace5
 bindsym $mod+Shift+6 move container to workspace $workspace6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
-# workspace tweaks
-workspace $workspace2 gaps inner 0
-workspace $workspace2 gaps outer 0
-
-workspace $workspace4 gaps inner 0
-workspace $workspace4 gaps outer 0
 # window assignments
 for_window [class="Firefox"] move to workspace $workspace2
 for_window [class="Deluge"] move to workspace $workspace3
@@ -295,6 +294,9 @@ for_window [class="libreoffice-calc"] move to workspace $workspace4
 for_window [class="libreoffice-writer"] move to workspace $workspace5
 for_window [class="libreoffice-impress"] move to workspace $workspace6
 for_window [window_role="GtkFileChooserDialog"] resize shrink height 10 px
+for_window [title="Connection Manager"] resize grow height 50 px
+for_window [class="qpdfview"] move to workspace $workspace7
+for_window [class="VirtualBox"] move to workspace $workspace8
 
 for_window [class="Qalculate-gtk"] floating enable
 for_window [class="keepassxc"] floating enable
@@ -312,6 +314,9 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xautolock -time 5 -locker i3lock-fancy
 #Set display
 exec --no-startup-id sh ~/.config/scripts/screen.sh
+#Dropbox
+exec --no-startup-id dropbox
+
 ###---i3bar---###
 bar {
 	status_command i3blocks
@@ -319,3 +324,5 @@ bar {
 #i3block bindings
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock exec pkill -SIGRTMIN+11 i3blocks
+
+# vim:filetype=i3

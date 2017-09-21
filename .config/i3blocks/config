@@ -68,6 +68,11 @@ command=~/.config/i3blocks/bandwidth
 interval=5
 separator=true
 
+[vpn]
+command=~/.config/i3blocks/vpn
+interval=10
+separator=true
+
 [bluetooth]
 command=~/.config/i3blocks/bluetooth
 label=
@@ -115,8 +120,8 @@ interval=5
 # OpenVPN support
 #
 # Support multiple VPN, with colors.
-#[openvpn]
-#interval=20
+# [openvpn]
+# interval=20
 
 # Temperature
 #

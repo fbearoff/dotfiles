@@ -15,4 +15,4 @@ alias mpl mirror --parallel=5
 alias mpgl mirror --use-pget-n=2 --parallel=5
 alias mr mirror -r
 alias mp mirror -R
-alias ll cls -lh
+alias ll cls -lhtr

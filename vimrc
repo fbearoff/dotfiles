@@ -4,11 +4,10 @@ if empty(glob('~/.vim/autoload/plug.vim'))
           \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
-
 " vim settings
 filetype indent plugin on
 syntax on
-set clipboard=unnamedplus
+set clipboard=unnamed,unnamedplus
 set ignorecase
 set showcmd
 set smartcase
@@ -72,6 +71,7 @@ Plug 'https://github.com/edkolev/tmuxline.vim.git'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git', { 'on': 'CtrlP' }
 Plug 'https://github.com/chrisbra/csv.vim.git'
 Plug 'https://github.com/luochen1990/rainbow.git'
+Plug 'https://github.com/PotatoesMaster/i3-vim-syntax.git'
 call plug#end()
 
 " appearance
@@ -112,8 +112,7 @@ let g:indentLine_enabled = 1
 map <leader>ig :IndentLinesToggle<CR>
 
 " Better Whitespace
-autocmd BufEnter * EnableStripWhitespaceOnSave
-
+map <leader>sw :StripWhitespace<CR>
 " SuperTab
 let g:SuperTabDefaultCompletionType = "context"
 
@@ -141,3 +140,10 @@ let g:rainbow_active = 1
 let g:csv_highlight_column = 'y'
 :let b:csv_arrange_use_all_rows = 1
 let g:csv_autocmd_arrange = 1
+
+" Mail formatting
+augroup mail_trailing_whitespace " {
+    autocmd!
+    autocmd FileType mail setlocal formatoptions+=w
+augroup END " }
+

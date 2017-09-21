@@ -17,4 +17,8 @@ if [[ "${STATUS}" = "on" ]]; then
   echo "on"
   echo "on"
   echo ""
+else
+    echo "off"
+    echo "off"
+    echo ""
 fi
