@@ -29,6 +29,7 @@
 *color7: #a8a19f
 *color15: #f1efee
 
+Xcursor.size: 16
 
 !URxvt
 URxvt.intensityStyles:	false
