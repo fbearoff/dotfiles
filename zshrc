@@ -49,7 +49,7 @@ ZSH_THEME="bira"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages z sudo vi-mode screen zsh-syntax-highlighting)
+plugins=(git colored-man-pages sudo vi-mode screen zsh-syntax-highlighting)
 
 # User configuration
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
