@@ -1,0 +1,7 @@
+alias tmux="tmux -2"
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias ll="ls -alhtr"
+alias weather="curl http://wttr.in/philadelphia\?u"
+alias diff="colordiff"
+alias sync_music="rsync -v -rlt --chmod=a=rw,Da+x --delete --exclude='*.jpg' --exclude='*.ini' --progress \"/mnt/d/Music/\" \"192.168.1.102::music//\""

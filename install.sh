@@ -20,15 +20,9 @@ tmux source-file ~/.tmux.conf
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone https://github.com/rupa/z.git ~/.oh-my-zsh/custom/plugins/z
 
+#setup aliases
+ln -s ~/dotfiles/aliases.zsh ~/.oh-my-zsh/custom/aliases.zsh
+
 #setup ranger scope file
 ranger --copy-config=scope
 
-#set aliases
-{
-    echo 'alias tmux="tmux -2"'
-    echo 'alias cp="cp -iv"'
-    echo 'alias mv="mv -iv"'
-    echo 'alias ll="ls -alhtr"'
-    echo 'alias weather="curl http://wttr.in/philadelphia\?u"'
-    echo 'alias diff="colordiff"'
-}  >> ~/.oh-my-zsh/custom/aliases.zsh
