@@ -24,7 +24,7 @@
 #
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
-command=/usr/lib/i3blocks/$BLOCK_NAME
+command=/home/fbearoff/dotfiles/.config/i3blocks/$BLOCK_NAME
 separator_block_width=10
 markup=none
 
@@ -33,7 +33,7 @@ markup=none
 #
 # The type defaults to "mem" if the instance is not specified.
 [memory]
-label=MEM
+label=
 separator=false
 interval=30
 
@@ -159,12 +159,19 @@ interval=5
 #
 # bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 # bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
+#
 [keyindicator]
-instance=CAPS
+#Allowed keys are CAPS and NUM
+KEY=CAPS
+markup=pango
 interval=once
 signal=11
+HIDE_WHEN_OFF=1
 
 [keyindicator]
-instance=NUM
+KEY=NUM
+markup=pango
 interval=once
 signal=11
+#COLOR_ON=#00FF00
+HIDE_WHEN_OFF=1

@@ -53,7 +53,7 @@ plugins=(git colored-man-pages sudo vi-mode screen zsh-syntax-highlighting)
 
 # User configuration
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
-export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 export EDITOR='/usr/bin/vim'
 # export MANPATH="/usr/local/man:$MANPATH"
