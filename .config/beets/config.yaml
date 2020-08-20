@@ -1,0 +1,26 @@
+directory: ~/music
+library: ~/.config/beets/musiclibrary.db
+format_album: $year-$albumartist-$album-$genre
+original_date: yes
+sort_album: albumartist+ year+ album+
+plugins: fetchart embedart bandcamp ftintitle edit lastgenre scrub
+
+import:
+    write: yes
+    copy: yes
+    incremental: yes
+    log: ~/.config/beets/import.log
+
+paths:
+    default: $albumartist/$year-$album/$track-$artist-$title
+    comp: Various Artists/$year-$album/$track-$artist-$title
+    singleton: $albumartist/$year-$album/$track-$artist-$title
+
+embedart:
+    ifempty: yes
+    remove_art_file: yes
+
+ftintitle:
+    auto: yes
+    drop: yes
+
