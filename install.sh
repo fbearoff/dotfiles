@@ -18,7 +18,6 @@ tmux source-file ~/.tmux.conf
 
 #setup zsh plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-git clone https://github.com/rupa/z.git ~/.oh-my-zsh/custom/plugins/z
 
 #setup aliases
 ln -s ~/dotfiles/aliases.zsh ~/.oh-my-zsh/custom/aliases.zsh

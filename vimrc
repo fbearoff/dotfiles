@@ -39,6 +39,13 @@ set backspace=indent,eol,start
 set backupdir=~/.vim/tmp
 set directory=~/.vim/tmp
 
+"set 24-bit colors
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
 " key mappings
 let mapleader=","
 nnoremap Q <nop>
