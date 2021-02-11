@@ -6,12 +6,12 @@ original_date: yes
 sort_album: albumartist+ year+ album+
 
 replace:
-    '[\\/]': _
-    '^\.': _
-    '[\x00-\x1f]': _
-    '[<>"\?\*\|]': _
-    ':': '-'
-#    '\.$': _
+    '[\\/]': ''
+    '^\.': ''
+    '[\x00-\x1f]': ''
+    '[<>"\?\*\|]': ''
+    ':': ''
+    '\.$': ''
     '\s+$': ''
     '^\s+': ''
 
@@ -20,6 +20,8 @@ import:
     move: yes
     incremental: yes
     log: ~/.config/beets/import.log
+    languages:
+        - en
 
 plugins:
     - fetchart
