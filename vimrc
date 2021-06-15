@@ -82,6 +82,7 @@ Plug 'https://github.com/chrisbra/csv.vim.git'
 Plug 'https://github.com/luochen1990/rainbow.git'
 Plug 'https://github.com/PotatoesMaster/i3-vim-syntax.git'
 Plug 'https://github.com/tpope/vim-surround.git'
+Plug 'https://github.com/jpalardy/vim-slime.git'
 call plug#end()
 
 " appearance
@@ -145,6 +146,9 @@ map <C-p> :CtrlP<CR>
 
 "Rainbow Parenthesis
 let g:rainbow_active = 1
+
+"Vim-Slime
+let g:slime_target = "tmux"
 
 " CSV
 let g:csv_highlight_column = 'y'

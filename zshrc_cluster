@@ -52,10 +52,10 @@ ZSH_THEME="bira"
 plugins=(git sudo screen zsh-syntax-highlighting)
 
 # User configuration
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
+export PATH=$HOME/.local/bin:$HOME/bin
+export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
 export PATH=/opt/gcc_4.9.1/rtf/bin/:$PATH
 export PATH=$HOME/python/Python-2.7.12/:$PATH
-export PATH=$PATH:$HOME/.local/bin:$HOME/bin
 export C_INCLUDE_PATH=$HOME/include
 export JAVA_HOME=$HOME/jdk_1.8
 export PATH="$JAVA_HOME/bin:$PATH"
