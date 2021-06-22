@@ -19,3 +19,4 @@ alias ll cls -lhtr
 alias .. cd ..
 alias cf cache flush
 set bmk:save-passwords yes
+set xfer:clobber on
