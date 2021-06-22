@@ -89,14 +89,6 @@ call plug#end()
 set background=dark
 colorscheme deus
 
-let hostname = substitute(system('hostname'), '\n', '', '')
-if hostname == "Thinky"
-    set mouse=a
-    colorscheme slate
-    highlight clear SignColumn
-endif
-
-"Plugins
 " Airline
 let g:airline_theme='deus'
 let g:airline#extensions#tabline#enabled = 1
