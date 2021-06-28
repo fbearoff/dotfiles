@@ -1,6 +1,6 @@
 ###---i3 Options---###
 focus_follows_mouse no
-font pango:RobotoMono Nerd Font 9
+font pango:DejaVuSansMono Nerd Font Mono 10
 hide_edge_borders smart
 for_window [class="^.*"] border pixel 0
 smart_gaps on
@@ -94,7 +94,7 @@ bindsym $mod+Shift+m        exec dm-tool lock
 #bindsym $mod+o
 bindsym $mod+Shift+o       resize grow width 10 px or 10 ppt
 
-#bipdsym $mod+p
+bindsym $mod+p             exec  rofi -show power-menu -modi power-menu:rofi-power-menu
 #bindsym $mod+Shift+p
 
 bindsym $mod+q 			   kill
@@ -253,13 +253,13 @@ bindsym XF86WLAN exec --no-startup-id sudo systemctl restart NetworkManager
 
 ###---Workspaces---###
 set $workspace1 "1 "
-set $workspace2 "2 "
-set $workspace3 "3 "
+set $workspace2 "2 "
+set $workspace3 "3 "
 set $workspace4 "4 "
 set $workspace5 "5 "
 set $workspace6 "6 "
 set $workspace7 "7 "
-set $workspace8 "8 "
+set $workspace8 "8 VM"
 set $workspace9 "9 R"
 set $workspace10 "10 "
 
