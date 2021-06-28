@@ -38,6 +38,7 @@ set history=500
 set backspace=indent,eol,start
 set backupdir=~/.vim/tmp
 set directory=~/.vim/tmp
+set mouse=a
 
 "set 24-bit colors
 if exists('+termguicolors')
