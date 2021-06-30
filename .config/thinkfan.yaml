@@ -1,0 +1,8 @@
+sensors:
+  - tpacpi: /proc/acpi/ibm/thermal
+fans:
+  - tpacpi: /proc/acpi/ibm/fan
+levels:
+  - [0, 0, 50]
+  - ["level auto", 45, 70]
+  - ["level full-speed", 65, 255]

@@ -49,6 +49,7 @@ endif
 
 " key mappings
 let mapleader=","
+let maplocalleader="\\"
 nnoremap Q <nop>
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -59,10 +60,17 @@ nnoremap <Space> i<Space><Esc>l
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+" sudo save
 command W w !sudo tee % > /dev/null
 map <F7> :setlocal spell! spelllang=en_us<CR>
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+" Use Ctrl+Space to do omnicompletion:
+if has('nvim') || has('gui_running')
+    inoremap <C-Space> <C-x><C-o>
+else
+    inoremap <Nul> <C-x><C-o>
+endif
 
 " VimPlug
 call plug#begin()
@@ -84,6 +92,7 @@ Plug 'https://github.com/luochen1990/rainbow.git'
 Plug 'https://github.com/PotatoesMaster/i3-vim-syntax.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/jpalardy/vim-slime.git'
+Plug 'https://github.com/jalvesaq/Nvim-R.git', { 'branch': 'stable' }
 call plug#end()
 
 " appearance
@@ -155,9 +164,12 @@ let g:csv_highlight_column = 'y'
 :let b:csv_arrange_use_all_rows = 1
 let g:csv_autocmd_arrange = 1
 
-" Mail formatting
-augroup mail_trailing_whitespace " {
-    autocmd!
-    autocmd FileType mail setlocal formatoptions+=w
-augroup END " }
-
+" NVim-R
+let R_external_term = 1
+let R_args = ['--quiet']
+let R_clear_console = 0
+let R_csv_app = 'tmux new-window vd'
+let R_bracketed_paste = 1
+" Press the space bar to send lines and selection to R:
+vmap <Space> <Plug>RDSendSelection
+nmap <Space> <Plug>RDSendLine
