@@ -2,7 +2,7 @@
 focus_follows_mouse no
 font pango:DejaVuSansMono Nerd Font Mono 10
 hide_edge_borders smart
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 1
 smart_gaps on
 #smart_borders no_gaps
 gaps inner 10
@@ -299,6 +299,7 @@ for_window [title="Connection Manager"] resize grow height 50 px
 for_window [class="okular"] move to workspace $workspace7
 for_window [class="VirtualBox"] move to workspace $workspace8
 for_window [class="RStudio"] move to workspace $workspace9
+for_window [class="Zathura"] move to workspace $workspace7
 
 for_window [class="Qalculate-gtk"] floating enable
 for_window [class="keepassxc"] floating enable

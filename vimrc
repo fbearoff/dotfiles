@@ -161,7 +161,7 @@ let g:slime_target = "tmux"
 
 " CSV
 let g:csv_highlight_column = 'y'
-:let b:csv_arrange_use_all_rows = 1
+let b:csv_arrange_use_all_rows = 1
 let g:csv_autocmd_arrange = 1
 
 " NVim-R
@@ -170,6 +170,9 @@ let R_args = ['--quiet']
 let R_clear_console = 0
 let R_csv_app = 'tmux new-window vd'
 let R_bracketed_paste = 1
+let R_source_args = 'echo = TRUE, spaced = TRUE'
+let R_commented_lines = 1
+let Rout_more_colors = 1
 " Press the space bar to send lines and selection to R:
 vmap <Space> <Plug>RDSendSelection
 nmap <Space> <Plug>RDSendLine
