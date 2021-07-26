@@ -290,17 +290,17 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 # window assignments
 for_window [class="firefox"] move to workspace $workspace2
 for_window [class="Deluge"] move to workspace $workspace3
-for_window [class="qutebrowser"] move to workspace $workspace2
 for_window [class="libreoffice-calc"] move to workspace $workspace4
 for_window [class="libreoffice-writer"] move to workspace $workspace5
 for_window [class="libreoffice-impress"] move to workspace $workspace6
 for_window [window_role="GtkFileChooserDialog"] resize shrink height 10 px
 for_window [title="Connection Manager"] resize grow height 50 px
 for_window [class="okular"] move to workspace $workspace7
-for_window [class="VirtualBox"] move to workspace $workspace8
 for_window [class="RStudio"] move to workspace $workspace9
 for_window [class="Zathura"] move to workspace $workspace7
+for_window [class="Zathura"] layout tabbed
 
+for_window [window_role="About"] floating enable
 for_window [class="Qalculate-gtk"] floating enable
 for_window [class="keepassxc"] floating enable
 # for_window [class="Thunar"] floating enable
@@ -314,12 +314,12 @@ bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock exec pkill -SIGRTMIN+11 i3blocks
 
 ###---External scripts---###
+#Composite manager
+exec_always --no-startup-id  picom
 #Set display
 exec --no-startup-id sh ~/.config/scripts/screen.sh
 #wallpaper
-exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
-#Composite manager
-exec --no-startup-id "sh -c 'sleep 3; exec picom'"
+exec_always --no-startup-id feh --no-fehbg --bg-scale ~/Pictures/wallpaper.png 
 #Hide mouse
 exec --no-startup-id unclutter
 #Network Manager Applet
