@@ -1,7 +1,7 @@
 configuration {
-/*	modi: "window,run,ssh";*/
+	modi: "drun,window,run,ssh";
 	width: 30;
-	lines: 6;
+	lines: 5;
 /*	columns: 1;*/
 /*	font: "mono 12";*/
 	bw: 0;
@@ -10,7 +10,7 @@ configuration {
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
 /*	fixed-num-lines: true;*/
-/*	show-icons: false;*/
+	show-icons: true;
 /*	terminal: "rofi-sensible-terminal";*/
 /*	ssh-client: "ssh";*/
 /*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
@@ -19,7 +19,7 @@ configuration {
 /*	run-shell-command: "{terminal} -e {cmd}";*/
 /*	window-command: "wmctrl -i -R {window}";*/
 /*	window-match-fields: "all";*/
-/*	icon-theme: ;*/
+	icon-theme: "Gruvbox-Material-Dark";
 /*	drun-match-fields: "name,generic,exec,categories,keywords";*/
 /*	drun-categories: ;*/
 /*	drun-show-actions: false;*/
@@ -55,11 +55,11 @@ configuration {
 /*	window-format: "{w}    {c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
-/*	theme: ;*/
-	color-normal: "#111, #819396, #222, #008ed4, #ffffff";
+	theme:"gruvbox-dark-hard";
+/*      color-normal: "#111, #819396, #222, #008ed4, #ffffff"; */
 /*	color-urgent: ;*/
-	color-active: "#002b37, #008ed4, #003643, #008ed4, #66c6ff";
-	color-window: "#000, #000, #000";
+/*      color-active: "#002b37, #008ed4, #003643, #008ed4, #66c6ff"; */
+/*      color-window: "#000, #000, #000"; */
 /*	max-history-size: 25;*/
 /*	combi-hide-mode-prefix: false;*/
 /*	matching-negate-char: '-' /* unsupported */;*/

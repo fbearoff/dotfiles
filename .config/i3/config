@@ -1,6 +1,6 @@
 ###---i3 Options---###
 focus_follows_mouse no
-font pango:DejaVuSansMono Nerd Font Mono 10
+font pango:DMesloLGS Nerd Font Mono 10
 hide_edge_borders smart
 for_window [class="^.*"] border pixel 1
 smart_gaps on
@@ -18,6 +18,27 @@ set $flash --no-startup-id bash ~/.config/scripts/flash_win.sh
 mode  "Passthrough Mode - Press Mod+F12 to exit" {
         bindsym $mod+F12 mode "default"
 }
+
+# set primary gruvbox colorscheme colors
+set $text-color #ebdbb2
+set $bg #242424
+set $light-red #fb4934
+set $red #cc241d
+set $green #98971a
+set $light-green #b8bb26
+set $yellow #d79921
+set $blue #458588
+set $purple #b16286
+set $aqua #689d68
+set $gray #a89984
+set $darkgray #1d2021
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $green              $green             $text-color          $purple
+client.unfocused        $bg                 $bg                $inactive-text-color $purple
+client.focused_inactive $bg                 $bg                $inactive-text-color $purple
+client.urgent           $red                $red               $text-color          $purple
 
 #Audio Controls
 set $inc --no-startup-id pamixer --allow-boost -i 5
@@ -88,7 +109,7 @@ bindsym $mod+Shift+l 		move right
 bindsym $mod+m 			    exec betterlockscreen -l dim
 bindsym $mod+Shift+m        exec dm-tool lock
 
-#bindsym $mod+n
+bindsym $mod+n             exec $term -e nnn
 #bindsym $mod+Shift+n
 
 #bindsym $mod+o
@@ -100,7 +121,7 @@ bindsym $mod+p             exec  rofi -show power-menu -modi power-menu:rofi-pow
 bindsym $mod+q 			   kill
 bindsym $mod+Shift+q       kill
 
-bindsym $mod+r 			   exec $term -e ranger
+#bindsym $mod+r
 bindsym $mod+Shift+r       restart
 
 bindsym $mod+s			   gaps inner current plus 5
@@ -185,7 +206,7 @@ bindsym XF86PowerOff		exec sudo shutdown -h now
 #bindsym XF86Calculator
 #bindsym XF86Sleep
 #bindsym XF86WakeUp		exec
-bindsym XF86Explorer		exec $term -e ranger
+bindsym XF86Explorer		exec $term -e nnn
 #bindsym XF86Send		exec
 #bindsym XF86Xfer		exec
 bindsym XF86WWW			exec --no-startup-id $browser
@@ -194,7 +215,7 @@ bindsym XF86WWW			exec --no-startup-id $browser
 #bindsym XF86RotateWindows
 #bindsym XF86TaskPane
 #bindsym XF86Favorites
-bindsym XF86MyComputer		exec $term -e ranger
+bindsym XF86MyComputer		exec $term -e nnn
 #bindsym XF86Back
 #bindsym XF86Forward
 #bindsym XF86Eject
@@ -229,7 +250,7 @@ bindsym XF86AudioMicMute	exec $micmute
 #bindsym XF86Suspend
 bindsym XF86Close		kill
 bindsym XF86WebCam		exec mpv /dev/video0
-bindsym XF86Mail		exec $term -e mutt
+#bindsym XF86Mail
 #bindsym XF86Messenger
 bindsym XF86Search		exec $browser https://google.com
 #bindsym XF86Go			exec
@@ -308,7 +329,15 @@ for_window [class="keepassxc"] floating enable
 ###---i3bar---###
  bar {
  	status_command i3blocks
+        colors {
+            background $bg
+            statusline $green
+            focused_workspace    $light-green $light-green $darkgray
+            inactive_workspace   $bg $bg $gray
+            urgent_workspace     $red $red $text-color
+            }
  }
+
 #i3block bindings
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock exec pkill -SIGRTMIN+11 i3blocks
@@ -328,5 +357,10 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xautolock -time 5 -locker betterlockscreen -l dim
 #Dropbox
 exec --no-startup-id dropbox
+
+
+
+
+
 
 # vim:filetype=i3

@@ -93,14 +93,16 @@ Plug 'https://github.com/PotatoesMaster/i3-vim-syntax.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/jpalardy/vim-slime.git'
 Plug 'https://github.com/jalvesaq/Nvim-R.git', { 'branch': 'stable' }
+Plug 'https://github.com/iamcco/markdown-preview.nvim.git', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'https://github.com/morhetz/gruvbox.git'
 call plug#end()
 
 " appearance
 set background=dark
-colorscheme deus
+colorscheme gruvbox
 
 " Airline
-let g:airline_theme='deus'
+let g:airline_theme='gruvbox'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#fnamecollapse = 1

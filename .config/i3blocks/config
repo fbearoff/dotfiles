@@ -26,16 +26,23 @@
 # Each block command defaults to the script name to avoid boilerplate.
 command=/home/fbearoff/dotfiles/.config/i3blocks/$BLOCK_NAME
 separator_block_width=10
+separator=false
 markup=none
-
 
 # Memory usage
 #
 # The type defaults to "mem" if the instance is not specified.
 [memory]
 label=
-separator=false
 interval=30
+
+########################
+separator_block_width=10
+[spacer]
+separator_block_width=10
+full_text=
+color=#b16286
+########################
 
 # Disk usage
 #
@@ -44,49 +51,62 @@ interval=30
 # (defaults to 10 for 10%).
 [disk]
 label=
-#instance=/mnt/data
 interval=30
 
+########################
+separator_block_width=10
+[spacer]
+separator_block_width=10
+full_text=
+color=#b16286
+########################
 # Network interface monitoring
 #
 # If the instance is not specified, use the interface used for default route.
 # The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
 [iface]
-#instance=wlan0
-color=#00FF00
 interval=10
-separator=false
 
 [wifi]
 instance=wlp3s0
 interval=10
 label=
-separator=false
 
 [bandwidth]
-command=~/.config/i3blocks/bandwidth
 interval=5
-separator=true
+interface=enp0s25
+INLABEL=
+OUTLABEL=
 
 [vpn]
-command=~/.config/i3blocks/vpn
 interval=10
-separator=true
 
 [bluetooth]
-command=~/.config/i3blocks/bluetooth
 label=
 interval=10
+
+########################
+separator_block_width=10
+[spacer]
+separator_block_width=10
+full_text=
+color=#b16286
+########################
 # CPU usage
 #
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [cpu_usage]
-command=~/.config/i3blocks/cpu_usage
 label=
 interval=10
-#min_width= 100.0%
-separator=true
+
+########################
+separator_block_width=10
+[spacer]
+separator_block_width=10
+full_text=
+color=#b16286
+########################
 
 # [load_average]
 # interval=1
@@ -96,18 +116,30 @@ separator=true
 #
 # The battery instance defaults to 0.
 [battery]
-#label=BAT
-label=⚡
-#instance=1
+label=
 interval=30
-separator=true
+
+########################
+separator_block_width=10
+[spacer]
+separator_block_width=10
+full_text=
+color=#b16286
+########################
 
 # Brightness
 [brightness]
-command=~/.config/i3blocks/brightness
 label=
 interval=5
+color=#fabd2f
 
+########################
+separator_block_width=10
+[spacer]
+separator_block_width=10
+full_text=
+color=#b16286
+########################
 # Generic media player support
 #
 # This displays "ARTIST - SONG" if a music is playing.
@@ -132,6 +164,13 @@ interval=5
 label=
 interval=10
 
+########################
+separator_block_width=10
+[spacer]
+separator_block_width=10
+full_text=
+color=#b16286
+########################
 # Key indicators
 
 # Volume indicator
@@ -140,32 +179,46 @@ interval=10
 # See the script for details.
 
 [audio]
-command=~/.config/i3blocks/audio
 interval=2
 separator=false
+color=#fabd2f
 
 [microphone]
-command=~/.config/i3blocks/microphone
-#label=
 interval=2
-
+color=#fabd2f
+########################
+separator_block_width=10
+[spacer]
+separator_block_width=10
+full_text=
+color=#b16286
+########################
 # Date Time
 #
 [time]
-command=date '+%I:%M %p %m-%d-%Y'
-interval=5
-
+command=date '+%I:%M %p %a %b-%d'
+interval=60
+label= 
 # Add the following bindings to i3 config file:
 #
 # bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 # bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
-#
+
+########################
+separator_block_width=10
+[spacer]
+separator_block_width=10
+full_text=
+color=#b16286
+#########################
+
 [keyindicator]
 #Allowed keys are CAPS and NUM
 KEY=CAPS
 markup=pango
 interval=once
 signal=11
+COLOR_ON=#98971a
 HIDE_WHEN_OFF=1
 
 [keyindicator]
@@ -173,5 +226,5 @@ KEY=NUM
 markup=pango
 interval=once
 signal=11
-#COLOR_ON=#00FF00
+COLOR_ON=#98971a
 HIDE_WHEN_OFF=1
