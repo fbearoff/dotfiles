@@ -12,7 +12,7 @@ gaps outer 5
 set $mod Mod4
 set $term urxvt
 set $browser firefox
-set $alt_browser qutebrowser
+set $alt_browser
 set $flash --no-startup-id bash ~/.config/scripts/flash_win.sh
 ###---Modes---###
 mode  "Passthrough Mode - Press Mod+F12 to exit" {
@@ -134,7 +134,7 @@ bindsym $mod+u 			   [instance="dropdown"] scratchpad show; move position center
 bindsym $mod+Shift+u       resize shrink height 10 px or 10 ppt
 
 #bindsym $mod+v
-bindsym $mod+Shift+v       exec virtualbox --startvm Windows --scale
+#bindsym $mod+Shift+v       exec virtualbox --startvm Windows --scale
 
 bindsym $mod+w 			   exec $browser
 bindsym $mod+Shift+w       exec $alt_browser
@@ -161,6 +161,8 @@ bindsym $mod+z             fullscreen toggle
 #bindsym F10
 #bindsym F11
 #bindsym F12
+
+bindsym Print exec flameshot gui
 
 #bindsym $mod+F1
 bindsym $mod+F2             exec betterlockscreen -l dim
@@ -348,7 +350,7 @@ exec_always --no-startup-id  picom
 #Set display
 exec --no-startup-id sh ~/.config/scripts/screen.sh
 #wallpaper
-exec_always --no-startup-id feh --no-fehbg --bg-scale ~/Pictures/wallpaper.png 
+exec_always --no-startup-id feh --no-fehbg --bg-scale ~/Pictures/wallpaper.png
 #Hide mouse
 exec --no-startup-id unclutter
 #Network Manager Applet

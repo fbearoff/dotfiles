@@ -1,3 +1,4 @@
+set nocompatible
 " auto install vimplug
 if empty(glob('~/.vim/autoload/plug.vim'))
       silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -40,6 +41,11 @@ set backupdir=~/.vim/tmp
 set directory=~/.vim/tmp
 set mouse=a
 
+" change cursor style dependent on mode
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
 "set 24-bit colors
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -60,8 +66,18 @@ nnoremap <Space> i<Space><Esc>l
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+" make n and N always search in the proper direction
+nnoremap <expr> n  'Nn'[v:searchforward]
+xnoremap <expr> n  'Nn'[v:searchforward]
+onoremap <expr> n  'Nn'[v:searchforward]
+nnoremap <expr> N  'nN'[v:searchforward]
+xnoremap <expr> N  'nN'[v:searchforward]
+onoremap <expr> N  'nN'[v:searchforward]
+" redraw and de-highlight search results
+nnoremap <c-l> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
 " sudo save
 command W w !sudo tee % > /dev/null
+" spellcheck
 map <F7> :setlocal spell! spelllang=en_us<CR>
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
@@ -71,22 +87,36 @@ if has('nvim') || has('gui_running')
 else
     inoremap <Nul> <C-x><C-o>
 endif
+"Don't lose selection when shifting sidewards
+xnoremap <  <gv
+xnoremap >  >gv
+" H and L go to beginning/end of line
+nnoremap H ^
+nnoremap L $
+"exit insert mode on accidental scroll
+inoremap jk <esc>
+inoremap kj <esc>
+" map tab keys
+nnoremap <silent> <C-Right> :tabnext<CR>
+nnoremap <silent> <C-Left> :tabprevious<CR>
+nnoremap <silent> <C-Up> :tabnew<CR>
+nnoremap <silent> <C-Down> :tabclose<CR>
+nnoremap <silent> <C-t> :tabnew<CR>
+"pad empty line
+noremap <silent> <c-o> :call append('.', '')<CR>
+noremap <silent> <c-i> :call append(line('.')-1, '')<CR>
 
 " VimPlug
 call plug#begin()
-Plug 'https://github.com/ajmwagar/vim-deus.git'
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 Plug 'https://github.com/vim-syntastic/syntastic.git'
 Plug 'https://github.com/ntpeters/vim-better-whitespace.git'
 Plug 'https://github.com/airblade/vim-gitgutter.git'
-Plug 'https://github.com/scrooloose/nerdtree.git', { 'on':  'NERDTreeToggle' }
-Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
 Plug 'https://github.com/Yggdroot/indentLine.git'
 Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/edkolev/tmuxline.vim.git'
-Plug 'https://github.com/ctrlpvim/ctrlp.vim.git', { 'on': 'CtrlP' }
 Plug 'https://github.com/chrisbra/csv.vim.git'
 Plug 'https://github.com/luochen1990/rainbow.git'
 Plug 'https://github.com/PotatoesMaster/i3-vim-syntax.git'
@@ -96,6 +126,7 @@ Plug 'https://github.com/jalvesaq/Nvim-R.git', { 'branch': 'stable' }
 Plug 'https://github.com/iamcco/markdown-preview.nvim.git', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'https://github.com/morhetz/gruvbox.git'
 call plug#end()
+Plug 'ryanoasis/vim-devicons'
 
 " appearance
 set background=dark
@@ -108,7 +139,38 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#fnamecollapse = 1
 let g:airline#extensions#csv#column_display = 'Name'
 let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+    " unicode symbols
+    let g:airline_left_sep = '»'
+    let g:airline_left_sep = '▶'
+    let g:airline_right_sep = '«'
+    let g:airline_right_sep = '◀'
+    let g:airline_symbols.crypt = '🔒'
+    let g:airline_symbols.linenr = '☰'
+    let g:airline_symbols.linenr = '␊'
+    let g:airline_symbols.linenr = '␤'
+    let g:airline_symbols.linenr = '¶'
+    let g:airline_symbols.maxlinenr = ''
+    let g:airline_symbols.maxlinenr = '㏑'
+    let g:airline_symbols.branch = '⎇'
+    let g:airline_symbols.paste = 'ρ'
+    let g:airline_symbols.paste = 'Þ'
+    let g:airline_symbols.paste = '∥'
+    let g:airline_symbols.spell = 'Ꞩ'
+    let g:airline_symbols.notexists = 'Ɇ'
+    let g:airline_symbols.whitespace = 'Ξ'
 
+    " powerline symbols
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+    let g:airline_symbols.branch = ''
+    let g:airline_symbols.readonly = ''
+    let g:airline_symbols.linenr = '☰'
+    let g:airline_symbols.maxlinenr = ''
 "Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -125,16 +187,13 @@ function! GitStatus()
 endfunction
 set statusline+=%{GitStatus()}
 
-" NERDTree
-map <C-n> :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1
-
 " IndentLine
 let g:indentLine_enabled = 1
 map <leader>ig :IndentLinesToggle<CR>
 
 " Better Whitespace
 map <leader>sw :StripWhitespace<CR>
+
 " SuperTab
 let g:SuperTabDefaultCompletionType = "context"
 
@@ -146,14 +205,6 @@ let g:tmuxline_preset = {
       \'cwin' : ['#I', '#W', '#F'],
       \'y'    : ['%r', '%a', '%d/%m/%Y'],
       \'z'    : '#H'}
-
-" CtrlP
-if executable("ag")
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-let g:ctrlp_show_hidden = 1
-map <C-p> :CtrlP<CR>
 
 "Rainbow Parenthesis
 let g:rainbow_active = 1

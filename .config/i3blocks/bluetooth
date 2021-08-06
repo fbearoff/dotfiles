@@ -2,13 +2,13 @@
 
 # Left click
 if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
-  sudo bluetooth on
+  bluetooth on >/dev/null
 # Middle click
 elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
-  sudo bluetooth toggle
+  bluetooth toggle >/dev/null
 # Right click
 elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
-  sudo bluetooth off
+  bluetooth off > /dev/null
 fi
 
 STATUS=$(bluetooth | grep -wo 'on')

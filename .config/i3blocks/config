@@ -33,7 +33,7 @@ markup=none
 #
 # The type defaults to "mem" if the instance is not specified.
 [memory]
-label=
+label= 
 interval=30
 
 ########################
@@ -50,7 +50,7 @@ color=#b16286
 # The script may be called with a optional argument to set the alert
 # (defaults to 10 for 10%).
 [disk]
-label=
+label= 
 interval=30
 
 ########################
@@ -70,20 +70,21 @@ interval=10
 [wifi]
 instance=wlp3s0
 interval=10
-label=
+label=直 
+
+[vpn]
+interval=10
+
+[bluetooth]
+label= 
+interval=-1
+color=#fabd2f
 
 [bandwidth]
 interval=5
 interface=enp0s25
 INLABEL=
 OUTLABEL=
-
-[vpn]
-interval=10
-
-[bluetooth]
-label=
-interval=10
 
 ########################
 separator_block_width=10
@@ -97,7 +98,7 @@ color=#b16286
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [cpu_usage]
-label=
+label= 
 interval=10
 
 ########################
@@ -116,7 +117,7 @@ color=#b16286
 #
 # The battery instance defaults to 0.
 [battery]
-label=
+label= 
 interval=30
 
 ########################
@@ -129,7 +130,7 @@ color=#b16286
 
 # Brightness
 [brightness]
-label=
+label= 
 interval=5
 color=#fabd2f
 
@@ -161,7 +162,7 @@ color=#b16286
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [temperature]
-label=
+label= 
 interval=10
 
 ########################
@@ -196,7 +197,8 @@ color=#b16286
 # Date Time
 #
 [time]
-command=date '+%I:%M %p %a %b-%d'
+markup=pango
+command=date '+<big>%I:%M %p %a %b-%d</big>'
 interval=60
 label= 
 # Add the following bindings to i3 config file:
