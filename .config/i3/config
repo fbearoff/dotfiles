@@ -323,7 +323,7 @@ for_window [class="RStudio"] move to workspace $workspace9
 for_window [class="Zathura"] move to workspace $workspace7
 for_window [class="Zathura"] layout tabbed
 
-for_window [window_role="About"] floating enable
+for_window [title="About Mozilla Firefox"] floating enable
 for_window [class="Qalculate-gtk"] floating enable
 for_window [class="keepassxc"] floating enable
 # for_window [class="Thunar"] floating enable
@@ -350,7 +350,7 @@ exec_always --no-startup-id  picom
 #Set display
 exec --no-startup-id sh ~/.config/scripts/screen.sh
 #wallpaper
-exec_always --no-startup-id feh --no-fehbg --bg-scale ~/Pictures/wallpaper.png
+exec_always --no-startup-id feh --no-fehbg --bg-scale ~/Pictures/wall_secondary.png
 #Hide mouse
 exec --no-startup-id unclutter
 #Network Manager Applet
@@ -359,10 +359,9 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xautolock -time 5 -locker betterlockscreen -l dim
 #Dropbox
 exec --no-startup-id dropbox
-
-
-
-
-
+#polkit
+exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
+#dunst
+exec --no-startup-id dunst
 
 # vim:filetype=i3
