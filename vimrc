@@ -125,8 +125,9 @@ Plug 'https://github.com/jpalardy/vim-slime.git'
 Plug 'https://github.com/jalvesaq/Nvim-R.git', { 'branch': 'stable' }
 Plug 'https://github.com/iamcco/markdown-preview.nvim.git', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'https://github.com/morhetz/gruvbox.git'
+Plug 'https://github.com/vim-pandoc/vim-pandoc.git'
+Plug 'https://github.com/vim-pandoc/vim-pandoc-syntax.git'
 call plug#end()
-Plug 'ryanoasis/vim-devicons'
 
 " appearance
 set background=dark
@@ -229,3 +230,20 @@ let Rout_more_colors = 1
 " Press the space bar to send lines and selection to R:
 vmap <Space> <Plug>RDSendSelection
 nmap <Space> <Plug>RDSendLine
+
+" Pandoc
+let g:pandoc#command#autoexec_on_writes = 1
+let g:pandoc#command#autoexec_command = "Pandoc pdf --citeproc"
+let g:pandoc#modules#disabled = ["folding"]
+
+" Zotero
+function! ZoteroCite()
+  " pick a format based on the filetype (customize at will)
+  let format = &filetype =~ '.*md' ? 'citep' : 'pandoc'
+  let api_call = 'http://127.0.0.1:23119/better-bibtex/cayw?format='.format.'&brackets=1'
+  let ref = system('curl -s '.shellescape(api_call))
+  return ref
+endfunction
+
+noremap <leader>z "=ZoteroCite()<CR>p
+inoremap <C-z> <C-r>=ZoteroCite()<CR>

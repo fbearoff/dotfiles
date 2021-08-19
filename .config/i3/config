@@ -82,7 +82,7 @@ bindsym $mod+Shift+c        exec $term -e qalc
 bindsym $mod+d			    exec rofi -show run
 bindsym $mod+Shift+d 		gaps inner current set 0; gaps outer current set 0
 
-#bindsym $mod+e
+bindsym $mod+e              exec rofi -show emoji -modi emoji
 bindsym $mod+Shift+e 		exec i3-msg exit
 
 #bindsym $mod+f
@@ -133,7 +133,7 @@ bindsym $mod+Shift+t       exec deluge
 bindsym $mod+u 			   [instance="dropdown"] scratchpad show; move position center
 bindsym $mod+Shift+u       resize shrink height 10 px or 10 ppt
 
-#bindsym $mod+v
+bindsym $mod+v              exec keepmenu
 #bindsym $mod+Shift+v       exec virtualbox --startvm Windows --scale
 
 bindsym $mod+w 			   exec $browser
@@ -284,7 +284,7 @@ set $workspace6 "6 "
 set $workspace7 "7 "
 set $workspace8 "8 VM"
 set $workspace9 "9 R"
-set $workspace10 "10 "
+set $workspace10 "10 ﱘ"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -326,6 +326,8 @@ for_window [class="Zathura"] layout tabbed
 for_window [title="About Mozilla Firefox"] floating enable
 for_window [class="Qalculate-gtk"] floating enable
 for_window [class="keepassxc"] floating enable
+for_window [class="Nm-connection-editor"] floating enable
+for_window [title="Quick Format Citation"] floating enable 
 # for_window [class="Thunar"] floating enable
 
 ###---i3bar---###
