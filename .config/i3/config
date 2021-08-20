@@ -85,7 +85,8 @@ bindsym $mod+Shift+d 		gaps inner current set 0; gaps outer current set 0
 bindsym $mod+e              exec rofi -show emoji -modi emoji
 bindsym $mod+Shift+e 		exec i3-msg exit
 
-#bindsym $mod+f
+bindsym $mod+f              exec fd | rofi -show file-browser-extended -file-browser-stdin
+
 #bindsym $mod+Shift+f
 
 #bindsym $mod+g
@@ -327,7 +328,7 @@ for_window [title="About Mozilla Firefox"] floating enable
 for_window [class="Qalculate-gtk"] floating enable
 for_window [class="keepassxc"] floating enable
 for_window [class="Nm-connection-editor"] floating enable
-for_window [title="Quick Format Citation"] floating enable 
+for_window [title="Quick Format Citation"] floating enable
 # for_window [class="Thunar"] floating enable
 
 ###---i3bar---###

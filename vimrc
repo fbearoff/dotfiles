@@ -105,6 +105,13 @@ nnoremap <silent> <C-t> :tabnew<CR>
 "pad empty line
 noremap <silent> <c-o> :call append('.', '')<CR>
 noremap <silent> <c-i> :call append(line('.')-1, '')<CR>
+"simply help navigation
+autocmd FileType help nnoremap <buffer> <CR> <C-]>
+autocmd FileType help nnoremap <buffer> <BS> <C-T>
+autocmd FileType help nnoremap <buffer> o /'\l\{2,\}'<CR>
+autocmd FileType help nnoremap <buffer> O ?'\l\{2,\}'<CR>
+autocmd FileType help nnoremap <buffer> s /\|\zs\S\+\ze\|<CR>
+autocmd FileType help nnoremap <buffer> S ?\|\zs\S\+\ze\|<CR>
 
 " VimPlug
 call plug#begin()
@@ -172,6 +179,7 @@ endif
     let g:airline_symbols.readonly = ''
     let g:airline_symbols.linenr = '☰'
     let g:airline_symbols.maxlinenr = ''
+
 "Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -190,6 +198,7 @@ set statusline+=%{GitStatus()}
 
 " IndentLine
 let g:indentLine_enabled = 1
+let g:indentLine_concealcursor = ''
 map <leader>ig :IndentLinesToggle<CR>
 
 " Better Whitespace
@@ -197,7 +206,10 @@ map <leader>sw :StripWhitespace<CR>
 
 " SuperTab
 let g:SuperTabDefaultCompletionType = "context"
-
+let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
+let g:SuperTabContextDiscoverDiscovery =
+    \ ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
 " tmuxline
 let g:tmuxline_preset = {
       \'a'    : '#S',

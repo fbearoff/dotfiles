@@ -1,0 +1,8 @@
+
+[Default Applications]
+application/pdf=org.pwmt.zathura.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/http=firefox.desktop
+text/plain=vim.desktop
+text/markdown=vim.desktop
+application/x-shellscript=vim.desktop
