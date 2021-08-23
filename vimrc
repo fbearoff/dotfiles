@@ -134,6 +134,7 @@ Plug 'https://github.com/iamcco/markdown-preview.nvim.git', { 'do': { -> mkdp#ut
 Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/vim-pandoc/vim-pandoc.git'
 Plug 'https://github.com/vim-pandoc/vim-pandoc-syntax.git'
+Plug 'https://github.com/godlygeek/tabular.git'
 call plug#end()
 
 " appearance
