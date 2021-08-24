@@ -40,6 +40,8 @@ set backspace=indent,eol,start
 set backupdir=~/.vim/tmp
 set directory=~/.vim/tmp
 set mouse=a
+set updatetime=100
+set hidden
 
 " change cursor style dependent on mode
 let &t_SI = "\<Esc>[6 q"
@@ -97,15 +99,11 @@ nnoremap L $
 inoremap jk <esc>
 inoremap kj <esc>
 " map tab keys
-nnoremap <silent> <C-Right> :tabnext<CR>
-nnoremap <silent> <C-Left> :tabprevious<CR>
-nnoremap <silent> <C-Up> :tabnew<CR>
-nnoremap <silent> <C-Down> :tabclose<CR>
 nnoremap <silent> <C-t> :tabnew<CR>
 "pad empty line
 noremap <silent> <c-o> :call append('.', '')<CR>
 noremap <silent> <c-i> :call append(line('.')-1, '')<CR>
-"simply help navigation
+"simplify help navigation
 autocmd FileType help nnoremap <buffer> <CR> <C-]>
 autocmd FileType help nnoremap <buffer> <BS> <C-T>
 autocmd FileType help nnoremap <buffer> o /'\l\{2,\}'<CR>
@@ -135,6 +133,7 @@ Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/vim-pandoc/vim-pandoc.git'
 Plug 'https://github.com/vim-pandoc/vim-pandoc-syntax.git'
 Plug 'https://github.com/godlygeek/tabular.git'
+Plug 'https://github.com/kshenoy/vim-signature.git'
 call plug#end()
 
 " appearance
@@ -211,6 +210,7 @@ let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 let g:SuperTabContextDiscoverDiscovery =
     \ ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
+
 " tmuxline
 let g:tmuxline_preset = {
       \'a'    : '#S',
@@ -243,6 +243,8 @@ let Rout_more_colors = 1
 " Press the space bar to send lines and selection to R:
 vmap <Space> <Plug>RDSendSelection
 nmap <Space> <Plug>RDSendLine
+" send arbitrary R command, NOTE space after function
+nmap <LocalLeader>: :RSend 
 
 " Pandoc
 let g:pandoc#command#autoexec_on_writes = 1

@@ -15,7 +15,7 @@ URxvt.font: xft:MesloLGS Nerd Font Mono:autohint=true:size=10,xft:TerminessTTFNe
 URxvt.scrollBar:	false
 URxvt.cursorColor:	#98971a
 URxvt.matcher.rend.0:	Uline Bold fg5
-URxvt.perl-ext-common: 	default,matcher,resize-font,selection-to-clipboard, clipboard
+URxvt.perl-ext-common: 	default,matcher,resize-font,selection-to-clipboard,clipboard
 URxvt.url-launcher:	/usr/bin/xdg-open
 URxvt.matcher.button:	1
 URxvt.clipboard.autocopy: true
