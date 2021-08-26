@@ -183,10 +183,10 @@ color=#b16286
 interval=2
 separator=false
 color=#fabd2f
-
 [microphone]
 interval=2
 color=#fabd2f
+
 ########################
 separator_block_width=10
 [spacer]

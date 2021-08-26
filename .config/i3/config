@@ -12,7 +12,6 @@ gaps outer 5
 set $mod Mod4
 set $term urxvt
 set $browser firefox
-set $alt_browser
 set $flash --no-startup-id bash ~/.config/scripts/flash_win.sh
 ###---Modes---###
 mode  "Passthrough Mode - Press Mod+F12 to exit" {
@@ -48,6 +47,10 @@ set $bigdec --no-startup-id pamixer --allow-boost -d 15
 set $mute --no-startup-id amixer -q set Master toggle
 set $micmute --no-startup-id amixer -q set Capture toggle
 set $truemute --no-startup-id pamixer -m
+set $play mpc toggle
+set $stop mpc stop
+set $next mpc next
+set $prev mpc prev
 
 ###---Dropdown/Scratchpad Window---###
 for_window [instance="dropdown"] floating enable
@@ -55,6 +58,7 @@ for_window [instance="dropdown"] resize set 800 600
 for_window [instance="dropdown"] move position center
 for_window [instance="dropdown"] move scratchpad
 exec --no-startup-id $term -name dropdown -e tmux new -s scratchpad
+exec_always --no-startup-id thunar
 
 # Basic Bindings
 bindsym $mod+Return 		exec $term
@@ -79,7 +83,7 @@ bindsym $mod+Shift+space 	floating toggle
 bindsym $mod+c                  exec qalculate-gtk
 bindsym $mod+Shift+c            exec $term -e qalc
 
-bindsym $mod+d		        exec rofi -show run
+bindsym $mod+d		        exec rofi -show combi
 bindsym $mod+Shift+d 		gaps inner current set 0; gaps outer current set 0
 
 bindsym $mod+e                  exec rofi -show emoji -modi emoji
@@ -128,7 +132,7 @@ bindsym $mod+Shift+r            restart
 bindsym $mod+s                  gaps inner current plus 5
 bindsym $mod+Shift+s            gaps inner current minus 5
 
-bindsym $mod+t                  exec thunar
+bindsym $mod+t                  [class="Thunar"] scratchpad show; move position center
 bindsym $mod+Shift+t            exec deluge
 
 bindsym $mod+u 			[instance="dropdown"] scratchpad show; move position center
@@ -138,7 +142,7 @@ bindsym $mod+v                  exec keepmenu
 #bindsym $mod+Shift+v
 
 bindsym $mod+w 		        exec $browser
-bindsym $mod+Shift+w            exec $alt_browser
+# bindsym $mod+Shift+w
 
 #bindsym $mod+x
 #bindsym $mod+Shift+x
@@ -223,9 +227,9 @@ bindsym XF86MyComputer		exec $term -e nnn
 #bindsym XF86Forward
 #bindsym XF86Eject
 bindsym XF86AudioNext		exec $next
-bindsym XF86AudioPlay		exec $pause
+bindsym XF86AudioPlay		exec $play
 bindsym XF86AudioPrev		exec $prev
-bindsym XF86AudioStop		exec $pause
+bindsym XF86AudioStop		exec $stop
 #bindsym XF86AudioRecord
 #bindsym XF86AudioRewind
 #bindsym XF86AudioForward
@@ -329,7 +333,7 @@ for_window [class="Qalculate-gtk"]               floating enable
 for_window [class="keepassxc"]                   floating enable
 for_window [class="Nm-connection-editor"]        floating enable
 for_window [title="Quick Format Citation"]       floating enable
-# for_window [class="Thunar"]                    floating enable
+for_window [class="Thunar"]                      move to scratchpad
 
 ###---i3bar---###
  bar {

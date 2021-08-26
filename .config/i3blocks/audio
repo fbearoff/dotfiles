@@ -1,22 +1,17 @@
 #!/bin/bash
 
-# Left click
-if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
-  amixer -q sset Master 5%+
-# Middle click
-elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
-  amixer -q sset Master toggle
-# Right click
-elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
-  amixer -q sset Master 5%-
-fi
+case "$BLOCK_BUTTON" in
+    1) pamixer -i 5 ;;
+    2) pamixer -t ;;
+    3) pamixer -d 5 ;;
+    4) pamixer -i 5 ;;
+    5) pamixer -d 5 ;;
+esac
 
-statusLine=$(amixer get Master | tail -n 1)
-status=$(echo "${statusLine}" | grep -wo "on")
-volume=$(echo "${statusLine}" | awk -F ' ' '{print $5}' | tr -d '[]%')
+statusLine=$(pamixer --get-volume-human)
 
-if [[ "${status}" == "on" ]]; then
-  echo "墳 ${volume}%"
+if [[ "${statusLine}" != "muted" ]]; then
+  echo "墳 ${statusLine}"
 else
-  echo "ﱝ"
+  echo " MUTE"
 fi

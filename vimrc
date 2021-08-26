@@ -42,6 +42,7 @@ set directory=~/.vim/tmp
 set mouse=a
 set updatetime=100
 set hidden
+set vb
 
 " change cursor style dependent on mode
 let &t_SI = "\<Esc>[6 q"
