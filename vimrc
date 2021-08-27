@@ -263,3 +263,7 @@ endfunction
 
 noremap <leader>z "=ZoteroCite()<CR>p
 inoremap <C-z> <C-r>=ZoteroCite()<CR>
+
+"Tabular
+command! -nargs=1 -range TabFirst exec <line1> . ',' . <line2> . 'Tabularize /' . escape(<q-args>, '\^$.[?*~') . '.*/'
+
