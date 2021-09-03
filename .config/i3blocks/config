@@ -198,7 +198,7 @@ color=#b16286
 #
 [time]
 markup=pango
-command=date '+<big>%I:%M %p %a %b-%d</big>'
+command=echo "`date '+<big>%I:%M %p %a %b-%d</big>'`"; [[ -z "${BLOCK_BUTTON}" ]] || gsimplecal &
 interval=60
 label= 
 # Add the following bindings to i3 config file:

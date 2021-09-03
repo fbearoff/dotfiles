@@ -58,7 +58,7 @@ for_window [instance="dropdown"] resize set 800 600
 for_window [instance="dropdown"] move position center
 for_window [instance="dropdown"] move scratchpad
 exec --no-startup-id $term -name dropdown -e tmux new -s scratchpad
-exec_always --no-startup-id thunar
+exec --no-startup-id thunar
 
 # Basic Bindings
 bindsym $mod+Return 		exec $term
@@ -90,10 +90,9 @@ bindsym $mod+e                  exec rofi -show emoji -modi emoji
 bindsym $mod+Shift+e 		exec i3-msg exit
 
 bindsym $mod+f                  exec fd | rofi -show file-browser-extended -file-browser-stdin
-
 #bindsym $mod+Shift+f
 
-#bindsym $mod+g
+bindsym $mod+g                  exec gpick
 #bindsym $mod+Shigt+g
 
 bindsym $mod+h 		        focus left
@@ -327,13 +326,14 @@ for_window [class="okular"]                      move to workspace $workspace7
 for_window [class="RStudio"]                     move to workspace $workspace9
 for_window [class="Zathura"]                     move to workspace $workspace7
 for_window [class="Zathura"]                     layout tabbed
-
+for_window [class="Gpick"]                       floating enable; resize set 400 400
 for_window [title="About Mozilla Firefox"]       floating enable
 for_window [class="Qalculate-gtk"]               floating enable
 for_window [class="keepassxc"]                   floating enable
 for_window [class="Nm-connection-editor"]        floating enable
 for_window [title="Quick Format Citation"]       floating enable
 for_window [class="Thunar"]                      move to scratchpad
+for_window [class="(?i)gsimplecal"]              floating enable, move position mouse, move down $height px
 
 ###---i3bar---###
  bar {
@@ -355,7 +355,7 @@ bindsym --release Num_Lock exec pkill -SIGRTMIN+11 i3blocks
 #Composite manager
 exec_always --no-startup-id  picom
 #Set display
-exec --no-startup-id sh ~/.config/scripts/screen.sh
+exec_always --no-startup-id sh ~/.config/scripts/screen.sh
 #wallpaper
 exec_always --no-startup-id feh --no-fehbg --bg-scale ~/Pictures/wall_secondary.png
 #Hide mouse
