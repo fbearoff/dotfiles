@@ -324,6 +324,7 @@ for_window [window_role="GtkFileChooserDialog"]  resize shrink height 10 px
 for_window [title="Connection Manager"]          resize grow height 50 px
 for_window [class="okular"]                      move to workspace $workspace7
 for_window [class="RStudio"]                     move to workspace $workspace9
+for_window [class="cantata"]                     move to workspace $workspace10
 for_window [class="Zathura"]                     move to workspace $workspace7
 for_window [class="Zathura"]                     layout tabbed
 for_window [class="Gpick"]                       floating enable; resize set 400 400

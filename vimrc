@@ -8,7 +8,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 " vim settings
 filetype indent plugin on
 syntax on
-set clipboard=unnamed,unnamedplus
+set clipboard^=unnamed,unnamedplus
 set ignorecase
 set showcmd
 set smartcase
@@ -76,6 +76,9 @@ onoremap <expr> n  'Nn'[v:searchforward]
 nnoremap <expr> N  'nN'[v:searchforward]
 xnoremap <expr> N  'nN'[v:searchforward]
 onoremap <expr> N  'nN'[v:searchforward]
+" saner command-line history
+cnoremap <expr> <c-n> wildmenumode() ? "\<c-n>" : "\<down>"
+cnoremap <expr> <c-p> wildmenumode() ? "\<c-p>" : "\<up>"
 " redraw and de-highlight search results
 nnoremap <c-l> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
 " sudo save
@@ -111,6 +114,9 @@ autocmd FileType help nnoremap <buffer> o /'\l\{2,\}'<CR>
 autocmd FileType help nnoremap <buffer> O ?'\l\{2,\}'<CR>
 autocmd FileType help nnoremap <buffer> s /\|\zs\S\+\ze\|<CR>
 autocmd FileType help nnoremap <buffer> S ?\|\zs\S\+\ze\|<CR>
+" Select the font for the hardcopy
+set printfont=Courier:h8
+command! -range=% HardcopyPdf <line1>,<line2> hardcopy > %.ps | !ps2pdf %.ps && rm %.ps && echo 'Created: %.pdf'
 
 " VimPlug
 call plug#begin()
@@ -123,7 +129,6 @@ Plug 'https://github.com/tpope/vim-commentary.git'
 Plug 'https://github.com/Yggdroot/indentLine.git'
 Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/edkolev/tmuxline.vim.git'
-Plug 'https://github.com/chrisbra/csv.vim.git'
 Plug 'https://github.com/luochen1990/rainbow.git'
 Plug 'https://github.com/PotatoesMaster/i3-vim-syntax.git'
 Plug 'https://github.com/tpope/vim-surround.git'
@@ -146,7 +151,6 @@ let g:airline_theme='gruvbox'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#fnamecollapse = 1
-let g:airline#extensions#csv#column_display = 'Name'
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -226,11 +230,6 @@ let g:rainbow_active = 1
 
 "Vim-Slime
 let g:slime_target = "tmux"
-
-" CSV
-let g:csv_highlight_column = 'y'
-let b:csv_arrange_use_all_rows = 1
-let g:csv_autocmd_arrange = 1
 
 " NVim-R
 let R_external_term = 1
