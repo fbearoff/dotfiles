@@ -40,7 +40,9 @@ set backspace=indent,eol,start
 set backupdir=~/.vim/tmp
 set directory=~/.vim/tmp
 set mouse=a
-set ttymouse=sgr
+if !has('nvim')
+    set ttymouse=sgr
+endif
 set updatetime=100
 set hidden
 set vb
@@ -141,6 +143,12 @@ Plug 'https://github.com/vim-pandoc/vim-pandoc.git'
 Plug 'https://github.com/vim-pandoc/vim-pandoc-syntax.git'
 Plug 'https://github.com/godlygeek/tabular.git'
 Plug 'https://github.com/kshenoy/vim-signature.git'
+
+if has("nvim")
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'alexaandru/nvim-lspupdate'
+endif
+
 call plug#end()
 
 " appearance
@@ -233,7 +241,7 @@ let g:rainbow_active = 1
 let g:slime_target = "tmux"
 
 " NVim-R
-let R_external_term = 1
+" let R_external_term = 1
 let R_args = ['--quiet']
 let R_clear_console = 0
 let R_csv_app = 'tmux new-window vd'
