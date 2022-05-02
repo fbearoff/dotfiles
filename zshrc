@@ -55,8 +55,8 @@ plugins=(git colored-man-pages sudo zsh-vi-mode zsh-syntax-highlighting)
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
 export LESS=' -R '
 export EDITOR='/usr/bin/vim'
-# export MANPATH="/usr/local/man:$MANPATH"
-
+export TERM="xterm-direct"
+export R_LIBS_USER='~/.R/packages'
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -103,6 +103,6 @@ KEYTIMEOUT=1
 # zle -N zle-line-init
 # zle -N zle-keymap-select
 
-if [ -n "$DISPLAY" ]; then
-  xset b off
-fi
+# if [ -n "$DISPLAY" ]; then
+#   xset b off
+# fi

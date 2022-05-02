@@ -5,6 +5,13 @@ local({
   options(mc.cores =  n)                                      # Parallel apply-type functions via 'parallel' package
 })
 
+## Set CRAN Mirror:
+local({
+  r <- getOption("repos")
+  r["CRAN"] <- "https://cloud.r-project.org/"
+  options(repos = r)
+})
+
 library(colorout)
 colorout::setOutputColors(
 
@@ -29,9 +36,4 @@ colorout::setOutputColors(
   verbose  = FALSE
 )
 
-## Set CRAN Mirror:
-local({
-  r <- getOption("repos")
-  r["CRAN"] <- "https://cloud.r-project.org/"
-  options(repos = r)
-})
+options(menu.graphics=FALSE)

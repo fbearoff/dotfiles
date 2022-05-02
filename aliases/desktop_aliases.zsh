@@ -1,3 +1,5 @@
-source ./aliases.zsh
-alias sm="rsync -v -rlt --chmod=a=rw,Da+x --delete --exclude='*.jpg' --exclude='*.ini' --progress \"/mnt/d/Music/\" \"192.168.1.102::music//\""
+alias sm="rsync -v -rltO --chmod=a=rw,Da+x --delete --exclude='*.jpg' --exclude='*.ini' --progress \"/mnt/d/Music/\" \"omv:~/pool/media/music\""
 alias bum="rsync -v -rlt --chmod=a=rw,Da+x --delete --exclude='*.jpg' --exclude='*.ini' --progress \"/mnt/d/Music/\" \"/mnt/f/Music/\""
+alias ls="exa"
+alias ll="exa -lg --icons --git"
+alias vim="nvim"
