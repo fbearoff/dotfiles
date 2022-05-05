@@ -147,6 +147,7 @@ Plug 'https://github.com/kshenoy/vim-signature.git'
 if has("nvim")
     Plug 'neovim/nvim-lspconfig'
     Plug 'alexaandru/nvim-lspupdate'
+    Plug 'williamboman/nvim-lsp-installer'
 endif
 
 call plug#end()
