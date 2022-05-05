@@ -28,14 +28,22 @@ require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
   use 'hrsh7th/cmp-path' -- Autocompletion plugin
+  use 'hrsh7th/cmp-omni' -- Autocompletion plugin
   use 'williamboman/nvim-lsp-installer'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
-  use { 'jalvesaq/Nvim-R', branch = 'stable' }
+  use { 'jalvesaq/Nvim-R', branch = 'stable' } --R in vim
+  use 'chentau/marks.nvim'
+  use {
+  "ur4ltz/surround.nvim",
+  config = function()
+    require"surround".setup {mappings_style = "surround"}
+  end
+}
 end)
 
---set curorline
+--set cursorline
 vim.wo.cursorline = true
 
 --Set highlight on search
@@ -69,7 +77,24 @@ vim.o.termguicolors = true
 vim.cmd [[colorscheme gruvbox]]
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = 'menuone,longest,preview'
+
+--scrolloff
+vim.o.so = 10
+
+--tabs
+vim.o.tabstop = 8
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+
+--wildmenu
+vim.o.wildmode = 'longest,full'
+
+--<F2> for paste toggle
+vim.o.pastetoggle = '<F2>'
+
+--show search match
+vim.o.showmatch = true
 
 --Set statusbar
 require('lualine').setup {
@@ -84,14 +109,17 @@ require('lualine').setup {
 --Enable Comment.nvim
 require('Comment').setup()
 
--- --Remap space as leader key
--- vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+--Remap leader keys
 vim.g.mapleader = ','
 vim.g.maplocalleader = '\\'
 
 --Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+--don't lose selection when shfting text
+vim.keymap.set('x', '<', '<gv', { noremap = true })
+vim.keymap.set('x', '>', '>gv', { noremap = true })
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -155,6 +183,7 @@ vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles)
 require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true, -- false will disable the whole extension
+		disable = { "r" },
   },
   rainbow = {
     enable = true,
@@ -284,11 +313,15 @@ lspconfig.sumneko_lua.setup {
   },
 }
 
--- luasnip setup
-local luasnip = require 'luasnip'
-
 -- nvim-cmp setup
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
+local luasnip = require 'luasnip'
 local cmp = require 'cmp'
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -303,33 +336,49 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+    if cmp.visible() then
+      cmp.select_next_item()
+    elseif luasnip.expand_or_jumpable() then
+      luasnip.expand_or_jump()
+    elseif has_words_before() then
+      cmp.complete()
+    else
+      fallback()
+    end
+  end, { "i", "s" }),
   }),
-  sources = {
+  sources = cmp.config.sources({
+    { name = 'path',
+      option = { trailing_slash = true } },
     { name = 'nvim_lsp' },
+    { name = 'omni' },
     { name = 'luasnip' },
-    { name = 'path' },
-  },
+  }),
 }
 
 --Nvim-R
 vim.keymap.set('n', '<Space>', '<Plug>RDSendLine')
 vim.keymap.set('v', '<Space>', '<Plug>RDSendSelection')
+vim.keymap.set('n', '<LocalLeader>:', ':RSend ')
+-- vim.g["R_hi_fun"] = true
+vim.g["R_bracketed_paste"] = true
+vim.g["R_commented_lines"] = true
+vim.g["R_args"] = { '--quiet' }
+vim.g["R_source_args"] = 'echo = TRUE, spaced = TRUE'
+
+--marks.nvim
+require'marks'.setup {
+  default_mappings = true,
+  builtin_marks = { ".", "<", ">", "^" },
+  cyclic = true,
+  refresh_interval = 250,
+  sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
+  excluded_filetypes = {},
+  bookmark_0 = {
+    sign = "⚑",
+    virt_text = "hello world"
+  },
+  mappings = {}
+}
 -- vim: ts=2 sts=2 sw=2 et
