@@ -10,6 +10,13 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set('x', '<', '<gv', { noremap = true })
 vim.keymap.set('x', '>', '>gv', { noremap = true })
 
+-- H and L go to begining/end of line
+vim.keymap.set('n', 'H', '^')
+vim.keymap.set('n', 'L', '$')
+
+--easier split navigation
+
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
@@ -31,4 +38,4 @@ vim.keymap.set('n', '<leader>so', function()
 end)
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles)
 
--- vim: ts=2 sts=2 sw=2 et
+  -- vim: ts=2 sts=2 sw=2 et

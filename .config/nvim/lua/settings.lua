@@ -1,3 +1,6 @@
+--set split bottom/righ
+vim.o.splitright = true
+vim.o.splitbelow = true
 --set cursorline
 vim.wo.cursorline = true
 
@@ -60,7 +63,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
-
-
-
 -- vim: ts=2 sts=2 sw=2 et
