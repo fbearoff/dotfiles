@@ -31,8 +31,10 @@ vim.keymap.set('n', 'L', '$')
 --better exiting
 vim.keymap.set('n', ':Q!', ':quit!')
 
+--easier split creation
 vim.keymap.set('n', '<leader>-', ':split<CR>')
 vim.keymap.set('n', '<leader>\\', ':vsplit<CR>')
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
