@@ -1,51 +1,140 @@
--- Install packer
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+local fn = vim.fn
 
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+-- Automatically install packer
+local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+    PACKER_BOOTSTRAP = fn.system {
+        "git",
+        "clone",
+        "--depth",
+        "1",
+        "https://github.com/wbthomason/packer.nvim",
+        install_path,
+    }
+    print "Installing packer close and reopen Neovim..."
+    vim.cmd [[packadd packer.nvim]]
 end
 
-local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePost', { command = 'source <afile> | PackerCompile', group = packer_group, pattern = 'init.lua' })
+
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+    return
+end
+
+-- Have packer use a popup window
+packer.init {
+    display = {
+        open_fn = function()
+            return require("packer.util").float { border = 'single' }
+        end,
+    },
+}
 
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- Package manager
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use 'ellisonleao/gruvbox.nvim'
+  use 'ellisonleao/gruvbox.nvim' --colorscheme
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
-  -- Add indentation guides even on blank lines
-  use 'lukas-reineke/indent-blankline.nvim'
-  -- Add git related info in the signs columns and popups
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  -- Highlight, edit, and navigate code using a fast incremental parsing library
-  use 'nvim-treesitter/nvim-treesitter'
-  -- Additional textobjects for treesitter
+  use 'lukas-reineke/indent-blankline.nvim' --indentsigns
+  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } } --git signs in gutter
+  use 'nvim-treesitter/nvim-treesitter' --code highlighting
   use 'nvim-treesitter/nvim-treesitter-textobjects'
-  use 'p00f/nvim-ts-rainbow'
+  use 'p00f/nvim-ts-rainbow' --rainbow parens
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-  use 'hrsh7th/cmp-path' -- Autocompletion plugin
-  use 'hrsh7th/cmp-omni' -- Autocompletion plugin
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-omni'
   use 'williamboman/nvim-lsp-installer'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use { 'jalvesaq/Nvim-R', branch = 'stable' } --R in vim
-  use 'chentau/marks.nvim'
-  use {
-  'ur4ltz/surround.nvim',
-  config = function()
-    require"surround".setup {mappings_style = "surround"}
-  end }
-  use {
-  'romgrk/barbar.nvim',
-  requires = {'kyazdani42/nvim-web-devicons'} }
+  use 'chentau/marks.nvim' --marks in gutter
+  use 'windwp/nvim-autopairs' --auto close parens
+  use 'DanilaMihailov/beacon.nvim' --show cursorjumps
+  use  'ur4ltz/surround.nvim'   --adjust surrounding syntax
+  use { 'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'} } --bufferbar
+  use { 'goolord/alpha-nvim',  --greeting page
+        config = function ()
+            require'alpha'.setup(require'whatup'.config)
+        end }
+
+  --bootstraps packer, put after all plugins
+  if PACKER_BOOTSTRAP then
+    require('packer').sync()
+  end
 end)
 
---Set statusbar
+--autopairs
+require('nvim-autopairs').setup{
+    check_ts = true,
+    ts_config = {
+        lua = { "string", "source" },
+        javascript = { "string", "template_string" },
+        java = false,
+    },
+    disable_filetype = { "TelescopePrompt", "spectre_panel" },
+    fast_wrap = {
+        map = "<M-e>",
+        chars = { "{", "[", "(", '"', "'" },
+        pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
+        offset = 0, -- Offset from pattern match
+        end_key = "$",
+        keys = "qwertyuiopzxcvbnmasdfghjkl",
+        check_comma = true,
+        highlight = "PmenuSel",
+        highlight_grey = "LineNr",
+    },
+}
+
+local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+local cmp = require('cmp')
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
+
+--Barbar
+vim.g.bufferline = {
+  animation = true,
+  auto_hide = false,
+  tabpages = true,
+  closable = true,
+  clickable = true,
+  icons = 'both',
+  icon_custom_colors = false,
+  icon_separator_active = '▎',
+  icon_separator_inactive = '▎',
+  icon_close_tab = '',
+  icon_close_tab_modified = '●',
+  icon_pinned = '車',
+  insert_at_end = false,
+  insert_at_start = false,
+  maximum_padding = 1,
+  maximum_length = 30,
+  semantic_letters = true,
+  letters = 'asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP',
+  no_name_title = nil,
+}
+
+--Beacon
+vim.g.beacon_ignore_filetypes = {'alpha'}
+
+--Comment.nvim
+require('Comment').setup()
+
+-- Gitsigns
+require('gitsigns').setup()
+
+-- Indent blankline
+require('indent_blankline').setup {
+  char = '┊',
+  show_trailing_blankline_indent = false,
+  show_current_context = true,
+  show_current_context_start = true,
+}
+
+--Lualine
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -56,44 +145,7 @@ require('lualine').setup {
   },
 }
 
---Enable Comment.nvim
-require('Comment').setup()
-
--- Indent blankline
-require('indent_blankline').setup {
-  char = '┊',
-  show_trailing_blankline_indent = false,
-}
-
--- Gitsigns
-require('gitsigns').setup()
-
--- Telescope
-require('telescope').setup {
-  defaults = {
-    mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
-    },
-  },
-}
-
--- Enable telescope fzf native
-require('telescope').load_extension 'fzf'
-
---Nvim-R
-vim.keymap.set('n', '<Space>', '<Plug>RDSendLine')
-vim.keymap.set('v', '<Space>', '<Plug>RDSendSelection')
-vim.keymap.set('n', '<LocalLeader>:', ':RSend ')
--- vim.g["R_hi_fun"] = true
-vim.g["R_bracketed_paste"] = true
-vim.g["R_commented_lines"] = true
-vim.g["R_args"] = { '--quiet' }
-vim.g["R_source_args"] = 'echo = TRUE, spaced = TRUE'
-
---marks.nvim
+--Marks.nvim
 require'marks'.setup {
   default_mappings = true,
   builtin_marks = { ".", "<", ">", "^" },
@@ -107,6 +159,33 @@ require'marks'.setup {
   },
   mappings = {}
 }
+
+--Nvim-R
+vim.g["R_bracketed_paste"] = true
+vim.g["R_commented_lines"] = true
+vim.g["R_args"] = { '--quiet' }
+vim.g["R_source_args"] = 'echo = TRUE, spaced = TRUE'
+
+
+--Surround
+require'surround'.setup {
+  mappings_style = 'surround',
+  space_on_closing_char = true
+}
+
+-- Telescope
+require('telescope').setup {
+  defaults = {
+    mappings = {
+      i = {
+        ['<C-u>'] = false,
+        ['<C-d>'] = false,
+      },
+    },
+  },
+}
+-- Enable telescope fzf native
+require('telescope').load_extension 'fzf'
 
 -- Treesitter
 -- Parsers must be installed manually via :TSInstall
@@ -165,75 +244,5 @@ require('nvim-treesitter.configs').setup {
       },
     },
   },
-}
-
---Barbar tabline
--- Set barbar's options
-require('barbar.configs').setup()
-vim.g.bufferline = {
-  -- Enable/disable animations
-  animation = true,
-
-  -- Enable/disable auto-hiding the tab bar when there is a single buffer
-  auto_hide = false,
-
-  -- Enable/disable current/total tabpages indicator (top right corner)
-  tabpages = true,
-
-  -- Enable/disable close button
-  closable = true,
-
-  -- Enables/disable clickable tabs
-  --  - left-click: go to buffer
-  --  - middle-click: delete buffer
-  clickable = true,
-
-  -- Excludes buffers from the tabline
-  exclude_ft = {'javascript'},
-  exclude_name = {'package.json'},
-
-  -- Enable/disable icons
-  -- if set to 'numbers', will show buffer index in the tabline
-  -- if set to 'both', will show buffer index and icons in the tabline
-  icons = true,
-
-  -- If set, the icon color will follow its corresponding buffer
-  -- highlight group. By default, the Buffer*Icon group is linked to the
-  -- Buffer* group (see Highlighting below). Otherwise, it will take its
-  -- default value as defined by devicons.
-  icon_custom_colors = false,
-
-  -- Configure icons on the bufferline.
-  icon_separator_active = '▎',
-  icon_separator_inactive = '▎',
-  icon_close_tab = '',
-  icon_close_tab_modified = '●',
-  icon_pinned = '車',
-
-  -- If true, new buffers will be inserted at the start/end of the list.
-  -- Default is to insert after current buffer.
-  insert_at_end = false,
-  insert_at_start = false,
-
-  -- Sets the maximum padding width with which to surround each tab
-  maximum_padding = 1,
-
-  -- Sets the maximum buffer name length.
-  maximum_length = 30,
-
-  -- If set, the letters for each buffer in buffer-pick mode will be
-  -- assigned based on their name. Otherwise or in case all letters are
-  -- already assigned, the behavior is to assign letters in order of
-  -- usability (see order below)
-  semantic_letters = true,
-
-  -- New buffer letters are assigned in this order. This order is
-  -- optimal for the qwerty keyboard layout but might need adjustement
-  -- for other layouts.
-  letters = 'asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP',
-
-  -- Sets the name of unnamed buffers. By default format is "[Buffer X]"
-  -- where X is the buffer number. But only a static string is accepted here.
-  no_name_title = nil,
 }
 -- vim: ts=2 sts=2 sw=2 et
