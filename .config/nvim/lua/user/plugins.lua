@@ -47,7 +47,6 @@ return packer.startup(function(use)
   use "numToStr/Comment.nvim" -- Easily comment stuff
   use "kyazdani42/nvim-web-devicons"
   use "kyazdani42/nvim-tree.lua"
-  use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim" --statusline
   use "akinsho/toggleterm.nvim"
   use "ahmedkhalf/project.nvim"
@@ -57,14 +56,17 @@ return packer.startup(function(use)
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim" --keymap reminder
   use { 'jalvesaq/Nvim-R', branch = 'stable' } --R in vim
-  use 'chentau/marks.nvim' --marks in gutter
-  use  'ur4ltz/surround.nvim'   --adjust surrounding syntax
+  use "chentau/marks.nvim" --marks in gutter
+  use  "ur4ltz/surround.nvim"   --adjust surrounding syntax
   -- use 'cappyzawa/trim.nvim' --fix whitespace
   use 'romgrk/barbar.nvim'  --bufferbar
+  use "DanilaMihailov/beacon.nvim" --show cursor jumps
+  use "kosayoda/nvim-lightbulb" --show lightbulb when code action available
+  use "nvim-telescope/telescope-ui-select.nvim"
 
   -- Colorschemes
   use "lunarvim/darkplus.nvim"
-  use 'ellisonleao/gruvbox.nvim' --colorscheme
+  use "ellisonleao/gruvbox.nvim" --colorscheme
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -87,6 +89,7 @@ return packer.startup(function(use)
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
+  use {"nvim-telescope/telescope-fzf-native.nvim", run = 'make' }
 
   -- Treesitter
   use {

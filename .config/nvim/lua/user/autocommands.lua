@@ -26,16 +26,19 @@ local autocmds = {
   alpha = {
     { "User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2" };
   };
-git = {
+  git = {
     { "FileType gitcommit setlocal wrap" };
     { "FileType gitcommit setlocal spell" };
   };
-markdown = {
+  markdown = {
     { "FileType markdown setlocal wrap" };
     { "FileType markdown setlocal spell" };
   };
-nvim_tree = {
+  nvim_tree = {
     { "BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif" };
+  };
+  lightbulb = {
+  { "CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()" };
   };
 }
 
