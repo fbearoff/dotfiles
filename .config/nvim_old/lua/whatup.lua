@@ -217,13 +217,13 @@ local buttons = {
 
 local config = {
     layout = {
-        { type = "padding", val = 2 },
+        { type = "padding", val = 1 },
         default_header,
         { type = "padding", val = 2 },
         section_mru,
         { type = "padding", val = 2 },
         buttons,
-        { type = "padding", val = 2 },
+        { type = "padding", val = 1 },
         default_footer,
     },
     opts = {

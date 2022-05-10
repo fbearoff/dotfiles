@@ -2,15 +2,11 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
---Remap for dealing with word wrap
+-- --Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
---don't lose selection when shfting text
-vim.keymap.set('x', '<', '<gv', { noremap = true })
-vim.keymap.set('x', '>', '>gv', { noremap = true })
-
---navigate windows with ALT+{h,j,k,l}
+-- --navigate windows with ALT+{h,j,k,l}
 vim.keymap.set('t', '<A-h>', '<C-\\><C-N><C-w>h', { noremap = true })
 vim.keymap.set('t', '<A-j>', '<C-\\><C-N><C-w>j', { noremap = true })
 vim.keymap.set('t', '<A-k>', '<C-\\><C-N><C-w>k', { noremap = true })
@@ -28,8 +24,8 @@ vim.keymap.set('n', '<A-l>', '<C-w>l', { noremap = true })
 vim.keymap.set('n', 'H', '^')
 vim.keymap.set('n', 'L', '$')
 
---better exiting
-vim.keymap.set('n', ':Q!', ':quit!')
+--turn off Q
+vim.keymap.set('n', 'Q', '<nop>')
 
 --easier split creation
 vim.keymap.set('n', '<leader>-', ':split<CR>')
@@ -51,7 +47,7 @@ local opts = { noremap = true, silent = true }
 map('n', '<A-,>', ':BufferPrevious<CR>', opts)
 map('n', '<A-.>', ':BufferNext<CR>', opts)
 -- Re-order to previous/next
-map('n', '<A-<>', ':BufferMovePrevious<CR>', opts)
+map('n', '<A-<>', ':BufferMoePrevious<CR>', opts)
 map('n', '<A->>', ' :BufferMoveNext<CR>', opts)
 -- Goto buffer in position...
 map('n', '<A-1>', ':BufferGoto 1<CR>', opts)

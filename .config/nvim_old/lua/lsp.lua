@@ -1,4 +1,4 @@
-require("nvim-lsp-installer").setup {
+qequire("nvim-lsp-installer").setup {
   automatic_installation = true
 }
 

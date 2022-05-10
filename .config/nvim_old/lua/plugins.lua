@@ -15,7 +15,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
     vim.cmd [[packadd packer.nvim]]
 end
 
-
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
@@ -45,22 +44,27 @@ require('packer').startup(function(use)
   use 'p00f/nvim-ts-rainbow' --rainbow parens
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-omni'
+  use 'hrsh7th/cmp-path' --path completions
+  use 'hrsh7th/cmp-omni' --omnifunc completions
+  use 'hrsh7th/cmp-cmdline' --commandline completions
+  use 'hrsh7th/cmp-buffer' --commandline completions
   use 'williamboman/nvim-lsp-installer'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
+  use 'onsails/lspkind.nvim'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use { 'jalvesaq/Nvim-R', branch = 'stable' } --R in vim
   use 'chentau/marks.nvim' --marks in gutter
   use 'windwp/nvim-autopairs' --auto close parens
   use 'DanilaMihailov/beacon.nvim' --show cursorjumps
   use  'ur4ltz/surround.nvim'   --adjust surrounding syntax
+  use 'kosayoda/nvim-lightbulb' --show lightbulb in gutter for code actions
   use { 'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'} } --bufferbar
   use { 'goolord/alpha-nvim',  --greeting page
         config = function ()
             require'alpha'.setup(require'whatup'.config)
         end }
+  use 'cappyzawa/trim.nvim' --fix whitespace
 
   --bootstraps packer, put after all plugins
   if PACKER_BOOTSTRAP then
@@ -166,7 +170,6 @@ vim.g["R_commented_lines"] = true
 vim.g["R_args"] = { '--quiet' }
 vim.g["R_source_args"] = 'echo = TRUE, spaced = TRUE'
 
-
 --Surround
 require'surround'.setup {
   mappings_style = 'surround',
@@ -245,4 +248,66 @@ require('nvim-treesitter.configs').setup {
     },
   },
 }
+
+--Trim
+require('trim').setup({
+    -- if you want to ignore markdown file.
+    -- you can specify filetypes.
+    disable = {"markdown"},
+
+    -- if you want to ignore space of top
+    patterns = {
+      [[%s/\s\+$//e]],
+      [[%s/\($\n\s*\)\+\%$//]],
+      [[%s/\(\n\n\)\n\+/\1/]],
+    },
+  })
+--Lightbulb
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+-- Showing defaults
+require'nvim-lightbulb'.setup {
+    -- LSP client names to ignore
+    -- Example: {"sumneko_lua", "null-ls"}
+    ignore = {},
+    sign = {
+        enabled = true,
+        -- Priority of the gutter sign
+        priority = 10,
+    },
+    float = {
+        enabled = false,
+        -- Text to show in the popup float
+        text = "💡",
+        -- Available keys for window options:
+        -- - height     of floating window
+        -- - width      of floating window
+        -- - wrap_at    character to wrap at for computing height
+        -- - max_width  maximal width of floating window
+        -- - max_height maximal height of floating window
+        -- - pad_left   number of columns to pad contents at left
+        -- - pad_right  number of columns to pad contents at right
+        -- - pad_top    number of lines to pad contents at top
+        -- - pad_bottom number of lines to pad contents at bottom
+        -- - offset_x   x-axis offset of the floating window
+        -- - offset_y   y-axis offset of the floating window
+        -- - anchor     corner of float to place at the cursor (NW, NE, SW, SE)
+        -- - winblend   transparency of the window (0-100)
+        win_opts = {},
+    },
+    virtual_text = {
+        enabled = false,
+        -- Text to show at virtual text
+        text = "💡",
+        -- highlight mode to use for virtual text (replace, combine, blend), see :help nvim_buf_set_extmark() for reference
+        hl_mode = "replace",
+    },
+    status_text = {
+        enabled = false,
+        -- Text to provide when code actions are available
+        text = "💡",
+        -- Text to provide when no actions are available
+        text_unavailable = ""
+    }
+}
+
 -- vim: ts=2 sts=2 sw=2 et

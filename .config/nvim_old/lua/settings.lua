@@ -26,6 +26,9 @@ vim.opt.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
+vim.o.ttimeoutlen = 0
+vim.o.ttimeout = 500
+
 --Decrease update time
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
