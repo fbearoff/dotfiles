@@ -22,20 +22,20 @@ keymap('i', '<A-h>', '<C-\\><C-N><C-w>h', opts)
 keymap('i', '<A-j>', '<C-\\><C-N><C-w>j', opts)
 keymap('i', '<A-k>', '<C-\\><C-N><C-w>k', opts)
 keymap('i', '<A-l>', '<C-\\><C-N><C-w>l', opts)
-keymap('n', '<A-h>', '<C-w>h', opts)
-keymap('n', '<A-j>', '<C-w>j', opts)
-keymap('n', '<A-k>', '<C-w>k', opts)
-keymap('n', '<A-l>', '<C-w>l', opts)
+vim.keymap.set('n', '<A-h>', require('smart-splits').move_cursor_left)
+vim.keymap.set('n', '<A-j>', require('smart-splits').move_cursor_down)
+vim.keymap.set('n', '<A-k>', require('smart-splits').move_cursor_up)
+vim.keymap.set('n', '<A-l>', require('smart-splits').move_cursor_right)
 
 -- --Remap for dealing with word wrap
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+vim.keymap.set('n', '<C-Left>', require('smart-splits').resize_left)
+vim.keymap.set('n', '<C-Down>', require('smart-splits').resize_down)
+vim.keymap.set('n', '<C-Up>', require('smart-splits').resize_up)
+vim.keymap.set('n', '<C-Right>', require('smart-splits').resize_right)
 
 -- H and L go to begining/end of line
 keymap('n', 'H', '^', opts)
@@ -86,3 +86,4 @@ keymap('n', '<A-c>', ':BufferClose<CR>', opts)
 vim.keymap.set('n', '<leader><Space>', '<Plug>RDSendLine')
 vim.keymap.set('v', '<leader><Space>', '<Plug>RDSendSelection')
 vim.keymap.set('n', '<LocalLeader>:', ':RSend ')
+

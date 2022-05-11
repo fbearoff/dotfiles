@@ -57,12 +57,17 @@ return packer.startup(function(use)
   use "folke/which-key.nvim" --keymap reminder
   use { 'jalvesaq/Nvim-R', branch = 'stable' } --R in vim
   use "chentau/marks.nvim" --marks in gutter
-  use  "ur4ltz/surround.nvim"   --adjust surrounding syntax
-  -- use 'cappyzawa/trim.nvim' --fix whitespace
-  use 'romgrk/barbar.nvim'  --bufferbar
+  use "ur4ltz/surround.nvim"   --adjust surrounding syntax
+  use "cappyzawa/trim.nvim" --fix whitespace
+  use "romgrk/barbar.nvim"  --bufferbar
   use "DanilaMihailov/beacon.nvim" --show cursor jumps
   use "kosayoda/nvim-lightbulb" --show lightbulb when code action available
   use "nvim-telescope/telescope-ui-select.nvim"
+  use "mrjones2014/smart-splits.nvim"
+  use { "nabecodes/tabout.nvim",
+      require = { "nvim-treesitter"},
+      after = {"nvim-cmp"}
+  }
 
   -- Colorschemes
   use "ellisonleao/gruvbox.nvim" --colorscheme
@@ -103,7 +108,6 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim"
-
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
