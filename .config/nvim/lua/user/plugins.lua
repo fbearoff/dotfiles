@@ -65,8 +65,9 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope-ui-select.nvim"
 
   -- Colorschemes
-  use "lunarvim/darkplus.nvim"
   use "ellisonleao/gruvbox.nvim" --colorscheme
+  use "folke/tokyonight.nvim"
+  use "navarasu/onedark.nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
