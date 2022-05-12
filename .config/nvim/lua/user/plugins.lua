@@ -64,10 +64,6 @@ return packer.startup(function(use)
   use "kosayoda/nvim-lightbulb" --show lightbulb when code action available
   use "nvim-telescope/telescope-ui-select.nvim"
   use "mrjones2014/smart-splits.nvim"
-  use { "nabecodes/tabout.nvim",
-      require = { "nvim-treesitter"},
-      after = {"nvim-cmp"}
-  }
 
   -- Colorschemes
   use "ellisonleao/gruvbox.nvim" --colorscheme
@@ -103,7 +99,7 @@ return packer.startup(function(use)
     run = ":TSUpdate",
   }
   use "JoosepAlviste/nvim-ts-context-commentstring"
-  -- use 'nvim-treesitter/nvim-treesitter-textobjects'
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
   use "p00f/nvim-ts-rainbow" --rainbow parens
 
   -- Git
