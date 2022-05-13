@@ -64,7 +64,9 @@ return packer.startup(function(use)
   use "kosayoda/nvim-lightbulb" --show lightbulb when code action available
   use "nvim-telescope/telescope-ui-select.nvim"
   use "mrjones2014/smart-splits.nvim"
-
+  use { "AckslD/nvim-neoclip.lua",
+    requires = { "nvim-telescope/telescope.nvim" }
+  }
   -- Colorschemes
   use "ellisonleao/gruvbox.nvim" --colorscheme
   use "folke/tokyonight.nvim"
