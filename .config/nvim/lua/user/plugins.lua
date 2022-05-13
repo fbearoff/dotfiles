@@ -56,7 +56,7 @@ return packer.startup(function(use)
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim" --keymap reminder
   use { 'jalvesaq/Nvim-R', branch = 'stable' } --R in vim
-  use "chentau/marks.nvim" --marks in gutter
+  use "chentoast/marks.nvim" --marks in gutter
   use "ur4ltz/surround.nvim"   --adjust surrounding syntax
   use "cappyzawa/trim.nvim" --fix whitespace
   use "romgrk/barbar.nvim"  --bufferbar
@@ -71,6 +71,7 @@ return packer.startup(function(use)
   use "ellisonleao/gruvbox.nvim" --colorscheme
   use "folke/tokyonight.nvim"
   use "navarasu/onedark.nvim"
+  use "rebelot/kanagawa.nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
