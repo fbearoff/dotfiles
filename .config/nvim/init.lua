@@ -19,7 +19,6 @@ require "user.indentline"
 require "user.alpha"
 require "user.whichkey"
 require "user.autocommands"
-
 require "user.marks"
 require "user.surround"
 require "user.nvim-r"

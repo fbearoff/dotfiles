@@ -36,6 +36,7 @@ local options = {
   breakindent = true,                      -- preserve indent on wrapped lines
   softtabstop = 2,                         -- how many spaces is a tab press worth
   showmatch = true,                        -- show matching paren on creation
+  fillchars = 'eob: '                      -- remove ugly ~ ndicator for end of buffer
 }
 
 vim.opt.shortmess:append "c"
