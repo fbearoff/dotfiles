@@ -11,6 +11,8 @@ telescope.setup {
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
+    initial_mode = "normal",
+    winblend = 5,
 
     mappings = {
       i = {
