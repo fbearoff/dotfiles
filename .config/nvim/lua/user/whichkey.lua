@@ -83,6 +83,7 @@ local mappings = {
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["Q"] = { "<cmd>q!<CR>", "Quit" },
+  ["q"] = { "<cmd>lua require('user.functions').toggle_qf()<cr>", "Toggle Quickfix" },
   ["c"] = { "<cmd>BufferClose!<CR>", "Close Buffer" },
   ["h"] = { "<cmd>set invhlsearch<CR>", "Toggle Highlight" },
   ["f"] = {
@@ -91,6 +92,8 @@ local mappings = {
   },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
+  ["v"] = { "<cmd>lua require('telescope').extensions.neoclip.neoclip()<cr>", "Clipboard" },
+  ["n"] = { "<cmd>lua require('telescope').extensions.notify.notify(require('telescope.themes').get_dropdown{winblend = 5})<cr>", "Notifications" },
   ["-"] = { "<cmd>:split<CR>", "Split" },
   ["\\"] = { "<cmd>:vsplit<CR>", "VSplit" },
 

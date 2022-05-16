@@ -47,4 +47,3 @@ end
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
-vim.api.nvim_create_autocmd({"FileType"}, {command = "set formatoptions-=cro"})

@@ -46,7 +46,7 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim" -- Easily comment stuff
   use "kyazdani42/nvim-web-devicons"
-  use "kyazdani42/nvim-tree.lua"
+  use "kyazdani42/nvim-tree.lua" --file manager
   use "nvim-lualine/lualine.nvim" --statusline
   use "akinsho/toggleterm.nvim"
   use "ahmedkhalf/project.nvim"
@@ -57,18 +57,21 @@ return packer.startup(function(use)
   use "folke/which-key.nvim" --keymap reminder
   use { 'jalvesaq/Nvim-R', branch = 'stable' } --R in vim
   use "chentoast/marks.nvim" --marks in gutter
-  use "ur4ltz/surround.nvim"   --adjust surrounding syntax
+  use "ur4ltz/surround.nvim" --adjust surrounding syntax
   use "cappyzawa/trim.nvim" --fix whitespace
-  use "romgrk/barbar.nvim"  --bufferbar
+  use "romgrk/barbar.nvim" --bufferbar
   use "DanilaMihailov/beacon.nvim" --show cursor jumps
   use "kosayoda/nvim-lightbulb" --show lightbulb when code action available
   use "nvim-telescope/telescope-ui-select.nvim"
-  use "mrjones2014/smart-splits.nvim"
+  use "mrjones2014/smart-splits.nvim" --natural window switchin
   use { "AckslD/nvim-neoclip.lua",
     requires = { "nvim-telescope/telescope.nvim" }
   }
+  use "rcarriga/nvim-notify"
+  use "luukvbaal/stabilize.nvim"
+
   -- Colorschemes
-  use "ellisonleao/gruvbox.nvim" --colorscheme
+  use "ellisonleao/gruvbox.nvim"
   use "folke/tokyonight.nvim"
   use "navarasu/onedark.nvim"
   use "rebelot/kanagawa.nvim"
@@ -94,7 +97,7 @@ return packer.startup(function(use)
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
-  use {"nvim-telescope/telescope-fzf-native.nvim", run = 'make' }
+  use { "nvim-telescope/telescope-fzf-native.nvim", run = 'make' }
 
   -- Treesitter
   use {

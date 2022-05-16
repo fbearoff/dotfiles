@@ -10,7 +10,7 @@ end
 local diagnostics = {
   "diagnostics",
   sources = { "nvim_diagnostic" },
-  sections = { "error", "warn" },
+  -- sections = { "error", "warn" },
   symbols = { error = " ", warn = " " },
   colored = true,
   update_in_insert = false,
@@ -48,6 +48,7 @@ local location = {
   padding = 0,
 
 }
+
 local filename = {
   "filename",
   file_status = true,
@@ -57,6 +58,26 @@ local filename = {
     readonly = '[-]',
     unnamed = '[No Name]',
   },
+}
+-- Lsp server name .
+local lsp_server = {
+  function()
+    local msg = 'No Active Lsp'
+    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+    local clients = vim.lsp.get_active_clients()
+    if next(clients) == nil then
+      return msg
+    end
+    for _, client in ipairs(clients) do
+      local filetypes = client.config.filetypes
+      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+        return client.name
+      end
+    end
+    return msg
+  end,
+  icon = ' LSP:',
+  -- color = { fg = '#ffffff', gui = 'bold' },
 }
 
 -- cool function for progress
@@ -87,7 +108,7 @@ lualine.setup({
     lualine_a = { mode },
     lualine_b = { branch, diff, diagnostics },
     lualine_c = { filename },
-    lualine_x = { spaces, "fileformat", "encoding", filetype },
+    lualine_x = { lsp_server, spaces, "fileformat", "encoding", filetype },
     lualine_y = { location },
     lualine_z = { progress },
   },
