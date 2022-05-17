@@ -37,9 +37,6 @@ local autocmds = {
   nvim_tree = {
     { "BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif" };
   };
-  lightbulb = {
-  { "CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()" };
-  };
 }
 
 nvim_create_augroups(autocmds)
