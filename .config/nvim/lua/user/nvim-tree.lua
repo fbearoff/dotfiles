@@ -47,6 +47,7 @@ nvim_tree.setup {
   open_on_tab = false,
   hijack_cursor = false,
   update_cwd = true,
+  reload_on_bufenter = true,
   update_to_buf_dir = {
     enable = true,
     auto_open = true,
@@ -103,7 +104,7 @@ nvim_tree.setup {
     open_file = {
       quit_on_open = true,
       window_picker = {
-        enable = false  --broken with vsplits
+        enable = false --broken with vsplits
       }
     }
   }
@@ -112,10 +113,10 @@ nvim_tree.setup {
 local nvim_tree_events = require('nvim-tree.events')
 local bufferline_state = require('bufferline.state')
 
-nvim_tree_events.on_tree_open(function ()
-    bufferline_state.set_offset(31, "File Tree")
+nvim_tree_events.on_tree_open(function()
+  bufferline_state.set_offset(31, "File Tree")
 end)
 
-nvim_tree_events.on_tree_close(function ()
-    bufferline_state.set_offset(0)
+nvim_tree_events.on_tree_close(function()
+  bufferline_state.set_offset(0)
 end)
