@@ -20,7 +20,7 @@ local autocmds = {
     { "FileType qf set nobuflisted" };
   };
   terminal_job = {
-    { "TermOpen", "*", "setlocal listchars= nonumber norelativenumber" };
+    { "TermOpen", "*", "setlocal listchars= nonumber norelativenumber signcolumn=no" };
     { "TermOpen", "*", "startinsert" };
   };
   alpha = {

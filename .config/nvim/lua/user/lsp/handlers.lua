@@ -19,6 +19,7 @@ M.setup = function()
     -- show signs
     signs = {
       active = signs,
+      priority = 50,
     },
     update_in_insert = true,
     underline = true,
