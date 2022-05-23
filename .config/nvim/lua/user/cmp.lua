@@ -57,7 +57,7 @@ cmp.setup {
   },
   mapping = {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
-		["<C-j>"] = cmp.mapping.select_next_item(),
+    ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -72,10 +72,12 @@ cmp.setup {
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expandable() then
-        luasnip.expand()
-      elseif luasnip.expand_or_jumpable() then
+        -- elseif luasnip.expandable() then
+        --   luasnip.expand()
+      elseif luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
+      -- elseif luasnip.expand_or_jumpable() then
+      --   luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
       elseif check_backspace() then
@@ -130,23 +132,23 @@ cmp.setup {
   window = {
     documentation = cmp.config.window.bordered(),
   },
-    experimental = {
-      ghost_text = true,
+  experimental = {
+    ghost_text = true,
   },
   view = {
     native_menu = false,
   },
   enabled = function()
-  -- disable completion in comments
-  local context = require 'cmp.config.context'
-  -- keep command mode completion enabled when cursor is in a comment
-  if vim.api.nvim_get_mode().mode == 'c' then
-    return true
-  else
-    return not context.in_treesitter_capture("comment")
-      and not context.in_syntax_group("Comment")
+    -- disable completion in comments
+    local context = require 'cmp.config.context'
+    -- keep command mode completion enabled when cursor is in a comment
+    if vim.api.nvim_get_mode().mode == 'c' then
+      return true
+    else
+      return not context.in_treesitter_capture("comment")
+          and not context.in_syntax_group("Comment")
+    end
   end
-end
 }
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -166,4 +168,3 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' }
   })
 })
-
