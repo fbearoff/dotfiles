@@ -34,9 +34,6 @@ local autocmds = {
     { "FileType markdown setlocal wrap" };
     { "FileType markdown setlocal spell" };
   };
-  nvim_tree = {
-    { "BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif" };
-  };
-}
+  }
 
 nvim_create_augroups(autocmds)
