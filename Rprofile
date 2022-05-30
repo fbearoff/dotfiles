@@ -32,3 +32,5 @@ colorout::setOutputColors(
 )
 
 options(menu.graphics = FALSE)
+
+# vim:ft=r
