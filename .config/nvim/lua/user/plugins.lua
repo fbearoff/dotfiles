@@ -62,6 +62,7 @@ return packer.startup(function(use)
   use "romgrk/barbar.nvim" --bufferbar
   use "DanilaMihailov/beacon.nvim" --show cursor jumps
   use "kosayoda/nvim-lightbulb" --show lightbulb when code action available
+  use "RRethy/vim-illuminate" -- Illuminate other uses of current word/symbol under cursor
   use "nvim-telescope/telescope-ui-select.nvim"
   use "mrjones2014/smart-splits.nvim" --natural window switchin
   use { "AckslD/nvim-neoclip.lua",

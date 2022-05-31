@@ -26,6 +26,10 @@ nvim_tree.setup {
   disable_netrw = true,
   hijack_netrw = true,
   open_on_setup = true,
+  hijack_directories = {
+    enable = true,
+    auto_open = true,
+  },
   ignore_ft_on_setup = {
     "startify",
     "dashboard",
@@ -41,7 +45,18 @@ nvim_tree.setup {
   },
   renderer = {
     root_folder_modifier = ':t',
+    highlight_git = true,
     icons = {
+      webdev_colors = true,
+      git_placement = "before",
+      padding = " ",
+      symlink_arrow = " ➛ ",
+      show = {
+        file = true,
+        folder = true,
+        folder_arrow = true,
+        git = true,
+      },
       glyphs = {
         default = "",
         symlink = "",
@@ -94,6 +109,7 @@ nvim_tree.setup {
   view = {
     width = 30,
     height = 30,
+    adaptive_size = true,
     hide_root_folder = false,
     side = "left",
     auto_resize = true,
