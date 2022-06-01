@@ -2,4 +2,6 @@ alias sm="rsync -v -rltO --chmod=a=rw,Da+x --delete --exclude='*.jpg' --exclude=
 alias bum="rsync -v -rlt --chmod=a=rw,Da+x --delete --exclude='*.jpg' --exclude='*.ini' --progress \"/mnt/d/Music/\" \"/mnt/f/Music/\""
 alias ls="exa"
 alias ll="exa -lg --icons --git"
+alias llt="exa -lg --icons --git --tree"
 alias vim="nvim"
+alias am="mv *.flac /mnt/d/Music"
