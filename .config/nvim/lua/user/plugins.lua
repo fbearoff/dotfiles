@@ -70,6 +70,7 @@ return packer.startup(function(use)
   }
   use "rcarriga/nvim-notify"
   use "luukvbaal/stabilize.nvim"
+  use "max397574/better-escape.nvim"
 
   -- Colorschemes
   use "ellisonleao/gruvbox.nvim"

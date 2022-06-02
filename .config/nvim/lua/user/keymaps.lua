@@ -34,10 +34,6 @@ keymap('n', 'L', '$', opts)
 --turn off Q
 keymap('n', 'Q', '<nop>', opts)
 
--- Insert --
--- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
-
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
@@ -54,7 +50,7 @@ keymap('n', '<A-,>', ':BufferPrevious<CR>', opts)
 keymap('n', '<A-.>', ':BufferNext<CR>', opts)
 -- Re-order to previous/next
 keymap('n', '<A-<>', ':BufferMoePrevious<CR>', opts)
-keymap('n', '<A->>', ' :BufferMoveNext<CR>', opts)
+keymap('n', '<A->>', ':BufferMoveNext<CR>', opts)
 -- Goto buffer in position...
 keymap('n', '<A-1>', ':BufferGoto 1<CR>', opts)
 keymap('n', '<A-2>', ':BufferGoto 2<CR>', opts)
