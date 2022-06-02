@@ -49,7 +49,7 @@ keymap("v", "p", '"_dP', opts)
 keymap('n', '<A-,>', ':BufferPrevious<CR>', opts)
 keymap('n', '<A-.>', ':BufferNext<CR>', opts)
 -- Re-order to previous/next
-keymap('n', '<A-<>', ':BufferMoePrevious<CR>', opts)
+keymap('n', '<A-<>', ':BufferMovePrevious<CR>', opts)
 keymap('n', '<A->>', ':BufferMoveNext<CR>', opts)
 -- Goto buffer in position...
 keymap('n', '<A-1>', ':BufferGoto 1<CR>', opts)
