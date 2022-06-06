@@ -1,0 +1,331 @@
+focus_follows_mouse no
+font pango:MesloLGS Nerd Font Mono 11
+hide_edge_borders smart
+default_border none
+smart_gaps on
+gaps inner 10
+gaps outer 5
+default_floating_border none
+
+### Variables
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+set $term alacritty
+set $browser firefox
+
+###---Dropdown/Scratchpad Window---###
+for_window [app_id="dropdown"] floating enable
+for_window [app_id="dropdown"] resize set 800 600
+for_window [app_id="dropdown"] move position center
+for_window [app_id="dropdown"] move scratchpad
+exec --no-startup-id $term --class=dropdown -e tmux new -s scratchpad
+exec --no-startup-id thunar
+
+# set primary gruvbox colorscheme colors
+set $text-color  #ebdbb2
+set $bg          #242424
+set $light-red   #fb4934
+set $red         #cc241d
+set $green       #98971a
+set $light-green #b8bb26
+set $yellow      #d79921
+set $blue        #458588
+set $purple      #b16286
+set $aqua        #689d68
+set $gray        #a89984
+set $darkgray    #1d2021
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $green              $green             $text-color          $purple
+client.unfocused        $bg                 $bg                $gray                $purple
+client.focused_inactive $bg                 $bg                $gray                $purple
+client.urgent           $red                $red               $text-color          $purple
+
+###---Modes---###
+mode  "Passthrough Mode" {
+        bindsym $mod+F12 mode "default"
+}
+
+#Audio Controls
+set $inc pamixer -ui 5 && pamixer --get-volume > $WOBSOCK
+set $dec pamixer -ud 5 && pamixer --get-volume > $WOBSOCK
+set $micmute  pamixer --default-source -t
+set $mute pamixer -t && ( pamixer --get-mute && echo 0 > $WOBSOCK ) || pamixer --get-volume > $WOBSOCK
+set $play mpc toggle
+set $stop mpc stop
+set $next mpc next
+set $prev mpc prev
+
+# Basic Bindings
+bindsym $mod+Return 		exec $term
+bindsym $mod+Shift+Return 	exec $term -e tmux
+
+# bindsym $mod+BackSpace          exec
+# bindsym $mod+Shift+BackSpace    exec
+
+bindsym $mod+minus              split vertical ;; exec $term
+
+bindsym $mod+space 	        focus mode_toggle
+bindsym $mod+Shift+space 	floating toggle
+
+bindsym $mod+Tab 	        exec i3-focus-last menu
+
+###---Letter Keys---###
+
+#bindsym $mod+a
+#bindsym $mod+Shift+a
+
+bindsym $mod+b                  exec ~/.config/scripts/virt.sh
+#bindsym $mod+Shift+b
+
+bindsym $mod+c                  exec qalculate-gtk
+bindsym $mod+Shift+c            exec $term -e qalc
+
+bindsym $mod+d		        exec rofi -show combi
+bindsym $mod+Shift+d 		gaps inner current set 0; gaps outer current set 0
+
+bindsym $mod+e                  exec rofi -show emoji -modi emoji
+bindsym $mod+Shift+e 		exec i3-msg exit
+
+bindsym $mod+f                  exec fd | rofi -show file-browser-extended -file-browser-stdin
+#bindsym $mod+Shift+f
+
+#bindsym $mod+g
+#bindsym $mod+Shigt+g
+
+bindsym $mod+h 		        focus left
+bindsym $mod+Shift+h 		move left
+
+bindsym $mod+i 	                exec $term -e htop
+bindsym $mod+Shift+i 		resize grow height 10 px or 10 ppt
+
+bindsym $mod+j 		        focus down
+bindsym $mod+Shift+j 		move down
+
+bindsym $mod+k 	                focus up
+bindsym $mod+Shift+k 		move up
+
+bindsym $mod+l 	                focus right
+bindsym $mod+Shift+l 		move right
+
+bindsym $mod+m 	                exec swaylock
+bindsym $mod+Shift+m            exec dm-tool lock
+
+bindsym $mod+n                  exec $term -e ncmpcpp
+#bindsym $mod+Shift+n
+
+#bindsym $mod+o
+bindsym $mod+Shift+o            resize grow width 10 px or 10 ppt
+
+bindsym $mod+p                  exec  wlogout -p layer-shell
+# bindsym $mod+p                  exec  rofi -show power-menu -modi power-menu:rofi-power-menu
+bindsym $mod+Shift+p            exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -1| cut -d" " -f4 | wl-copy
+
+bindsym $mod+q 	                kill
+bindsym $mod+Shift+q            kill
+
+#bindsym $mod+r
+bindsym $mod+Shift+r            reload
+
+bindsym $mod+s                  gaps inner current plus 5
+bindsym $mod+Shift+s            gaps inner current minus 5
+
+bindsym $mod+t                  [app_id="thunar"] scratchpad show; move position center
+bindsym $mod+Shift+t            exec deluge
+
+bindsym $mod+u 			[app_id="dropdown"] scratchpad show; move position center
+bindsym $mod+Shift+u            resize shrink height 10 px or 10 ppt
+
+bindsym $mod+v                  exec keepmenu
+#bindsym $mod+Shift+v
+
+bindsym $mod+w 		        exec $browser
+# bindsym $mod+Shift+w
+
+#bindsym $mod+x
+#bindsym $mod+Shift+x
+
+#bindsym $mod+y
+bindsym $mod+Shift+y            resize shrink width 10 px or 10ppt
+
+bindsym $mod+z                  fullscreen toggle
+#bindsym $mod+Shift+z
+
+###---Function Buttons---###
+#bindsym F1
+#bindsym F2
+#bindsym F3
+#bindsym F4
+#bindsym F5
+#bindsym F6
+#bindsym F7
+#bindsym F8
+#bindsym F9
+#bindsym F10
+#bindsym F11
+#bindsym F12
+
+#bindsym $mod+F1
+#bindsym $mod+F2
+#bindsym $mod+F3
+#bindsym $mod+F4
+#bindsym $mod+F5
+#bindsym $mod+F6
+#bindsym $mod+F7
+#bindsym $mod+F8
+#bindsym $mod+F9
+#bindsym $mod+F10
+#bindsym $mod+F11
+bindsym $mod+F12		mode "Passthrough Mode"
+
+bindsym Print                   exec grim $(xdg-user-dir PICTURES)/screenshots/$(date +'%s.png')
+bindsym Shift+Print             exec grim -g "$(slurp)" - | wl-copy
+
+###---Arrow Keys---###
+bindsym $mod+Left   		move workspace to output left
+bindsym $mod+Shift+Left 	move left
+
+bindsym $mod+Right              move workspace to output right
+bindsym $mod+Shift+Right 	move right
+
+bindsym $mod+Down 		workspace next
+bindsym $mod+Shift+Down 	move down
+
+bindsym $mod+Up                 workspace prev
+bindsym $mod+Shift+Up 		move up
+
+###---Mouse Buttons---###
+floating_modifier $mod
+bindsym --whole-window $mod+button2 kill
+
+###---Extra XF86 Keys---###
+#These are the extra media keys that some keyboards have.
+bindsym XF86AudioMute		exec $mute
+bindsym XF86AudioLowerVolume	exec $dec
+bindsym XF86AudioRaiseVolume	exec $inc
+bindsym XF86PowerOff		exec sudo shutdown -h now
+bindsym XF86AudioNext		exec $next
+bindsym XF86AudioPlay		exec $play
+bindsym XF86AudioPrev		exec $prev
+bindsym XF86AudioStop		exec $stop
+bindsym XF86AudioMicMute	exec $micmute
+bindsym --locked XF86MonBrightnessDown	exec light -U 5 && light -G | cut -d'.' -f1 > $WOBSOCK
+bindsym --locked XF86MonBrightnessUp	exec light -A 5 && light -G | cut -d'.' -f1 > $WOBSOCK
+bindsym XF86AudioMedia		exec $music
+bindsym XF86Display		exec --no-startup-id wdisplays
+
+###---Workspaces---###
+set $workspace1  "1 "
+set $workspace2  "2 "
+set $workspace3  "3 "
+set $workspace4  "4 "
+set $workspace5  "5 "
+set $workspace6  "6 "
+set $workspace7  "7 "
+set $workspace8  "8 VM"
+set $workspace9  "9 R"
+set $workspace10 "10 ﱘ"
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# window assignments
+for_window [app_id="firefox"]                     move to workspace $workspace2
+for_window [app_id="deluge"]                      move to workspace $workspace3
+for_window [window_role="GtkFileChooserDialog"]   resize shrink height 10 px
+for_window [title="Connection Manager"]           resize grow height 100 px
+for_window [app_id="sioyek"]                      move to workspace $workspace7
+for_window [app_id="RStudio"]                     move to workspace $workspace9
+for_window [app_id="cantata"]                     move to workspace $workspace10
+for_window [app_id="org.pwmt.zathura"]            move to workspace $workspace7
+for_window [app_id="org.pwmt.zathura"]            layout tabbed
+for_window [title="About Mozilla Firefox"]        floating enable
+for_window [app_id="pavucontrol"]                 floating enable
+for_window [app_id="Qalculate-gtk"]               floating enable
+for_window [app_id="keepassxc"]                   floating enable
+for_window [app_id="nm-connection-editor"]        floating enable
+for_window [title="Quick Format Citation"]        floating enable
+for_window [app_id="virt-manager"]                move to workspace $workspace8
+for_window [app_id="thunar"]                      move to scratchpad
+for_window [app_id="(?i)gsimplecal"]              floating enable, move position mouse, move down $height px
+
+### Output configuration
+# wallpaper
+output * bg ~/.dotfiles/wallpaper.png fill
+#main
+# output eDP-1 resolution 1920x1080 position 0,0
+#work
+# output DP-* resolution 2560x1440@75Hz position 1920,0
+
+#way-displays
+exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
+
+# Hide mouse cursor after a period of inactivity.
+seat * hide_cursor 3000
+seat * hide_cursor when-typing enable
+
+### Idle configuration
+ exec swayidle -w \
+         timeout 300 'swaylock -f' \
+         timeout 360 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f'
+
+### Input configuration
+
+input type:pointer {
+    accel_profile adaptive
+    pointer_accel 0.7
+}
+
+input type:touchpad {
+      tap enabled
+      natural_scroll enabled
+  }
+
+input "3141:25903:SONiX_USB_DEVICE_Keyboard" xkb_numlock enable
+
+# Status Bar:
+ bar {
+ 	swaybar_command waybar
+ }
+
+#polkit
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#notifications
+exec --no-startup-startup-id dunst
+#Window Switcher
+exec_always i3-focus-last server
+#Dropbox
+exec --no-startup-id dropbox
+#xdg-desktop portal, needed?
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+#nm-tray
+exec --no-startup-id nm-applet --indicator
+
+#wob
+set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+set $wob wob --border-color "#ebdbb2FF" --bar-color "#ebdbb2FF" --background-color "#242424AA" --overflow-bar-color "#fb4934FF"
+exec mkfifo $WOBSOCK && tail -f $WOBSOCK | $wob
+include /etc/sway/config.d/*

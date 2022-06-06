@@ -1,0 +1,152 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "modules-left": [
+      "sway/workspaces",
+      "sway/mode",
+      "sway/window"],
+  "modules-right": [
+      "network#bandwidth",
+      "custom/vpn",
+      "network",
+      "memory",
+      "cpu",
+      "disk",
+      "temperature",
+      "backlight",
+      "battery",
+      "battery#bat1",
+      "idle_inhibitor",
+      "pulseaudio#mic",
+      "pulseaudio",
+      "clock",
+      "tray"],
+  "height": 30,
+  "sway/window": {
+      "format": "{}",
+      "max-length": 50,
+      "rewrite": {
+         "(.*) — Mozilla Firefox": "$1",
+         "nvim (.*)": "$1",
+      }
+  },
+  "sway/mode": {
+      "format": " {}",
+      "max-length": 50
+  },
+  "clock": {
+    "format": "{:%I:%M %p}",
+    "on-click": "xdg-open https://calendar.google.com/calendar/",
+    "tooltip-format": "<big>{:%a %b %e}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "backlight": {
+    "format": "{percent}%",
+    "on-click": "light -A 5",
+    "on-click-right": "light -U 5"
+  },
+  "temperature": {
+      "format": "{icon}{temperatureC}°C",
+      "format-icons": ["", "", "", "", "" ],
+      "critical-threshold": 70
+  },
+  "cpu": {
+    "format": "{usage:2}%",
+    "states": {
+      "warning": 70,
+      "critical": 90}
+  },
+  "memory": {
+    "format": "{percentage:2}%",
+    "tooltip-format": "{used:0.1f}G/{total:0.1f}G",
+    "states": {
+      "warning": 70,
+      "critical": 90}
+  },
+  "disk": {
+    "format": "{free}"
+  },
+  "custom/vpn": {
+      "format": "",
+      "exec": "echo '{\"class\": \"connected\"}'",
+      "exec-if": "test -d /proc/sys/net/ipv4/conf/tun0",
+      "return-type": "json",
+      "interval": 5
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "直{ipaddr}",
+    "format-ethernet": " {ipaddr}",
+    "format-disconnected": "",
+    "tooltip-format": "{ifname}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "eth {ifname}",
+    "tooltip-format-disconnected": "Disconnected"
+  },
+  "network#bandwidth": {
+      "interval": 10,
+      "format": "{bandwidthDownBits} {bandwidthUpBits}",
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": "﯈"
+    }
+  },
+  "pulseaudio": {
+    "format": "{icon}{volume}%",
+    "format-muted": " MUTE",
+    "format-icons": {
+      "headphone": "",
+      "default": ["", ""]
+    },
+    "scroll-step": 1,
+    "on-click": "pamixer -i 5",
+    "on-click-right": "pamixer -d 5",
+    "on-click-middle": "pamixer -t",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5"
+  },
+  "pulseaudio#mic": {
+    "format": "{format_source}",
+    "format-source": "{volume}%",
+    "format-source-muted": " MUTE",
+    "scroll-step": 1,
+    "on-click": "pamixer --default-source -i 5",
+    "on-click-right": "pamixer --default-source -d 5",
+    "on-click-middle": "pamixer --default-source -t",
+    "on-scroll-up": "pamixer --default-source -i 5",
+    "on-scroll-down": "pamixer --default-source -d 5",
+  },
+  "battery": {
+    "bat": "BAT0",
+    "interval": 60,
+    "states": {
+      "good": 80,
+      "warning": 50,
+      "critical": 35
+    },
+    "format": "{capacity}%",
+    "format-discharging": "{icon}{capacity}%",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip-format": "internal {timeTo}"
+  },
+  "battery#bat1": {
+    "bat": "BAT1",
+    "interval": 60,
+    "states": {
+      "good": 80,
+      "warning": 50,
+      "critical": 35
+    },
+    "format": "{capacity}%",
+    "format-discharging": "{icon}{capacity}%",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip-format": "external {timeTo}"
+  },
+  "tray": {
+      "icon-size": 15,
+      "spacing": 8
+  }
+}
+# vim:filetype=json

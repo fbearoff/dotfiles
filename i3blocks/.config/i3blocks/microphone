@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Left click
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+  pamixer --default-source -i 5
+# Middle click
+elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
+  pamixer --default-source -t
+# Right click
+elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
+  pamixer --default-source -d 5
+fi
+
+status=$(pamixer --default-source --get-volume-human)
+
+if [[ "${status}" != "muted" ]]; then
+  echo " $status"
+  echo ""
+else
+  echo ""
+  echo ""
+fi

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Left click
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+  light -A 5
+# Right click
+elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
+  light -U 5
+fi
+
+curBrightness=$(light -G)
+
+percent=${curBrightness%.*}
+
+if [[ "${percent}" -le 0 ]]; then
+  exit
+fi
+
+echo "${percent}%"
+echo ""
