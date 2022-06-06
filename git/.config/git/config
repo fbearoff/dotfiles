@@ -1,0 +1,5 @@
+[credential]
+	helper = cache
+[user]
+	name = Frank
+	email = fbearoff@users.noreply.github.com

@@ -1,38 +1,61 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+#!/bin/sh
+export ZDOTDIR=$HOME/.config/zsh
+HISTFILE=~/.zsh_history
+setopt appendhistory
 
-ZSH_THEME="bira"
+# some useful options (man zshoptions)
+setopt autocd extendedglob nomatch menucomplete
+setopt interactive_comments
+stty stop undef		# Disable ctrl-s to freeze terminal.
+zle_highlight=('paste:none')
 
-zstyle ':omz:update' mode auto      # update automatically without asking
+# beeping is annoying
+unsetopt BEEP
 
-ENABLE_CORRECTION="true"
+# completions
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+# zstyle ':completion::complete:lsof:*' menu yes select
+zmodload zsh/complist
+# compinit
+_comp_options+=(globdots)		# Include hidden files.
 
-COMPLETION_WAITING_DOTS="true"
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+# Colors
+autoload -Uz colors && colors
 
-plugins=(git colored-man-pages sudo zsh-vi-mode zsh-syntax-highlighting)
+# Useful Functions
+source "$ZDOTDIR/zsh-functions"
 
-# User configuration
-export TERM="xterm-direct"
-export R_LIBS_USER='~/.R/packages'
-source $ZSH/oh-my-zsh.sh
+# Normal files to source
+zsh_add_file "zsh-exports"
+zsh_add_file "zsh-vi-mode"
+zsh_add_file "zsh-aliases"
+zsh_add_file "zsh-prompt"
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
+# Plugins
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
+zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_plugin "hlissner/zsh-autopair"
+zsh_add_plugin "jeffreytse/zsh-vi-mode"
+# For more plugins: https://github.com/unixorn/awesome-zsh-plugins
+# More completions https://github.com/zsh-users/zsh-completions
 
-# enable vim mode on commmand line
+#VI mode
 bindkey -v
+export KEYTIMEOUT=1
 
-# no delay entering normal mode
-# https://coderwall.com/p/h63etq
-# https://github.com/pda/dotzsh/blob/master/keyboard.zsh#L10
-# 10ms for key sequences
-KEYTIMEOUT=1
+# Key-bindings
+bindkey '^[[P' delete-char
+bindkey "^p" up-line-or-beginning-search # Up
+bindkey "^n" down-line-or-beginning-search # Down
+bindkey "^k" up-line-or-beginning-search # Up
+bindkey "^j" down-line-or-beginning-search # Down
+bindkey -r "^u"
+bindkey -r "^d"
+
+compinit
