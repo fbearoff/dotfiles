@@ -1,3 +1,2 @@
 *.swp
-.config/ranger/history
-**.config/nvim/plugin
+*nvim/.config/nvim/plugin
