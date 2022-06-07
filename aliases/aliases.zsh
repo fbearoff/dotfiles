@@ -1,7 +1,0 @@
-# alias tmux="tmux -2"
-alias cp="cp -iv"
-alias mv="mv -iv"
-alias ll="ls -alhtr"
-alias weather="curl http://wttr.in/philadelphia\?u"
-alias R="R --quiet"
-alias bm="beet ls -a missing:1.. -f '$year-$albumartist-$album https://musicbrainz.org/release-group/$mb_releasegroupid $missing'"
