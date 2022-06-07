@@ -32,3 +32,9 @@ alias ll="exa -lg --icons --git"
 alias llt="exa -lg --icons --git --tree"
 alias vim="nvim"
 alias am="mv *.flac /mnt/d/Music"
+
+#git
+alias gst="git status"
+alias ga="git add"
+alias gau="git add -u"
+alias gcm="git commit -m"
