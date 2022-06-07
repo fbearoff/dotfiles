@@ -12,7 +12,9 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(
+  autoupdate
   sudo
+  zsh-autopair
   # zsh-vi-mode
   zsh-syntax-highlighting
 )
