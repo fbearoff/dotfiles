@@ -21,7 +21,7 @@ M.setup = function()
       active = signs,
       priority = 50,
     },
-    update_in_insert = true,
+    update_in_insert = false,
     underline = true,
     severity_sort = true,
     float = {

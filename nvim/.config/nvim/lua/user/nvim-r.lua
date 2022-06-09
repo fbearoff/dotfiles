@@ -8,3 +8,5 @@ vim.g["R_app"] = 'radian'
 vim.g["R_cmd"] = 'R'
 vim.g["R_hl_term"] = false
 vim.g["R_args"] = { }
+vim.g["R_assign"] = 3
+vim.g["R_csv_app"] = 'terminal:vd'
