@@ -1,7 +1,7 @@
-vim.g.gruvbox_contrast_dark = "hard"
+-- vim.g.gruvbox_contrast_dark = "hard"
 vim.cmd [[
 try
-  colorscheme gruvbox
+  colorscheme kanagawa
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
   set background=dark
