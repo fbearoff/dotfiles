@@ -75,9 +75,7 @@ return packer.startup(function(use)
   use "norcalli/nvim-colorizer.lua"
 
   -- Colorschemes
-  use "ellisonleao/gruvbox.nvim"
-  use "folke/tokyonight.nvim"
-  use "navarasu/onedark.nvim"
+  -- use "ellisonleao/gruvbox.nvim"
   use "rebelot/kanagawa.nvim"
 
   -- cmp plugins
