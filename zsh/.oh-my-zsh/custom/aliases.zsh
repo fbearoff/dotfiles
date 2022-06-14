@@ -30,7 +30,7 @@ alias ls="exa"
 alias l="exa -lga --icons --git"
 alias ll="exa -lg --icons --git"
 alias llt="exa -lg --icons --git --tree"
-alias vim="nvim"
+# alias vim="nvim"
 alias am="mv *.flac /mnt/d/Music"
 
 #git

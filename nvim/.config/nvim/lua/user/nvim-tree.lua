@@ -22,6 +22,25 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end
 })
 
+-- Git stage
+local lib = require("nvim-tree.lib")
+
+local git_add = function()
+  local node = lib.get_node_at_cursor()
+  local gs = node.git_status
+
+  -- If the file is untracked, unstaged or partially staged, we stage it
+  if gs == "??" or gs == "MM" or gs == "AM" or gs == " M" then
+    vim.cmd("silent !git add " .. node.absolute_path)
+
+  -- If the file is staged, we unstage
+  elseif gs == "M " or gs == "A " then
+    vim.cmd("silent !git restore --staged " .. node.absolute_path)
+  end
+
+  lib.refresh_tree()
+end
+
 nvim_tree.setup {
   disable_netrw = true,
   hijack_netrw = true,
@@ -119,6 +138,7 @@ nvim_tree.setup {
         { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },
         { key = "h", cb = tree_cb "close_node" },
         { key = "v", cb = tree_cb "vsplit" },
+        { key = "ga", action = "git_add", action_cb = git_add },
       },
     },
     number = false,
