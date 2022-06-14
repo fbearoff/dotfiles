@@ -40,7 +40,6 @@ set backspace=indent,eol,start
 set backupdir=~/.vim/tmp
 set directory=~/.vim/tmp
 set mouse=a
-endif
 set updatetime=100
 set hidden
 set vb

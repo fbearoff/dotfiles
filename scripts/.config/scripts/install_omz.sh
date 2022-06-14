@@ -2,7 +2,9 @@
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-mkdir $ZSH_CUSTOM/plugins/autoupdate
+ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
+
+mkdir -p $ZSH_CUSTOM/plugins/autoupdate
 
 git clone https://github.com/TamCore/autoupdate-oh-my-zsh-plugins \
   $ZSH_CUSTOM/plugins/autoupdate
