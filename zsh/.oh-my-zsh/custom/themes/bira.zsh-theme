@@ -1,7 +1,7 @@
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
 local user="%B%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}"
-local host="%B%(!.%{$fg[red]%}.%{$fg[green]%})@%m%{$reset_color%} "
+local host="%B%(!.%{$fg[red]%}.%{$fg[magenta]%})@%m%{$reset_color%} "
 local user_symbol='%(!.#.$)'
 local current_dir="%B%{$fg[blue]%}%~ %{$reset_color%}"
 
