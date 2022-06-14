@@ -1,6 +1,6 @@
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
-local user="%B%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%} "
+local user="%B%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}"
 local host="%B%(!.%{$fg[red]%}.%{$fg[green]%})@%m%{$reset_color%} "
 local user_symbol='%(!.#.$)'
 local current_dir="%B%{$fg[blue]%}%~ %{$reset_color%}"
@@ -15,7 +15,7 @@ if [[ -n $SSH_CONNECTION ]]; then
   PROMPT="╭─${user}${host}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt}
 ╰─%B${user_symbol}%b "
 else
-  PROMPT="╭─${user}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt}
+  PROMPT="╭─${user} ${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt}
 ╰─%B${user_symbol}%b "
 fi
 RPROMPT="%B${return_code}%b"
@@ -37,3 +37,5 @@ ZSH_THEME_VIRTUAL_ENV_PROMPT_PREFIX="%{$fg[green]%}‹"
 ZSH_THEME_VIRTUAL_ENV_PROMPT_SUFFIX="› %{$reset_color%}"
 ZSH_THEME_VIRTUALENV_PREFIX="$ZSH_THEME_VIRTUAL_ENV_PROMPT_PREFIX"
 ZSH_THEME_VIRTUALENV_SUFFIX="$ZSH_THEME_VIRTUAL_ENV_PROMPT_SUFFIX"
+
+# vim:ft=zsh
