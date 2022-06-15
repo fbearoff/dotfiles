@@ -20,7 +20,16 @@ alias psmem="ps auxf | sort -nr -k 4 | head -5"
 # get top process eating cpu ##
 alias pscpu="ps auxf | sort -nr -k 3 | head -5"
 
-alias weather="curl http://wttr.in/philadelphia\?u"
+# get number of files opened
+alias lf=GetNumOpenFiles
+
+function GetNumOpenFiles()
+{
+   nums=$(lsof | awk '{ print $2 " " $1; }' | sort -rn | uniq -c | sort -rn | head -20 | awk '{ sub(/^[ \t]+/, ""); print }')
+   echo  "# PID Process\n$nums"
+}
+
+alias weather="curl http://wttr.in/philadelphia\?u"O
 alias R="R --quiet"
 alias bm="beet ls -a missing:1.. -f '$year-$albumartist-$album https://musicbrainz.org/release-group/$mb_releasegroupid $missing'"
 
