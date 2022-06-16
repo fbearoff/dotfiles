@@ -8,3 +8,8 @@ Use GNU stow to symlink folders
 ## Thinkfan
 
 Thinkfan config goes in `/etc/thinkfan.yaml`
+
+
+## Packages
+
+List of explicitly installed packages in `packages` 

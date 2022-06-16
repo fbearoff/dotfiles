@@ -72,4 +72,11 @@ alias weather="curl http://wttr.in/philadelphia\?u"O
 
 # file associations
 alias -s {txt,md,conf,cfg,yaml,yaml}=vim
-alias -s {png,jpg,tif}=viu
+alias -s {gif,png,jpg,tif}=viu
+alias -s pdf=zathura
+
+# wget
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+
+# pacman
+alias sp="pacman -Qeq > $HOME/.dotfiles/packages"
