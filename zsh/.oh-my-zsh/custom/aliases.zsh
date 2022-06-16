@@ -1,4 +1,11 @@
-alias nvimrc="nvim ~/.config/nvim/"
+# dirs
+alias dot="cd ~/.dotfiles"
+alias dl="cd ~/downloads"
+
+# configs
+alias nvimrc="vim ~/.config/nvim/init.lua"
+alias zshrc="vim ~/.zshrc"
+alias aliases="vim ~/.oh-my-zsh/custom/aliases.zsh"
 
 # Colorize grep output (good for log files)
 alias grep="grep --color=auto"
@@ -9,6 +16,15 @@ alias fgrep="fgrep --color=auto"
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -iv"
+
+# always create parent directories
+alias mkdir="mkdir -pv"
+
+# use exa for colors
+alias ls="exa"
+alias l="exa -lga --icons --git"
+alias ll="exa -lg --icons --git"
+alias llt="exa -lg --icons --git --tree"
 
 # easier to read disk
 alias df="df -h"     # human-readable sizes
@@ -28,19 +44,16 @@ function GetNumOpenFiles()
    nums=$(lsof | awk '{ print $2 " " $1; }' | sort -rn | uniq -c | sort -rn | head -20 | awk '{ sub(/^[ \t]+/, ""); print }')
    echo  "# PID Process\n$nums"
 }
-
-alias weather="curl http://wttr.in/philadelphia\?u"O
+# R
 alias R="R --quiet"
-alias bm="beet ls -a missing:1.. -f '$year-$albumartist-$album https://musicbrainz.org/release-group/$mb_releasegroupid $missing'"
+alias radian="radian --quiet"
 
+# music management
+alias bm="beet ls -a missing:1.. -f '$year-$albumartist-$album https://musicbrainz.org/release-group/$mb_releasegroupid $missing'"
 alias sm="rsync -v -rltO --chmod=a=rw,Da+x --delete --exclude='*.jpg' --exclude='*.ini' --progress \"/mnt/d/Music/\" \"omv:~/pool/media/music\""
 alias bum="rsync -v -rlt --chmod=a=rw,Da+x --delete --exclude='*.jpg' --exclude='*.ini' --progress \"/mnt/d/Music/\" \"/mnt/f/Music/\""
-alias ls="exa"
-alias l="exa -lga --icons --git"
-alias ll="exa -lg --icons --git"
-alias llt="exa -lg --icons --git --tree"
-# alias vim="nvim"
 alias am="mv *.flac /mnt/d/Music"
+alias mi="mediainfo"
 
 #git
 alias gst="git status"
@@ -49,3 +62,14 @@ alias gau="git add -u"
 alias gcm="git commit -m"
 alias gp="git push"
 alias gl="git pull"
+alias gd="git diff"
+
+# get external IP address
+alias myip='curl http://ipecho.net/plain; echo'
+
+# get weather
+alias weather="curl http://wttr.in/philadelphia\?u"O
+
+# file associations
+alias -s {txt,md,conf,cfg,yaml,yaml}=vim
+alias -s {png,jpg,tif}=viu
