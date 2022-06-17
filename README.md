@@ -12,4 +12,4 @@ Thinkfan config goes in `/etc/thinkfan.yaml`
 
 ## Packages
 
-List of explicitly installed packages in `packages` 
+List of explicitly installed packages in [packages](packages) 
