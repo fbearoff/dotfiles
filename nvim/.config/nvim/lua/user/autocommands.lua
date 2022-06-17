@@ -1,5 +1,6 @@
 local vim = vim
 local api = vim.api
+
 function nvim_create_augroups(definitions)
   for group_name, definition in pairs(definitions) do
     api.nvim_command('augroup '..group_name)
@@ -25,6 +26,7 @@ local autocmds = {
   };
   alpha = {
     { "User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2" };
+    { "User AlphaReady set laststatus=0 | autocmd BufUnload <buffer> set laststatus=3" };
   };
   git = {
     { "FileType gitcommit setlocal wrap" };

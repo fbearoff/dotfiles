@@ -71,9 +71,10 @@ alias myip='curl http://ipecho.net/plain; echo'
 alias weather="curl http://wttr.in/philadelphia\?u"O
 
 # file associations
-alias -s {txt,md,conf,cfg,yaml,yaml}=vim
+alias -s {txt,conf,cfg,yaml,yaml}=vim
 alias -s {gif,png,jpg,tif}=viu
 alias -s pdf=zathura
+alias -s md=glow
 
 # wget
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"

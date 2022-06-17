@@ -10,14 +10,14 @@ local options = {
   mouse = "a", -- allow the mouse to be used in neovim
   pumheight = 10, -- pop up menu height
   showmode = false, -- we don't need to see things like -- INSERT -- anymore
-  showtabline = 2, -- always show tabs
+  showtabline = 0, -- always show tabs
   smartcase = true, -- smart case
   smartindent = true, -- make indenting smarter again
   splitbelow = true, -- force all horizontal splits to go below current window
   splitright = true, -- force all vertical splits to go to the right of current window
   swapfile = false, -- creates a swapfile
   termguicolors = true, -- set term gui colors (most terminals support this)
-  timeoutlen = 200, -- time to wait for a mapped sequence to complete (in milliseconds)
+  timeoutlen = 400, -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true, -- enable persistent undo
   updatetime = 300, -- faster completion (4000ms default)
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
@@ -37,16 +37,16 @@ local options = {
   softtabstop = 2, -- how many spaces is a tab press worth
   showmatch = true, -- show matching paren on creation
   fillchars = 'eob: ', -- remove ugly ~ ndicator for end of buffer
-  winbar = "%m %t" -- short filename and modified indicator
+  winbar = "%m %t", -- short filename and modified indicator
+  ruler = false
 }
-
-vim.opt.shortmess:append "c"
-
-vim.g.cursorhold_updatetime = 100
 
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.cmd "set whichwrap+=<,>,[,],h,l"
-vim.cmd [[set iskeyword+=-]]
+vim.opt.shortmess:append "c"
+vim.opt.whichwrap:append("<,>,[,],h,l")
+vim.opt.iskeyword:append("-")
+
+vim.g.cursorhold_updatetime = 100
