@@ -17,6 +17,9 @@ alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -iv"
 
+# use rsync to copy with progress bar
+alias cpv='rsync -ah --info=progress2'
+
 # always create parent directories
 alias mkdir="mkdir -pv"
 

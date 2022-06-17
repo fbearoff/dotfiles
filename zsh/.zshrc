@@ -46,3 +46,4 @@ export HISTFILE="$XDG_STATE_HOME"/zsh/history
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
+export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
