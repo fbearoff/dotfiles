@@ -1,10 +1,17 @@
-vim.g.bufferline = {
+local status_ok, bufferline = pcall(require, "bufferline")
+if not status_ok then
+  return
+end
+
+bufferline.setup {
   animation = true,
   auto_hide = false,
   tabpages = true,
   closable = true,
   clickable = true,
-  icons = 'both',
+  exclude_ft = { 'javascript' },
+  exclude_name = { 'package.json' },
+  icons = { 'both' },
   icon_custom_colors = false,
   icon_separator_active = '▎',
   icon_separator_inactive = '▎',

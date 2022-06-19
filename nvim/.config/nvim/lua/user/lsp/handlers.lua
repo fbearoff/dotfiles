@@ -15,7 +15,15 @@ M.setup = function()
 
   local config = {
     -- disable virtual text
-    virtual_text = false,
+    virtual_text = {
+      source = 'always',
+      prefix = '■',
+      -- Only show virtual text matching the given severity
+      severity = {
+        -- Specify a range of severities
+        min = vim.diagnostic.severity.ERROR,
+      },
+    },
     -- show signs
     signs = {
       active = signs,
@@ -53,6 +61,19 @@ local function lsp_highlight_document(client)
   illuminate.on_attach(client)
 end
 
+function format_range_operator()
+  local old_func = vim.go.operatorfunc
+  _G.op_func_formatting = function()
+    local start = vim.api.nvim_buf_get_mark(0, '[')
+    local finish = vim.api.nvim_buf_get_mark(0, ']')
+    vim.lsp.buf.range_formatting({}, start, finish)
+    vim.go.operatorfunc = old_func
+    _G.op_func_formatting = nil
+  end
+  vim.go.operatorfunc = 'v:lua.op_func_formatting'
+  vim.api.nvim_feedkeys('g@', 'n', false)
+end
+
 local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
   vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -71,7 +92,9 @@ local function lsp_keymaps(bufnr)
   )
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<cr>", opts)
-  vim.api.nvim_buf_create_user_command(bufnr, "Format", vim.lsp.buf.formatting, {})
+  vim.api.nvim_buf_create_user_command(bufnr, "Format", vim.lsp.buf.format, {})
+  vim.api.nvim_set_keymap("n", "gm", "<cmd>lua format_range_operator()<CR>", opts)
+  vim.api.nvim_set_keymap("v", "gm", "<cmd>lua format_range_operator()<CR>", opts)
 end
 
 M.on_attach = function(client, bufnr)

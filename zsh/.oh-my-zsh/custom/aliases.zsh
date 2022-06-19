@@ -15,7 +15,12 @@ alias fgrep="fgrep --color=auto"
 # confirm before overwriting something
 alias cp="cp -iv"
 alias mv="mv -iv"
-alias rm="rm -iv"
+# alias rm="rm -iv"
+# use trash-d as rm replacement
+alias rm="trash -v"
+alias rmdir="trash -dv"
+alias te="trash --empty"
+alias tl="trash --list"
 
 # use rsync to copy with progress bar
 alias cpv='rsync -ah --info=progress2'
@@ -32,6 +37,7 @@ alias llt="exa -lg --icons --git --tree"
 # easier to read disk
 alias df="df -h"     # human-readable sizes
 alias free="free -m" # show sizes in MB
+alias du="du -h"     # human readable sizes
 
 # get top process eating memory
 alias psmem="ps auxf | sort -nr -k 4 | head -5"
@@ -41,12 +47,12 @@ alias pscpu="ps auxf | sort -nr -k 3 | head -5"
 
 # get number of files opened
 alias lf=GetNumOpenFiles
-
 function GetNumOpenFiles()
 {
    nums=$(lsof | awk '{ print $2 " " $1; }' | sort -rn | uniq -c | sort -rn | head -20 | awk '{ sub(/^[ \t]+/, ""); print }')
    echo  "# PID Process\n$nums"
 }
+
 # R
 alias R="R --quiet"
 alias radian="radian --quiet"
@@ -74,7 +80,7 @@ alias myip='curl http://ipecho.net/plain; echo'
 alias weather="curl http://wttr.in/philadelphia\?u"O
 
 # file associations
-alias -s {txt,conf,cfg,yaml,yaml}=vim
+alias -s {txt,conf,cfg}=vim
 alias -s {gif,png,jpg,tif}=viu
 alias -s pdf=zathura
 alias -s md=glow

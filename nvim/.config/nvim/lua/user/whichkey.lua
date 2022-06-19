@@ -93,21 +93,23 @@ local mappings = {
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   ["v"] = { "<cmd>lua require('telescope').extensions.neoclip.neoclip()<cr>", "Clipboard" },
-  ["n"] = { "<cmd>lua require('telescope').extensions.notify.notify(require('telescope.themes').get_dropdown{winblend = 5})<cr>", "Notifications" },
+  ["n"] = { "<cmd>lua require('telescope').extensions.notify.notify(require('telescope.themes').get_dropdown{winblend = 5})<cr>",
+    "Notifications" },
   ["-"] = { "<cmd>:split<CR>", "Split" },
   ["\\"] = { "<cmd>:vsplit<CR>", "VSplit" },
 
   b = {
     name = "+Buffers",
-    b = {"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>", "Buffers"},
-    j = {"<cmd>BufferPick<cr>", "jump to buffer"},
-    w = {"<cmd>BufferWipeout<cr>", "wipeout buffer"},
-    e = {"<cmd>BufferCloseAllButCurrent<cr>", "close all but current buffer"},
-    h = {"<cmd>BufferCloseBuffersLeft<cr>", "close all buffers to the left"},
-    l = {"<cmd>BufferCloseBuffersRight<cr>", "close all BufferLines to the right"},
-    D = {"<cmd>BufferOrderByDirectory<cr>", "sort BufferLines automatically by directory"},
-    L = {"<cmd>BufferOrderByLanguage<cr>", "sort BufferLines automatically by language"},
-    p = {"<cmd>BufferPin<cr>", "pin buffer"},
+    b = { "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+      "Buffers" },
+    j = { "<cmd>BufferPick<cr>", "jump to buffer" },
+    w = { "<cmd>BufferWipeout<cr>", "wipeout buffer" },
+    e = { "<cmd>BufferCloseAllButCurrent<cr>", "close all but current buffer" },
+    h = { "<cmd>BufferCloseBuffersLeft<cr>", "close all buffers to the left" },
+    l = { "<cmd>BufferCloseBuffersRight<cr>", "close all BufferLines to the right" },
+    D = { "<cmd>BufferOrderByDirectory<cr>", "sort BufferLines automatically by directory" },
+    L = { "<cmd>BufferOrderByLanguage<cr>", "sort BufferLines automatically by language" },
+    p = { "<cmd>BufferPin<cr>", "pin buffer" },
   },
 
   p = {
@@ -135,10 +137,7 @@ local mappings = {
     o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-    d = {
-      "<cmd>Gitsigns diffthis HEAD<cr>",
-      "Diff",
-    },
+    d = { "<cmd>lua DiffviewToggle()<cr>", "Diff", },
   },
 
   l = {
@@ -152,7 +151,7 @@ local mappings = {
       "<cmd>Telescope diagnostics<cr>",
       "Workspace Diagnostics",
     },
-    f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+    f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
     j = {
