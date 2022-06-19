@@ -1,6 +1,7 @@
 # dirs
 alias dot="cd ~/.dotfiles"
 alias dl="cd ~/downloads"
+alias bk='cd $OLDPWD'
 
 # configs
 alias nvimrc="vim ~/.config/nvim/init.lua"
@@ -44,14 +45,6 @@ alias psmem="ps auxf | sort -nr -k 4 | head -5"
 
 # get top process eating cpu ##
 alias pscpu="ps auxf | sort -nr -k 3 | head -5"
-
-# get number of files opened
-alias lf=GetNumOpenFiles
-function GetNumOpenFiles()
-{
-   nums=$(lsof | awk '{ print $2 " " $1; }' | sort -rn | uniq -c | sort -rn | head -20 | awk '{ sub(/^[ \t]+/, ""); print }')
-   echo  "# PID Process\n$nums"
-}
 
 # R
 alias R="R --quiet"
