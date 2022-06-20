@@ -1,5 +1,26 @@
 [credential]
 	helper = cache
+
 [user]
 	name = Frank
 	email = fbearoff@users.noreply.github.com
+
+[core]
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true  # use n and N to move between diff sections
+  line-numbers = true
+  side-by-side = false
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
+
+[color]
+  ui = auto
