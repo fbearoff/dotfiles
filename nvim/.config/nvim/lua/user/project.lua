@@ -6,7 +6,7 @@ project.setup({
 	-- detection_methods = { "lsp", "pattern" }, -- NOTE: lsp detection will get annoying with multiple langs in one project
 	detection_methods = { "pattern" },
 
-	patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
+	patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "Deseq2.R" },
 
 	---@usage path to store the project history for use in telescope
   datapath = vim.fn.stdpath("data"),

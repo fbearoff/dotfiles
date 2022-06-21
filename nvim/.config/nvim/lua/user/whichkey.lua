@@ -123,6 +123,7 @@ local mappings = {
 
   g = {
     name = "Git",
+    g = { "<cmd>lua _GITUI_TOGGLE()<cr>", "GitUI" },
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
     l = { "<cmd>lua require 'gitsigns'.toggle_current_line_blame()<cr>", "Blame" },
