@@ -73,6 +73,7 @@ return packer.startup(function(use)
   use "max397574/better-escape.nvim"
   use { "ellisonleao/glow.nvim", branch = 'main' }
   use "norcalli/nvim-colorizer.lua"
+  use "lewis6991/satellite.nvim"
 
   -- Colorschemes
   -- use "ellisonleao/gruvbox.nvim"
