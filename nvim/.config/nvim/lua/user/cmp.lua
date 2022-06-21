@@ -72,12 +72,8 @@ cmp.setup {
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-        -- elseif luasnip.expandable() then
-        --   luasnip.expand()
       elseif luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
-      -- elseif luasnip.expand_or_jumpable() then
-      --   luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
       elseif check_backspace() then
@@ -114,6 +110,8 @@ cmp.setup {
         buffer = "[Buffer]",
         path = "[Path]",
         omni = "[Omni]",
+        nvim_lsp_signature_help = "[Signature]",
+        nvim_lua = "[Lua]",
       })[entry.source.name]
       return vim_item
     end,
@@ -123,8 +121,10 @@ cmp.setup {
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "luasnip" },
-    { name = "buffer" },
+    { name = "buffer",
+      max_item_count = 10 },
     { name = "path" },
+    { name = "nvim_lsp_signature_help" }
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
