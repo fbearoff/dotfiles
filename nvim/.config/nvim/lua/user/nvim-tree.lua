@@ -33,7 +33,7 @@ local git_add = function()
   if gs == "??" or gs == "MM" or gs == "AM" or gs == " M" then
     vim.cmd("silent !git add " .. node.absolute_path)
 
-  -- If the file is staged, we unstage
+    -- If the file is staged, we unstage
   elseif gs == "M " or gs == "A " then
     vim.cmd("silent !git restore --staged " .. node.absolute_path)
   end
@@ -100,6 +100,7 @@ nvim_tree.setup {
   },
   diagnostics = {
     enable = true,
+    show_on_dirs = true,
     icons = {
       hint = "",
       info = "",

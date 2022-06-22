@@ -24,23 +24,16 @@ local diff = {
   cond = hide_in_width
 }
 
-local mode = {
-  "mode",
-  fmt = function(str)
-    return " " .. str .. " "
-  end,
-}
+-- local mode = {
+--   "mode",
+--   fmt = function(str)
+--     return " " .. str .. " "
+--   end,
+-- }
 
 local filetype = {
   "filetype",
   icons_enabled = true,
-  -- icon = nil,
-}
-
-local branch = {
-  "branch",
-  icons_enabled = true,
-  icon = "",
 }
 
 local location = {
@@ -105,8 +98,8 @@ lualine.setup({
     globalstatus = true
   },
   sections = {
-    lualine_a = { mode },
-    lualine_b = { branch, diff, diagnostics },
+    lualine_a = { "mode" },
+    lualine_b = { "branch", diff, diagnostics },
     lualine_c = { filename },
     lualine_x = { lsp_server, spaces, "fileformat", "encoding", filetype },
     lualine_y = { location },

@@ -44,6 +44,9 @@ keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
+-- Better paste
+keymap("v", "p", '"_dP', opts)
+
 --Barbar
 -- Move to previous/next
 keymap('n', '<A-,>', ':BufferPrevious<CR>', opts)
