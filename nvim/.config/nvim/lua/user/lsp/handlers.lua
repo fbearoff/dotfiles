@@ -1,6 +1,5 @@
 local M = {}
 
--- TODO: backfill this to template
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", text = "" },
@@ -53,14 +52,7 @@ M.setup = function()
   })
 end
 
-local function lsp_highlight_document(client)
-  local status_ok, illuminate = pcall(require, "illuminate")
-  if not status_ok then
-    return
-  end
-  illuminate.on_attach(client)
-end
-
+-- LSP format a selection
 function format_range_operator()
   local old_func = vim.go.operatorfunc
   _G.op_func_formatting = function()
@@ -92,20 +84,29 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
+  local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+  if not status_cmp_ok then
+    return
   end
+
+  if client.name == "tsserver" then
+    client.server_capabilities.document_formatting = false
+  end
+
+  if client.name == "sumneko_lua" then
+    client.server_capabilities.document_formatting = false
+  end
+
+  M.capabilities = vim.lsp.protocol.make_client_capabilities()
+  M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+  M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+
   lsp_keymaps(bufnr)
-  lsp_highlight_document(client)
+  local status_ok, illuminate = pcall(require, "illuminate")
+  if not status_ok then
+    return
+  end
+  illuminate.on_attach(client)
 end
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
-  return
-end
-
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
 return M

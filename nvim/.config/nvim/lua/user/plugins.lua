@@ -57,7 +57,6 @@ return packer.startup(function(use)
   use "folke/which-key.nvim" --keymap reminder
   use { 'jalvesaq/Nvim-R', branch = 'stable' } --R in vim
   use "chentoast/marks.nvim" --marks in gutter
-  use "ur4ltz/surround.nvim" --adjust surrounding syntax
   use "cappyzawa/trim.nvim" --fix whitespace
   use "romgrk/barbar.nvim" --bufferbar
   use "DanilaMihailov/beacon.nvim" --show cursor jumps
@@ -65,16 +64,17 @@ return packer.startup(function(use)
   use "RRethy/vim-illuminate" -- Illuminate other uses of current word/symbol under cursor
   use "nvim-telescope/telescope-ui-select.nvim"
   use "mrjones2014/smart-splits.nvim" --natural window switchin
-  use { "AckslD/nvim-neoclip.lua",
+  use { "AckslD/nvim-neoclip.lua", --clipboard manager
     requires = { "nvim-telescope/telescope.nvim" }
   }
-  use "rcarriga/nvim-notify"
+  use "rcarriga/nvim-notify" --notifications manager
   use "luukvbaal/stabilize.nvim"
   use "max397574/better-escape.nvim"
-  use { "ellisonleao/glow.nvim", branch = 'main' }
-  use "norcalli/nvim-colorizer.lua"
-  use "lewis6991/satellite.nvim"
-  use "j-hui/fidget.nvim"
+  use { "ellisonleao/glow.nvim", branch = 'main' } --render markdown
+  use "norcalli/nvim-colorizer.lua" --show color codes
+  -- use "lewis6991/satellite.nvim" --VScode-like scrollbar, CURRENTLY BREAKS MOUSE
+  use "j-hui/fidget.nvim" --LSP loading progress
+  use "echasnovski/mini.nvim" --adjust surrounding syntax
 
   -- Colorschemes
   -- use "ellisonleao/gruvbox.nvim"
@@ -104,10 +104,7 @@ return packer.startup(function(use)
   use { "nvim-telescope/telescope-fzf-native.nvim", run = 'make' }
 
   -- Treesitter
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-  }
+  use  "nvim-treesitter/nvim-treesitter"
   use "JoosepAlviste/nvim-ts-context-commentstring"
   use "nvim-treesitter/nvim-treesitter-textobjects"
   use "nvim-treesitter/nvim-treesitter-context"
