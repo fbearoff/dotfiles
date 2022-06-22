@@ -74,6 +74,7 @@ return packer.startup(function(use)
   use { "ellisonleao/glow.nvim", branch = 'main' }
   use "norcalli/nvim-colorizer.lua"
   use "lewis6991/satellite.nvim"
+  use "j-hui/fidget.nvim"
 
   -- Colorschemes
   -- use "ellisonleao/gruvbox.nvim"
