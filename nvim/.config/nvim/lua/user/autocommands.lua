@@ -15,7 +15,8 @@ end
 
 local autocmds = {
   general_settings = {
-    { "FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>" };
+    { "FileType qf,helpn,lspinfo nnoremap <silent> <buffer> q :close<CR>" };
+    { "FileType man nnoremap <silent> <buffer> q :q!<CR>" };
     { "TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200})" };
     { "BufWinEnter * :set formatoptions-=cro" };
     { "FileType qf set nobuflisted" };
