@@ -9,8 +9,8 @@ indent_blankline.setup({
   show_current_context = true,
   show_current_context_start = true,
   show_trailing_blankline_indent = false,
-  indent_blankline_buftype_exclude = { "terminal", "nofile" },
-  indent_blankline_filetype_exclude = {
+  buftype_exclude = { "terminal", "nofile" },
+  filetype_exclude = {
     "help",
     "startify",
     "dashboard",
