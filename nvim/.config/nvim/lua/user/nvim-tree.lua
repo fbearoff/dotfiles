@@ -58,10 +58,6 @@ nvim_tree.setup {
   hijack_cursor = false,
   update_cwd = true,
   reload_on_bufenter = true,
-  update_to_buf_dir = {
-    enable = true,
-    auto_open = true,
-  },
   renderer = {
     root_folder_modifier = ':t',
     highlight_git = true,
@@ -132,7 +128,6 @@ nvim_tree.setup {
     adaptive_size = true,
     hide_root_folder = false,
     side = "left",
-    auto_resize = true,
     mappings = {
       custom_only = false,
       list = {
