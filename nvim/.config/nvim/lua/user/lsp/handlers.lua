@@ -1,5 +1,14 @@
 local M = {}
 
+local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not status_cmp_ok then
+  return
+end
+
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", text = "" },
@@ -84,10 +93,6 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-  if not status_cmp_ok then
-    return
-  end
 
   if client.name == "tsserver" then
     client.server_capabilities.document_formatting = false
@@ -96,10 +101,6 @@ M.on_attach = function(client, bufnr)
   if client.name == "sumneko_lua" then
     client.server_capabilities.document_formatting = false
   end
-
-  M.capabilities = vim.lsp.protocol.make_client_capabilities()
-  M.capabilities.textDocument.completion.completionItem.snippetSupport = true
-  M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
 
   lsp_keymaps(bufnr)
   local status_ok, illuminate = pcall(require, "illuminate")

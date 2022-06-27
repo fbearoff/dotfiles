@@ -72,7 +72,7 @@ return packer.startup(function(use)
   use "max397574/better-escape.nvim"
   use { "ellisonleao/glow.nvim", branch = 'main' } --render markdown
   use "norcalli/nvim-colorizer.lua" --show color codes
-  use "lewis6991/satellite.nvim" --VScode-like scrollbar, CURRENTLY BREAKS MOUSE
+  use "lewis6991/satellite.nvim" --VScode-like scrollbar
   use "j-hui/fidget.nvim" --LSP loading progress
   use "echasnovski/mini.nvim" --adjust surrounding syntax
 
