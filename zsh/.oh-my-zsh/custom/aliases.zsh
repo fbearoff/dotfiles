@@ -79,7 +79,12 @@ alias -s pdf=zathura
 alias -s md=glow
 
 # wget
-alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
 
 # pacman
 alias sp="pacman -Qeq > $HOME/.dotfiles/packages"
+
+# bat
+if (( $+commands[bat] )); then
+  alias cat='bat'
+fi
