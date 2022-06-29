@@ -1,8 +1,8 @@
 #!/bin/bash
 
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+ZSH="$HOME/.config/zsh/oh-my-zsh" sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
+ZSH_CUSTOM=$HOME/.config/zsh/oh-my-zsh/custom
 
 mkdir -p $ZSH_CUSTOM/plugins/autoupdate
 

@@ -124,16 +124,10 @@ Plug 'https://github.com/Yggdroot/indentLine.git'
 Plug 'https://github.com/ervandew/supertab.git'
 Plug 'https://github.com/edkolev/tmuxline.vim.git'
 Plug 'https://github.com/luochen1990/rainbow.git'
-Plug 'https://github.com/PotatoesMaster/i3-vim-syntax.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/jpalardy/vim-slime.git'
 Plug 'https://github.com/jalvesaq/Nvim-R.git', { 'branch': 'stable' }
-Plug 'https://github.com/iamcco/markdown-preview.nvim.git', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'https://github.com/morhetz/gruvbox.git'
-Plug 'https://github.com/vim-pandoc/vim-pandoc.git'
-Plug 'https://github.com/vim-pandoc/vim-pandoc-syntax.git'
-Plug 'https://github.com/godlygeek/tabular.git'
-Plug 'https://github.com/kshenoy/vim-signature.git'
 call plug#end()
 
 " appearance
@@ -239,23 +233,3 @@ vmap <Space> <Plug>RDSendSelection
 nmap <Space> <Plug>RDSendLine
 " send arbitrary R command, NOTE space after function
 nmap <LocalLeader>: :RSend
-
-" Pandoc
-let g:pandoc#command#autoexec_on_writes = 1
-let g:pandoc#command#autoexec_command = "Pandoc pdf --citeproc"
-let g:pandoc#modules#disabled = ["folding"]
-
-" Zotero
-function! ZoteroCite()
-  " pick a format based on the filetype (customize at will)
-  let format = &filetype =~ '.*md' ? 'citep' : 'pandoc'
-  let api_call = 'http://127.0.0.1:23119/better-bibtex/cayw?format='.format.'&brackets=1'
-  let ref = system('curl -s '.shellescape(api_call))
-  return ref
-endfunction
-
-noremap <leader>z "=ZoteroCite()<CR>p
-inoremap <C-z> <C-r>=ZoteroCite()<CR>
-
-"Tabular
-command! -nargs=1 -range TabFirst exec <line1> . ',' . <line2> . 'Tabularize /' . escape(<q-args>, '\^$.[?*~') . '.*/'

@@ -1,12 +1,12 @@
 # dirs
-alias dot="cd ~/.dotfiles"
-alias dl="cd ~/downloads"
-alias bk='cd $OLDPWD'
+alias dot="cd $HOME/.dotfiles"
+alias dl="cd $HOME/downloads"
+alias bk="cd $OLDPWD"
 
 # configs
-alias nvimrc="vim ~/.config/nvim/init.lua"
-alias zshrc="vim ~/.zshrc"
-alias aliases="vim ~/.oh-my-zsh/custom/aliases.zsh"
+alias nvimrc="vim $HOME/.config/nvim/init.lua"
+alias zshrc="vim $HOME/.zshrc"
+alias aliases="vim $HOME/.config/zsh/oh-my-zsh/custom/aliases.zsh"
 
 # Colorize grep output (good for log files)
 alias grep="grep --color=auto"
@@ -52,7 +52,7 @@ alias radian="radian --quiet"
 
 # music management
 alias bm="beet ls -a missing:1.. -f '$year-$albumartist-$album https://musicbrainz.org/release-group/$mb_releasegroupid $missing'"
-alias sm="rsync -v -rltO --chmod=a=rw,Da+x --delete --exclude='*.jpg' --exclude='*.ini' --progress \"/mnt/d/Music/\" \"omv:~/pool/media/music\""
+alias sm="rsync -v -rltO --chmod=a=rw,Da+x --delete --exclude='*.jpg' --exclude='*.ini' --progress \"/mnt/d/Music/\" \"omv:$HOME/pool/media/music\""
 alias bum="rsync -v -rlt --chmod=a=rw,Da+x --delete --exclude='*.jpg' --exclude='*.ini' --progress \"/mnt/d/Music/\" \"/mnt/f/Music/\""
 alias am="mv *.flac /mnt/d/Music"
 alias mi="mediainfo"
