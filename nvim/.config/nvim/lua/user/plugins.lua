@@ -106,7 +106,7 @@ return packer.startup(function(use)
   -- Treesitter
   use  "nvim-treesitter/nvim-treesitter"
   use "JoosepAlviste/nvim-ts-context-commentstring"
-  use "nvim-treesitter/nvim-treesitter-textobjects"
+  -- use "nvim-treesitter/nvim-treesitter-textobjects"
   use "nvim-treesitter/nvim-treesitter-context"
   use "p00f/nvim-ts-rainbow" --rainbow parens
 
