@@ -46,35 +46,35 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim" -- Easily comment stuff
   use "kyazdani42/nvim-web-devicons"
-  use "kyazdani42/nvim-tree.lua" --file manager
-  use "nvim-lualine/lualine.nvim" --statusline
-  use "akinsho/toggleterm.nvim"
-  use "ahmedkhalf/project.nvim"
-  use "lewis6991/impatient.nvim"
+  use "kyazdani42/nvim-tree.lua" -- file manager
+  use "nvim-lualine/lualine.nvim" -- statusline
+  use "akinsho/toggleterm.nvim" -- terminal in nvim
+  use "ahmedkhalf/project.nvim" -- git project manager
+  use "lewis6991/impatient.nvim" -- speedup plugin loading
   use "lukas-reineke/indent-blankline.nvim"
-  use "goolord/alpha-nvim" --greeting page
+  use "goolord/alpha-nvim" -- greeting page
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
-  use "folke/which-key.nvim" --keymap reminder
-  use { 'jalvesaq/Nvim-R', branch = 'stable' } --R in vim
-  use "chentoast/marks.nvim" --marks in gutter
-  use "cappyzawa/trim.nvim" --fix whitespace
-  use "romgrk/barbar.nvim" --bufferbar
+  use "folke/which-key.nvim" -- keymap reminder
+  use  "jalvesaq/Nvim-R" -- R in vim
+  use "chentoast/marks.nvim" -- marks in gutter
+  use "cappyzawa/trim.nvim" -- fix whitespace
+  use "romgrk/barbar.nvim" -- bufferbar
   use "DanilaMihailov/beacon.nvim" --show cursor jumps
   use "kosayoda/nvim-lightbulb" --show lightbulb when code action available
   use "RRethy/vim-illuminate" -- Illuminate other uses of current word/symbol under cursor
   use "nvim-telescope/telescope-ui-select.nvim"
-  use "mrjones2014/smart-splits.nvim" --natural window switchin
-  use { "AckslD/nvim-neoclip.lua", --clipboard manager
+  use "mrjones2014/smart-splits.nvim" -- natural window switchin
+  use { "AckslD/nvim-neoclip.lua", -- clipboard manager
     requires = { "nvim-telescope/telescope.nvim" }
   }
-  use "rcarriga/nvim-notify" --notifications manager
-  use "luukvbaal/stabilize.nvim"
-  use "max397574/better-escape.nvim"
-  use { "ellisonleao/glow.nvim", branch = 'main' } --render markdown
-  use "norcalli/nvim-colorizer.lua" --show color codes
-  use "lewis6991/satellite.nvim" --VScode-like scrollbar
-  use "j-hui/fidget.nvim" --LSP loading progress
-  use "echasnovski/mini.nvim" --adjust surrounding syntax
+  use "rcarriga/nvim-notify" -- notifications manager
+  use "luukvbaal/stabilize.nvim" -- keeps buffer content in place on window open/close events
+  use "max397574/better-escape.nvim" -- ignore timeloutlen when escaping insert mode
+  use { "ellisonleao/glow.nvim", branch = 'main' } -- render markdown
+  use "norcalli/nvim-colorizer.lua" -- show color codes
+  use "lewis6991/satellite.nvim" -- VScode-like scrollbar
+  use "j-hui/fidget.nvim" -- LSP loading progress
+  use "echasnovski/mini.nvim" -- using mini.surround module
 
   -- Colorschemes
   -- use "ellisonleao/gruvbox.nvim"
@@ -88,11 +88,11 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-omni" -- omnifunc completions
   use "hrsh7th/cmp-nvim-lua" -- nvim lua API completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
-  use "hrsh7th/cmp-nvim-lsp" --LSP completions
-  use "hrsh7th/cmp-nvim-lsp-signature-help" --LSP signature completions
+  use "hrsh7th/cmp-nvim-lsp" -- LSP completions
+  use "hrsh7th/cmp-nvim-lsp-signature-help" -- LSP signature completions
 
   -- snippets
-  use "L3MON4D3/LuaSnip" --snippet engine
+  use "L3MON4D3/LuaSnip" -- snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
   -- LSP
@@ -105,13 +105,12 @@ return packer.startup(function(use)
 
   -- Treesitter
   use  "nvim-treesitter/nvim-treesitter"
-  use "JoosepAlviste/nvim-ts-context-commentstring"
-  -- use "nvim-treesitter/nvim-treesitter-textobjects"
-  use "nvim-treesitter/nvim-treesitter-context"
+  use "RRethy/nvim-treesitter-textsubjects" -- smart incremental selection of code context
+  use "nvim-treesitter/nvim-treesitter-context" -- show code context when scrolling
   use "p00f/nvim-ts-rainbow" --rainbow parens
 
   -- Git
-  use "lewis6991/gitsigns.nvim"
+  use "lewis6991/gitsigns.nvim" -- git signs in gutter
   use "sindrets/diffview.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
