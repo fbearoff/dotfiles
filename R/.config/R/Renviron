@@ -1,0 +1,4 @@
+R_PROFILE_USER = ${XDG_CONFIG_HOME}/R/Rprofile
+R_LIBS_USER = ${XDG_STATE_HOME}/R/packages
+R_HISTFILE = ${XDG_STATE_HOME}/R/history.Rhistory
+R_MAKEVARS_USER = ${XDG_STATE_HOME}/R/Makevars
