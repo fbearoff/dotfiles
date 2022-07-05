@@ -28,6 +28,9 @@ ZSH_COMPDUMP="$ZSH_CACHE_DIR/.zcompdump"
 source $ZSH/oh-my-zsh.sh
 
 ## User config
+
+PATH=$HOME/.local/bin:$PATH
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
@@ -52,3 +55,5 @@ export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"

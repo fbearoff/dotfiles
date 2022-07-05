@@ -78,9 +78,6 @@ alias -s {gif,png,jpg,tif}=viu
 alias -s pdf=zathura
 alias -s md=glow
 
-# wget
-alias wget="wget --hsts-file='$XDG_DATA_HOME/wget-hsts'"
-
 # pacman
 alias sp="pacman -Qeq > $HOME/.dotfiles/packages"
 
