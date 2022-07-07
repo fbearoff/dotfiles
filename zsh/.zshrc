@@ -38,6 +38,14 @@ else
   export EDITOR='nvim'
   export MANPAGER='nvim +Man!'
 fi
+# Adding wsl-open as a browser for Bash for Windows
+if [[ $(uname -r) =~ (m|M)icrosoft ]]; then
+  if [[ -z $BROWSER ]]; then
+    export BROWSER=wsl-open
+  else
+    export BROWSER=firefox
+  fi
+fi
 
 KEYTIMEOUT=1
 setopt dotglob

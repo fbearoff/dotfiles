@@ -72,6 +72,8 @@ keymap('n', '<A-c>', ':BufferClose<CR>', opts)
 -- vim.keymap.set('n', '<leader>b', ':Beacon<CR>')
 
 -- --Nvim-R
-vim.keymap.set('n', '<leader><Space>', '<Plug>RDSendLine')
-vim.keymap.set('v', '<leader><Space>', '<Plug>RDSendSelection')
-vim.keymap.set('n', '<LocalLeader>:', ':RSend ')
+keymap('n', '<leader><Space>', '<Plug>RDSendLine', opts)
+keymap('v', '<leader><Space>', '<Plug>RDSendSelection', opts)
+keymap('n', '<LocalLeader>:', ':RSend ', opts)
+
+keymap("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>', {})
