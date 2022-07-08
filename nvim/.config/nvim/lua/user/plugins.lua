@@ -74,7 +74,7 @@ return packer.startup(function(use)
   use "norcalli/nvim-colorizer.lua" -- show color codes
   use "lewis6991/satellite.nvim" -- VScode-like scrollbar
   use "j-hui/fidget.nvim" -- LSP loading progress
-  use "echasnovski/mini.nvim" -- using mini.surround module
+  use "kylechui/nvim-surround"
 
   -- Colorschemes
   -- use "ellisonleao/gruvbox.nvim"
