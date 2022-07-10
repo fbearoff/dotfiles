@@ -3,61 +3,63 @@ if not status_ok then
   return
 end
 surround.setup({
-    keymaps = { -- vim-surround style keymaps
-        insert = "sa",
-        visual = "sa",
-        delete = "sd",
-        change = "sr",
+  keymaps = { -- vim-sandwhich style keymaps
+    insert = "sa",
+    insert_line = "saa",
+    visual = "sa",
+    delete = "sd",
+    change = "sr",
+  },
+  delimiters = {
+    pairs = {
+      ["("] = { "( ", " )" },
+      [")"] = { "(", ")" },
+      ["{"] = { "{ ", " }" },
+      ["}"] = { "{", "}" },
+      ["<"] = { "< ", " >" },
+      [">"] = { "<", ">" },
+      ["["] = { "[ ", " ]" },
+      ["]"] = { "[", "]" },
+      -- Define pairs based on function evaluations!
+      ["i"] = function()
+        return {
+          require("nvim-surround.utils").get_input(
+            "Enter the left delimiter: "
+          ),
+          require("nvim-surround.utils").get_input(
+            "Enter the right delimiter: "
+          )
+        }
+      end,
+      ["f"] = function()
+        return {
+          require("nvim-surround.utils").get_input(
+            "Enter the function name: "
+          ) .. "(",
+          ")"
+        }
+      end,
     },
-    delimiters = {
-        pairs = {
-            ["("] = { "( ", " )" },
-            [")"] = { "(", ")" },
-            ["{"] = { "{ ", " }" },
-            ["}"] = { "{", "}" },
-            ["<"] = { "< ", " >" },
-            [">"] = { "<", ">" },
-            ["["] = { "[ ", " ]" },
-            ["]"] = { "[", "]" },
-            -- Define pairs based on function evaluations!
-            ["i"] = function()
-                return {
-                    require("nvim-surround.utils").get_input(
-                        "Enter the left delimiter: "
-                    ),
-                    require("nvim-surround.utils").get_input(
-                        "Enter the right delimiter: "
-                    )
-                }
-            end,
-            ["f"] = function()
-                return {
-                    require("nvim-surround.utils").get_input(
-                        "Enter the function name: "
-                    ) .. "(",
-                    ")"
-                }
-            end,
-        },
-        separators = {
-            ["'"] = { "'", "'" },
-            ['"'] = { '"', '"' },
-            ["`"] = { "`", "`" },
-        },
-        HTML = {
-            ["t"] = true, -- Use "t" for HTML-style mappings
-        },
-        aliases = {
-            ["a"] = ">", -- Single character aliases apply everywhere
-            ["b"] = ")",
-            ["B"] = "}",
-            ["r"] = "]",
-            -- Table aliases only apply for changes/deletions
-            ["q"] = { '"', "'", "`" }, -- Any quote character
-            ["s"] = { ")", "]", "}", ">", "'", '"', "`" }, -- Any surrounding delimiter
-        },
+    separators = {
+      ["'"] = { "'", "'" },
+      ['"'] = { '"', '"' },
+      ["`"] = { "`", "`" },
     },
-    highlight_motion = { -- Highlight text-objects before surrounding them
-        duration = 0,
-    }
+    HTML = {
+      ["t"] = true, -- Use "t" for HTML-style mappings
+      ["T"] = "whole", -- Change the whole tag contents
+    },
+    aliases = {
+      ["a"] = ">", -- Single character aliases apply everywhere
+      ["b"] = ")",
+      ["B"] = "}",
+      ["r"] = "]",
+      -- Table aliases only apply for changes/deletions
+      ["q"] = { '"', "'", "`" }, -- Any quote character
+      ["s"] = { ")", "]", "}", ">", "'", '"', "`" }, -- Any surrounding delimiter
+    },
+  },
+  highlight_motion = { -- Highlight text-objects before surrounding them
+    duration = 0,
+  }
 })
