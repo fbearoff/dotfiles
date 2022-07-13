@@ -15,7 +15,13 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # silence ssh-agent
 zstyle :omz:plugins:ssh-agent quiet yes
 
-plugins=(
+if [[ $HOST = sd-55327 ]]; then
+ plugins=(
+  docker
+  docker-compose
+)
+fi
+plugins+=(
   autoupdate
   ssh-agent
   sudo
