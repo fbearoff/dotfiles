@@ -6,7 +6,7 @@ surround.setup({
   keymaps = { -- vim-sandwhich style keymaps
     insert = "sa",
     insert_line = "saa",
-    visual = "sa",
+    visual = "s",
     delete = "sd",
     change = "sr",
   },
@@ -37,6 +37,13 @@ surround.setup({
             "Enter the function name: "
           ) .. "(",
           ")"
+        }
+      end,
+      -- paste clipboard content as markdown link
+      ["l"] = function()
+        return {
+          "[",
+          "](" .. vim.fn.getreg("*") .. ")",
         }
       end,
     },
