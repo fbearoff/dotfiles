@@ -72,9 +72,8 @@ return packer.startup(function(use)
   use "max397574/better-escape.nvim" -- ignore timeloutlen when escaping insert mode
   use { "ellisonleao/glow.nvim", branch = 'main' } -- render markdown
   use "norcalli/nvim-colorizer.lua" -- show color codes
-  use "lewis6991/satellite.nvim" -- VScode-like scrollbar
   use "j-hui/fidget.nvim" -- LSP loading progress
-  use "kylechui/nvim-surround"
+  use "kylechui/nvim-surround" -- edit surrounding delimiters
 
   -- Colorschemes
   -- use "ellisonleao/gruvbox.nvim"
