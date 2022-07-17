@@ -22,7 +22,6 @@ elif [[ $(uname -r) =~ (m|M)icrosoft ]]; then
 fi
 plugins+=(
   autoupdate
-  ssh-agent
   sudo
   zsh-autopair
   # zsh-vi-mode
