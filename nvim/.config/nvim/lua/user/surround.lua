@@ -3,12 +3,12 @@ if not status_ok then
   return
 end
 surround.setup({
-  keymaps = { -- vim-sandwhich style keymaps
-    insert = "sa",
-    insert_line = "saa",
-    visual = "s",
-    delete = "sd",
-    change = "sr",
+  keymaps = { -- vim-surround style keymaps
+    insert = "ys",
+    insert_line = "yss",
+    visual = "S",
+    delete = "ds",
+    change = "cs",
   },
   delimiters = {
     pairs = {

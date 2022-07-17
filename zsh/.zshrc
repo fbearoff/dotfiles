@@ -12,14 +12,13 @@ COMPLETION_WAITING_DOTS="true"
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# silence ssh-agent
-zstyle :omz:plugins:ssh-agent quiet yes
-
-if [[ $HOST = sd-55327 ]]; then
- plugins=(
+if [[ -x "$(command -v docker)" ]]; then
+  plugins=(
   docker
   docker-compose
-)
+  )
+elif [[ $(uname -r) =~ (m|M)icrosoft ]]; then
+  plugins+=(ssh-agent)
 fi
 plugins+=(
   autoupdate
@@ -29,6 +28,11 @@ plugins+=(
   # zsh-vi-mode
   zsh-syntax-highlighting
 )
+
+# ssh-agent
+zstyle :omz:plugins:ssh-agent agent-forwarding yes
+zstyle :omz:plugins:ssh-agent quiet yes
+zstyle :omz:plugins:ssh-agent identities github
 
 ZSH_COMPDUMP="$ZSH_CACHE_DIR/.zcompdump"
 source $ZSH/oh-my-zsh.sh
