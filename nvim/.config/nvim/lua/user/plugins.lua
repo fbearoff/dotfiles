@@ -55,7 +55,7 @@ return packer.startup(function(use)
   use "goolord/alpha-nvim" -- greeting page
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim" -- keymap reminder
-  use  "jalvesaq/Nvim-R" -- R in vim
+  use "jalvesaq/Nvim-R" -- R in vim
   use "chentoast/marks.nvim" -- marks in gutter
   use "cappyzawa/trim.nvim" -- fix whitespace
   use "romgrk/barbar.nvim" -- bufferbar
@@ -74,6 +74,7 @@ return packer.startup(function(use)
   use "norcalli/nvim-colorizer.lua" -- show color codes
   use "j-hui/fidget.nvim" -- LSP loading progress
   use "kylechui/nvim-surround" -- edit surrounding delimiters
+  use "phaazon/hop.nvim"
 
   -- Colorschemes
   -- use "ellisonleao/gruvbox.nvim"
@@ -103,7 +104,7 @@ return packer.startup(function(use)
   use { "nvim-telescope/telescope-fzf-native.nvim", run = 'make' }
 
   -- Treesitter
-  use  "nvim-treesitter/nvim-treesitter"
+  use "nvim-treesitter/nvim-treesitter"
   use "RRethy/nvim-treesitter-textsubjects" -- smart incremental selection of code context
   use "nvim-treesitter/nvim-treesitter-context" -- show code context when scrolling
   use "p00f/nvim-ts-rainbow" --rainbow parens

@@ -37,7 +37,7 @@ alias llt="exa -lg --icons --git --tree"
 
 # easier to read disk
 alias df="df -h"     # human-readable sizes
-alias free="free -m" # show sizes in MB
+alias free="free -h" # show sizes in MB
 alias du="du -h"     # human readable sizes
 
 # get top process eating memory
@@ -88,3 +88,6 @@ fi
 
 # rclone
 alias rclone="nocorrect rclone"
+
+# wsl
+alias sw="/mnt/c/Windows/System32/wsl.exe --shutdown"
