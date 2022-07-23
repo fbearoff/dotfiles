@@ -37,7 +37,6 @@ local options = {
   softtabstop = 2, -- how many spaces is a tab press worth
   showmatch = true, -- show matching paren on creation
   fillchars = 'eob: ', -- remove ugly ~ ndicator for end of buffer
-  winbar = "%m %t", -- short filename and modified indicator
   ruler = false
 }
 

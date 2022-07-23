@@ -74,7 +74,7 @@ return packer.startup(function(use)
   use "norcalli/nvim-colorizer.lua" -- show color codes
   use "j-hui/fidget.nvim" -- LSP loading progress
   use "kylechui/nvim-surround" -- edit surrounding delimiters
-  use "phaazon/hop.nvim"
+  use "phaazon/hop.nvim" -- hinted text jumping
 
   -- Colorschemes
   -- use "ellisonleao/gruvbox.nvim"
@@ -98,6 +98,8 @@ return packer.startup(function(use)
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use { "SmiteshP/nvim-navic",
+  requires = "neovim/nvim-lspconfig"}
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"

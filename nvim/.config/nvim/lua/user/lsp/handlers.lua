@@ -92,6 +92,8 @@ local function lsp_keymaps(bufnr)
   vim.api.nvim_set_keymap("v", "gm", "<cmd>lua format_range_operator()<CR>", opts)
 end
 
+local navic = require("nvim-navic")
+
 M.on_attach = function(client, bufnr)
 
   if client.name == "tsserver" then
@@ -108,6 +110,10 @@ M.on_attach = function(client, bufnr)
     return
   end
   illuminate.on_attach(client)
+
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
 end
 
 return M

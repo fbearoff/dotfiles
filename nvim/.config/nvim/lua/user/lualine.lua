@@ -3,6 +3,11 @@ if not status_ok then
   return
 end
 
+local status_navic_ok, navic = pcall(require, "nvim-navic")
+if not status_navic_ok then
+  return
+end
+
 local hide_in_width = function()
   return vim.fn.winwidth(0) > 80
 end
@@ -15,21 +20,20 @@ local diagnostics = {
   colored = true,
   update_in_insert = false,
   always_visible = true,
+  on_click = function()
+    vim.diagnostic.setqflist()
+  end
 }
 
 local diff = {
   "diff",
   colored = true,
   symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
-  cond = hide_in_width
+  cond = hide_in_width,
+  on_click = function()
+    vim.cmd("DiffviewOpen")
+  end
 }
-
--- local mode = {
---   "mode",
---   fmt = function(str)
---     return " " .. str .. " "
---   end,
--- }
 
 local filetype = {
   "filetype",
@@ -43,6 +47,15 @@ local location = {
 }
 
 local filename = {
+  "filename",
+  symbols = {
+    modified = '[+]',
+    readonly = '[-]',
+    unnamed = '[No Name]',
+  },
+}
+
+local long_filename = {
   "filename",
   file_status = true,
   path = 3,
@@ -70,7 +83,9 @@ local lsp_server = {
     return msg
   end,
   icon = ' LSP:',
-  -- color = { fg = '#ffffff', gui = 'bold' },
+  on_click = function()
+    require 'lspconfig.ui.lspinfo' ()
+  end
 }
 
 -- cool function for progress
@@ -87,31 +102,80 @@ local spaces = function()
   return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
+-- silence navic if documentSymbols is not supported
+vim.g.navic_silence = true
+navic.setup {
+  highlight = true,
+  separator = "  ",
+  depth_limit = 0,
+  depth_limit_indicator = "...",
+}
+
 lualine.setup({
   options = {
     icons_enabled = true,
     theme = "auto",
     component_separators = { left = "|", right = "|" },
     section_separators = { left = "", right = "" },
-    disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
+    disabled_filetypes = {
+      statusline = { 'alpha',
+        'dashboard',
+        'NvimTree',
+        'Outline' },
+      winbar = { 'help',
+        'startify',
+        'dashboard',
+        'packer',
+        'neogitstatus',
+        'NvimTree',
+        'Trouble',
+        'alpha',
+        'lir',
+        'Outline',
+        'spectre_panel',
+        'toggleterm',
+        'qf', },
+    },
     always_divide_middle = true,
-    globalstatus = true
+    globalstatus = true,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+    }
   },
   sections = {
     lualine_a = { "mode" },
     lualine_b = { "branch", diff, diagnostics },
-    lualine_c = { filename },
+    lualine_c = { long_filename },
     lualine_x = { lsp_server, spaces, "fileformat", "encoding", filetype },
     lualine_y = { location },
     lualine_z = { progress },
   },
+-- unused with global statusline
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = { "filename" },
-    lualine_x = { "location" },
+    lualine_c = {},
+    lualine_x = {},
     lualine_y = {},
     lualine_z = {},
+  },
+  winbar = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = { filename },
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = { { navic.get_location, cond = navic.is_available }, }
+  },
+  inactive_winbar = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = { filename },
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = { { navic.get_location, cond = navic.is_available }, }
   },
   tabline = {},
   extensions = {},
