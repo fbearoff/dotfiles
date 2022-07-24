@@ -1,4 +1,9 @@
-local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
+local status_mason_ok, mason = pcall(require, "mason")
+if not status_mason_ok then
+  return
+end
+
+local status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
 if not status_ok then
   return
 end
@@ -7,16 +12,17 @@ local lspconfig = require("lspconfig")
 
 local servers = { "sumneko_lua", "r_language_server", "bashls", "marksman", "ansiblels" }
 
-lsp_installer.setup {
-  ensure_installed = servers,
-  automatic_installation = true,
+mason.setup {
   ui = {
     icons = {
-      server_installed = "✓",
-      server_pending = "➜",
-      server_uninstalled = "✗"
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗"
     }
   }
+}
+mason_lspconfig.setup {
+  ensure_installed = servers,
 }
 
 for _, server in pairs(servers) do

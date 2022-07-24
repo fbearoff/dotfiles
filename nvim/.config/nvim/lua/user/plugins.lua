@@ -97,8 +97,9 @@ return packer.startup(function(use)
 
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-  use { "SmiteshP/nvim-navic",
+  use "williamboman/mason.nvim" --LSP installer
+  use "williamboman/mason-lspconfig.nvim"
+  use { "SmiteshP/nvim-navic", -- show current document symbol
   requires = "neovim/nvim-lspconfig"}
 
   -- Telescope
