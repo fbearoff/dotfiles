@@ -13,5 +13,6 @@ trim.setup {
     [[%s/\s\+$//e]],
     [[%s/\($\n\s*\)\+\%$//]],
     [[%s/\(\n\n\)\n\+/\1/]],
+    [[%s/\r//g]] --strip windows end of line character
   },
 }

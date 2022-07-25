@@ -33,7 +33,6 @@ keymap('n', 'L', '$', opts)
 
 --turn off Q
 keymap('n', 'Q', '<nop>', opts)
-keymap("n", ":Q<cr>", ":q<cr>", { silent = false })
 keymap("c", "Q", "q", { noremap = true, silent = false })
 
 -- Visual --
