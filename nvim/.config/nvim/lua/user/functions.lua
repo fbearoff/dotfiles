@@ -18,11 +18,11 @@ M.toggle_qf = function()
 		end
 	end
 	if qf_exists == true then
-		cmd("cclose")
+		cmd.cclose()
 		return
 	end
 	if M.isNotEmpty(fn.getqflist()) then
-		cmd("copen")
+		cmd.copen()
 	end
 end
 

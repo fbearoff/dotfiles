@@ -31,7 +31,7 @@ local diff = {
   symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
   cond = hide_in_width,
   on_click = function()
-    vim.cmd("DiffviewOpen")
+    vim.cmd.DiffviewOpen()
   end
 }
 

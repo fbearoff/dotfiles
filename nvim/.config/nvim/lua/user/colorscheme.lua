@@ -23,7 +23,7 @@ kanagawa.setup {
   overrides = {},
 }
 
-local status_colorscheme_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+local status_colorscheme_ok, _ = pcall(vim.cmd.colorscheme(colorscheme))
 if not status_colorscheme_ok then
   return
 end
