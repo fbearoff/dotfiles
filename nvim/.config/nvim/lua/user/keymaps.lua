@@ -33,6 +33,8 @@ keymap('n', 'L', '$', opts)
 
 --turn off Q
 keymap('n', 'Q', '<nop>', opts)
+keymap("n", ":Q<cr>", ":q<cr>", { silent = false })
+keymap("c", "Q", "q", { noremap = true, silent = false })
 
 -- Visual --
 -- Stay in indent mode
@@ -76,4 +78,5 @@ keymap('n', '<leader><Space>', '<Plug>RDSendLine', opts)
 keymap('v', '<leader><Space>', '<Plug>RDSendSelection', opts)
 keymap('n', '<LocalLeader>:', ':RSend ', opts)
 
+-- Open link under cursor
 keymap("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>', {})
