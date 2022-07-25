@@ -83,7 +83,7 @@ local mappings = {
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
-  ["c"] = { "<cmd>BufferClose!<CR>", "Close Buffer" },
+  ["c"] = { "<cmd>ColorizerToggle<CR>", "Colorize" },
   ["h"] = { "<cmd>set invhlsearch<CR>", "Toggle Highlight" },
   ["f"] = {
     "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
@@ -101,6 +101,7 @@ local mappings = {
     name = "+Buffers",
     b = { "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
       "Buffers" },
+    c = { "<cmd>BufferClose!<CR>", "Close Buffer" },
     j = { "<cmd>BufferPick<cr>", "jump to buffer" },
     w = { "<cmd>BufferWipeout<cr>", "wipeout buffer" },
     e = { "<cmd>BufferCloseAllButCurrent<cr>", "close all but current buffer" },
