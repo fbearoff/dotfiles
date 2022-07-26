@@ -1,3 +1,8 @@
+<!--toc:start-->
+- [Frank's dotfiles](#franks-dotfiles)
+ - [Thinkfan](#thinkfan)
+ - [Packages](#packages)
+<!--toc:end-->
 # Frank's dotfiles
 
 Use GNU stow to symlink folders

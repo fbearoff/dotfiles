@@ -30,12 +30,10 @@ local autocmds = {
     { "User AlphaReady set laststatus=0 | autocmd BufUnload <buffer> set laststatus=3" };
   };
   git = {
-    { "FileType gitcommit setlocal wrap" };
-    { "FileType gitcommit setlocal spell" };
+    { "FileType gitcommit setlocal wrap spell" };
   };
   markdown = {
-    { "FileType markdown setlocal wrap" };
-    { "FileType markdown setlocal spell" };
+    { "FileType markdown setlocal wrap spell" };
   };
   }
 
