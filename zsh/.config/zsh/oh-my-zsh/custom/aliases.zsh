@@ -7,6 +7,7 @@ alias bk="cd $OLDPWD"
 alias nvimrc="vim $HOME/.config/nvim/init.lua"
 alias zshrc="vim $HOME/.zshrc"
 alias aliases="vim $HOME/.config/zsh/oh-my-zsh/custom/aliases.zsh"
+alias funcs="vim $HOME/.config/zsh/oh-my-zsh/custom/functions.zsh"
 
 # Colorize grep output (good for log files)
 alias grep="grep --color=auto"
@@ -88,6 +89,8 @@ fi
 
 # rclone
 alias rclone="nocorrect rclone"
+alias rcc="rclone mount cloud:/files/ $HOME/cloud --daemon"
+alias rccd="cd $HOME && fusermount -u $HOME/cloud"
 
 # wsl
 alias sw="/mnt/c/Windows/System32/wsl.exe --shutdown"
