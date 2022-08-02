@@ -47,7 +47,7 @@ function fb() {
 
 # Septa Status
 function isf() {
-  rr_late="$(curl 'http://www.isseptafucked.com/api/rr/status' --silent|jq '.status.late')"
+  rr_late="$(curl 'http://www.isseptafucked.com/api/rr' --silent|jq '.status.late')"
   advisory="$(curl 'http://www3.septa.org/hackathon/Alerts/get_alert_data.php?req1=all' --silent|jq '.')"
   rr_nor="$(echo "$advisory" | jq '.[] | select(.route_id == "rr_route_nor").advisory_message')"
   bus_k="$(echo "$advisory" | jq '.[] | select(.route_id == "bus_route_K").advisory_message')"
@@ -63,7 +63,9 @@ function isf() {
  fi
  if [[  $rr_late  == "null" ]]; then
    echo "RR is on time!"
- else
+ elif [[ $rr_late =~ Norristown ]]; then
    echo "$rr_late"
+ else
+   echo "RR is on time!"
  fi
 }
