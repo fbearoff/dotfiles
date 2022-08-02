@@ -73,9 +73,6 @@ alias myip='curl http://ipecho.net/plain; echo'
 # get weather
 alias weather="curl http://wttr.in/philadelphia\?u"O
 
-# Septa
- alias isf='curl http://www.isseptafucked.com/api/rr/status --silent|jq .status.late'
-
 # file associations
 alias -s {txt,conf,cfg}=vim
 alias -s {gif,png,jpg,tif}=viu

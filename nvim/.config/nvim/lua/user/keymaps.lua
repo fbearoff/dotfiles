@@ -23,9 +23,9 @@ keymap('i', '<A-j>', '<C-\\><C-N><C-w>j', opts)
 keymap('i', '<A-k>', '<C-\\><C-N><C-w>k', opts)
 keymap('i', '<A-l>', '<C-\\><C-N><C-w>l', opts)
 
--- --Remap for dealing with word wrap
-keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+-- --Remap for dealing with word wrap CURRENTLY CAUSES FLICKER WHEN 'cmdheight=0'
+-- keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+-- keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- H and L go to begining/end of line
 keymap('n', 'H', '^', opts)
