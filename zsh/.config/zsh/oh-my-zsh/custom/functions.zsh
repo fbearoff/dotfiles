@@ -69,3 +69,20 @@ function isf() {
    echo "RR is on time!"
  fi
 }
+
+function nta() {
+  next_n=$1
+  dir=$2
+  re='^[0-9]+$'
+  if ! [[ $next_n =~ $re ]]; then
+     next_n=1
+  fi
+  tt=$(curl http://www3.septa.org/hackathon/Arrivals/East%20Falls/"$next_n" --silent |jq)
+  if [[ $dir == "home" ]]; then
+   echo "$tt" | jq '.[] | .[].Northbound'
+  elif [[ $dir == "work" ]]; then
+     echo "$tt" | jq '.[] | .[].Southbound'
+  else
+     echo "$tt" | jq '.[]'
+  fi
+}
