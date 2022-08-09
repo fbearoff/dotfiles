@@ -71,7 +71,7 @@ return packer.startup(function(use)
   use "luukvbaal/stabilize.nvim" -- keeps buffer content in place on window open/close events
   use "max397574/better-escape.nvim" -- ignore timeloutlen when escaping insert mode
   use { "ellisonleao/glow.nvim", branch = 'main' } -- render markdown
-  use "norcalli/nvim-colorizer.lua" -- show color codes
+  use "NvChad/nvim-colorizer.lua" -- show color codes
   use "j-hui/fidget.nvim" -- LSP loading progress
   use "kylechui/nvim-surround" -- edit surrounding delimiters
   use "phaazon/hop.nvim" -- hinted text jumping
