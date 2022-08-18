@@ -21,6 +21,7 @@ kanagawa.setup {
   terminalColors = true, -- define vim.g.terminal_color_{0,17}
   colors = {},
   overrides = {},
+  theme = "default"
 }
 
 local status_colorscheme_ok, _ = pcall(vim.cmd.colorscheme(colorscheme))
