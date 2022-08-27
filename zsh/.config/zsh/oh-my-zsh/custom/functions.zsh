@@ -86,3 +86,11 @@ function nta() {
      echo "$tt" | jq '.[]'
   fi
 }
+
+# music
+function am() {
+  for d in ~/downloads/music/* ; do
+    if [[ -d "$d" && ! -L "$d" ]]
+      mv "$d"/*.flac /mnt/d/Music
+done
+}
