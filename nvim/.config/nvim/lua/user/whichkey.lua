@@ -84,6 +84,7 @@ local mappings = {
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>ColorizerToggle<CR>", "Colorize" },
+  ["m"] = { "<cmd>Glow<CR>", "Glow (Markdown Preview)" },
   ["h"] = { "<cmd>set invhlsearch<CR>", "Toggle Highlight" },
   ["f"] = {
     "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
