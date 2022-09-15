@@ -36,3 +36,12 @@ for _, server in pairs(servers) do
   end
   lspconfig[server].setup(opts)
 end
+
+local status_increname_ok, inc_rename = pcall(require, "inc_rename")
+if not status_increname_ok then
+  return
+end
+
+inc_rename.setup {
+    input_buffer_type = "dressing",
+}
