@@ -45,7 +45,7 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim" -- Easily comment stuff
-  use "kyazdani42/nvim-web-devicons"
+  use "kyazdani42/nvim-web-devicons" -- glyphs
   use "kyazdani42/nvim-tree.lua" -- file manager
   use "nvim-lualine/lualine.nvim" -- statusline
   use "akinsho/toggleterm.nvim" -- terminal in nvim
@@ -62,7 +62,6 @@ return packer.startup(function(use)
   use "DanilaMihailov/beacon.nvim" --show cursor jumps
   use "kosayoda/nvim-lightbulb" --show lightbulb when code action available
   use "RRethy/vim-illuminate" -- Illuminate other uses of current word/symbol under cursor
-  use "nvim-telescope/telescope-ui-select.nvim"
   use "mrjones2014/smart-splits.nvim" -- natural window switchin
   use { "AckslD/nvim-neoclip.lua", -- clipboard manager
     requires = { "nvim-telescope/telescope.nvim" }
@@ -75,6 +74,7 @@ return packer.startup(function(use)
   use "j-hui/fidget.nvim" -- LSP loading progress
   use "kylechui/nvim-surround" -- edit surrounding delimiters
   use "phaazon/hop.nvim" -- hinted text jumping
+  use "stevearc/dressing.nvim" -- prettier ui elements
 
   -- Colorschemes
   -- use "ellisonleao/gruvbox.nvim"
@@ -101,10 +101,12 @@ return packer.startup(function(use)
   use "williamboman/mason-lspconfig.nvim"
   use { "SmiteshP/nvim-navic", -- show current document symbol
   requires = "neovim/nvim-lspconfig"}
+  use "smjonas/inc-rename.nvim" -- LSP incremental rename
 
   -- Telescope
-  use "nvim-telescope/telescope.nvim"
+  use "nvim-telescope/telescope.nvim" -- selector
   use { "nvim-telescope/telescope-fzf-native.nvim", run = 'make' }
+  -- use "nvim-telescope/telescope-ui-select.nvim"
 
   -- Treesitter
   use "nvim-treesitter/nvim-treesitter"
