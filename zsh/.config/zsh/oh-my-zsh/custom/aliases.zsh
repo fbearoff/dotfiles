@@ -56,7 +56,7 @@ alias bm="beet ls -a missing:1.. -f '$year-$albumartist-$album https://musicbrai
 alias sm="rsync -v -rltO --chmod=a=rw,Da+x --delete --exclude='*.jpg' --exclude='*.ini' --progress \"/mnt/d/Music/\" \"omv:$HOME/pool/media/music\""
 alias bum="rsync -v -rlt --chmod=a=rw,Da+x --delete --exclude='*.jpg' --exclude='*.ini' --progress \"/mnt/d/Music/\" \"/mnt/e/Music/\""
 alias mi="mediainfo"
-alias gm="cd ~/downloads/music && lftp hosting"
+alias gm="cd ~/downloads/music && lftp hosting -e 'cd red'"
 
 #git
 alias gst="git status"
