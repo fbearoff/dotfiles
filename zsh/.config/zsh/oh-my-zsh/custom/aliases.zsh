@@ -34,6 +34,7 @@ alias mkdir="mkdir -pv"
 alias ls="exa"
 alias l="exa -lga --icons --git"
 alias ll="exa -lg --icons --git"
+alias lls="exa -lg --icons --git --sort new"
 alias llt="exa -lg --icons --git --tree --level 3"
 
 # easier to read disk
