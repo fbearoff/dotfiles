@@ -67,7 +67,7 @@ function format_range_operator()
   _G.op_func_formatting = function()
     local start = vim.api.nvim_buf_get_mark(0, '[')
     local finish = vim.api.nvim_buf_get_mark(0, ']')
-    vim.lsp.buf.range_formatting({}, start, finish)
+    vim.lsp.buf.format({}, start, finish)
     vim.go.operatorfunc = old_func
     _G.op_func_formatting = nil
   end
