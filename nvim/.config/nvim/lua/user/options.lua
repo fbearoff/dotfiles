@@ -37,7 +37,8 @@ local options = {
   softtabstop = 2, -- how many spaces is a tab press worth
   showmatch = true, -- show matching paren on creation
   fillchars = 'eob: ', -- remove ugly ~ ndicator for end of buffer
-  ruler = false
+  ruler = false,
+  splitkeep = "screen" -- stabilize screen position on split
 }
 
 for k, v in pairs(options) do

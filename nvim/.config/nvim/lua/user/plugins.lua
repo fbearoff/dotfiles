@@ -71,10 +71,11 @@ return packer.startup(function(use)
   use "max397574/better-escape.nvim" -- ignore timeloutlen when escaping insert mode
   use { "ellisonleao/glow.nvim", branch = 'main' } -- render markdown
   use "NvChad/nvim-colorizer.lua" -- show color codes
-  use "j-hui/fidget.nvim" -- LSP loading progress
   use "kylechui/nvim-surround" -- edit surrounding delimiters
   use "phaazon/hop.nvim" -- hinted text jumping
-  use "stevearc/dressing.nvim" -- prettier ui elements
+  use { "folke/noice.nvim",
+    requires = { "MunifTanjim/nui.nvim" }
+  }
 
   -- Colorschemes
   -- use "ellisonleao/gruvbox.nvim"
@@ -100,7 +101,7 @@ return packer.startup(function(use)
   use "williamboman/mason.nvim" --LSP installer
   use "williamboman/mason-lspconfig.nvim"
   use { "SmiteshP/nvim-navic", -- show current document symbol
-  requires = "neovim/nvim-lspconfig"}
+    requires = "neovim/nvim-lspconfig" }
   use "smjonas/inc-rename.nvim" -- LSP incremental rename
 
   -- Telescope
