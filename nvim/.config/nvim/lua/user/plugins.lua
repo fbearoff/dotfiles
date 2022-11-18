@@ -66,15 +66,16 @@ return packer.startup(function(use)
   use { "AckslD/nvim-neoclip.lua", -- clipboard manager
     requires = { "nvim-telescope/telescope.nvim" }
   }
-  use "rcarriga/nvim-notify" -- notifications manager
-  use "luukvbaal/stabilize.nvim" -- keeps buffer content in place on window open/close events
   use "max397574/better-escape.nvim" -- ignore timeloutlen when escaping insert mode
   use { "ellisonleao/glow.nvim", branch = 'main' } -- render markdown
   use "NvChad/nvim-colorizer.lua" -- show color codes
   use "kylechui/nvim-surround" -- edit surrounding delimiters
   use "phaazon/hop.nvim" -- hinted text jumping
-  use { "folke/noice.nvim",
-    requires = { "MunifTanjim/nui.nvim" }
+  use { "folke/noice.nvim", -- pretty UI
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify" -- notifications manager
+    }
   }
 
   -- Colorschemes

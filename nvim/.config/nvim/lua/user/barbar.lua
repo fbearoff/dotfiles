@@ -11,7 +11,7 @@ bufferline.setup {
   clickable = true,
   exclude_ft = { 'javascript' },
   exclude_name = { 'package.json' },
-  icons =  'both',
+  icons = 'both',
   icon_custom_colors = false,
   icon_separator_active = '▎',
   icon_separator_inactive = '▎',
