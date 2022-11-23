@@ -10,3 +10,4 @@ vim.g["R_hl_term"] = false
 vim.g["R_args"] = { }
 vim.g["R_assign"] = 0
 vim.g["R_csv_app"] = 'terminal:vd'
+vim.g["R_auto_omni"] = { }
