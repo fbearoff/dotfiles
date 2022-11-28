@@ -1,4 +1,3 @@
-# options(browser = "firefox")
 local({
   n <- parallel::detectCores() # Detect number of CPU cores
   options(Ncpus = n) # Parallel package installation in install.packages()
