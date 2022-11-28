@@ -94,3 +94,8 @@ function am() {
       mv "$d"/*.flac /mnt/d/Music
 done
 }
+
+# fix x11
+function fx() {
+  sudo ln -s /mnt/wslg/.X11-unix /tmp/.X11-unix
+}
