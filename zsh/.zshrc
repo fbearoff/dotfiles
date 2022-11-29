@@ -48,7 +48,7 @@ else
   export MANPAGER='nvim +Man!'
 fi
 # Adding wsl-open as a browser for Bash for Windows
-if [[ $(uname -r) =~ (m|M)icrosoft ]]; then
+if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
   if [[ -z $BROWSER ]]; then
     export BROWSER=wsl-open
   else

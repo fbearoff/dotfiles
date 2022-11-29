@@ -49,7 +49,7 @@ alias psmem="ps auxf | sort -nr -k 4 | head -5"
 alias pscpu="ps auxf | sort -nr -k 3 | head -5"
 
 # R
-alias R="R --quiet"
+alias R="R --quiet --no-save"
 alias radian="radian --quiet"
 
 # music management
