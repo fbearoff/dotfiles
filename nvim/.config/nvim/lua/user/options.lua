@@ -38,15 +38,16 @@ local options = {
   showmatch = true, -- show matching paren on creation
   fillchars = 'eob: ', -- remove ugly ~ ndicator for end of buffer
   ruler = false,
-  splitkeep = "screen" -- stabilize screen position on split
+  splitkeep = "screen", -- stabilize screen position on split
+  whichwrap = "bs<>[]hl" -- which "horizontal" keys are allowed to travel to prev/next line
 }
 
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.opt.shortmess:append "c"
-vim.opt.whichwrap:append("<,>,[,],h,l")
-vim.opt.iskeyword:append("-")
+vim.opt.shortmess:append "c" -- don't give |ins-completion-menu| messages
+vim.opt.iskeyword:append "-" -- hyphenated words recognized by searches
+vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode.
 
 vim.g.cursorhold_updatetime = 100
