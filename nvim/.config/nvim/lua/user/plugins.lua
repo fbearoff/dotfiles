@@ -103,7 +103,6 @@ return packer.startup(function(use)
   use "williamboman/mason-lspconfig.nvim"
   use { "SmiteshP/nvim-navic", -- show current document symbol
     requires = "neovim/nvim-lspconfig" }
-  use "smjonas/inc-rename.nvim" -- LSP incremental rename
 
   -- Telescope
   use "nvim-telescope/telescope.nvim" -- selector
@@ -119,6 +118,11 @@ return packer.startup(function(use)
   -- Git
   use "lewis6991/gitsigns.nvim" -- git signs in gutter
   use "sindrets/diffview.nvim"
+
+  -- DAP
+  use "mfussenegger/nvim-dap"
+  use "rcarriga/nvim-dap-ui"
+  use "jayp0521/mason-nvim-dap.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

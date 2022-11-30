@@ -114,6 +114,19 @@ local mappings = {
     p = { "<cmd>BufferPin<cr>", "pin buffer" },
   },
 
+  d = {
+    name = "DAP",
+    b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
+    c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+    i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
+    o = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
+    O = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
+    r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "REPL" },
+    l = { "<cmd>lua require'dap'.run_last()<cr>", "Run Last" },
+    u = { "<cmd>lua require'dapui'.toggle()<cr>", "DAP UI" },
+    t = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
+  },
+
   p = {
     name = "Packer",
     c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -154,7 +167,7 @@ local mappings = {
       "<cmd>Telescope diagnostics<cr>",
       "Workspace Diagnostics",
     },
-    f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
+    f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     m = { "<cmd>Mason<cr>", "Mason" },
     j = {

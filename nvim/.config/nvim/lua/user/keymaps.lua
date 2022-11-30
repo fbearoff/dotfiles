@@ -52,6 +52,8 @@ keymap("v", "p", '"_dP', opts)
 -- Move to previous/next
 keymap('n', '<A-,>', ':BufferPrevious<CR>', opts)
 keymap('n', '<A-.>', ':BufferNext<CR>', opts)
+keymap("n", "<C-l>", ":bnext<CR>", opts)
+keymap("n", "<C-h>", ":bprevious<CR>", opts)
 -- Re-order to previous/next
 keymap('n', '<A-<>', ':BufferMovePrevious<CR>', opts)
 keymap('n', '<A->>', ':BufferMoveNext<CR>', opts)
@@ -79,3 +81,14 @@ keymap('n', '<LocalLeader>:', ':RSend ', opts)
 
 -- Open link under cursor
 keymap("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>', {})
+
+-- DAP
+keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
+keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
+keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
+keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts)
+keymap("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", opts)
+keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
+keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
+keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
+keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
