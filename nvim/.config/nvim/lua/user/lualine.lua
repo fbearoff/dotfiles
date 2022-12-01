@@ -102,6 +102,12 @@ local spaces = function()
   return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
+local macro = {
+  require("noice").api.statusline.mode.get,
+  cond = require("noice").api.statusline.mode.has,
+  color = { fg = "#ff9e64" },
+}
+
 -- silence navic if documentSymbols is not supported
 vim.g.navic_silence = true
 navic.setup {
@@ -148,11 +154,11 @@ lualine.setup({
     lualine_a = { "mode" },
     lualine_b = { "branch", diff, diagnostics },
     lualine_c = { long_filename },
-    lualine_x = { lsp_server, spaces, "fileformat", "encoding", filetype },
+    lualine_x = { macro, lsp_server, spaces, "fileformat", "encoding", filetype },
     lualine_y = { location },
     lualine_z = { progress },
   },
--- unused with global statusline
+  -- unused with global statusline
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
