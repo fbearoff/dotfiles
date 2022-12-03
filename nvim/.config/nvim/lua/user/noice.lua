@@ -28,5 +28,21 @@ noice.setup({
       },
       opts = { skip = true },
     },
+    {
+      filter = {
+        event = "msg_show",
+        kind = "",
+        find = ">ed",
+      },
+      opts = { skip = true },
+    },
+    {
+      filter = {
+        event = "msg_show",
+        kind = "",
+        find = "<ed",
+      },
+      opts = { skip = true },
+    },
   },
 })

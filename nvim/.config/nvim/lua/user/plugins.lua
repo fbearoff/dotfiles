@@ -71,6 +71,7 @@ return packer.startup(function(use)
   use "NvChad/nvim-colorizer.lua" -- show color codes
   use "kylechui/nvim-surround" -- edit surrounding delimiters
   use "phaazon/hop.nvim" -- hinted text jumping
+  use "lewis6991/satellite.nvim" --scrollbar with Git and marks
   use { "folke/noice.nvim", -- pretty UI
     requires = {
       "MunifTanjim/nui.nvim",
