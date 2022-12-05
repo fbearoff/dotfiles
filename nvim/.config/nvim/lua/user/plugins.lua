@@ -78,6 +78,11 @@ return packer.startup(function(use)
       "rcarriga/nvim-notify" -- notifications manager
     }
   }
+  use { "nguyenvukhang/nvim-toggler", -- toggle booleans
+    config = function()
+      require('nvim-toggler').setup()
+    end
+  }
 
   -- Colorschemes
   -- use "ellisonleao/gruvbox.nvim"

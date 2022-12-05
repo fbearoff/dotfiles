@@ -70,7 +70,24 @@ local setup = {
   },
 }
 
-local opts = {
+local v_opts = {
+  mode = "v", -- VISUAL mode
+  prefix = "<leader>",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+}
+
+local v_mappings = {
+  g = { name = "+Comments",
+    c = { "<Plug>(comment_toggle_linewise_visual)<CR>", "Line Comment" },
+    b = { "<Plug>(comment_toggle_blockwise_visual)<CR>", "Block Comment" }
+  },
+  i = { ":'<,'>lua require('nvim-toggler').toggle()<CR>", "Toggle Inverse" },
+}
+
+local n_opts = {
   mode = "n", -- NORMAL mode
   prefix = "<leader>",
   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
@@ -79,9 +96,10 @@ local opts = {
   nowait = true, -- use `nowait` when creating keymaps
 }
 
-local mappings = {
+local n_mappings = {
   ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+  ["i"] = { "<cmd>lua require('nvim-toggler').toggle()<CR>", "Toggle Inverse" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>ColorizerToggle<CR>", "Colorize" },
@@ -201,14 +219,16 @@ local mappings = {
 
   t = {
     name = "Terminal",
-    u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
-    t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
-    p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
-    f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-    h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-    v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+    u    = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
+    t    = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
+    p    = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
+    f    = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
+    h    = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
+    v    = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+    s    = { "<cmd>lua require 'user.functions'.so_input()<CR>", "  StackOverflow" },
   },
 }
 
 which_key.setup(setup)
-which_key.register(mappings, opts)
+which_key.register(n_mappings, n_opts)
+which_key.register(v_mappings, v_opts)
