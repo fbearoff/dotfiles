@@ -78,11 +78,7 @@ return packer.startup(function(use)
       "rcarriga/nvim-notify" -- notifications manager
     }
   }
-  use { "nguyenvukhang/nvim-toggler", -- toggle booleans
-    config = function()
-      require('nvim-toggler').setup()
-    end
-  }
+  use  "nguyenvukhang/nvim-toggler" -- toggle booleans
 
   -- Colorschemes
   -- use "ellisonleao/gruvbox.nvim"
@@ -113,7 +109,6 @@ return packer.startup(function(use)
   -- Telescope
   use "nvim-telescope/telescope.nvim" -- selector
   use { "nvim-telescope/telescope-fzf-native.nvim", run = 'make' }
-  -- use "nvim-telescope/telescope-ui-select.nvim"
 
   -- Treesitter
   use "nvim-treesitter/nvim-treesitter"
