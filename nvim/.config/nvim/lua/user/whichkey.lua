@@ -105,10 +105,7 @@ local n_mappings = {
   ["c"] = { "<cmd>ColorizerToggle<CR>", "Colorize" },
   ["m"] = { "<cmd>Glow<CR>", "Glow (Markdown Preview)" },
   ["h"] = { "<cmd>set invhlsearch<CR>", "Toggle Highlight" },
-  ["f"] = {
-    "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-    "Find files",
-  },
+  ["f"] = { "<cmd>Telescope find_files<cr>", "Find files" },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   ["v"] = { "<cmd>lua require('telescope').extensions.neoclip.neoclip()<cr>", "Clipboard" },
@@ -171,7 +168,7 @@ local n_mappings = {
     o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-    d = { "<cmd>lua DiffviewToggle()<cr>", "Diff", },
+    d = { "<cmd>Telescope git_status<cr>", "Diff", },
   },
 
   l = {
@@ -208,7 +205,7 @@ local n_mappings = {
   s = {
     name = "Search",
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-    c = { "<cmd>lua require('telescope.builtin.internal').colorscheme({enable_preview = true})<cr>", "Colorscheme" },
+    c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
     h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },

@@ -29,6 +29,7 @@ mason.setup {
   },
   log_level = vim.log.levels.INFO,
   max_concurrent_installers = 4,
+  check_outdated_packages_on_open = true,
 }
 mason_lspconfig.setup {
   ensure_installed = servers,

@@ -118,7 +118,6 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim" -- git signs in gutter
-  use "sindrets/diffview.nvim"
 
   -- DAP
   use "mfussenegger/nvim-dap"
