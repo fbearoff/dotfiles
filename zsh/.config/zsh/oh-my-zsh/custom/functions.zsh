@@ -87,15 +87,28 @@ function nta() {
   fi
 }
 
+function septa() {
+  read "?What is the departing station?: "  depart
+  read "?What is the destination?: "  dest
+  timetable="$(curl -X 'GET' \
+            'https://www3.septa.org/api/Arrivals/index.php?station='${depart// /%20}'&results=20&direction=N' \
+            -H 'accept: application/json' \
+            --silent | jq)"
+  out=$(echo "$timetable" | jq '.[] | .[].Northbound | first(.[] | select(.destination == "'$dest'")) | .train_id, .status, .depart_time')
+  echo $out|awk 'BEGIN{ RS = "" ; FS = "\n" }{print "Train " $1 " is " $2 " and departing at " $3}'
+}
+
 # music
 function am() {
   for d in ~/downloads/music/* ; do
     if [[ -d "$d" && ! -L "$d" ]]
       mv "$d"/*.flac /mnt/d/Music
-done
+  done
 }
 
 # fix x11
 function fx() {
   sudo ln -s /mnt/wslg/.X11-unix /tmp/.X11-unix
 }
+
+# |awk '{print $2}'|sed s/:00.000\"//
