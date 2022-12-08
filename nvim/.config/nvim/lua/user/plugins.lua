@@ -53,7 +53,6 @@ return packer.startup(function(use)
   use "lewis6991/impatient.nvim" -- speedup plugin loading
   use "lukas-reineke/indent-blankline.nvim"
   use "goolord/alpha-nvim" -- greeting page
-  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim" -- keymap reminder
   use "jalvesaq/Nvim-R" -- R in vim
   use "chentoast/marks.nvim" -- marks in gutter
@@ -62,10 +61,8 @@ return packer.startup(function(use)
   use "DanilaMihailov/beacon.nvim" --show cursor jumps
   use "kosayoda/nvim-lightbulb" --show lightbulb when code action available
   use "RRethy/vim-illuminate" -- Illuminate other uses of current word/symbol under cursor
-  use "mrjones2014/smart-splits.nvim" -- natural window switchin
-  use { "AckslD/nvim-neoclip.lua", -- clipboard manager
-    requires = { "nvim-telescope/telescope.nvim" }
-  }
+  use "mrjones2014/smart-splits.nvim" -- natural window switching
+  use "AckslD/nvim-neoclip.lua" -- clipboard manager
   use "max397574/better-escape.nvim" -- ignore timeloutlen when escaping insert mode
   use { "ellisonleao/glow.nvim", branch = 'main' } -- render markdown
   use "NvChad/nvim-colorizer.lua" -- show color codes
@@ -78,7 +75,7 @@ return packer.startup(function(use)
       "rcarriga/nvim-notify" -- notifications manager
     }
   }
-  use  "nguyenvukhang/nvim-toggler" -- toggle booleans
+  use "nguyenvukhang/nvim-toggler" -- toggle booleans
 
   -- Colorschemes
   -- use "ellisonleao/gruvbox.nvim"
@@ -103,8 +100,7 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/mason.nvim" --LSP installer
   use "williamboman/mason-lspconfig.nvim"
-  use { "SmiteshP/nvim-navic", -- show current document symbol
-    requires = "neovim/nvim-lspconfig" }
+  use "SmiteshP/nvim-navic" -- show current document symbol
 
   -- Telescope
   use "nvim-telescope/telescope.nvim" -- selector

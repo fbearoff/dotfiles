@@ -168,7 +168,8 @@ local n_mappings = {
     o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-    d = { "<cmd>Telescope git_status<cr>", "Diff", },
+    d = { "<cmd>Telescope git_status<cr>", "Diff Overview", },
+    v = { "<cmd>Gitsigns diffthis<cr>", "Diff View", },
   },
 
   l = {
