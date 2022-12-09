@@ -90,12 +90,24 @@ function nta() {
 function septa() {
   read "?What is the departing station?: "  depart
   read "?What is the destination?: "  dest
-  timetable="$(curl -X 'GET' \
+  timetable=$(curl -X 'GET' \
             'https://www3.septa.org/api/Arrivals/index.php?station='${depart// /%20}'&results=20&direction=N' \
             -H 'accept: application/json' \
-            --silent | jq)"
+            --silent | jq)
   out=$(echo "$timetable" | jq '.[] | .[].Northbound | first(.[] | select(.destination == "'$dest'")) | .train_id, .status, .depart_time')
-  echo $out|awk 'BEGIN{ RS = "" ; FS = "\n" }{print "Train " $1 " is " $2 " and departing at " $3}'
+
+  tn=$(echo $out | sed '1q;d' | tr -d "\"")
+  ts=$(echo $out | sed '2q;d' | tr -d "\"")
+  dt=$(echo $out | sed '3q;d' | tr -d "\"")
+
+  if [[ $ts == "On Time" ]]; then
+    ts=$(echo "\033[0;32m"$ts"\033[0m");
+  else
+    ts=$(echo "\033[1;31m"$ts "late\033[0m")
+  fi
+
+  dt=$(echo $dt | awk '{print $2 }' | sed s/:00.000//)
+  echo -e "Train\033[1;32m" $tn "\033[0mis" $ts "and departing at" $dt
 }
 
 # music
@@ -110,5 +122,3 @@ function am() {
 function fx() {
   sudo ln -s /mnt/wslg/.X11-unix /tmp/.X11-unix
 }
-
-# |awk '{print $2}'|sed s/:00.000\"//
