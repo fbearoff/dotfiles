@@ -101,13 +101,13 @@ function septa() {
   dt=$(echo $out | sed '3q;d' | tr -d "\"")
 
   if [[ $ts == "On Time" ]]; then
-    ts=$(echo "\033[0;32m"$ts"\033[0m");
+    ts=$(echo "\033[1;32m"$ts"\033[0m");
   else
     ts=$(echo "\033[1;31m"$ts "late\033[0m")
   fi
 
-  dt=$(echo $dt | awk '{print $2 }' | sed s/:00.000//)
-  echo -e "Train\033[1;32m" $tn "\033[0mis" $ts "and departing at" $dt
+  dt=$(echo $dt | awk '{print $2 }' | cut --delimiter=":" --fields=1-2 | date -f - "+%I:%M %p")
+  echo -e "Train\033[1;32m" $tn "\033[0mis" $ts "and departing at\033[1;32m" $dt
 }
 
 # music
