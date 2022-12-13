@@ -9,4 +9,7 @@ notify.setup {
 
   -- Default timeout for notifications
   timeout = 0,
+
+  -- Notification appearance
+  render = "minimal",
 }

@@ -2,3 +2,9 @@ set editing-mode vi
 set show-mode-in-prompt on
 set vi-cmd-mode-string \1\e[2 q\2(c)
 set vi-ins-mode-string \1\e[5 q\2(i)
+
+$if R
+    set bell-style none
+$else
+    set bell-style audible
+$endif

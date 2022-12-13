@@ -102,20 +102,15 @@ local n_mappings = {
   ["i"] = { "<cmd>lua require('nvim-toggler').toggle()<CR>", "Toggle Inverse" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
-  ["c"] = { "<cmd>ColorizerToggle<CR>", "Colorize" },
-  ["m"] = { "<cmd>Glow<CR>", "Glow (Markdown Preview)" },
-  ["h"] = { "<cmd>set invhlsearch<CR>", "Toggle Highlight" },
   ["f"] = { "<cmd>Telescope find_files<cr>", "Find files" },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-  ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   ["v"] = { "<cmd>lua require('telescope').extensions.neoclip.neoclip()<cr>", "Clipboard" },
   ["n"] = { "<cmd>lua require('telescope').extensions.notify.notify(require('telescope.themes').get_dropdown{winblend = 5})<cr>",
     "Notifications" },
   ["-"] = { "<cmd>:split<CR>", "Split" },
   ["\\"] = { "<cmd>:vsplit<CR>", "VSplit" },
   ["!"] = { "<cmd>lua require('grapple').toggle()<cr>", "Grapple Toggle" },
-  ["<TAB>"] = { "<cmd>lua require('grapple').cycle_forward()<cr>", "Grapple Forward"},
-  ["<S-TAB>"] = { "<cmd>lua require('grapple').cycle_forward()<cr>", "Grapple Forward"},
+  ["<TAB>"] = { "<cmd>lua require('grapple').cycle_backward()<cr>", "Grapple Cycle" },
 
   b = {
     name = "+Buffers",
@@ -130,7 +125,7 @@ local n_mappings = {
     D = { "<cmd>BufferOrderByDirectory<cr>", "sort BufferLines automatically by directory" },
     L = { "<cmd>BufferOrderByLanguage<cr>", "sort BufferLines automatically by language" },
     p = { "<cmd>BufferPin<cr>", "pin buffer" },
-    g = { "<cmd>lua require('grapple').popup_tags(scope)<cr>", "Grapple Tags"}
+    g = { "<cmd>lua require('grapple').popup_tags(scope)<cr>", "Grapple Tags" }
   },
 
   d = {
@@ -207,6 +202,13 @@ local n_mappings = {
       "Workspace Symbols",
     },
   },
+
+  o = { name = "Options",
+    h = { "<cmd>set invhlsearch<CR>", "Toggle Highlight" },
+    c = { "<cmd>ColorizerToggle<CR>", "Colorize" },
+    g = { "<cmd>Glow<CR>", "Glow (Markdown Preview)" },
+  },
+
   s = {
     name = "Search",
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
@@ -217,6 +219,7 @@ local n_mappings = {
     R = { "<cmd>Telescope registers<cr>", "Registers" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
+    P = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   },
 
   t = {

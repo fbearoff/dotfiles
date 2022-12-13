@@ -54,7 +54,7 @@ return packer.startup(function(use)
   use "lukas-reineke/indent-blankline.nvim"
   use "goolord/alpha-nvim" -- greeting page
   use "folke/which-key.nvim" -- keymap reminder
-  use "jalvesaq/Nvim-R" -- R in vim
+  use { "jalvesaq/Nvim-R", commit = '16ad0bbf3496bc70c12d7f78df61778636374b0c' } -- R in vim
   use "chentoast/marks.nvim" -- marks in gutter
   use "cappyzawa/trim.nvim" -- fix whitespace
   use "romgrk/barbar.nvim" -- bufferbar

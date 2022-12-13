@@ -32,4 +32,10 @@ colorout::setOutputColors(
 
 options(menu.graphics = FALSE)
 
+if (Sys.getenv("NVIMR_TMPDIR") == "") {
+  options(defaultPackages = c("utils", "grDevices", "graphics", "stats", "methods"))
+} else {
+  options(defaultPackages = c("utils", "grDevices", "graphics", "stats", "methods", "nvimcom"))
+}
+
 # vim:ft=r
