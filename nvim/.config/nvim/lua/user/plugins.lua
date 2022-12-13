@@ -76,6 +76,7 @@ return packer.startup(function(use)
     }
   }
   use "nguyenvukhang/nvim-toggler" -- toggle booleans
+  use "cbochs/grapple.nvim"
 
   -- Colorschemes
   -- use "ellisonleao/gruvbox.nvim"

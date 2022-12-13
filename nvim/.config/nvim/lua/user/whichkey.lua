@@ -113,6 +113,9 @@ local n_mappings = {
     "Notifications" },
   ["-"] = { "<cmd>:split<CR>", "Split" },
   ["\\"] = { "<cmd>:vsplit<CR>", "VSplit" },
+  ["!"] = { "<cmd>lua require('grapple').toggle()<cr>", "Grapple Toggle" },
+  ["<TAB>"] = { "<cmd>lua require('grapple').cycle_forward()<cr>", "Grapple Forward"},
+  ["<S-TAB>"] = { "<cmd>lua require('grapple').cycle_forward()<cr>", "Grapple Forward"},
 
   b = {
     name = "+Buffers",
@@ -127,6 +130,7 @@ local n_mappings = {
     D = { "<cmd>BufferOrderByDirectory<cr>", "sort BufferLines automatically by directory" },
     L = { "<cmd>BufferOrderByLanguage<cr>", "sort BufferLines automatically by language" },
     p = { "<cmd>BufferPin<cr>", "pin buffer" },
+    g = { "<cmd>lua require('grapple').popup_tags(scope)<cr>", "Grapple Tags"}
   },
 
   d = {

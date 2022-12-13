@@ -108,6 +108,14 @@ local macro = {
   color = { fg = "#ff9e64" },
 }
 
+local grapple = {
+  function()
+    local key = require("grapple").key()
+    return "  [" .. key .. "]"
+  end,
+  cond = require("grapple").exists,
+}
+
 -- silence navic if documentSymbols is not supported
 vim.g.navic_silence = true
 navic.setup {
@@ -169,7 +177,7 @@ lualine.setup({
   },
   winbar = {
     lualine_a = {},
-    lualine_b = {},
+    lualine_b = { grapple },
     lualine_c = { filename },
     lualine_x = {},
     lualine_y = {},
@@ -177,7 +185,7 @@ lualine.setup({
   },
   inactive_winbar = {
     lualine_a = {},
-    lualine_b = {},
+    lualine_b = { grapple },
     lualine_c = { filename },
     lualine_x = {},
     lualine_y = {},
