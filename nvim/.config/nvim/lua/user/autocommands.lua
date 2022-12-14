@@ -23,7 +23,7 @@ local autocmds = {
   };
   terminal_job = {
     { "TermOpen", "*", "setlocal listchars= nonumber norelativenumber signcolumn=no" };
-    { "TermOpen", "*", "startinsert" };
+    -- { "TermOpen", "*", "startinsert" };
   };
   alpha = {
     { "User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2" };

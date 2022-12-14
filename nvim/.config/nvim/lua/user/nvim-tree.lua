@@ -145,7 +145,7 @@ nvim_tree.setup {
   },
   filters = {
     dotfiles = false,
-    custom = {},
+    custom = { "^.git$" },
   },
   git = {
     enable = true,
@@ -179,7 +179,7 @@ nvim_tree.setup {
       quit_on_open = false,
       resize_window = true,
       window_picker = {
-        enable = false --broken with vsplits
+        enable = true
       }
     }
   }

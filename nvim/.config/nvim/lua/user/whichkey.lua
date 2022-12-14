@@ -85,7 +85,7 @@ local v_mappings = {
     b = { "<Plug>(comment_toggle_blockwise_visual)<CR>", "Block Comment" }
   },
   i = { ":'<,'>lua require('nvim-toggler').toggle()<CR>", "Toggle Inverse" },
-  S = { ":'<,'>ToggleTermSendVisualSelection<CR>", "Send to Terminal" },
+  S = { ":'<,'>SnipRun<CR>", "SnipRun" },
 }
 
 local n_opts = {
@@ -112,7 +112,7 @@ local n_mappings = {
   ["\\"] = { "<cmd>:vsplit<CR>", "VSplit" },
   ["!"] = { "<cmd>lua require('grapple').toggle()<cr>", "Grapple Toggle" },
   ["<TAB>"] = { "<cmd>lua require('grapple').cycle_backward()<cr>", "Grapple Cycle" },
-  ["S"] = { "<cmd>ToggleTermSendCurrentLine<CR>", "Send to Terminal" },
+  ["S"] = { "<Plug>SnipRun", "Sniprun" },
 
   b = {
     name = "+Buffers",

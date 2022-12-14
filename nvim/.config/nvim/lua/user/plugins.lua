@@ -77,6 +77,7 @@ return packer.startup(function(use)
   }
   use "nguyenvukhang/nvim-toggler" -- toggle booleans
   use "cbochs/grapple.nvim"
+  use { 'michaelb/sniprun', run = 'bash ./install.sh' }
 
   -- Colorschemes
   -- use "ellisonleao/gruvbox.nvim"
