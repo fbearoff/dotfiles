@@ -3,6 +3,8 @@ if not status_ok then
   return
 end
 
+local colors = require("kanagawa.colors").setup()
+
 sniprun.setup {
   selected_interpreters = {}, --# use those instead of the default for the current filetype
   repl_enable = {}, --# enable REPL-like behavior for the given interpreters
@@ -26,13 +28,13 @@ sniprun.setup {
   --# to filter only sucessful runs (or errored-out runs respectively)
   display = {
     -- "Classic", --# display results in the command-line  area
-    "VirtualTextOk", --# display ok results as virtual text (multiline is shortened)
+    "VirtualTextOK", --# display ok results as virtual text (multiline is shortened)
 
     -- "VirtualText",             --# display results as virtual text
     -- "TempFloatingWindow",      --# display results in a floating window
     -- "LongTempFloatingWindow",  --# same as above, but only long results. To use with VirtualText[Ok/Err]
     -- "Terminal",                --# display results in a vertical split
-    "TerminalWithCode",        --# display results and code history in a vertical split
+    "TerminalWithCode", --# display results and code history in a vertical split
     -- "NvimNotify",              --# display with the nvim-notify plugin
     -- "Api"                      --# return output to a programming interface
   },
@@ -52,10 +54,11 @@ sniprun.setup {
   },
 
   --# customize highlight groups (setting this overrides colorscheme)
+
   snipruncolors = {
-    SniprunVirtualTextOk  = { bg = "#66eeff", fg = "#000000", ctermbg = "Cyan", cterfg = "Black" },
+    SniprunVirtualTextOk  = { bg = colors.diag.hint, fg = colors.bg_dark, ctermbg = "Cyan", cterfg = "Black" },
     SniprunFloatingWinOk  = { fg = "#66eeff", ctermfg = "Cyan" },
-    SniprunVirtualTextErr = { bg = "#881515", fg = "#000000", ctermbg = "DarkRed", cterfg = "Black" },
+    SniprunVirtualTextErr = { bg = colors.diag.error, fg = colors.bg.dark, ctermbg = "DarkRed", cterfg = "Black" },
     SniprunFloatingWinErr = { fg = "#881515", ctermfg = "DarkRed" },
   },
 
