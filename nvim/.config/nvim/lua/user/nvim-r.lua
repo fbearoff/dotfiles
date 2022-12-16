@@ -7,7 +7,9 @@ vim.g["R_source_args"] = 'echo = TRUE, spaced = TRUE'
 vim.g["R_term_title"] = 'R'
 vim.g["R_hl_term"] = false
 vim.g["R_editing_mode"] = 'vi'
+vim.g["R_clear_console"] = false
 vim.g["R_clear_line"] = true
+vim.g["R_specialplot"] = true
 vim.g["R_assign"] = 0
 vim.g["R_csv_app"] = 'terminal:vd'
 vim.g["R_auto_omni"] = { }
