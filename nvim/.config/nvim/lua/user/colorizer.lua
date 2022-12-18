@@ -19,6 +19,7 @@ colorizer.setup {
     "!DressingSelect",
     "!TelescopePrompt",
     "!rbrowser",
+    "!rdoc"
   },
   user_default_options = {
     RGB = true, -- #RGB hex codes

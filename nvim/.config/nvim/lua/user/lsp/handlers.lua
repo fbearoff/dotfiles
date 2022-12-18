@@ -74,30 +74,29 @@ function format_range_operator()
   vim.api.nvim_feedkeys('g@', 'n', false)
 end
 
+-- Mappings
+local opts = { noremap = true, silent = true }
+local keymap = vim.keymap.set
+
+keymap("n", "gl", vim.diagnostic.open_float, opts)
+keymap("n", "<leader>lj", vim.diagnostic.goto_next, opts)
+keymap("n", "<leader>lk", vim.diagnostic.goto_prev, opts)
+keymap("n", "<leader>lq", vim.diagnostic.setloclist, opts)
+
 local function lsp_keymaps(bufnr)
-  local opts = { noremap = true, silent = true }
-  local keymap = vim.api.nvim_buf_set_keymap
-  keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-
-  keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-  keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
-  keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", opts)
-  keymap(bufnr, "n", "<leader>lI", "<cmd>LspInstallInfo<cr>", opts)
-  keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-  keymap(bufnr, "n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
-  keymap(bufnr, "n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
-  keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-  keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+  keymap("n", "gD", vim.lsp.buf.declaration, bufopts)
+  keymap("n", "gd", vim.lsp.buf.definition, bufopts)
+  keymap("n", "K", vim.lsp.buf.hover, bufopts)
+  keymap("n", "gi", vim.lsp.buf.implementation, bufopts)
+  keymap("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+  keymap("n", "gr", vim.lsp.buf.references, bufopts)
+  keymap('n', '<leader>lf', function() vim.lsp.buf.format { async = true } end, bufopts)
+  keymap("n", "<leader>la", vim.lsp.buf.code_action, bufopts)
+  keymap("n", "<leader>lr", vim.lsp.buf.rename, bufopts)
+  keymap("n", "<leader>ls", vim.lsp.buf.signature_help, bufopts)
   vim.api.nvim_buf_create_user_command(bufnr, "Format", vim.lsp.buf.format, {})
-  vim.api.nvim_set_keymap("n", "gm", "<cmd>lua format_range_operator()<CR>", opts)
-  vim.api.nvim_set_keymap("v", "gm", "<cmd>lua format_range_operator()<CR>", opts)
+  keymap({ "n", "v" }, "gm", format_range_operator, bufopts)
 end
 
 local navic = require("nvim-navic")

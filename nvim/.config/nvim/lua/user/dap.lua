@@ -74,3 +74,17 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
+
+-- Keymaps
+local opts = { noremap = true, silent = true }
+local keymap = vim.keymap.set
+
+keymap("n", "<leader>db", require 'dap'.toggle_breakpoint, opts)
+keymap("n", "<leader>dc", require 'dap'.continue, opts)
+keymap("n", "<leader>di", require 'dap'.step_into, opts)
+keymap("n", "<leader>do", require 'dap'.step_over, opts)
+keymap("n", "<leader>dO", require 'dap'.step_out, opts)
+keymap("n", "<leader>dr", require 'dap'.repl.toggle, opts)
+keymap("n", "<leader>dl", require 'dap'.run_last, opts)
+keymap("n", "<leader>du", require 'dapui'.toggle, opts)
+keymap("n", "<leader>dt", require 'dap'.terminate, opts)

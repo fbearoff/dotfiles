@@ -7,12 +7,12 @@ end
 
 kanagawa.setup {
   undercurl = true, -- enable undercurls
-  commentStyle = { italic = true },
+  commentStyle = { italic = false },
   functionStyle = {},
-  keywordStyle = { italic = true },
+  keywordStyle = { italic = false },
   statementStyle = { bold = true },
   typeStyle = {},
-  variablebuiltinStyle = { italic = true },
+  variablebuiltinStyle = { italic = false },
   specialReturn = true, -- special highlight for the return keyword
   specialException = true, -- special highlight for exception handling keywords
   transparent = false, -- do not set background color

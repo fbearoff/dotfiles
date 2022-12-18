@@ -8,11 +8,11 @@ end
 
 -- For creating new Terminal Instance
 function M.open_term(cmd, opts)
-  opts    = opts or {}
-  opts.size    = opts.size or vim.o.columns * 0.5
+  opts           = opts or {}
+  opts.size      = opts.size or vim.o.columns * 0.5
   opts.direction = opts.direction or "vertical"
-  opts.on_open  = opts.on_open or default_on_open
-  opts.on_exit  = opts.on_exit or nil
+  opts.on_open   = opts.on_open or default_on_open
+  opts.on_exit   = opts.on_exit or nil
 
   local new_term = TERMINAL:new {
     cmd             = cmd,
@@ -29,7 +29,7 @@ end
 -- For StackOverflow Assistance
 function M.so_input()
   local buf = vim.api.nvim_get_current_buf()
-  file_type = vim.api.nvim_buf_get_option(buf, "filetype")
+  local file_type = vim.api.nvim_buf_get_option(buf, "filetype")
   vim.ui.input({ prompt = "StackOverflow input: ", default = file_type .. " " },
     function(input)
       local cmd = ""
@@ -42,6 +42,13 @@ function M.so_input()
       end
       M.open_term("so " .. cmd, { direction = 'float' })
     end)
+end
+
+-- Installs the package under cursor via Nvim-R
+function M.R_install()
+  local current_word = vim.call('expand', '<cword>')
+  local rsend_command = string.format(':RSend install.packages("' .. current_word .. '")')
+  vim.api.nvim_command(rsend_command)
 end
 
 return M

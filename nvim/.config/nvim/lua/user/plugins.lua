@@ -54,7 +54,8 @@ return packer.startup(function(use)
   use "lukas-reineke/indent-blankline.nvim"
   use "goolord/alpha-nvim" -- greeting page
   use "folke/which-key.nvim" -- keymap reminder
-  use { "jalvesaq/Nvim-R", commit = '16ad0bbf3496bc70c12d7f78df61778636374b0c' } -- R in vim
+  -- use { "jalvesaq/Nvim-R", commit = '16ad0bbf3496bc70c12d7f78df61778636374b0c' } -- R in vim
+  use "jalvesaq/Nvim-R"
   use "chentoast/marks.nvim" -- marks in gutter
   use "cappyzawa/trim.nvim" -- fix whitespace
   use "romgrk/barbar.nvim" -- bufferbar
@@ -76,8 +77,9 @@ return packer.startup(function(use)
     }
   }
   use "nguyenvukhang/nvim-toggler" -- toggle booleans
-  use "cbochs/grapple.nvim"
-  use { 'michaelb/sniprun', run = 'bash ./install.sh' }
+  use "cbochs/grapple.nvim" -- quickly access tagged files
+  use { 'michaelb/sniprun', run = 'bash ./install.sh' } -- run code snippets
+  use "gbprod/substitute.nvim" -- put over text with motion
 
   -- Colorschemes
   -- use "ellisonleao/gruvbox.nvim"
@@ -107,6 +109,7 @@ return packer.startup(function(use)
   -- Telescope
   use "nvim-telescope/telescope.nvim" -- selector
   use { "nvim-telescope/telescope-fzf-native.nvim", run = 'make' }
+  use 'debugloop/telescope-undo.nvim'
 
   -- Treesitter
   use "nvim-treesitter/nvim-treesitter"

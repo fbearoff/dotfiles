@@ -5,13 +5,21 @@ end
 
 hop.setup()
 
-local opts = { noremap = true, silent = true }
+local keymap = vim.keymap.set
+local directions = require('hop.hint').HintDirection
 
-local keymap = vim.api.nvim_set_keymap
-
--- keymap("n", "s/", ':HopPattern<cr>' , opts)
-keymap('', 's/', "<cmd>lua require'hop'.hint_patterns({ })<cr>", opts)
-keymap('', 'sW', "<cmd>lua require'hop'.hint_words({ current_line_only = false })<cr>", opts)
-keymap('', 'sw', "<cmd>lua require'hop'.hint_words({ current_line_only = true })<cr>", opts)
-keymap('', 'se', "<cmd>lua require'hop'.hint_words({ hint_position = require'hop.hint'.HintPosition.END, current_line_only = true })<cr>", opts)
-keymap('', 'sE', "<cmd>lua require'hop'.hint_words({ hint_position = require'hop.hint'.HintPosition.END, current_line_only = false })<cr>", opts)
+keymap('', 'f/', function()
+  hop.hint_patterns({})
+end, { remap = true })
+keymap('', 'f', function()
+  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
+end, { remap = true })
+keymap('', 'F', function()
+  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
+end, { remap = true })
+keymap('', 't', function()
+  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_of = -1 })
+end, { remap = true })
+keymap('', 'T', function()
+  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_of = 1 })
+end, { remap = true })

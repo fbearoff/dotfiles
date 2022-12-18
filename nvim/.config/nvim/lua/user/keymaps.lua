@@ -1,7 +1,7 @@
 local opts = { noremap = true, silent = true }
 
 -- Shorten function name
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -16,13 +16,20 @@ vim.g.maplocalleader = "\\"
 --   term_mode = "t",
 --   command_mode = "c",
 
--- Normal --
+-- Insert --
 -- Better window navigation
 keymap('i', '<A-h>', '<C-\\><C-N><C-w>h', opts)
 keymap('i', '<A-j>', '<C-\\><C-N><C-w>j', opts)
 keymap('i', '<A-k>', '<C-\\><C-N><C-w>k', opts)
 keymap('i', '<A-l>', '<C-\\><C-N><C-w>l', opts)
 
+-- Home row navigation
+keymap('i', '<C-h>', '<left>', opts)
+keymap('i', '<C-l>', '<right>', opts)
+keymap('i', '<C-j>', '<down>', opts)
+keymap('i', '<C-k>', '<up>', opts)
+
+-- Normal --
 -- Remap for dealing with word wrap
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -31,7 +38,18 @@ keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 keymap('n', 'H', '^', opts)
 keymap('n', 'L', '$', opts)
 
---turn off Q
+-- Keep cursor in place when joing lines
+keymap("n", "J", "mzJ`z", opts)
+
+-- Center cursor when scrolling page
+keymap("n", "<C-d>", "<C-d>zz", opts)
+keymap("n", "<C-u>", "<C-u>zz", opts)
+
+-- Keep search term in the middle of screen
+keymap("n", "n", "nzzzv", opts)
+keymap("n", "N", "Nzzzv", opts)
+
+--turn off Q (ex mode)
 keymap('n', 'Q', '<nop>', opts)
 keymap("c", "Q", "q", { noremap = true, silent = false })
 
@@ -41,51 +59,12 @@ keymap("v", "<", "<gv^", opts)
 keymap("v", ">", ">gv^", opts)
 
 -- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
+keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
 keymap("v", "p", '"_dP', opts)
 
 -- Better paste
 keymap("v", "p", '"_dP', opts)
 
--- Barbar
--- Move to previous/next
-keymap('n', '<A-,>', ':BufferPrevious<CR>', opts)
-keymap('n', '<A-.>', ':BufferNext<CR>', opts)
-keymap("n", "<C-l>", ":bnext<CR>", opts)
-keymap("n", "<C-h>", ":bprevious<CR>", opts)
--- Re-order to previous/next
-keymap('n', '<A-<>', ':BufferMovePrevious<CR>', opts)
-keymap('n', '<A->>', ':BufferMoveNext<CR>', opts)
--- Goto buffer in position...
-keymap('n', '<A-1>', ':BufferGoto 1<CR>', opts)
-keymap('n', '<A-2>', ':BufferGoto 2<CR>', opts)
-keymap('n', '<A-3>', ':BufferGoto 3<CR>', opts)
-keymap('n', '<A-4>', ':BufferGoto 4<CR>', opts)
-keymap('n', '<A-5>', ':BufferGoto 5<CR>', opts)
-keymap('n', '<A-6>', ':BufferGoto 6<CR>', opts)
-keymap('n', '<A-7>', ':BufferGoto 7<CR>', opts)
-keymap('n', '<A-8>', ':BufferGoto 8<CR>', opts)
-keymap('n', '<A-9>', ':BufferGoto 9<CR>', opts)
-keymap('n', '<A-0>', ':BufferLast<CR>', opts)
--- Close buffer
-keymap('n', '<A-c>', ':BufferClose<CR>', opts)
-
--- --Nvim-R
-keymap('n', '<leader><Space>', '<Plug>RDSendLine', opts)
-keymap('v', '<leader><Space>', '<Plug>RDSendSelection', opts)
-keymap('n', '<LocalLeader>:', ':RSend ', opts)
-
 -- Open link under cursor
 keymap("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>', {})
-
--- DAP
-keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
-keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
-keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
-keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts)
-keymap("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", opts)
-keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
-keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
-keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
-keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
