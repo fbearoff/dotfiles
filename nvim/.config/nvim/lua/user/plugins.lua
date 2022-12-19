@@ -1,3 +1,24 @@
+local disabled_built_ins = {
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
+  "gzip",
+  "zip",
+  "zipPlugin",
+  "tar",
+  "tarPlugin",
+  "getscript",
+  "getscriptPlugin",
+  "vimball",
+  "vimballPlugin",
+  "2html_plugin",
+  "logipat",
+  "rrhelper",
+  "matchit"
+}
+for _, plugin in pairs(disabled_built_ins) do vim.g["loaded_" .. plugin] = 1 end
+
 local fn = vim.fn
 
 -- Automatically install packer
@@ -63,7 +84,7 @@ return packer.startup(function(use)
   use "kosayoda/nvim-lightbulb" --show lightbulb when code action available
   use "RRethy/vim-illuminate" -- Illuminate other uses of current word/symbol under cursor
   use "mrjones2014/smart-splits.nvim" -- natural window switching
-  use "AckslD/nvim-neoclip.lua" -- clipboard manager
+  -- use "AckslD/nvim-neoclip.lua" -- clipboard manager
   use "max397574/better-escape.nvim" -- ignore timeloutlen when escaping insert mode
   use { "ellisonleao/glow.nvim", branch = 'main' } -- render markdown
   use "NvChad/nvim-colorizer.lua" -- show color codes
@@ -80,6 +101,7 @@ return packer.startup(function(use)
   use "cbochs/grapple.nvim" -- quickly access tagged files
   use { 'michaelb/sniprun', run = 'bash ./install.sh' } -- run code snippets
   use "gbprod/substitute.nvim" -- put over text with motion
+  use "gbprod/yanky.nvim"
 
   -- Colorschemes
   -- use "ellisonleao/gruvbox.nvim"
