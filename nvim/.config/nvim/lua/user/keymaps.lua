@@ -68,3 +68,16 @@ keymap("v", "p", '"_dP', opts)
 
 -- Open link under cursor
 keymap("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>', {})
+
+-- Send deletions to blackhole register
+for _, lhs in ipairs(
+  { "c", "C", "s", "S", "d", "D", "x", "X" }) do
+  keymap({ "n", "x" }, lhs, '"_' .. lhs, opts)
+end
+
+-- Map "cut" action to d key
+local cut_key = "x"
+
+keymap({"n", "x"}, cut_key, "d", opts)
+keymap("n", cut_key .. cut_key, "dd", opts)
+keymap("n", string.upper(cut_key), "D", opts)
