@@ -28,10 +28,10 @@ local diagnostics = {
 local diff = {
   "diff",
   colored = true,
-  symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
+  symbols = { added = " ", modified = " ", removed = " " },
   cond = hide_in_width,
   on_click = function()
-    vim.cmd.DiffviewOpen()
+    package.loaded.gitsigns.diffthis()
   end
 }
 
@@ -82,21 +82,11 @@ local lsp_server = {
     end
     return msg
   end,
-  icon = ' LSP:',
+  icon = ' :',
   on_click = function()
     require 'lspconfig.ui.lspinfo' ()
   end
 }
-
--- cool function for progress
-local progress = function()
-  local current_line = vim.fn.line(".")
-  local total_lines = vim.fn.line("$")
-  local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
-  local line_ratio = current_line / total_lines
-  local index = math.ceil(line_ratio * #chars)
-  return chars[index]
-end
 
 local spaces = function()
   return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
@@ -166,7 +156,7 @@ lualine.setup({
     lualine_c = { long_filename },
     lualine_x = { macro, lsp_server, spaces, "fileformat", "encoding", filetype },
     lualine_y = { location },
-    lualine_z = { progress },
+    lualine_z = { },
   },
   -- unused with global statusline
   inactive_sections = {

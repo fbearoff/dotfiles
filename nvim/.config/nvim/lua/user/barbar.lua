@@ -9,6 +9,12 @@ bufferline.setup {
   tabpages = true,
   closable = true,
   clickable = true,
+  diagnostics = {
+    [vim.diagnostic.severity.ERROR] = {enabled = true, icon = ' '},
+    [vim.diagnostic.severity.WARN] = {enabled = false},
+    [vim.diagnostic.severity.INFO] = {enabled = false},
+    [vim.diagnostic.severity.HINT] = {enabled = true},
+  },
   exclude_ft = { 'javascript' },
   exclude_name = { 'package.json' },
   icons = 'both',
