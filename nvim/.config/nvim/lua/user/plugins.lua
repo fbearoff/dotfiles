@@ -131,9 +131,9 @@ return packer.startup(function(use)
   use "SmiteshP/nvim-navic" -- show current document symbol
 
   -- Telescope
-  use "nvim-telescope/telescope.nvim" -- selector
+  use { "nvim-telescope/telescope.nvim", -- selector
+    requires = { 'debugloop/telescope-undo.nvim' } }
   use { "nvim-telescope/telescope-fzf-native.nvim", run = 'make' }
-  use 'debugloop/telescope-undo.nvim'
 
   -- Treesitter
   use "nvim-treesitter/nvim-treesitter"

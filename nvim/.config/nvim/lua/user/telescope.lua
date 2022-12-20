@@ -3,7 +3,6 @@ if not status_ok then
   return
 end
 
-local actions = require("telescope.actions")
 local action_layout = require("telescope.actions.layout")
 
 -- Don't preview binaries
@@ -41,7 +40,6 @@ table.insert(vimgrep_arguments, "!**/.git/*")
 
 telescope.setup {
   defaults = {
-
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
@@ -50,7 +48,6 @@ telescope.setup {
     winblend = 5,
     buffer_previewer_maker = new_maker, -- don't preview binaries
     vimgrep_arguments = vimgrep_arguments,
-
     mappings = {
       i = {
         ["<M-p>"] = action_layout.toggle_preview,
@@ -80,14 +77,30 @@ telescope.setup {
       case_mode = "smart_case", -- or "ignore_case" or "respect_case"
     },
     undo = {
-      prompt_prefix = "?",
-      initial_mode = "normal",
+      -- prompt_prefix = "?",
+      -- initial_mode = "normal",
+      side_by_side = true,
+      layout_strategy = "vertical",
+      layout_config = {
+        preview_height = 0.8,
+      },
+      mappings = {
+        i = {
+          ["<C-a>"] = require("telescope-undo.actions").yank_additions,
+          ["<C-r>"] = require("telescope-undo.actions").yank_deletions,
+          ["<cr>"] = require("telescope-undo.actions").restore,
+        },
+        n = {
+          ["<C-a>"] = require("telescope-undo.actions").yank_additions,
+          ["<C-r>"] = require("telescope-undo.actions").yank_deletions,
+          ["<cr>"] = require("telescope-undo.actions").restore,
+        },
+      }
     },
   }
 }
 
 pcall(require('telescope').load_extension, 'fzf')
-pcall(require('telescope').load_extension, 'neoclip')
 pcall(require('telescope').load_extension, 'notify')
 pcall(require('telescope').load_extension, 'noice')
 pcall(require('telescope').load_extension, "undo")

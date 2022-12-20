@@ -9,7 +9,6 @@ local options = {
   expandtab = true, -- convert tabs to spaces
   fileencoding = "utf-8", -- the encoding written to a file
   fillchars = 'eob: ', -- remove ugly ~ ndicator for end of buffer
-  guifont = "monospace:h17", -- the font used in graphical neovim applications
   hlsearch = true, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
   mouse = "nv", -- default value of "a", "nv" disables in insert

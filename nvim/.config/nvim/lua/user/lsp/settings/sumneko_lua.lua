@@ -6,7 +6,7 @@ return {
         globals = { "vim" },
       },
       runtime = {
-        version = "Lua 5.1"
+        version = "LuaJIT"
       },
       telemetry = {
         enable = false,

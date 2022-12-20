@@ -1,25 +1,24 @@
-local dap_status_ok, dap = pcall(require, "dap")
-if not dap_status_ok then
+local mason_dap_ok, mason_dap = pcall(require, "mason-nvim-dap")
+local dap_ok, dap = pcall(require, "dap")
+local dap_ui_ok, ui = pcall(require, "dapui")
+
+if not (dap_ok and dap_ui_ok and mason_dap_ok) then
+  require("notify")("nvim-dap, mason-nvim-dap, or dap-ui not installed!", "warning")
   return
 end
 
-local dap_ui_status_ok, dapui = pcall(require, "dapui")
-if not dap_ui_status_ok then
-  return
-end
-
-local mason_nvim_dap_status_ok, mason_nvim_dap = pcall(require, "mason-nvim-dap")
-if not mason_nvim_dap_status_ok then
-  return
-end
-
-mason_nvim_dap.setup {
+mason_dap.setup {
   ensure_installed = { "bash" },
   automatic_setup = true,
 }
-mason_nvim_dap.setup_handlers {}
+mason_dap.setup_handlers { function(source_name)
+  -- all sources with no handler get passed here
 
-dapui.setup {
+  -- Keep original functionality of `automatic_setup = true`
+  require('mason-nvim-dap.automatic_setup')(source_name)
+end, }
+
+ui.setup {
   expand_lines = true,
   icons = { expanded = "", collapsed = "", circular = "" },
   mappings = {
@@ -51,12 +50,28 @@ dapui.setup {
       position = "bottom",
     },
   },
-  floating = {
-    max_height = 0.9,
-    max_width = 0.5, -- Floats will be treated as percentage of your screen.
-    border = vim.g.border_chars, -- Border style. Can be 'single', 'double' or 'rounded'
-    mappings = {
-      close = { "q", "<Esc>" },
+  controls = {
+    -- Requires Neovim nightly (or 0.8 when released)
+    enabled = true,
+    -- Display controls in this element
+    element = "repl",
+    icons = {
+      pause = "",
+      play = "▶",
+      step_into = "",
+      step_over = "淪",
+      step_out = "",
+      step_back = "倫",
+      run_last = "漏",
+      terminate = "栗",
+    },
+    floating = {
+      max_height = 0.9,
+      max_width = 0.5, -- Floats will be treated as percentage of your screen.
+      border = vim.g.border_chars, -- Border style. Can be 'single', 'double' or 'rounded'
+      mappings = {
+        close = { "q", "<Esc>" },
+      },
     },
   },
 }
@@ -64,15 +79,15 @@ dapui.setup {
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
+  ui.open()
 end
 
 dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
+  ui.close()
 end
 
 dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
+  ui.close()
 end
 
 -- Keymaps
