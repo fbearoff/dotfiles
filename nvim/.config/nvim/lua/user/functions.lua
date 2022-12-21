@@ -30,7 +30,8 @@ end
 function M.so_input()
   local buf = vim.api.nvim_get_current_buf()
   local file_type = vim.api.nvim_buf_get_option(buf, "filetype")
-  vim.ui.input({ prompt = "StackOverflow input: ", default = file_type .. " " },
+  local current_word = vim.call('expand', '<cword>')
+  vim.ui.input({ prompt = "StackOverflow input: ", default = file_type .. " " .. current_word },
     function(input)
       local cmd = ""
       if input == "" or not input then

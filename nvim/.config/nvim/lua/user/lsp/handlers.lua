@@ -80,7 +80,9 @@ local keymap = vim.keymap.set
 
 keymap("n", "gl", vim.diagnostic.open_float, opts)
 keymap("n", "<leader>lj", vim.diagnostic.goto_next, opts)
+keymap("n", "]d", vim.diagnostic.goto_next, opts)
 keymap("n", "<leader>lk", vim.diagnostic.goto_prev, opts)
+keymap("n", "[d", vim.diagnostic.goto_prev, opts)
 keymap("n", "<leader>lq", vim.diagnostic.setloclist, opts)
 
 local function lsp_keymaps(bufnr)
