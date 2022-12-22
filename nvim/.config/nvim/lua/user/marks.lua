@@ -11,6 +11,9 @@ marks.setup {
   sign_priority = { lower = 10, upper = 15, builtin = 8, bookmark = 20 },
   excluded_filetypes = { "lspinfo", "toggleterm" },
   mappings = {
-    delete_line = "dm"
+    set_next = "m,",
+    delete_line = "dm",
+    next = "mj",
+    prev = "mk",
   }
 }

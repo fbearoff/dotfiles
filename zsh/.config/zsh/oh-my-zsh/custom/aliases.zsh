@@ -59,7 +59,7 @@ alias bum="rsync -v -rlt --chmod=a=rw,Da+x --delete --exclude='*.jpg' --exclude=
 alias mi="mediainfo"
 alias gm="cd ~/downloads/music && lftp hosting -e 'cd red'"
 
-#git
+# git
 alias gst="git status"
 alias ga="git add"
 alias gau="git add -u"
