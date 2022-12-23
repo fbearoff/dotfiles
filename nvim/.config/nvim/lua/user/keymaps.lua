@@ -32,7 +32,7 @@ keymap('i', '<A-l>', '<C-\\><C-N><C-w>l', { desc = 'Select right window' })
 
 -- Home row navigation
 keymap('i', '<C-h>', '<left>', { desc = 'Move cursor left' })
-keymap('i', '<C-l>', '<right>', { desc = 'Move cursor right' })
+keymap('i', '<C-l>', require('user.functions').EscapePair, { desc = 'Move cursor right, escape pair' })
 keymap('i', '<C-j>', '<down>', { desc = 'Move cursor down' })
 keymap('i', '<C-k>', '<up>', { desc = 'Move cursor up' })
 
