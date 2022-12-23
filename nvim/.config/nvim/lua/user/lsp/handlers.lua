@@ -25,19 +25,20 @@ M.setup = function()
     virtual_text = {
       source = 'always',
       prefix = '■',
-      -- Only show virtual text matching the given severity
       severity = {
-        -- Specify a range of severities
         min = vim.diagnostic.severity.ERROR,
       },
     },
-    -- show signs
     signs = {
       active = signs,
       priority = 50,
     },
     update_in_insert = false,
-    underline = true,
+    underline = {
+      severity = {
+        min = vim.diagnostic.severity.HINT,
+      },
+    },
     severity_sort = true,
     float = {
       focusable = true,
@@ -61,7 +62,7 @@ M.setup = function()
 end
 
 -- LSP format a selection
-function format_range_operator()
+local function format_range_operator()
   local old_func = vim.go.operatorfunc
   _G.op_func_formatting = function()
     local start = vim.api.nvim_buf_get_mark(0, '[')

@@ -126,9 +126,11 @@ return packer.startup(function(use)
 
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/mason.nvim" --LSP installer
+  use "williamboman/mason.nvim" -- LSP installer
   use "williamboman/mason-lspconfig.nvim"
   use "SmiteshP/nvim-navic" -- show current document symbol
+  use "jose-elias-alvarez/null-ls.nvim" -- LSP for languages without a server
+  use "jayp0521/mason-null-ls.nvim" -- manage null-ls sources from mason
 
   -- Telescope
   use { "nvim-telescope/telescope.nvim", -- selector
