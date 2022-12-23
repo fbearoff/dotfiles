@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 configs.setup {
-  ensure_installed = { "lua", "r" }, -- one of "all" or a list of languages (https://github.com/nvim-treesitter/nvim-treesitter#supported-languages)
+  ensure_installed = { "lua", "r", "markdown", "markdown_inline", "bash", "python" },
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
   ignore_install = { "" }, -- List of parsers to ignore installing
   auto_install = true,
@@ -13,7 +13,7 @@ configs.setup {
   },
   highlight = {
     enable = true, -- false will disable the whole extension
-    disable = { --[[ "r" ]] }, -- list of language that will be disabled
+    disable = {}, -- list of language that will be disabled
     additional_vim_regex_highlighting = true,
   },
   rainbow = {
@@ -22,7 +22,10 @@ configs.setup {
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
     max_file_lines = nil, -- Do not enable for files with more than n lines, int
   },
-  indent = { enable = true, disable = { --[[ "yaml" ]] } },
+  indent = {
+    enable = true,
+    disable = {}
+  },
   context_commentstring = {
     enable = true,
     enable_autocmd = false,

@@ -109,7 +109,6 @@ local n_mappings = {
   ["/"] = { "<cmd>HopPattern<cr>", "Hop Pattern" },
   ["<TAB>"] = { "<cmd>lua require('grapple').cycle_backward()<cr>", "Grapple Cycle" },
   ["\\"] = { "<cmd>:vsplit<CR>", "VSplit" },
-  ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["f"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },

@@ -1,40 +1,32 @@
-local vim = vim
-local api = vim.api
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "qf", "help", "man", "lspinfo", "spectre_panel" },
+  callback = function()
+    vim.cmd([[
+      nnoremap <silent> <buffer> q :close<CR>
+      set nobuflisted
+    ]])
+  end,
+})
 
-function nvim_create_augroups(definitions)
-  for group_name, definition in pairs(definitions) do
-    api.nvim_command('augroup ' .. group_name)
-    api.nvim_command('autocmd!')
-    for _, def in ipairs(definition) do
-      local command = table.concat(vim.tbl_flatten { 'autocmd', def }, ' ')
-      api.nvim_command(command)
-    end
-    api.nvim_command('augroup END')
-  end
-end
+vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+  callback = function()
+    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
+  end,
+})
 
-local autocmds = {
-  general_settings = {
-    { "FileType qf,helpn,lspinfo nnoremap <silent> <buffer> q :close<CR>" };
-    { "FileType man nnoremap <silent> <buffer> q :q!<CR>" };
-    { "TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200})" };
-    { "BufWinEnter * :set formatoptions-=cro" };
-    { "FileType qf set nobuflisted" };
-  };
-  terminal_job = {
-    { "TermOpen", "*", "setlocal listchars= nonumber norelativenumber signcolumn=no" };
-    -- { "TermOpen", "*", "startinsert" };
-  };
-  alpha = {
-    { "User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2" };
-    { "User AlphaReady set laststatus=0 | autocmd BufUnload <buffer> set laststatus=3" };
-  };
-  git = {
-    { "FileType gitcommit setlocal wrap spell" };
-  };
-  markdown = {
-    { "FileType markdown setlocal wrap spell" };
-  };
-}
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "gitcommit", "markdown" },
+  callback = function()
+    vim.opt_local.spell = true
+  end,
+})
 
-nvim_create_augroups(autocmds)
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
+  pattern = '',
+  callback = function()
+    vim.cmd([[
+      startinsert
+      setlocal listchars= nonumber norelativenumber nocursorline signcolumn=no
+      ]])
+  end,
+})
