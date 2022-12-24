@@ -15,9 +15,10 @@ local code_actions = null_ls.builtins.code_actions
 null_ls.setup {
   sources = {
     formatting.shfmt, -- shell script formatting
+    formatting.black.with { extra_args = { "--fast" } },
   },
 }
 
 mason_null_ls.setup {
-  ensure_installed = { "shfmt" }
+  ensure_installed = { "shfmt", "black" }
 }

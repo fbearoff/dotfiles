@@ -3,7 +3,8 @@ local servers = {
   "r_language_server",
   "bashls",
   "marksman",
-  "ansiblels"
+  "ansiblels",
+  "pyright"
 }
 
 local status_mason_ok, mason = pcall(require, "mason")

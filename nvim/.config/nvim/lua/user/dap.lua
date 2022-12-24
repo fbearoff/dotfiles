@@ -8,21 +8,19 @@ if not (dap_ok and dap_ui_ok and mason_dap_ok) then
 end
 
 mason_dap.setup {
-  ensure_installed = { "bash" },
+  ensure_installed = { "bash", "python" },
   automatic_setup = true,
 }
-mason_dap.setup_handlers { function(source_name)
-  -- all sources with no handler get passed here
-
-  -- Keep original functionality of `automatic_setup = true`
-  require('mason-nvim-dap.automatic_setup')(source_name)
-end, }
+mason_dap.setup_handlers {
+  function(source_name)
+    require('mason-nvim-dap.automatic_setup')(source_name)
+  end,
+}
 
 ui.setup {
   expand_lines = true,
   icons = { expanded = "", collapsed = "", circular = "" },
   mappings = {
-    -- Use a table to apply multiple mappings
     expand = { "<CR>", "<2-LeftMouse>" },
     open = "o",
     remove = "d",
@@ -51,9 +49,7 @@ ui.setup {
     },
   },
   controls = {
-    -- Requires Neovim nightly (or 0.8 when released)
     enabled = true,
-    -- Display controls in this element
     element = "repl",
     icons = {
       pause = "",
@@ -67,8 +63,8 @@ ui.setup {
     },
     floating = {
       max_height = 0.9,
-      max_width = 0.5, -- Floats will be treated as percentage of your screen.
-      border = vim.g.border_chars, -- Border style. Can be 'single', 'double' or 'rounded'
+      max_width = 0.5,
+      border = vim.g.border_chars,
       mappings = {
         close = { "q", "<Esc>" },
       },
