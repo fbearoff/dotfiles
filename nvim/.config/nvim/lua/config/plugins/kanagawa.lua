@@ -1,7 +1,7 @@
 local M = {
   "rebelot/kanagawa.nvim",
-
   lazy = false,
+  priority=1000
 }
 
 function M.config()
@@ -30,8 +30,3 @@ function M.config()
 end
 
 return M
---
--- local status_colorscheme_ok, _ = pcall(vim.cmd.colorscheme(colorscheme))
--- if not status_colorscheme_ok then
---   return
--- end

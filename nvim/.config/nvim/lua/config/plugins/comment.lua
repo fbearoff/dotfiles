@@ -1,7 +1,9 @@
 local M = {
   "numToStr/Comment.nvim",
   enabled = true,
-  keys = { "gc", "gcc", "gbc" },
+  keys = { { "gc", mode = { "n", "v" } },
+    "gcc",
+    "gbc" },
   dependencies = {
     {
       "JoosepAlviste/nvim-ts-context-commentstring",

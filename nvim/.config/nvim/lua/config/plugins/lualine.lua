@@ -137,6 +137,7 @@ function M.config()
           'toggleterm',
           'qf',
           'nofile',
+          'noice',
           -- 'terminal',
           'dap-repl',
           'dapui_console',

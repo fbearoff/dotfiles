@@ -44,6 +44,9 @@ function M.config()
             diagnostics = {
               globals = { "vim" },
             },
+            runtime = {
+              version = "LuaJIT"
+            },
           },
         },
       },

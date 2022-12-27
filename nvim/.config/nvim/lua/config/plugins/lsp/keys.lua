@@ -3,34 +3,50 @@ local wk = require("which-key")
 local M = {}
 
 function M.setup(client, buffer)
+
+
+  -- LSP range formatter
+  local function format_range_operator()
+    local old_func = vim.go.operatorfunc
+    _G.op_func_formatting = function()
+      local start = vim.api.nvim_buf_get_mark(0, '[')
+      local finish = vim.api.nvim_buf_get_mark(0, ']')
+      vim.lsp.buf.format({}, start, finish)
+      vim.go.operatorfunc = old_func
+      _G.op_func_formatting = nil
+    end
+    vim.go.operatorfunc = 'v:lua.op_func_formatting'
+    vim.api.nvim_feedkeys('g@', 'n', false)
+  end
+
   local cap = client.server_capabilities
 
   local keymap = {
     buffer = buffer,
     ["<leader>"] = {
       c = {
-        name = "+code",
+        name = "Code",
         {
-          cond = client.name == "r_language_server",
-           [":"] = { ":RSend ", "RSend" },
-    b     = { "<Plug>RSPlot", "Plot and Summary" },
-    e     = { "<Plug>RShowEx", "Show Example" },
-    f     = { "<Plug>RStart", "Start R" },
-    H     = { "<cmd>:RHelp<cr>", "Online Help" },
-    h     = { "<Plug>RHelp", "Help" },
-    -- I     = { "<cmd>lua require 'user.functions'.R_install()<CR>", "Install Package" },
-    k     = { "<cmd>call RAction('levels')<CR>", "View Levels" },
-    l     = { "<Plug>RListSpace", "List Space" },
-    n     = { "<Plug>RObjectNames", "Print Names" },
-    o     = { "<Plug>RUpdateObjBrowser", "Object Browser" },
-    p     = { "<Plug>RObjectPr", "Print Object" },
-    q     = { "<Plug>RClose", "Close R" },
-    S     = { "<cmd>call RAction('head')<CR>", "View Head" },
-    s     = { "<Plug>RSummary", "Summary" },
-    t     = { "<Plug>RObjectStr", "View Structure" },
-    u     = { "<cmd>RSend update.packages(ask = FALSE)<CR>", "Update Packages" },
-    v     = { "<Plug>RViewDF", "View Df" },
-    w     = { "<Plug>RSaveClose", "Save and Close R" },
+          cond  = client.name == "r_language_server",
+          [":"] = { ":RSend ", "RSend" },
+          b     = { "<Plug>RSPlot", "Plot and Summary" },
+          e     = { "<Plug>RShowEx", "Show Example" },
+          f     = { "<Plug>RStart", "Start R" },
+          H     = { "<cmd>:RHelp<cr>", "Online Help" },
+          h     = { "<Plug>RHelp", "Help" },
+          I     = { "<cmd>lua require 'util'.R_install()<CR>", "Install Package" },
+          k     = { "<cmd>call RAction('levels')<CR>", "View Levels" },
+          l     = { "<Plug>RListSpace", "List Space" },
+          n     = { "<Plug>RObjectNames", "Print Names" },
+          o     = { "<Plug>RUpdateObjBrowser", "Object Browser" },
+          p     = { "<Plug>RObjectPr", "Print Object" },
+          q     = { "<Plug>RClose", "Close R" },
+          S     = { "<cmd>call RAction('head')<CR>", "View Head" },
+          s     = { "<Plug>RSummary", "Summary" },
+          t     = { "<Plug>RObjectStr", "View Structure" },
+          u     = { "<cmd>RSend update.packages(ask = FALSE)<CR>", "Update Packages" },
+          v     = { "<Plug>RViewDF", "View Df" },
+          w     = { "<Plug>RSaveClose", "Save and Close R" },
         },
         r = {
           function()
@@ -45,22 +61,9 @@ function M.setup(client, buffer)
           { vim.lsp.buf.code_action, "Code Action" },
           { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action", mode = "v" },
         },
-        f = {
-          {
-            require("config.plugins.lsp.formatting").format,
-            "Format Document",
-            cond = cap.documentFormatting,
-          },
-          {
-            require("config.plugins.lsp.formatting").format,
-            "Format Range",
-            cond = cap.documentRangeFormatting,
-            mode = "v",
-          },
-        },
         d = { vim.diagnostic.open_float, "Line Diagnostics" },
         l = {
-          name = "+lsp",
+          name = "LSP",
           i = { "<cmd>LspInfo<cr>", "Lsp Info" },
           a = { "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "Add Folder" },
           r = { "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "Remove Folder" },
@@ -72,7 +75,7 @@ function M.setup(client, buffer)
       },
     },
     g = {
-      name = "+goto",
+      name = "Goto",
       d = { "<cmd>Telescope lsp_definitions<cr>", "Goto Definition" },
       r = { "<cmd>Telescope lsp_references<cr>", "References" },
       R = { "<cmd>Trouble lsp_references<cr>", "Trouble References" },
@@ -94,6 +97,8 @@ function M.setup(client, buffer)
       "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.WARNING})<CR>",
       "Next Warning",
     },
+    ["="] = { "<cmd> lua vim.lsp.buf.format{async=true}<cr>", "Format" },
+    ["gm"] = { format_range_operator, "Format Range", mode = { "n", "v" }, }
   }
 
   wk.register(keymap)

@@ -78,7 +78,7 @@ keymap("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach":
 
 -- Send deletions to blackhole register
 for _, lhs in ipairs(
-  { "c", "C", "s", "S", "d", "D", "x", "X" }) do
+  { "c", "C", "d", "D", "x", "X" }) do
   keymap({ "n", "x" }, lhs, '"_' .. lhs)
 end
 
@@ -96,12 +96,9 @@ keymap("x", "gw", "*N")
 
 
 
-keymap("n", "gl", vim.diagnostic.open_float, {desc = "Open float"})
--- keymap("n", "<leader>lj", vim.diagnostic.goto_next, opts)
-keymap("n", "]d", vim.diagnostic.goto_next, {desc = "Goto next diagnostic"})
--- keymap("n", "<leader>lk", vim.diagnostic.goto_prev, opts)
-keymap("n", "[d", vim.diagnostic.goto_prev, {desc = "Goto prev diagnostic"})
--- keymap("n", "<leader>lq", vim.diagnostic.setloclist, opts)
+keymap("n", "gl", vim.diagnostic.open_float, { desc = "Open float" })
+keymap("n", "]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic" })
+keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Goto prev diagnostic" })
 
 -- WhichKey bindings
 wk.setup({
@@ -207,8 +204,7 @@ local n_mappings = {
   ["f"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["L"] = { "<cmd>:Lazy<CR>", "Lazy" },
-  ["n"] = { "<cmd>lua require('telescope').extensions.notify.notify(require('telescope.themes').get_dropdown{winblend = 5})<cr>",
-    "Notifications" },
+  ["n"] = { "<cmd>Noice<cr>", "Notifications" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["S"] = { "<Plug>SnipRun", "Sniprun" },
   ["u"] = { "<cmd>Telescope undo<cr>", "Undo" },
@@ -236,7 +232,7 @@ local n_mappings = {
     u = { "<cmd>lua require'dapui'.toggle()<cr>", "DAP UI" },
   },
 
-    g = { name = "Git",
+  g = { name = "Git",
     b = { "<cmd>Telescope git_branches<cr>", "Checkout Branch" },
     c = { "<cmd>Telescope git_commits<cr>", "Checkout Commit" },
     d = { "<cmd>Telescope git_status<cr>", "Diff Overview", },
@@ -256,16 +252,11 @@ local n_mappings = {
   },
 
   l = { name = "LSP",
-    a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
     d = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Document Diagnostics" },
-    f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
-    i = { "<cmd>LspInfo<cr>", "Info" },
     j = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Next Diagnostic" },
     k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-    m = { "<cmd>Mason<cr>", "Mason" },
     q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
-    r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     s = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
     w = { "<cmd>Telescope diagnostics<cr>", "Workspace Diagnostics" },
   },
@@ -277,28 +268,6 @@ local n_mappings = {
     w = { "<cmd>set wrap!<CR>", "Toggle Word Wrap" },
   },
 
-  r = { name = "R",
-    [":"] = { ":RSend ", "RSend" },
-    b     = { "<Plug>RSPlot", "Plot and Summary" },
-    e     = { "<Plug>RShowEx", "Show Example" },
-    f     = { "<Plug>RStart", "Start R" },
-    H     = { "<cmd>:RHelp<cr>", "Online Help" },
-    h     = { "<Plug>RHelp", "Help" },
-    I     = { "<cmd>lua require 'util'.R_install()<CR>", "Install Package" },
-    k     = { "<cmd>call RAction('levels')<CR>", "View Levels" },
-    l     = { "<Plug>RListSpace", "List Space" },
-    n     = { "<Plug>RObjectNames", "Print Names" },
-    o     = { "<Plug>RUpdateObjBrowser", "Object Browser" },
-    p     = { "<Plug>RObjectPr", "Print Object" },
-    q     = { "<Plug>RClose", "Close R" },
-    S     = { "<cmd>call RAction('head')<CR>", "View Head" },
-    s     = { "<Plug>RSummary", "Summary" },
-    t     = { "<Plug>RObjectStr", "View Structure" },
-    u     = { "<cmd>RSend update.packages(ask = FALSE)<CR>", "Update Packages" },
-    v     = { "<Plug>RViewDF", "View Df" },
-    w     = { "<Plug>RSaveClose", "Save and Close R" },
-  },
-
   s = { name = "Search",
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
@@ -308,7 +277,7 @@ local n_mappings = {
       "Find Help" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-    P = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
+    P = { "<cmd>Telescope project<cr>", "Projects" },
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
   },

@@ -1,23 +1,49 @@
-return {
-  "akinsho/nvim-toggleterm.lua",
-  keys = "<C-/>",
-  config = function()
+local M = {
+  "akinsho/toggleterm.nvim",
+  keys = [[<c-\>]],
+  enable = true
+}
+
+function M.config()
     require("toggleterm").setup({
       size = 20,
+      open_mapping = [[<c-\>]],
       hide_numbers = true,
-      open_mapping = [[<C-/>]],
       shade_filetypes = {},
-      shade_terminals = false,
-      shading_factor = 0.3, -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
+      shade_terminals = true,
+      shading_factor = 2,
       start_in_insert = true,
+      insert_mappings = true,
       persist_size = true,
-      direction = "horizontal",
+      direction = "float",
+      close_on_exit = true,
+      shell = vim.o.shell,
+      float_opts = {
+        border = "curved",
+        winblend = 5,
+        highlights = {
+          border = "Normal",
+          background = "Normal",
+        },
+      },
+      winbar = {
+        enabled = false,
+      },
     })
 
-    -- Hide number column for
-    -- vim.cmd [[au TermOpen * setlocal nonumber norelativenumber]]
+    function _G.set_terminal_keymaps()
+      local opts = { noremap = true }
+      vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
+      vim.api.nvim_buf_set_keymap(0, 't', '<A-h>', [[<C-\><C-n><C-W>h]], opts)
+      vim.api.nvim_buf_set_keymap(0, 't', '<A-j>', [[<C-\><C-n><C-W>j]], opts)
+      vim.api.nvim_buf_set_keymap(0, 't', '<A-k>', [[<C-\><C-n><C-W>k]], opts)
+      vim.api.nvim_buf_set_keymap(0, 't', '<A-l>', [[<C-\><C-n><C-W>l]], opts)
+    end
 
-    -- Esc twice to get to normal mode
-    vim.cmd([[tnoremap <esc><esc> <C-\><C-N>]])
-  end,
-}
+    vim.api.nvim_create_autocmd({ "TermOpen" }, {
+      pattern = 'term://*',
+      callback = set_terminal_keymaps
+    })
+  end
+
+return M

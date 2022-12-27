@@ -4,21 +4,72 @@ local M = {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-emoji",
     "hrsh7th/cmp-cmdline",
+    "hrsh7th/cmp-nvim-lua",
+    "hrsh7th/cmp-nvim-lsp-signature-help",
     "dmitmel/cmp-cmdline-history",
     "hrsh7th/cmp-path",
     "saadparwaiz1/cmp_luasnip",
+    "jalvesaq/cmp-nvim-r"
   },
 }
 
 function M.config()
-  vim.o.completeopt = "menuone,noselect"
+
+  local check_backspace = function()
+    local col = vim.fn.col "." - 1
+    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+  end
+
+  local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  end
+
+  local kind_icons = {
+    Text = "",
+    Method = "m",
+    Function = "",
+    Constructor = "",
+    Field = "",
+    Variable = "",
+    Class = "",
+    Interface = "",
+    Module = "",
+    Property = "",
+    Unit = "",
+    Value = "",
+    Enum = "",
+    Keyword = "",
+    Snippet = "",
+    Color = "",
+    File = "",
+    Reference = "",
+    Folder = "",
+    EnumMember = "",
+    Constant = "",
+    Struct = "",
+    Event = "",
+    Operator = "",
+    TypeParameter = "",
+  }
 
   -- Setup nvim-cmp.
   local cmp = require("cmp")
+  local luasnip = require("luasnip")
 
   cmp.setup({
+    enabled = function()
+      -- disable completion in comments
+      local context = require 'cmp.config.context'
+      -- keep command mode completion enabled when cursor is in a comment
+      if vim.api.nvim_get_mode().mode == 'c' then
+        return true
+      else
+        return not context.in_treesitter_capture("comment")
+            and not context.in_syntax_group("Comment")
+      end
+    end,
     completion = {
       completeopt = "menu,menuone,noinsert",
     },
@@ -27,28 +78,73 @@ function M.config()
         require("luasnip").lsp_expand(args.body)
       end,
     },
-    mapping = cmp.mapping.preset.insert({
-      ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-      ["<C-f>"] = cmp.mapping.scroll_docs(4),
-      ["<C-Space>"] = cmp.mapping.complete({}),
-      ["<C-e>"] = cmp.mapping.close(),
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),
-    }),
+    mapping = {
+      ["<C-k>"] = cmp.mapping.select_prev_item(),
+      ["<C-j>"] = cmp.mapping.select_next_item(),
+      ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+      ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+      ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+      ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+      ["<C-e>"] = cmp.mapping {
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      },
+      -- Accept currently selected item. If none selected, `select` first item.
+      -- Set `select` to `false` to only confirm explicitly selected items.
+      ["<CR>"] = cmp.mapping.confirm { select = true },
+      ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif luasnip.expand_or_locally_jumpable() then
+          luasnip.expand_or_jump()
+        elseif has_words_before() then
+          cmp.complete()
+        elseif check_backspace() then
+          fallback()
+        end
+      end,
+        { "i", "s", }),
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end,
+        { "i", "s", }),
+    },
     sources = cmp.config.sources({
+      { name = "cmp_nvim_r" },
       { name = "nvim_lsp" },
+      { name = "nvim_lua" },
+      { name = "nvim_lsp_signature_help" },
       { name = "luasnip" },
-      { name = "buffer" },
+      { name = "buffer",
+        max_item_count = 10 },
       { name = "path" },
-      { name = "emoji" },
-      { name = "neorg" },
     }),
     formatting = {
-      format = require("config.plugins.lsp.kind").cmp_format(),
+      fields = { "kind", "abbr", "menu" },
+      format = function(entry, vim_item)
+        vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+        vim_item.menu = ({
+          nvim_lsp = "[LSP]",
+          luasnip = "[Snippet]",
+          buffer = "[Buffer]",
+          path = "[Path]",
+          cmp_nvim_r = "[R]",
+          nvim_lsp_signature_help = "[Signature]",
+          nvim_lua = "[Lua]",
+        })[entry.source.name]
+        return vim_item
+      end,
     },
-    -- documentation = {
-    --   border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-    --   winhighlight = "NormalFloat:NormalFloat,FloatBorder:TelescopeBorder",
-    -- },
+    window = {
+      documentation = cmp.config.window.bordered(),
+      completion = cmp.config.window.bordered(),
+    },
     experimental = {
       ghost_text = {
         hl_group = "LspCodeLens",
@@ -67,15 +163,15 @@ function M.config()
     -- },
   })
 
-  -- cmp.setup.cmdline(":", {
-  --   mapping = cmp.mapping.preset.cmdline(),
-  --   sources = cmp.config.sources({
-  --     -- { name = "noice_popupmenu" },
-  --     { name = "path" },
-  --     { name = "cmdline" },
-  --     -- { name = "cmdline_history" },
-  --   }),
-  -- })
+  cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      -- { name = "noice_popupmenu" },
+      { name = "path" },
+      { name = "cmdline" },
+      { name = "cmdline_history" },
+    }),
+  })
 end
 
 return M

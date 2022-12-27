@@ -3,9 +3,10 @@ local M = {
   cmd = { "Telescope" },
 
   dependencies = {
-    -- { "nvim-telescope/telescope-project.nvim" },
+    { "nvim-telescope/telescope-project.nvim" },
     { "nvim-telescope/telescope-symbols.nvim" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    { "debugloop/telescope-undo.nvim" },
   },
 }
 
@@ -24,22 +25,54 @@ function M.project_files(opts)
 end
 
 function M.config()
-  -- local actions = require("telescope.actions")
+  local action_layout = require("telescope.actions.layout")
+
+  -- Don't preview binaries
+  local previewers = require("telescope.previewers")
+  local Job = require("plenary.job")
+  local new_maker = function(filepath, bufnr, opts)
+    filepath = vim.fn.expand(filepath)
+    Job:new({
+      command = "file",
+      args = { "--mime-type", "-b", filepath },
+      on_exit = function(j)
+        local mime_type = vim.split(j:result()[1], "/")[1]
+        if mime_type == "text" then
+          previewers.buffer_previewer_maker(filepath, bufnr, opts)
+        else
+          -- maybe we want to write something to the buffer here
+          vim.schedule(function()
+            vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "BINARY" })
+          end)
+        end
+      end
+    }):sync()
+  end
+
+  local telescopeConfig = require("telescope.config")
+
+  -- Clone the default Telescope configuration
+  local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+
+  -- I want to search in hidden/dot files.
+  table.insert(vimgrep_arguments, "--hidden")
+  -- I don't want to search in the `.git` directory.
+  table.insert(vimgrep_arguments, "--glob")
+  table.insert(vimgrep_arguments, "!**/.git/*")
+
   local trouble = require("trouble.providers.telescope")
 
   local telescope = require("telescope")
   local borderless = true
+
   telescope.setup({
-    extensions = {
-      -- fzf = {
-      --   fuzzy = true, -- false will only do exact matching
-      --   override_generic_sorter = true, -- override the generic sorter
-      --   override_file_sorter = true, -- override the file sorter
-      --   case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-      --   -- the default case_mode is "smart_case"
-      -- },
-    },
     defaults = {
+      prompt_prefix = " ",
+      selection_caret = " ",
+      buffer_previewer_maker = new_maker, -- don't preview binaries
+      vimgrep_arguments = vimgrep_arguments,
+      file_ignore_patterns = { ".git/", "node_modules" },
+      winblend = borderless and 0 or 10,
       layout_strategy = "horizontal",
       layout_config = {
         prompt_position = "top",
@@ -52,71 +85,46 @@ function M.config()
           ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
         },
       },
-      -- mappings = { i = { ["<esc>"] = actions.close } },
-      -- vimgrep_arguments = {
-      --   'rg',
-      --   '--color=never',
-      --   '--no-heading',
-      --   '--with-filename',
-      --   '--line-number',
-      --   '--column',
-      --   '--smart-case'
-      -- },
-      -- prompt_position = "bottom",
-      prompt_prefix = " ",
-      selection_caret = " ",
-      -- entry_prefix = "  ",
-      -- initial_mode = "insert",
-      -- selection_strategy = "reset",
-      -- sorting_strategy = "descending",
-      -- layout_strategy = "horizontal",
-      -- layout_defaults = {
-      --   horizontal = {
-      --     mirror = false,
-      --   },
-      --   vertical = {
-      --     mirror = false,
-      --   },
-      -- },
-      -- file_sorter = require"telescope.sorters".get_fzy_file
-      -- file_ignore_patterns = {},
-      -- generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-      -- shorten_path = true,
-      winblend = borderless and 0 or 10,
-      -- width = 0.7,
-      -- preview_cutoff = 120,
-      -- results_height = 1,
-      -- results_width = 0.8,
-      -- border = false,
-      -- color_devicons = true,
-      -- use_less = true,
-      -- set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-      -- file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-      -- grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
-      -- qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
-
-      -- -- Developer configurations: Not meant for general override
-      -- buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
+      pickers = {
+        find_files = {
+          find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+        },
+      },
+      mappings = {
+        i = {
+          ["<M-p>"] = action_layout.toggle_preview,
+        },
+        n = {
+          ["<M-p>"] = action_layout.toggle_preview,
+        },
+      },
+      extensions = {
+        undo = {
+          side_by_side = true,
+          layout_strategy = "vertical",
+          layout_config = {
+            preview_height = 0.8,
+          },
+          mappings = {
+            i = {
+              ["<C-a>"] = require("telescope-undo.actions").yank_additions,
+              ["<C-r>"] = require("telescope-undo.actions").yank_deletions,
+              ["<cr>"] = require("telescope-undo.actions").restore,
+            },
+            n = {
+              ["<C-a>"] = require("telescope-undo.actions").yank_additions,
+              ["<C-r>"] = require("telescope-undo.actions").yank_deletions,
+              ["<cr>"] = require("telescope-undo.actions").restore,
+            },
+          }
+        },
+      },
     },
   })
 
-  -- telescope.load_extension("frecency")
   telescope.load_extension("fzf")
-  -- telescope.load_extension("project")
-end
-
-function M.init()
-  vim.keymap.set("n", "<leader><space>", function()
-    require("config.plugins.telescope").project_files()
-  end, { desc = "Find File" })
-
-  vim.keymap.set("n", "<leader>fd", function()
-    require("telescope.builtin").git_files({ cwd = "~/dot" })
-  end, { desc = "Find Dot File" })
-
-  vim.keymap.set("n", "<leader>pp", function()
-    require("telescope").extensions.project.project({})
-  end, { desc = "Find Project" })
+  telescope.load_extension("project")
+  telescope.load_extension("undo")
 end
 
 return M

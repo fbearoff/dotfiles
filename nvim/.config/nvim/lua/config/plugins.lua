@@ -11,7 +11,7 @@ return {
     config = true,
   },
 
-  { "ellisonleao/gruvbox.nvim", lazy = false },
+  { "ellisonleao/gruvbox.nvim" },
 
   { "stevearc/dressing.nvim", event = "VeryLazy" },
 
@@ -79,5 +79,10 @@ return {
     event = "InsertEnter",
     config = true
   },
+  {
+    "ellisonleao/glow.nvim",
+    cmd = "Glow"
+  },
+
 
 }
