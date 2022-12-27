@@ -1,3 +1,6 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 local options = {
   backup = false, -- creates a backup file
   breakindent = true, -- preserve indent on wrapped lines
@@ -33,7 +36,7 @@ local options = {
   swapfile = false, -- creates a swapfile
   tabstop = 2, -- insert 2 spaces for a tab
   termguicolors = true, -- set term gui colors (most terminals support this)
-  timeoutlen = 400, -- time to wait for a mapped sequence to complete (in milliseconds)
+  timeoutlen = 300, -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true, -- enable persistent undo
   updatetime = 300, -- faster completion (4000ms default)
   whichwrap = "bs<>[]hl", -- which "horizontal" keys are allowed to travel to prev/next line
@@ -51,3 +54,20 @@ vim.opt.iskeyword:append "-" -- hyphenated words recognized by searches
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode.
 
 vim.g.cursorhold_updatetime = 100
+
+-- Use proper syntax highlighting in code blocks
+local fences = {
+  "lua",
+  -- "vim",
+  "json",
+  "typescript",
+  "javascript",
+  "js=javascript",
+  "ts=typescript",
+  "shell=sh",
+  "python",
+  "sh",
+  "console=sh",
+}
+vim.g.markdown_fenced_languages = fences
+vim.g.markdown_recommended_style = 0
