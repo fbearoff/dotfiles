@@ -83,19 +83,15 @@ function M.config()
           ["<c-t>"] = trouble.open_with_trouble,
           ["<C-Down>"] = require("telescope.actions").cycle_history_next,
           ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
+          ["<M-p>"] = action_layout.toggle_preview,
+        },
+        n = {
+          ["<M-p>"] = action_layout.toggle_preview,
         },
       },
       pickers = {
         find_files = {
           find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-        },
-      },
-      mappings = {
-        i = {
-          ["<M-p>"] = action_layout.toggle_preview,
-        },
-        n = {
-          ["<M-p>"] = action_layout.toggle_preview,
         },
       },
       extensions = {

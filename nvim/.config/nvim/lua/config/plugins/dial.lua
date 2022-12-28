@@ -1,6 +1,21 @@
 local M = {
   "monaqa/dial.nvim",
-  keys = { "<C-a>", "<C-x>" },
+  keys = {
+    {
+      "<C-a>",
+      function()
+        return require("dial.map").inc_normal()
+      end,
+      expr = true,
+    },
+    {
+      "<C-x>",
+      function()
+        return require("dial.map").dec_normal()
+      end,
+      expr = true,
+    },
+  },
 }
 
 function M.config()
@@ -10,13 +25,20 @@ function M.config()
       augend.integer.alias.decimal,
       augend.integer.alias.hex,
       augend.date.alias["%Y/%m/%d"],
-      augend.constant.alias.bool,
       augend.semver.alias.semver,
+      augend.constant.new {
+        elements = { "true", "false" },
+        word = true,
+        cyclic = true,
+        preserve_case = true
+      },
+      augend.constant.new {
+        elements = { "&&", "||" },
+        word = false,
+        cyclic = true,
+      },
     },
   })
-
-  vim.api.nvim_set_keymap("n", "<C-a>", require("dial.map").inc_normal(), { noremap = true })
-  vim.api.nvim_set_keymap("n", "<C-x>", require("dial.map").dec_normal(), { noremap = true })
 end
 
 return M

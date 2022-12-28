@@ -129,7 +129,7 @@ wk.setup({
     -- For example:
     -- ["<space>"] = "SPC",
     -- ["<cr>"] = "ENTER",
-    -- ["<tab>"] = "TAB",
+    ["<Tab>"] = "TAB",
     ["<leader>"] = "SPC"
   },
   icons = {
@@ -176,7 +176,6 @@ local v_mappings = {
     b = { "<Plug>(comment_toggle_blockwise_visual)<CR>", "Block Comment" }
   },
 
-  i = { ":'<,'>lua require('nvim-toggler').toggle()<CR>", "Toggle Inverse" },
   o = { ":'<,'>sort i<CR>", "Sort" },
   r = { ":'<,'>SnipRun<CR>", "SnipRun" },
   s = { "<cmd>lua require('substitute').visual()<cr>", "Substitute" },
@@ -201,12 +200,12 @@ local n_mappings = {
   ["<TAB>"] = { "<cmd>lua require('grapple').cycle_backward()<cr>", "Grapple Cycle" },
   ["\\"] = { "<cmd>:vsplit<CR>", "VSplit" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-  ["f"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
+  ["f"] = { "<cmd>lua require('telescope.builtin').find_files({hidden=true}) <CR>", "Find Files" },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["L"] = { "<cmd>:Lazy<CR>", "Lazy" },
-  ["n"] = { "<cmd>Noice<cr>", "Notifications" },
+  ["N"] = { "<cmd>Noice<cr>", "Notifications" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
-  ["S"] = { "<Plug>SnipRun", "Sniprun" },
+  ["r"] = { "<cmd>SnipRun<cr>", "Sniprun" },
   ["u"] = { "<cmd>Telescope undo<cr>", "Undo" },
   ["v"] = { "<cmd>Telescope yank_history<cr>", "Clipboard" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
@@ -251,16 +250,6 @@ local n_mappings = {
     w = { "<cmd>lua require 'gitsigns'.toggle_word_diff()<cr>", "Toggle Word Diff" },
   },
 
-  l = { name = "LSP",
-    d = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Document Diagnostics" },
-    j = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Next Diagnostic" },
-    k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
-    l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-    q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
-    s = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
-    w = { "<cmd>Telescope diagnostics<cr>", "Workspace Diagnostics" },
-  },
-
   o = { name = "Options",
     c = { "<cmd>ColorizerToggle<CR>", "Colorize" },
     g = { "<cmd>Glow<CR>", "Glow (Markdown Preview)" },
@@ -269,7 +258,6 @@ local n_mappings = {
   },
 
   s = { name = "Search",
-    b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
     g = { "<cmd>Telescope grep_string<cr>", "Grep String" },
@@ -277,19 +265,15 @@ local n_mappings = {
       "Find Help" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-    P = { "<cmd>Telescope project<cr>", "Projects" },
+    p = { "<cmd>Telescope project<cr>", "Projects" },
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
+    s = { "<cmd>lua require 'util'.so_input()<CR>", "  StackOverflow" },
   },
 
   t = { name = "Terminal",
-    f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-    h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-    p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
-    s = { "<cmd>lua require 'util'.so_input()<CR>", "  StackOverflow" },
-    t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
-    u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
-    v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+    ["-"] = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
+    ["\\"] = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
   },
 }
 

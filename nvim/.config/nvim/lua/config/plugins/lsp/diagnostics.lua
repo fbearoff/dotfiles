@@ -5,7 +5,7 @@ M.signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 function M.setup()
   -- Automatically update diagnostics
   vim.diagnostic.config({
-virtual_text = {
+    virtual_text = {
       source = 'always',
       prefix = '■',
       severity = {
@@ -13,7 +13,7 @@ virtual_text = {
       },
     },
     signs = {
-      active = signs,
+      active = M.signs,
       priority = 50,
     },
     update_in_insert = false,
@@ -31,7 +31,7 @@ virtual_text = {
       header = "",
       prefix = "",
     },
- })
+  })
 
   vim.lsp.handlers["workspace/diagnostic/refresh"] = function(_, _, ctx)
     local ns = vim.lsp.diagnostic.get_namespace(ctx.client_id)

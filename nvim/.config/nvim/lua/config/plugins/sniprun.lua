@@ -2,8 +2,8 @@ local M = {
   "michaelb/sniprun",
   enabled = true,
   build = "bash ./install.sh",
-  cmd = "SnipRun",
-  keys = { "<leader>S" },
+  cmd = {"SnipRun", },
+  keys = { "<leader>r" },
 }
 
 function M.config()

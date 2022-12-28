@@ -3,8 +3,6 @@ local M = {
 }
 
 M.tools = {
-  "prettierd",
-  "shellcheck",
   "shfmt",
   "black",
 }

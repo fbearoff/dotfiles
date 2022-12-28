@@ -68,9 +68,11 @@ function M.setup(client, buffer)
           a = { "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "Add Folder" },
           r = { "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "Remove Folder" },
           l = { "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", "List Folders" },
+          m = { "<cmd>Mason<cr>", "Mason" },
+          s = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
         },
       },
-      x = {
+      s = {
         d = { "<cmd>Telescope diagnostics<cr>", "Search Diagnostics" },
       },
     },

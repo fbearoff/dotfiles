@@ -28,18 +28,21 @@ function M.config()
       -- "comment", -- comments are slowing down TS bigtime, so disable for now
     },
     sync_install = false,
-    auto_install = false,
+    auto_install = true,
     highlight = { enable = true },
     indent = { enable = true },
     context_commentstring = { enable = true, enable_autocmd = false },
     incremental_selection = {
       enable = true,
       keymaps = {
-        init_selection = "gnn",
-        node_incremental = "grn",
-        scope_incremental = "grc",
-        node_decremental = "grm",
+        init_selection = "<c-space>",
+        node_incremental = "<c-space>",
+        scope_incremental = "<c-s>",
+        node_decremental = "<c-backspace>",
       },
+    },
+    autopairs = {
+      enable = true,
     },
     rainbow = {
       enable = true,
@@ -51,6 +54,7 @@ function M.config()
       keymaps = {
         ["."] = "textsubjects-smart",
         [";"] = "textsubjects-container-outer",
+        ['i;'] = 'textsubjects-container-inner',
       },
     },
   })

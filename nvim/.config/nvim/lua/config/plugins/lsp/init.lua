@@ -36,6 +36,9 @@ function M.config()
       single_file_support = true,
       settings = {
         Lua = {
+          runtime = {
+            version = "LuaJIT"
+          },
           workspace = {
             library = {
               [vim.fn.expand "$VIMRUNTIME/lua"] = true,
@@ -43,9 +46,6 @@ function M.config()
             },
             diagnostics = {
               globals = { "vim" },
-            },
-            runtime = {
-              version = "LuaJIT"
             },
           },
         },
