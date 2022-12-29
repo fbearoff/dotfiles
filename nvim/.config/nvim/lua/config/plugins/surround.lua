@@ -1,6 +1,6 @@
 local M = {
   "kylechui/nvim-surround",
-  event = "VeryLazy",
+  event = "BufReadPost",
   enable = true
 }
 
@@ -60,7 +60,24 @@ function M.config()
           target = unquoted_pattern,
         },
       },
+      --- markdown italic
+      ["*"] = {
+        find = "(%*+).-(%*+)",
+        delete = "^(%*+)().-(%*+)()$",
+      },
+      -- markdown bold
+      ["M"] = {
+        add = { "**", "**" },
+        find = "%*%*.-%*%*",
+        delete = "^(%*%*?)().-(%*%*?)()$",
+        change = {
+          target = "^(%*%*?)().-(%*%*?)()$",
+        },
+      },
     },
+    aliases = {
+      ["m"] = { "`", "*", "_" },
+    }
   })
 end
 

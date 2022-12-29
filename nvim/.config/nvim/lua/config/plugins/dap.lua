@@ -9,7 +9,6 @@ local M = {
         require("dapui").setup()
       end,
     },
-    { "jbyuki/one-small-step-for-vimkind" },
   },
 }
 
@@ -42,29 +41,29 @@ function M.init()
     require("dapui").toggle({})
   end, { desc = "Dap UI" })
 
-  vim.keymap.set("n", "<leader>ds", function()
-    require("osv").launch({ port = 8086 })
-  end, { desc = "Launch Lua Debugger Server" })
-
-  vim.keymap.set("n", "<leader>dd", function()
-    require("osv").run_this()
-  end, { desc = "Launch Lua Debugger" })
+  -- vim.keymap.set("n", "<leader>ds", function()
+  --   require("osv").launch({ port = 8086 })
+  -- end, { desc = "Launch Lua Debugger Server" })
+  --
+  -- vim.keymap.set("n", "<leader>dd", function()
+  --   require("osv").run_this()
+  -- end, { desc = "Launch Lua Debugger" })
 end
 
 function M.config()
   local dap = require("dap")
 
-  dap.configurations.lua = {
-    {
-      type = "nlua",
-      request = "attach",
-      name = "Attach to running Neovim instance",
-    },
-  }
-
-  dap.adapters.nlua = function(callback, config)
-    callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
-  end
+  -- dap.configurations.lua = {
+  --   {
+  --     type = "nlua",
+  --     request = "attach",
+  --     name = "Attach to running Neovim instance",
+  --   },
+  -- }
+  --
+  -- dap.adapters.nlua = function(callback, config)
+  --   callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
+  -- end
 
   local dapui = require("dapui")
   dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -77,21 +76,5 @@ function M.config()
     dapui.close({})
   end
 end
-
--- - `DapBreakpoint` for breakpoints (default: `B`)
--- - `DapBreakpointCondition` for conditional breakpoints (default: `C`)
--- - `DapLogPoint` for log points (default: `L`)
--- - `DapStopped` to indicate where the debugee is stopped (default: `→`)
--- - `DapBreakpointRejected` to indicate breakpoints rejected by the debug
---   adapter (default: `R`)
---
--- You can customize the signs by setting them with the |sign_define()| function.
--- For example:
---
--- >
---     lua << EOF
---     vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
---     EOF
--- <
 
 return M

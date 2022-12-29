@@ -14,6 +14,7 @@ function M.config()
   require("nvim-treesitter.configs").setup({
     ensure_installed = {
       "bash",
+      "comment",
       "diff",
       "gitignore",
       "help",
@@ -25,7 +26,6 @@ function M.config()
       "r",
       "regex",
       "yaml",
-      -- "comment", -- comments are slowing down TS bigtime, so disable for now
     },
     sync_install = false,
     auto_install = true,

@@ -1,7 +1,7 @@
 local M = {
   "jalvesaq/Nvim-R",
   ft = { "r", "rmd", },
-  lazy = false
+  event = "BufReadPost"
 }
 
 function M.config()

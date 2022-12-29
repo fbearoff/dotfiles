@@ -13,9 +13,20 @@ return {
 
   { "ellisonleao/gruvbox.nvim" },
 
-  { "stevearc/dressing.nvim", event = "VeryLazy" },
+  { "stevearc/dressing.nvim", init = function()
+    ---@diagnostic disable-next-line: duplicate-set-field
+    vim.ui.select = function(...)
+      require("lazy").load({ plugins = { "dressing.nvim" } })
+      return vim.ui.select(...)
+    end
+    ---@diagnostic disable-next-line: duplicate-set-field
+    vim.ui.input = function(...)
+      require("lazy").load({ plugins = { "dressing.nvim" } })
+      return vim.ui.input(...)
+    end
+  end,
+  },
 
-  -- LSP
   {
     "SmiteshP/nvim-navic",
     config = function()
@@ -28,15 +39,15 @@ return {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
     init = function()
-      vim.keymap.set("n", "<leader>ls", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
+      vim.keymap.set("n", "<leader>cls", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
     end,
     config = true
   },
 
   {
     "m-demare/hlargs.nvim",
-    event = "VeryLazy",
-    enabled = false,
+    event = "BufReadPost",
+    enabled = true,
     config = {
       excluded_argnames = {
         usages = {
@@ -84,5 +95,12 @@ return {
     cmd = "Glow"
   },
 
-
+  { "cappyzawa/trim.nvim",
+    event = "BufReadPost",
+    config = { disable = { "markdown" },
+      patterns = {
+        [[%s/\r//g]] --strip windows end of line character
+      },
+    },
+  }
 }

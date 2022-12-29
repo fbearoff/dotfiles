@@ -106,15 +106,13 @@ wk.setup({
     marks = true, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
     spelling = {
-      enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-      suggestions = 20, -- how many suggestions should be shown in the list?
+      enabled = true,
+      suggestions = 20,
     },
-    -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-    -- No actual key bindings are created
     presets = {
-      operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
-      motions = false, -- adds help for motions
-      text_objects = false, -- help for text objects triggered after entering an operator
+      operators = false,
+      motions = false,
+      text_objects = false,
       windows = true, -- default bindings on <c-w>
       nav = true, -- misc bindings to work with windows
       z = true, -- bindings for folds, spelling and others prefixed with z
@@ -123,12 +121,8 @@ wk.setup({
   },
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
-  operators = { gc = "Comments" },
   key_labels = {
-    -- override the label used to display some keys. It doesn't effect WK in any other way.
-    -- For example:
-    -- ["<space>"] = "SPC",
-    -- ["<cr>"] = "ENTER",
+
     ["<Tab>"] = "TAB",
     ["<leader>"] = "SPC"
   },
@@ -229,25 +223,6 @@ local n_mappings = {
     r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "REPL" },
     t = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
     u = { "<cmd>lua require'dapui'.toggle()<cr>", "DAP UI" },
-  },
-
-  g = { name = "Git",
-    b = { "<cmd>Telescope git_branches<cr>", "Checkout Branch" },
-    c = { "<cmd>Telescope git_commits<cr>", "Checkout Commit" },
-    d = { "<cmd>Telescope git_status<cr>", "Diff Overview", },
-    g = { "<cmd>lua _GITUI_TOGGLE()<cr>", "GitUI" },
-    j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
-    k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-    L = { "<cmd>lua require 'gitsigns'.toggle_current_line_blame()<cr>", "Toggle Line Blame" },
-    l = { "<cmd>lua require 'gitsigns'.toggle_linehl()<cr>", "Toggle Line Highlight" },
-    o = { "<cmd>Telescope git_status<cr>", "Open Changed File" },
-    p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-    R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-    r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
-    s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-    u = { "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", "Undo Stage Hunk" },
-    v = { "<cmd>Gitsigns diffthis<cr>", "Diff View" },
-    w = { "<cmd>lua require 'gitsigns'.toggle_word_diff()<cr>", "Toggle Word Diff" },
   },
 
   o = { name = "Options",

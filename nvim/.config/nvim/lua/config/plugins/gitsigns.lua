@@ -4,6 +4,12 @@ local M = {
 }
 
 function M.config()
+  if not package.loaded.trouble then
+    package.preload.trouble = function()
+      return true
+    end
+  end
+  local wk = require("which-key")
   require("gitsigns").setup({
     signs = {
       add = { hl = "GitSignsAdd",
@@ -73,58 +79,34 @@ function M.config()
     yadm = {
       enable = false,
     },
-    -- on_attach = function(bufnr)
-    --   local gs = package.loaded.gitsigns
-    --
-    --   local function map(mode, l, r, opts)
-    --     opts = opts or {}
-    --     if type(opts) == "string" then
-    --       opts = { desc = opts }
-    --     end
-    --     opts.buffer = bufnr
-    --     vim.keymap.set(mode, l, r, opts)
-    --   end
-    --
-    --   -- Navigation
-    --   map("n", "]h", function()
-    --     if vim.wo.diff then
-    --       return "]h"
-    --     end
-    --     vim.schedule(function()
-    --       gs.next_hunk()
-    --     end)
-    --     return "<Ignore>"
-    --   end, { expr = true, desc = "Next Hunk" })
-    --
-    --   map("n", "[h", function()
-    --     if vim.wo.diff then
-    --       return "[h"
-    --     end
-    --     vim.schedule(function()
-    --       gs.prev_hunk()
-    --     end)
-    --     return "<Ignore>"
-    --   end, { expr = true, desc = "Prev Hunk" })
-    --
-    --   -- Actions
-    --   map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-    --   map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-    --   map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
-    --   map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
-    --   map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
-    --   map("n", "<leader>ghp", gs.preview_hunk, "Preview Hunk")
-    --   map("n", "<leader>ghb", function()
-    --     gs.blame_line({ full = true })
-    --   end, "Blame Line")
-    --   map("n", "<leader>ghd", gs.diffthis, "Diff This")
-    --   map("n", "<leader>ghD", function()
-    --     gs.diffthis("~")
-    --   end, "Diff This ~")
-    --
-    --   -- Text object
-    --   map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
-    -- end,
+    on_attach = function()
+      local keymap = {
+        ["<leader>"] = {
+          g = { name = "Git",
+            b = { "<cmd>Telescope git_branches<cr>", "Checkout Branch" },
+            c = { "<cmd>Telescope git_commits<cr>", "Checkout Commit" },
+            d = { "<cmd>Telescope git_status<cr>", "Diff Overview", },
+            g = { "<cmd>lua _GITUI_TOGGLE()<cr>", "GitUI" },
+            j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
+            k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
+            L = { "<cmd>lua require 'gitsigns'.toggle_current_line_blame()<cr>", "Toggle Line Blame" },
+            l = { "<cmd>lua require 'gitsigns'.toggle_linehl()<cr>", "Toggle Line Highlight" },
+            o = { "<cmd>Telescope git_status<cr>", "Open Changed File" },
+            p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
+            R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
+            r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
+            s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+            u = { "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", "Undo Stage Hunk" },
+            v = { "<cmd>Gitsigns diffthis<cr>", "Diff This" },
+            w = { "<cmd>lua require 'gitsigns'.toggle_word_diff()<cr>", "Toggle Word Diff" },
+          },
+        },
+      }
+      wk.register(keymap)
+    end
   })
+  package.loaded.trouble = nil
+  package.preload.trouble = nil
 end
 
 return M

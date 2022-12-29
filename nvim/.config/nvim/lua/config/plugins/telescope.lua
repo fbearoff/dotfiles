@@ -3,10 +3,11 @@ local M = {
   cmd = { "Telescope" },
 
   dependencies = {
-    { "nvim-telescope/telescope-project.nvim" },
-    { "nvim-telescope/telescope-symbols.nvim" },
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope-project.nvim",
+    "nvim-telescope/telescope-symbols.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    { "debugloop/telescope-undo.nvim" },
+    "debugloop/telescope-undo.nvim",
   },
 }
 
@@ -49,30 +50,45 @@ function M.config()
     }):sync()
   end
 
+  -- Search hidden/dot files, but not in `.git`.
   local telescopeConfig = require("telescope.config")
-
-  -- Clone the default Telescope configuration
   local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
-
-  -- I want to search in hidden/dot files.
-  table.insert(vimgrep_arguments, "--hidden")
-  -- I don't want to search in the `.git` directory.
-  table.insert(vimgrep_arguments, "--glob")
-  table.insert(vimgrep_arguments, "!**/.git/*")
+  table.insert(vimgrep_arguments, { "--hidden", "--glob", "!**/.git/*" })
 
   local trouble = require("trouble.providers.telescope")
+  local undo = require("telescope-undo.actions")
 
   local telescope = require("telescope")
-  local borderless = true
 
   telescope.setup({
+    extensions = {
+      undo = {
+        side_by_side = true,
+        layout_strategy = "vertical",
+        layout_config = {
+          preview_height = 0.8,
+        },
+        mappings = {
+          i = {
+            ["<C-a>"] = undo.yank_additions,
+            ["<C-r>"] = undo.yank_deletions,
+            ["<cr>"] = undo.restore,
+          },
+          n = {
+            ["<C-a>"] = undo.yank_additions,
+            ["<C-r>"] = undo.yank_deletions,
+            ["<cr>"] = undo.restore,
+          },
+        }
+      },
+    },
     defaults = {
       prompt_prefix = " ",
       selection_caret = " ",
       buffer_previewer_maker = new_maker, -- don't preview binaries
       vimgrep_arguments = vimgrep_arguments,
       file_ignore_patterns = { ".git/", "node_modules" },
-      winblend = borderless and 0 or 10,
+      winblend = 10,
       layout_strategy = "horizontal",
       layout_config = {
         prompt_position = "top",
@@ -94,30 +110,9 @@ function M.config()
           find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
         },
       },
-      extensions = {
-        undo = {
-          side_by_side = true,
-          layout_strategy = "vertical",
-          layout_config = {
-            preview_height = 0.8,
-          },
-          mappings = {
-            i = {
-              ["<C-a>"] = require("telescope-undo.actions").yank_additions,
-              ["<C-r>"] = require("telescope-undo.actions").yank_deletions,
-              ["<cr>"] = require("telescope-undo.actions").restore,
-            },
-            n = {
-              ["<C-a>"] = require("telescope-undo.actions").yank_additions,
-              ["<C-r>"] = require("telescope-undo.actions").yank_deletions,
-              ["<cr>"] = require("telescope-undo.actions").restore,
-            },
-          }
-        },
-      },
     },
   })
-
+  -- load extensions
   telescope.load_extension("fzf")
   telescope.load_extension("project")
   telescope.load_extension("undo")
