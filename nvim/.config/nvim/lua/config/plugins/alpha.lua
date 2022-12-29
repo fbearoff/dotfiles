@@ -23,7 +23,7 @@ function M.config()
   dashboard.section.buttons.val = {
     dashboard.button("f", "  Find file", "<cmd>lua require('telescope.builtin').find_files({hidden=true}) <CR>"),
     dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-    dashboard.button("p", "  Find project", ":Telescope project <CR>"),
+    dashboard.button("p", "  Find project", ":Telescope projects <CR>"),
     dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
     dashboard.button("t", "  Find text", "<cmd>lua require('telescope.builtin').live_grep() <CR>"),
     dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),

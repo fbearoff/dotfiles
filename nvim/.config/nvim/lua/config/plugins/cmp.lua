@@ -60,16 +60,15 @@ function M.config()
 
   cmp.setup({
     enabled = function()
-      -- disable completion in comments
+      -- disable autocompletion in prompt (wasn't playing well with telescope)
+      local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+      if buftype == "prompt" then return false end
+
       local context = require 'cmp.config.context'
-      -- keep command mode completion enabled when cursor is in a comment
-      if vim.api.nvim_get_mode().mode == 'c' then
-        return true
-      else
-        return not context.in_treesitter_capture("comment")
-            and not context.in_syntax_group("Comment")
-      end
+      -- disable autocompletion in comments
+      return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
     end,
+
     completion = {
       completeopt = "menu,menuone,noinsert",
     },
@@ -91,7 +90,7 @@ function M.config()
       },
       -- Accept currently selected item. If none selected, `select` first item.
       -- Set `select` to `false` to only confirm explicitly selected items.
-      ["<CR>"] = cmp.mapping.confirm { select = true },
+      ["<CR>"] = cmp.mapping.confirm { select = false },
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
@@ -117,12 +116,11 @@ function M.config()
     },
     sources = cmp.config.sources({
       { name = "cmp_nvim_r" },
-      { name = "nvim_lsp" },
+      { name = "nvim_lsp", max_item_count = 10 },
       { name = "nvim_lua" },
       { name = "nvim_lsp_signature_help" },
       { name = "luasnip" },
-      { name = "buffer",
-        max_item_count = 10 },
+      { name = "buffer", max_item_count = 10 },
       { name = "path" },
     }),
     formatting = {
@@ -141,6 +139,10 @@ function M.config()
         return vim_item
       end,
     },
+    confirm_opts = {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = false,
+    },
     window = {
       documentation = cmp.config.window.bordered(),
       completion = cmp.config.window.bordered(),
@@ -150,19 +152,13 @@ function M.config()
         hl_group = "LspCodeLens",
       },
     },
-    -- sorting = {
-    --   comparators = {
-    --     cmp.config.compare.sort_text,
-    --     cmp.config.compare.offset,
-    --     -- cmp.config.compare.exact,
-    --     cmp.config.compare.score,
-    --     -- cmp.config.compare.kind,
-    --     -- cmp.config.compare.length,
-    --     cmp.config.compare.order,
-    --   },
-    -- },
   })
-
+  cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
   cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({

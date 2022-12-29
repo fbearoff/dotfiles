@@ -31,7 +31,7 @@ return {
     "SmiteshP/nvim-navic",
     config = function()
       vim.g.navic_silence = true
-      require("nvim-navic").setup({ separator = " ", highlight = true, depth_limit = 5 })
+      require("nvim-navic").setup({ separator = " ", highlight = false, depth_limit = 5 }) -- lualine colors don't apply if highlight is on
     end,
   },
 
@@ -90,6 +90,7 @@ return {
     event = "InsertEnter",
     config = true
   },
+
   {
     "ellisonleao/glow.nvim",
     cmd = "Glow"
@@ -102,5 +103,16 @@ return {
         [[%s/\r//g]] --strip windows end of line character
       },
     },
+  },
+
+  {
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("project_nvim").setup({
+        detection_methods = { "pattern" },
+        patterns = { ".git", "Makefile", "package.json", "Deseq2.R" },
+        datapath = vim.fn.stdpath("data"),
+      })
+    end
   }
 }

@@ -4,7 +4,6 @@ local M = {
 
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope-project.nvim",
     "nvim-telescope/telescope-symbols.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "debugloop/telescope-undo.nvim",
@@ -114,8 +113,8 @@ function M.config()
   })
   -- load extensions
   telescope.load_extension("fzf")
-  telescope.load_extension("project")
   telescope.load_extension("undo")
+  telescope.load_extension('projects')
 end
 
 return M

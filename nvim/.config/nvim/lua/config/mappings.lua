@@ -240,7 +240,7 @@ local n_mappings = {
       "Find Help" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-    p = { "<cmd>Telescope project<cr>", "Projects" },
+    p = { "<cmd>Telescope projects<cr>", "Projects" },
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
     s = { "<cmd>lua require 'util'.so_input()<CR>", "  StackOverflow" },

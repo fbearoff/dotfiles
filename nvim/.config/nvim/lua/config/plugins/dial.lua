@@ -37,6 +37,15 @@ function M.config()
         word = false,
         cyclic = true,
       },
+      -- date with format `yyyy/mm/dd`
+      augend.date.new {
+        pattern = "%Y_%m_%d",
+        default_kind = "day",
+        -- if true, it does not match dates which does not exist, such as 2022/05/32
+        only_valid = true,
+        -- if true, it only matches dates with word boundary
+        word = false,
+      },
     },
   })
 end

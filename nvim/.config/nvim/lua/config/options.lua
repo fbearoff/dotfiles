@@ -15,7 +15,7 @@ local options = {
   hlsearch = true, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
   laststatus = 0, -- not needed with lualine
-  linebreak = true, -- break lines at delimiter chars 
+  linebreak = true, -- break lines at delimiter chars
   mouse = "nv", -- default value of "a", "nv" disables in insert
   number = true, -- set numbered lines
   numberwidth = 2, -- set number column width to 2 {default 4}
@@ -46,7 +46,7 @@ local options = {
   wildmode = "longest:full,full", -- Command-line completion mode
   wrap = true, -- display lines as one long line
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-  -- formatoptions = 
+  -- formatoptions =
 }
 
 for k, v in pairs(options) do

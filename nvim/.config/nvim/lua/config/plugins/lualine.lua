@@ -13,7 +13,6 @@ function M.config()
   local diagnostics = {
     "diagnostics",
     sources = { "nvim_diagnostic" },
-    -- sections = { "error", "warn" },
     symbols = { error = " ", warn = " " },
     colored = true,
     update_in_insert = false,
@@ -172,6 +171,9 @@ function M.config()
             return require("lazy.status").updates()
           end,
           cond = require("lazy.status").has_updates,
+          on_click = function()
+            vim.cmd('Lazy')
+          end
         },
       },
     },
