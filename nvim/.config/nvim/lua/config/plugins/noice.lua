@@ -1,10 +1,7 @@
 local M = {
   "folke/noice.nvim",
-
   event = "VeryLazy",
 }
-
-M.enabled = true
 
 function M.config()
   local focused = true
@@ -43,6 +40,27 @@ function M.config()
           find = "%d+L, %d+B",
         },
         view = "mini",
+      },
+      {
+        {
+          filter = {
+            event = "msg_show",
+            kind = "search_count",
+          },
+          opts = { skip = true },
+        },
+        filter = {
+          event = "msg_show",
+          kind = "search_count",
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = {
+          event = "msg_show",
+          kind = "",
+        },
+        opts = { skip = true },
       },
     },
     presets = {

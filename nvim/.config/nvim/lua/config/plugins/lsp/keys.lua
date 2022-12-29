@@ -23,6 +23,22 @@ function M.setup(client, buffer)
 
   local keymap = {
     buffer = buffer,
+    ["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help", mode = { "n", "i" } },
+    ["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
+    ["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Prev Diagnostic" },
+    ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Next Diagnostic" },
+    ["[e"] = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", "Prev Error" },
+    ["]e"] = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", "Next Error" },
+    ["[w"] = {
+      "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.WARNING})<CR>",
+      "Prev Warning",
+    },
+    ["]w"] = {
+      "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.WARNING})<CR>",
+      "Next Warning",
+    },
+    ["="] = { "<cmd> lua vim.lsp.buf.format{async=true}<cr>", "Format" },
+    ["gm"] = { format_range_operator, "Format Range", mode = { "n", "v" }, },
     ["<leader>"] = {
       c = {
         name = "Code",
@@ -47,6 +63,11 @@ function M.setup(client, buffer)
           u     = { "<cmd>RSend update.packages(ask = FALSE)<CR>", "Update Packages" },
           v     = { "<Plug>RViewDF", "View Df" },
           w     = { "<Plug>RSaveClose", "Save and Close R" },
+        },
+        {
+          cond  = client.name == "marksman",
+          b     = { "ysiw", "Bold", {mode = "o"} },
+          i     = { "ysiw_", "Italic" },
         },
         r = {
           function()
@@ -75,6 +96,7 @@ function M.setup(client, buffer)
       s = {
         d = { "<cmd>Telescope diagnostics<cr>", "Search Diagnostics" },
       },
+      T = { "<cmd>TroubleToggle<cr>", "Trouble" },
     },
     g = {
       name = "Goto",
@@ -85,22 +107,6 @@ function M.setup(client, buffer)
       I = { "<cmd>Telescope lsp_implementations<CR>", "Goto Implementation" },
       t = { "<cmd>Telescope lsp_type_definitions<cr>", "Goto Type Definition" },
     },
-    ["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help", mode = { "n", "i" } },
-    ["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
-    ["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Prev Diagnostic" },
-    ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Next Diagnostic" },
-    ["[e"] = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", "Prev Error" },
-    ["]e"] = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", "Next Error" },
-    ["[w"] = {
-      "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.WARNING})<CR>",
-      "Prev Warning",
-    },
-    ["]w"] = {
-      "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.WARNING})<CR>",
-      "Next Warning",
-    },
-    ["="] = { "<cmd> lua vim.lsp.buf.format{async=true}<cr>", "Format" },
-    ["gm"] = { format_range_operator, "Format Range", mode = { "n", "v" }, }
   }
 
   wk.register(keymap)

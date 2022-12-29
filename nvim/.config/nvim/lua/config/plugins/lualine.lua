@@ -4,6 +4,7 @@ local M = {
 }
 
 function M.config()
+  local colors = require("kanagawa.colors").setup()
 
   local hide_in_width = function()
     return vim.fn.winwidth(0) > 80
@@ -18,7 +19,7 @@ function M.config()
     update_in_insert = false,
     always_visible = true,
     on_click = function()
-      vim.diagnostic.setqflist()
+      vim.cmd('TroubleToggle document_diagnostics')
     end
   }
 
@@ -44,17 +45,6 @@ function M.config()
 
   local filename = {
     "filename",
-    symbols = {
-      modified = '[+]',
-      readonly = '[-]',
-      unnamed = '[No Name]',
-    },
-  }
-
-  local long_filename = {
-    "filename",
-    file_status = true,
-    path = 3,
     symbols = {
       modified = '[+]',
       readonly = '[-]',
@@ -91,25 +81,7 @@ function M.config()
   local macro = {
     require("noice").api.statusline.mode.get,
     cond = require("noice").api.statusline.mode.has,
-    color = { fg = "#ff9e64" },
-  }
-
-  local grapple = {
-    function()
-      local key = require("grapple").key()
-      return "  [" .. key .. "]"
-    end,
-    cond = require("grapple").exists,
-  }
-
-  -- silence navic if documentSymbols is not supported
-  vim.g.navic_silence = true
-  local navic = require("nvim-navic")
-  navic.setup {
-    highlight = true,
-    separator = "  ",
-    depth_limit = 0,
-    depth_limit_indicator = "...",
+    color = { fg = colors.co },
   }
 
   require("lualine").setup({
@@ -119,32 +91,12 @@ function M.config()
       component_separators = { left = "|", right = "|" },
       section_separators = { left = "", right = "" },
       disabled_filetypes = {
-        statusline = { 'alpha',
-          'dashboard',
-          'NvimTree',
-          'Outline' },
-        winbar = { 'help',
-          'startify',
-          'dashboard',
-          'packer',
-          'neogitstatus',
-          'NvimTree',
-          'Trouble',
+        statusline = {
           'alpha',
-          'lir',
+          'dashboard',
+          'NvimTree',
           'Outline',
-          'spectre_panel',
-          'toggleterm',
-          'qf',
-          'nofile',
-          'noice',
-          -- 'terminal',
-          'dap-repl',
-          'dapui_console',
-          'dapui_watches',
-          'dapui_stacks',
-          'dapui_breakpoints',
-          'dapui_scopes',
+          "lazy",
         },
       },
       always_divide_middle = true,
@@ -158,48 +110,72 @@ function M.config()
     sections = {
       lualine_a = { "mode" },
       lualine_b = { "branch", diff, diagnostics },
-      lualine_c = { long_filename },
+      lualine_c = {
+        { function()
+          local key = require("grapple").key()
+          return " [" .. key .. "]"
+        end,
+          cond = require("grapple").exists,
+          color = { fg = colors.fn },
+        },
+        filename,
+        {
+          function()
+            local navic = require("nvim-navic")
+            local ret = navic.get_location()
+            return ret:len() > 2000 and "navic error" or ret
+          end,
+          cond = function()
+            if package.loaded["nvim-navic"] then
+              local navic = require("nvim-navic")
+              return navic.is_available()
+            end
+          end,
+          color = { fg = colors.fg },
+        },
+      },
       lualine_x = { macro, lsp_server, spaces, "fileformat", "encoding", filetype },
       lualine_y = { location },
       lualine_z = {
         {
-          require("noice").api.status.command.get,
-          cond = require("noice").api.status.command.has,
+          function()
+            return require("noice").api.status.command.get()
+          end,
+          cond = function()
+            if package.loaded["noice"] then
+              return require("noice").api.status.command.has()
+            end
+          end,
         },
         {
-          require("noice").api.status.mode.get,
-          cond = require("noice").api.status.mode.has,
+          function()
+            return require("noice").api.status.mode.get()
+          end,
+          cond = function()
+            if package.loaded["noice"] then
+              return require("noice").api.status.mode.has()
+            end
+          end,
         },
         {
-          require("noice").api.status.search.get,
-          cond = require("noice").api.status.search.has,
+          function()
+            return require("noice").api.status.search.get()
+          end,
+          cond = function()
+            if package.loaded["noice"] then
+              return require("noice").api.status.search.has()
+            end
+          end,
         },
         {
-          require("lazy.status").updates,
+          function()
+            return require("lazy.status").updates()
+          end,
           cond = require("lazy.status").has_updates,
-          on_click = function()
-            vim.cmd("Lazy")
-          end
         },
       },
     },
 
-    winbar = {
-      lualine_a = {},
-      lualine_b = { grapple },
-      lualine_c = { filename },
-      lualine_x = {},
-      lualine_y = {},
-      lualine_z = { { navic.get_location, cond = navic.is_available }, }
-    },
-    inactive_winbar = {
-      lualine_a = {},
-      lualine_b = { grapple },
-      lualine_c = { filename },
-      lualine_x = {},
-      lualine_y = {},
-      lualine_z = { { navic.get_location, cond = navic.is_available }, }
-    },
     extensions = { "nvim-tree",
       "nvim-dap-ui",
       "symbols-outline",

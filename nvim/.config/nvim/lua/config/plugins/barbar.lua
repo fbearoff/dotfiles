@@ -1,7 +1,7 @@
 local M = {
   "romgrk/barbar.nvim",
   dependencies = "nvim-tree/nvim-web-devicons",
-  event = "BufReadPre"
+  event = "VeryLazy",
 }
 
 function M.config()

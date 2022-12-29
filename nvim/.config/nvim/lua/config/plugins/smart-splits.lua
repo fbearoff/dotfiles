@@ -1,7 +1,7 @@
 local M = {
   "mrjones2014/smart-splits.nvim",
   enabled = true,
-  event = "VeryLazy",
+  event = "BufReadPost",
 }
 
 function M.config()

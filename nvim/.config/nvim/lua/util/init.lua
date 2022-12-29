@@ -1,8 +1,8 @@
 local M = {}
 
 -- For creating new Terminal Instance
-local TERMINAL = require("toggleterm.terminal").Terminal
 function M.open_term(cmd, opts)
+  local TERMINAL = require("toggleterm.terminal").Terminal
   opts           = opts or {}
   opts.size      = opts.size or vim.o.columns * 0.5
   opts.direction = opts.direction or "vertical"
