@@ -107,12 +107,23 @@ return {
 
   {
     "ahmedkhalf/project.nvim",
+    cmd = "Telescope projects",
     config = function()
       require("project_nvim").setup({
-        detection_methods = { "pattern" },
+        detection_methods = { "lsp", "pattern" },
         patterns = { ".git", "Makefile", "package.json", "Deseq2.R" },
         datapath = vim.fn.stdpath("data"),
       })
     end
+  },
+
+  {
+    "kosayoda/nvim-lightbulb",
+    config = {
+      autocmd = {
+        enabled = true,
+      },
+    },
+    event = "BufReadPost"
   }
 }

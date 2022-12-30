@@ -223,6 +223,7 @@ local n_mappings = {
     r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "REPL" },
     t = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
     u = { "<cmd>lua require'dapui'.toggle()<cr>", "DAP UI" },
+    w = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Widgets" },
   },
 
   o = { name = "Options",

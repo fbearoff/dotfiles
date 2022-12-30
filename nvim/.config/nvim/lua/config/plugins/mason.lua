@@ -1,5 +1,11 @@
 local M = {
   "williamboman/mason.nvim",
+  dependencies = { "jayp0521/mason-nvim-dap.nvim",
+    config = {
+      ensure_installed = { "bash", "python" },
+      automatic_setup = true,
+    },
+  },
 }
 
 M.tools = {
@@ -20,13 +26,13 @@ end
 function M.config()
   require("mason").setup({
     ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
+      icons = {
+        package_installed = "✓",
+        package_pending = "➜",
+        package_uninstalled = "✗"
+      }
     }
-})
+  })
   M.check()
   require("mason-lspconfig").setup({
     automatic_installation = true,

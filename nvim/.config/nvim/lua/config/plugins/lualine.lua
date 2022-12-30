@@ -44,6 +44,7 @@ function M.config()
 
   local filename = {
     "filename",
+    path = 1,
     symbols = {
       modified = '[+]',
       readonly = '[-]',

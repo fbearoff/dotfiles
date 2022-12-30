@@ -19,7 +19,6 @@ function M.config()
     bashls = {
       filetypes = { 'sh', 'zsh' },
     },
-    html = {},
     marksman = {},
     pyright = {},
     r_language_server = {
