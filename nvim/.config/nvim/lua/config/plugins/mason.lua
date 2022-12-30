@@ -1,11 +1,5 @@
 local M = {
   "williamboman/mason.nvim",
-  dependencies = { "jayp0521/mason-nvim-dap.nvim",
-    config = {
-      ensure_installed = { "bash", "python" },
-      automatic_setup = true,
-    },
-  },
 }
 
 M.tools = {

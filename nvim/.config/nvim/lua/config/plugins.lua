@@ -125,5 +125,6 @@ return {
       },
     },
     event = "BufReadPost"
-  }
+  },
+
 }

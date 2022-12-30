@@ -1,12 +1,17 @@
 local M = {
   "mfussenegger/nvim-dap",
-
+  keys = "<leader>dc",
   dependencies = {
-    {
-      "rcarriga/nvim-dap-ui",
+    { "rcarriga/nvim-dap-ui",
       config = function()
         require("dapui").setup()
       end,
+    },
+    { "jayp0521/mason-nvim-dap.nvim",
+      config = {
+        ensure_installed = { "bash", "python" },
+        automatic_setup = true,
+      },
     },
   },
 }

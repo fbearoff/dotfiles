@@ -119,6 +119,10 @@ wk.setup({
       g = true, -- bindings for prefixed with g
     },
   },
+  -- operators = {
+  --   gc = "Comments",
+  --   ys = "Surround"
+  -- },
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
   key_labels = {

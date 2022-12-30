@@ -6,7 +6,9 @@ local M = {
 }
 
 function M.config()
-  require("hop").setup()
+  require("hop").setup({
+    teasing = false
+  })
 
   local hop = require("hop")
   local directions = require('hop.hint').HintDirection

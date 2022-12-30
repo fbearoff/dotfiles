@@ -88,6 +88,7 @@ function M.config()
       vimgrep_arguments = vimgrep_arguments,
       file_ignore_patterns = { ".git/", "node_modules" },
       winblend = 10,
+      dynamic_preview_title = true,
       layout_strategy = "horizontal",
       layout_config = {
         prompt_position = "top",

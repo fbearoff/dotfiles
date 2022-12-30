@@ -64,11 +64,6 @@ function M.setup(client, buffer)
           v     = { "<Plug>RViewDF", "View Df" },
           w     = { "<Plug>RSaveClose", "Save and Close R" },
         },
-        {
-          cond  = client.name == "marksman",
-          b     = { "ysiw", "Bold", {mode = "o"} },
-          i     = { "ysiw_", "Italic" },
-        },
         r = {
           function()
             require("inc_rename")
