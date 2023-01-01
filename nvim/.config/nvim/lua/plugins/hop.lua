@@ -2,7 +2,7 @@ local M = {
   "phaazon/hop.nvim",
   cmd = "HopWord",
   keys = { "f", "t" },
-  enabled = true,
+  enabled = false,
 }
 
 function M.config()

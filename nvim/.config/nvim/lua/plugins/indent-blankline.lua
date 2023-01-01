@@ -19,7 +19,7 @@ function M.config()
       "neo-tree",
       "Trouble",
     },
-    char = "│",
+    char = "▏",
     space_char_blankline = " ",
     use_treesitter_scope = false,
     show_trailing_blankline_indent = false,

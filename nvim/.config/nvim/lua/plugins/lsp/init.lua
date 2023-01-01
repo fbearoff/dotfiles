@@ -7,11 +7,11 @@ local M = {
 
 function M.config()
   require("mason")
-  require("config.plugins.lsp.diagnostics").setup()
+  require("plugins.lsp.diagnostics").setup()
 
   local function on_attach(client, bufnr)
     require("nvim-navic").attach(client, bufnr)
-    require("config.plugins.lsp.keys").setup(client, bufnr)
+    require("plugins.lsp.keys").setup(client, bufnr)
   end
 
   local servers = {
@@ -40,7 +40,7 @@ function M.config()
           workspace = {
             library = {
               [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-              [vim.fn.stdpath "config" .. "/lua"] = true,
+              -- [vim.fn.stdpath "config" .. "/lua"] = true,
             },
             diagnostics = {
               globals = { "vim" },
@@ -71,7 +71,7 @@ function M.config()
     require("lspconfig")[server].setup(opts)
   end
 
-  require("config.plugins.null-ls").setup(options)
+  require("plugins.null-ls").setup(options)
 end
 
 return M
