@@ -1,6 +1,6 @@
 local M = {
   "ggandor/leap.nvim",
-  keys = { "<M-s>", "<M-S>", "f", "t", "gs" },
+  keys = { "<M-s>", "<M-S>", "<M-a>", "f", "t", "gs" },
 
   dependencies = {
     { "ggandor/flit.nvim",
@@ -9,6 +9,7 @@ local M = {
         multiline = false
       }
     },
+    "ggandor/leap-ast.nvim"
   },
 
   config = function()
@@ -21,6 +22,7 @@ local M = {
     vim.keymap.set({ "n", "x", "o" }, "gs", "<Plug>(leap-cross-window)")
 
     vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' })
+    vim.keymap.set({ 'n', 'x', 'o' }, '<M-a>', function() require 'leap-ast'.leap() end, {})
   end,
 }
 

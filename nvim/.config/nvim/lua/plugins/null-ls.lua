@@ -12,8 +12,9 @@ function M.setup(options)
       nls.builtins.formatting.black.with { extra_args = { "--fast" } },
     },
     on_attach = options.on_attach,
-    root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", ".git"),
+    root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".git"),
   })
+
 end
 
 return M

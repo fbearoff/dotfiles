@@ -24,11 +24,10 @@ end
 --   command_mode = "c",
 
 -- Insert --
--- Better window navigation
-keymap('i', '<A-h>', '<C-\\><C-N><C-w>h', { desc = 'Select left window' })
-keymap('i', '<A-j>', '<C-\\><C-N><C-w>j', { desc = 'Select lower window' })
-keymap('i', '<A-k>', '<C-\\><C-N><C-w>k', { desc = 'Select upper window' })
-keymap('i', '<A-l>', '<C-\\><C-N><C-w>l', { desc = 'Select right window' })
+
+-- movement between buffers
+keymap("n", "<s-tab>", function() vim.cmd("bn") end, { desc = 'Buffer next' })
+keymap("n", "<tab>", "<C-w>w", {desc = 'Next window'})
 
 -- Home row navigation
 keymap('i', '<C-h>', '<left>', { desc = 'Move cursor left' })

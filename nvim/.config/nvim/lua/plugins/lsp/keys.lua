@@ -64,6 +64,7 @@ function M.setup(client, buffer)
           v     = { "<Plug>RViewDF", "View Df" },
           w     = { "<Plug>RSaveClose", "Save and Close R" },
         },
+        m = { "<cmd>lua require('codewindow').toggle_minimap()<cr>", "Toggle Minimap" },
         r = {
           function()
             require("inc_rename")
