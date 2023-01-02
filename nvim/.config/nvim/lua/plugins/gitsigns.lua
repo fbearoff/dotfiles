@@ -82,7 +82,7 @@ function M.config()
             b = { "<cmd>Telescope git_branches<cr>", "Checkout Branch" },
             c = { "<cmd>Telescope git_commits<cr>", "Checkout Commit" },
             d = { "<cmd>Telescope git_status<cr>", "Diff Overview", },
-            g = { "<cmd>Neogit<cr>", "Neogit" },
+            g = { "<cmd>lua require 'util'.open_term('lazygit', {direction = 'float'})<cr>", "Lazygit" },
             j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
             k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
             L = { "<cmd>lua require 'gitsigns'.toggle_current_line_blame()<cr>", "Toggle Line Blame" },

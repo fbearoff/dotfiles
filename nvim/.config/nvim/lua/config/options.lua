@@ -14,15 +14,18 @@ local options = {
   fillchars = 'eob: ', -- remove ugly ~ ndicator for end of buffer
   hlsearch = true, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
+  joinspaces = false, -- No double spaces with join after a dot
   laststatus = 0, -- not needed with lualine
   linebreak = true, -- break lines at delimiter chars
   mouse = "nv", -- default value of "a", "nv" disables in insert
   number = true, -- set numbered lines
   numberwidth = 2, -- set number column width to 2 {default 4}
+  pumblend = 10, -- Popup blend
   pumheight = 10, -- pop up menu height
   relativenumber = true, -- set relative numbered lines
   ruler = false,
-  scrolloff = 8, -- is one of my fav
+  scrolloff = 8, -- lines of ceontext
+  shiftround = true, -- round indent
   shiftwidth = 2, -- the number of spaces inserted for each indentation
   shortmess = "filnxtToOFWIcC", -- remove short message fluff
   showmatch = true, -- show matching paren on creation
@@ -46,7 +49,6 @@ local options = {
   wildmode = "longest:full,full", -- Command-line completion mode
   wrap = true, -- display lines as one long line
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-  -- formatoptions =
 }
 
 for k, v in pairs(options) do
@@ -55,5 +57,3 @@ end
 
 vim.opt.iskeyword:append "-" -- hyphenated words recognized by searches
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode.
-
--- vim.g.cursorhold_updatetime = 100

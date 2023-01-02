@@ -27,7 +27,7 @@ end
 
 -- movement between buffers
 keymap("n", "<s-tab>", function() vim.cmd("bn") end, { desc = 'Buffer next' })
-keymap("n", "<tab>", "<C-w>w", {desc = 'Next window'})
+keymap("n", "<tab>", "<C-w>w", { desc = 'Next window' })
 
 -- Home row navigation
 keymap('i', '<C-h>', '<left>', { desc = 'Move cursor left' })
@@ -92,12 +92,6 @@ keymap("n", string.upper(cut_key), "D")
 keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>")
 keymap("n", "gw", "*N")
 keymap("x", "gw", "*N")
-
-
-
-keymap("n", "gl", vim.diagnostic.open_float, { desc = "Open float" })
-keymap("n", "]d", vim.diagnostic.goto_next, { desc = "Goto next diagnostic" })
-keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Goto prev diagnostic" })
 
 -- WhichKey bindings
 wk.setup({
@@ -197,10 +191,10 @@ local n_mappings = {
   ["<TAB>"] = { "<cmd>lua require('grapple').cycle_backward()<cr>", "Grapple Cycle" },
   ["\\"] = { "<cmd>:vsplit<CR>", "VSplit" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+  ["E"] = { "<cmd>enew<cr>", "New File" },
   ["f"] = { "<cmd>lua require('telescope.builtin').find_files({hidden=true}) <CR>", "Find Files" },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["L"] = { "<cmd>:Lazy<CR>", "Lazy" },
-  ["N"] = { "<cmd>Noice<cr>", "Notifications" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["r"] = { "<cmd>SnipRun<cr>", "Sniprun" },
   ["u"] = { "<cmd>Telescope undo<cr>", "Undo" },
@@ -217,21 +211,27 @@ local n_mappings = {
 
   d = { name = "DAP",
     b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
+    C = { "<cmd>lua require'dap'.clear_breakpoints()<cr>", "Clear Breakpoints" },
     c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
     i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
-    C = { "<cmd>lua require'dap'.clear_breakpoints()<cr>", "Clear Breakpoints" },
     l = { "<cmd>lua require'dap'.run_last()<cr>", "Run Last" },
-    o = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
     n = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
+    o = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
     r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "REPL" },
     t = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
     u = { "<cmd>lua require'dapui'.toggle()<cr>", "DAP UI" },
     w = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Widgets" },
   },
 
+  n = { name = "Notifications",
+    a = { "<cmd>lua require'noice'.cmd('all')<cr>", "Noice All" },
+    c = { "<cmd>lua require'notify'.dismiss({silent = true, pending = true})<cr>", "Clear Notifcations" },
+    h = { "<cmd>lua require'noice'.cmd('history')<cr>", "Noice History" },
+    l = { "<cmd>lua require'noice'.cmd('last')<cr>", "Noice Last Message" },
+  },
+
   o = { name = "Options",
     c = { "<cmd>ColorizerToggle<CR>", "Colorize" },
-    g = { "<cmd>Glow<CR>", "Glow (Markdown Preview)" },
     h = { "<cmd>set invhlsearch<CR>", "Toggle Highlight" },
     w = { "<cmd>set wrap!<CR>", "Toggle Word Wrap" },
   },

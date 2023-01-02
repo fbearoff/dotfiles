@@ -136,37 +136,7 @@ function M.config()
       },
       lualine_x = { macro, lsp_server, spaces, "fileformat", "encoding", filetype },
       lualine_y = { location },
-      lualine_z = {
-        {
-          function()
-            return require("noice").api.status.command.get()
-          end,
-          cond = function()
-            if package.loaded["noice"] then
-              return require("noice").api.status.command.has()
-            end
-          end,
-        },
-        {
-          function()
-            return require("noice").api.status.mode.get()
-          end,
-          cond = function()
-            if package.loaded["noice"] then
-              return require("noice").api.status.mode.has()
-            end
-          end,
-        },
-        {
-          function()
-            return require("noice").api.status.search.get()
-          end,
-          cond = function()
-            if package.loaded["noice"] then
-              return require("noice").api.status.search.has()
-            end
-          end,
-        },
+      lualine_z = { "searchcount",
         {
           function()
             return require("lazy.status").updates()

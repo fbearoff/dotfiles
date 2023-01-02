@@ -13,11 +13,10 @@ function M.config()
       "help",
       "startify",
       "dashboard",
-      "packer",
-      "neogitstatus",
       "NvimTree",
       "neo-tree",
       "Trouble",
+      "alpha"
     },
     char = "▏",
     space_char_blankline = " ",

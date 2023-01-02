@@ -4,19 +4,8 @@ local M = {
 }
 
 function M.config()
-  local focused = true
-  vim.api.nvim_create_autocmd("FocusGained", {
-    callback = function()
-      focused = true
-    end,
-  })
-  vim.api.nvim_create_autocmd("FocusLost", {
-    callback = function()
-      focused = false
-    end,
-  })
+
   require("noice").setup({
-    debug = false,
     lsp = {
       override = {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -25,15 +14,6 @@ function M.config()
       },
     },
     routes = {
-      {
-        filter = {
-          cond = function()
-            return not focused
-          end,
-        },
-        view = "notify_send",
-        opts = { stop = false },
-      },
       {
         filter = {
           event = "msg_show",
@@ -83,18 +63,6 @@ function M.config()
   vim.keymap.set("c", "<S-Enter>", function()
     require("noice").redirect(vim.fn.getcmdline())
   end, { desc = "Redirect Cmdline" })
-
-  vim.keymap.set("n", "<leader>nl", function()
-    require("noice").cmd("last")
-  end, { desc = "Noice Last Message" })
-
-  vim.keymap.set("n", "<leader>nh", function()
-    require("noice").cmd("history")
-  end, { desc = "Noice History" })
-
-  vim.keymap.set("n", "<leader>na", function()
-    require("noice").cmd("all")
-  end, { desc = "Noice All" })
 
   vim.keymap.set("n", "<c-f>", function()
     if not require("noice.lsp").scroll(4) then

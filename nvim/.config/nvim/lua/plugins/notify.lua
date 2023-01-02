@@ -1,8 +1,14 @@
 local M = {
   "rcarriga/nvim-notify",
-  -- event = "VeryLazy",
-
-  lock = false,
+  keys = {
+    {
+      "<leader>nc",
+      function()
+        require("notify").dismiss({ silent = true, pending = true })
+      end,
+      desc = "Clear all Notifications",
+    },
+  },
 }
 
 function M.config()

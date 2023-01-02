@@ -38,6 +38,7 @@ function M.setup(client, buffer)
       "Next Warning",
     },
     ["="] = { "<cmd> lua vim.lsp.buf.format{async=true}<cr>", "Format" },
+    ["gl"] = { vim.diagnostic.open_float, "Open float" },
     ["gm"] = { format_range_operator, "Format Range", mode = { "n", "v" }, },
     ["<leader>"] = {
       c = {
@@ -64,6 +65,10 @@ function M.setup(client, buffer)
           v     = { "<Plug>RViewDF", "View Df" },
           w     = { "<Plug>RSaveClose", "Save and Close R" },
         },
+        {
+          cond = client.name == "marksman",
+          g = { "<cmd>Glow<cr>", "Glow (Markdown Preview)" },
+        },
         m = { "<cmd>lua require('codewindow').toggle_minimap()<cr>", "Toggle Minimap" },
         r = {
           function()
@@ -78,7 +83,6 @@ function M.setup(client, buffer)
           { vim.lsp.buf.code_action, "Code Action" },
           { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action", mode = "v" },
         },
-        d = { vim.diagnostic.open_float, "Line Diagnostics" },
         l = {
           name = "LSP",
           i = { "<cmd>LspInfo<cr>", "Lsp Info" },

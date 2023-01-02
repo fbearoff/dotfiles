@@ -10,8 +10,6 @@ return {
         "fugitive",
         "alpha",
         "NvimTree",
-        "packer",
-        "neogitstatus",
         "Trouble",
         "lir",
         "Outline",
