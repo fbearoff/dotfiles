@@ -250,7 +250,7 @@ local n_mappings = {
     s = { "<cmd>lua require 'util'.so_input()<CR>", "  StackOverflow" },
   },
 
-  t = { name = "Terminal",
+  T = { name = "Terminal",
     ["-"] = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
     ["\\"] = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
   },

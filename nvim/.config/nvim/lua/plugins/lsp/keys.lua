@@ -41,10 +41,8 @@ function M.setup(client, buffer)
     ["gl"] = { vim.diagnostic.open_float, "Open float" },
     ["gm"] = { format_range_operator, "Format Range", mode = { "n", "v" }, },
     ["<leader>"] = {
-      c = {
-        name = "Code",
-        {
-          cond  = client.name == "r_language_server",
+      c = { name = "Code",
+        { cond  = client.name == "r_language_server",
           [":"] = { ":RSend ", "RSend" },
           b     = { "<Plug>RSPlot", "Plot and Summary" },
           e     = { "<Plug>RShowEx", "Show Example" },
@@ -65,8 +63,7 @@ function M.setup(client, buffer)
           v     = { "<Plug>RViewDF", "View Df" },
           w     = { "<Plug>RSaveClose", "Save and Close R" },
         },
-        {
-          cond = client.name == "marksman",
+        { cond = client.name == "marksman",
           g = { "<cmd>Glow<cr>", "Glow (Markdown Preview)" },
         },
         m = { "<cmd>lua require('codewindow').toggle_minimap()<cr>", "Toggle Minimap" },
@@ -83,8 +80,7 @@ function M.setup(client, buffer)
           { vim.lsp.buf.code_action, "Code Action" },
           { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action", mode = "v" },
         },
-        l = {
-          name = "LSP",
+        l = { name = "LSP",
           i = { "<cmd>LspInfo<cr>", "Lsp Info" },
           a = { "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "Add Folder" },
           r = { "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "Remove Folder" },
@@ -96,10 +92,16 @@ function M.setup(client, buffer)
       s = {
         d = { "<cmd>Telescope diagnostics<cr>", "Search Diagnostics" },
       },
-      T = { "<cmd>TroubleToggle<cr>", "Trouble" },
+      t = { name = "Trouble",
+        t = { "<cmd>TroubleToggle<cr>", "Trouble" },
+        w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace" },
+        d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document" },
+        q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+        l = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
+        r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
+      },
     },
-    g = {
-      name = "Goto",
+    g = { name = "Goto",
       d = { "<cmd>Telescope lsp_definitions<cr>", "Goto Definition" },
       r = { "<cmd>Telescope lsp_references<cr>", "References" },
       R = { "<cmd>Trouble lsp_references<cr>", "Trouble References" },
