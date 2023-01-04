@@ -1,6 +1,6 @@
 local M = {
   "michaelb/sniprun",
-  enabled = true,
+  enabled = false,
   build = "bash ./install.sh",
   cmd = {"SnipRun", },
   keys = { "<leader>r" },

@@ -1,6 +1,6 @@
 local M = {
   "ggandor/leap.nvim",
-  keys = { "<M-s>", "<M-S>", "<M-a>", "f", "t", "gs" },
+  keys = { "<M-s>", "<M-S>", "<M-a>", "<M-x>", "<M-X>", "f", "t", "gs" },
 
   dependencies = {
     { "ggandor/flit.nvim",
