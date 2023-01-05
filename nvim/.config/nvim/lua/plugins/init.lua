@@ -160,4 +160,54 @@ return {
       vim.keymap.set("n", "<C-s>", "<cmd>TSJSplit<cr>", { desc = 'Split line' })
     end
   },
+
+  -- better text-objects
+  {
+    "echasnovski/mini.ai",
+    keys = {
+      { "a", mode = { "x", "o" } },
+      { "i", mode = { "x", "o" } },
+    },
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        init = function()
+          -- no need to load the plugin, since we only need its queries
+          require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
+        end,
+      },
+    },
+    config = function()
+      local ai = require("mini.ai")
+      ai.setup({
+        n_lines = 500,
+        custom_textobjects = {
+          o = ai.gen_spec.treesitter({
+            a = { "@block.outer", "@conditional.outer", "@loop.outer" },
+            i = { "@block.inner", "@conditional.inner", "@loop.inner" },
+          }, {}),
+          f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
+          c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
+        },
+      })
+    end,
+  },
+
+  -- active indent guide and indent text objects
+  {
+    "echasnovski/mini.indentscope",
+    event = "BufReadPre",
+    config = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
+      require("mini.indentscope").setup({
+        symbol = "▏",
+        options = { try_as_border = true },
+      })
+    end,
+  },
 }

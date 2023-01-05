@@ -29,12 +29,11 @@ function M.config()
   end
 
   -- Keymaps
-  local opts = { noremap = true, silent = true }
-  local keymap = vim.keymap.set
+  local keymap = require('util').keymap
 
-  keymap('n', '<leader><Space>', '<Plug>RDSendLine', opts)
-  keymap('v', '<leader><Space>', '<Plug>RDSendSelection', opts)
-  keymap('n', '<LocalLeader>:', ':RSend ', opts)
+  keymap('n', '<leader><Space>', '<Plug>RDSendLine')
+  keymap('v', '<leader><Space>', '<Plug>RDSendSelection')
+  keymap('n', '<LocalLeader>:', ':RSend ')
 
 end
 

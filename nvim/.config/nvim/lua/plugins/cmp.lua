@@ -70,7 +70,7 @@ function M.config()
     end,
 
     completion = {
-      completeopt = "menu,menuone,noinsert",
+      completeopt = "menu,menuone,noselect",
     },
     snippet = {
       expand = function(args)
@@ -162,7 +162,6 @@ function M.config()
   cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-      -- { name = "noice_popupmenu" },
       { name = "path" },
       { name = "cmdline" },
       { name = "cmdline_history" },

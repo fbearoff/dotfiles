@@ -1,5 +1,17 @@
 local M = {}
 
+-- Keymap helper function
+function M.keymap(mode, lhs, rhs, opts)
+  local options = { noremap = true, silent = true }
+  if opts then
+    if opts['desc'] then
+      opts['desc'] = 'User given: ' .. opts['desc']
+    end
+    options = vim.tbl_extend('force', options, opts)
+  end
+  vim.keymap.set(mode, lhs, rhs, options)
+end
+
 -- For creating new Terminal Instance
 function M.open_term(cmd, opts)
   local TERMINAL = require("toggleterm.terminal").Terminal

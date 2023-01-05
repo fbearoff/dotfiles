@@ -1,16 +1,5 @@
 local wk = require("which-key")
-
--- Keymap helper function
-local function keymap(mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
-  if opts then
-    if opts['desc'] then
-      opts['desc'] = 'keymaps.lua: ' .. opts['desc']
-    end
-    options = vim.tbl_extend('force', options, opts)
-  end
-  vim.keymap.set(mode, lhs, rhs, options)
-end
+local keymap = require('util').keymap
 
 --Remap space as leader key
 -- keymap("", "<Space>", "<Nop>", { desc = 'Remove delay on leader press' })
@@ -24,10 +13,10 @@ end
 --   command_mode = "c",
 
 -- Insert --
-
--- movement between buffers
-keymap("n", "<s-tab>", function() vim.cmd("bn") end, { desc = 'Buffer next' })
-keymap("n", "<tab>", "<C-w>w", { desc = 'Next window' })
+-- Add undo break-points
+keymap("i", ",", ",<c-g>u")
+keymap("i", ".", ".<c-g>u")
+keymap("i", ";", ";<c-g>u")
 
 -- Home row navigation
 keymap('i', '<C-h>', '<left>', { desc = 'Move cursor left' })
@@ -36,12 +25,15 @@ keymap('i', '<C-j>', '<down>', { desc = 'Move cursor down' })
 keymap('i', '<C-k>', '<up>', { desc = 'Move cursor up' })
 
 -- Normal --
+-- movement between buffers
+keymap("n", "<s-tab>", function() vim.cmd("bn") end, { desc = 'Buffer next' })
+keymap("n", "<tab>", "<C-w>w", { desc = 'Next window' })
 -- Remap for dealing with word wrap
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- change word with <c-c>
-vim.keymap.set("n", "<C-c>", "<cmd>normal! ciw<cr>a")
+keymap("n", "<C-c>", "<cmd>normal! ciw<cr>a")
 
 -- H and L go to begining/end of line
 keymap('n', 'H', '^', { desc = 'Go to beginning of line' })
