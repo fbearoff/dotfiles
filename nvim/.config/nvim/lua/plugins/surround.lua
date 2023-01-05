@@ -34,7 +34,7 @@ function M.config()
       normal_cur = "yss",
       normal_line = "yS",
       normal_cur_line = "ySS",
-      visual = "S",
+      visual = "gs",
       visual_line = "gS",
       delete = "ds",
       change = "cs",

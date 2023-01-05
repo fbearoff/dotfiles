@@ -28,7 +28,11 @@ return {
     "SmiteshP/nvim-navic",
     config = function()
       vim.g.navic_silence = true
-      require("nvim-navic").setup({ separator = " ", highlight = false, depth_limit = 5 }) -- lualine colors don't apply if highlight is on
+      require("nvim-navic").setup({
+        separator = " ",
+        highlight = false, -- lualine colors don't apply if highlight is on
+        depth_limit = 5,
+      })
     end,
   },
 
@@ -108,7 +112,12 @@ return {
     config = function()
       require("project_nvim").setup({
         detection_methods = { "lsp", "pattern" },
-        patterns = { ".git", "Makefile", "package.json", "Deseq2.R" },
+        patterns = {
+          ".git",
+          "Makefile",
+          "package.json",
+          "Deseq2.R",
+        },
         datapath = vim.fn.stdpath("data"),
       })
     end
@@ -136,5 +145,19 @@ return {
     "gorbit99/codewindow.nvim",
     config = true,
     keys = "<leader>cm"
-  }
+  },
+
+  {
+    "Wansmer/treesj",
+    keys = { "J", "<C-s>" },
+    cmd = { "TSJSplit", "TSJJoin" },
+    config = function()
+      require('treesj').setup({
+        use_default_keymaps = false,
+        max_join_length = 150,
+      })
+      vim.keymap.set("n", "J", "<cmd>TSJJoin<cr>", { desc = 'Join line' })
+      vim.keymap.set("n", "<C-s>", "<cmd>TSJSplit<cr>", { desc = 'Split line' })
+    end
+  },
 }

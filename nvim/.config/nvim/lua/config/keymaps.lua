@@ -40,12 +40,15 @@ keymap('i', '<C-k>', '<up>', { desc = 'Move cursor up' })
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- change word with <c-c>
+vim.keymap.set("n", "<C-c>", "<cmd>normal! ciw<cr>a")
+
 -- H and L go to begining/end of line
 keymap('n', 'H', '^', { desc = 'Go to beginning of line' })
 keymap('n', 'L', '$', { desc = 'Go to end of line' })
 
 -- Keep cursor in place when joing lines
-keymap("n", "J", "mzJ`z", { desc = 'Keep cursor in place when joing lines' })
+-- keymap("n", "J", "mzJ`z", { desc = 'Keep cursor in place when joing lines' })
 
 -- Center cursor when scrolling page
 keymap("n", "<C-d>", "<C-d>zz", { desc = 'Scroll down and center page' })
