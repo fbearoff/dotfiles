@@ -6,17 +6,13 @@ local M = {
 function M.config()
   local colors = require("kanagawa.colors").setup()
 
-  local hide_in_width = function()
-    return vim.fn.winwidth(0) > 80
-  end
-
   local diagnostics = {
     "diagnostics",
     sources = { "nvim_diagnostic" },
     symbols = { error = " ", warn = " " },
     colored = true,
     update_in_insert = false,
-    always_visible = true,
+    always_visible = false,
     on_click = function()
       vim.cmd('TroubleToggle document_diagnostics')
     end
@@ -26,7 +22,9 @@ function M.config()
     "diff",
     colored = true,
     symbols = { added = " ", modified = " ", removed = " " },
-    cond = hide_in_width,
+    cond = function()
+      return vim.fn.winwidth(0) > 80
+    end,
     on_click = function()
       package.loaded.gitsigns.diffthis()
     end
@@ -51,6 +49,7 @@ function M.config()
       unnamed = '[No Name]',
     },
   }
+
   -- Lsp server name .
   local lsp_server = {
     function()
@@ -74,14 +73,39 @@ function M.config()
     end
   }
 
-  local spaces = function()
-    return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
-  end
-
   local macro = {
     require("noice").api.statusline.mode.get,
     cond = require("noice").api.statusline.mode.has,
     color = { fg = colors.co },
+  }
+
+  local grapple = { function()
+    local key = require("grapple").key()
+    return " [" .. key .. "]"
+  end,
+    cond = require("grapple").exists,
+    color = { fg = colors.fn },
+    on_click = function()
+      vim.cmd('GrapplePopup tags')
+    end
+  }
+
+  local navic = {
+    function()
+      return require("nvim-navic").get_location()
+    end,
+    cond = require("nvim-navic").is_available,
+    color = { fg = colors.fg },
+  }
+
+  local lazy = {
+    function()
+      return require("lazy.status").updates()
+    end,
+    cond = require("lazy.status").has_updates,
+    on_click = function()
+      vim.cmd('Lazy')
+    end
   }
 
   require("lualine").setup({
@@ -94,9 +118,8 @@ function M.config()
         statusline = {
           'alpha',
           'dashboard',
-          'NvimTree',
-          'Outline',
           "lazy",
+          "mason"
         },
       },
       always_divide_middle = true,
@@ -109,44 +132,11 @@ function M.config()
     },
     sections = {
       lualine_a = { "mode" },
-      lualine_b = { "branch", diff, diagnostics },
-      lualine_c = {
-        { function()
-          local key = require("grapple").key()
-          return " [" .. key .. "]"
-        end,
-          cond = require("grapple").exists,
-          color = { fg = colors.fn },
-        },
-        filename,
-        {
-          function()
-            local navic = require("nvim-navic")
-            local ret = navic.get_location()
-            return ret:len() > 2000 and "navic error" or ret
-          end,
-          cond = function()
-            if package.loaded["nvim-navic"] then
-              local navic = require("nvim-navic")
-              return navic.is_available()
-            end
-          end,
-          color = { fg = colors.fg },
-        },
-      },
-      lualine_x = { macro, lsp_server, spaces, "fileformat", "encoding", filetype },
+      lualine_b = { "branch", diff },
+      lualine_c = { diagnostics, grapple, filename, navic },
+      lualine_x = { macro, lsp_server, "fileformat", "encoding", filetype },
       lualine_y = { location },
-      lualine_z = { "searchcount",
-        {
-          function()
-            return require("lazy.status").updates()
-          end,
-          cond = require("lazy.status").has_updates,
-          on_click = function()
-            vim.cmd('Lazy')
-          end
-        },
-      },
+      lualine_z = { "searchcount", lazy },
     },
 
     extensions = { "nvim-tree",

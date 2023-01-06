@@ -42,7 +42,7 @@ function M.setup(client, buffer)
     ["gm"] = { format_range_operator, "Format Range", mode = { "n", "v" }, },
     ["<leader>"] = {
       c = { name = "Code",
-        { cond  = client.name == "r_language_server",
+        { cond = client.name == "r_language_server",
           [":"] = { ":RSend ", "RSend" },
           b     = { "<Plug>RSPlot", "Plot and Summary" },
           e     = { "<Plug>RShowEx", "Show Example" },
@@ -64,7 +64,17 @@ function M.setup(client, buffer)
           w     = { "<Plug>RSaveClose", "Save and Close R" },
         },
         { cond = client.name == "marksman",
-          g = { "<cmd>Glow<cr>", "Glow (Markdown Preview)" },
+          g = { "<cmd>Glow<cr>", "Glow" },
+          p = {
+            function()
+              local peek = require("peek")
+              if peek.is_open() then
+                peek.close()
+              else
+                peek.open()
+              end
+            end, "Peek"
+          },
         },
         m = { "<cmd>lua require('codewindow').toggle_minimap()<cr>", "Toggle Minimap" },
         r = {

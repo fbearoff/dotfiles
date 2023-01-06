@@ -3,6 +3,7 @@ local M = {
 }
 
 M.tools = {
+  "deno",
   "shfmt",
   "black",
 }

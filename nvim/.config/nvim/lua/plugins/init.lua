@@ -199,7 +199,7 @@ return {
     event = "BufReadPre",
     config = function()
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
+        pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
         callback = function()
           vim.b.miniindentscope_disable = true
         end,
@@ -209,5 +209,13 @@ return {
         options = { try_as_border = true },
       })
     end,
+  },
+
+  -- Markdown live preview, needs `webkit2gtk`
+  {
+    "toppair/peek.nvim",
+    build = "deno task --quiet build:fast",
+    keys = { "<leader>cp" },
+    config = true,
   },
 }
