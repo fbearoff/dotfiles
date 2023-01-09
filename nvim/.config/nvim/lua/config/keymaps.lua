@@ -32,6 +32,11 @@ keymap("n", "<tab>", "<C-w>w", { desc = 'Next window' })
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- Enter inserts newline without leaving Normal mode
+-- Need to change keys in windows terminal https://github.com/microsoft/terminal/issues/530#issuecomment-892247092
+keymap("n", "<cr>", "o<Esc>", { desc = "Insert newline" })
+keymap("n", "<s-cr>", "O<Esc>", { desc = "Insert newline above" })
+
 -- change word with <c-c>
 keymap("n", "<C-c>", "<cmd>normal! ciw<cr>a")
 
@@ -53,6 +58,10 @@ keymap("n", "N", "Nzzzv", { desc = 'Previous search item' })
 --turn off Q (ex mode)
 keymap('n', 'Q', '<nop>')
 keymap("c", "Q", "q", { noremap = true, silent = false })
+keymap('n', 'q:', '<nop>')
+
+-- Select whole line
+keymap('n', "vv", "V", { desc = 'Select whole line' })
 
 -- Visual --
 -- Stay in indent mode
@@ -76,8 +85,8 @@ for _, lhs in ipairs(
   keymap({ "n", "x" }, lhs, '"_' .. lhs)
 end
 
--- Map "cut" action to d key
-local cut_key = "x"
+-- Map "d" cut action to cut key
+local cut_key = "<A-d>"
 
 keymap({ "n", "x" }, cut_key, "d")
 keymap("n", cut_key .. cut_key, "dd")
@@ -91,8 +100,8 @@ keymap("x", "gw", "*N")
 -- WhichKey bindings
 wk.setup({
   plugins = {
-    marks = true, -- shows a list of your marks on ' and `
-    registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+    marks = false, -- shows a list of your marks on ' and `
+    registers = false, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
     spelling = {
       enabled = true,
       suggestions = 20,
@@ -103,13 +112,12 @@ wk.setup({
       text_objects = false,
       windows = true, -- default bindings on <c-w>
       nav = true, -- misc bindings to work with windows
-      z = true, -- bindings for folds, spelling and others prefixed with z
-      g = true, -- bindings for prefixed with g
+      z = false, -- bindings for folds, spelling and others prefixed with z
+      g = false, -- bindings for prefixed with g
     },
   },
   -- operators = {
   --   gc = "Comments",
-  --   ys = "Surround"
   -- },
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
@@ -164,10 +172,7 @@ local v_mappings = {
 
   o = { ":'<,'>sort i<CR>", "Sort" },
   r = { ":'<,'>SnipRun<CR>", "SnipRun" },
-  s = { "<cmd>lua require('substitute').visual()<cr>", "Substitute" },
   S = { "<Plug>(nvim-surround-visual)", "Surround" },
-  x = { "d", "Cut" },
-  X = { "<cmd>lua require('substitute.exchange').visual()<cr>", "Exchange" }
 }
 
 local n_opts = {
@@ -182,12 +187,11 @@ local n_opts = {
 local n_mappings = {
   ["!"] = { "<cmd>lua require('grapple').toggle()<cr>", "Grapple Toggle" },
   ["-"] = { "<cmd>:split<CR>", "Split" },
-  -- ["/"] = { "<cmd>HopPattern<cr>", "Hop Pattern" },
   ["<TAB>"] = { "<cmd>lua require('grapple').cycle_backward()<cr>", "Grapple Cycle" },
   ["\\"] = { "<cmd>:vsplit<CR>", "VSplit" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["E"] = { "<cmd>enew<cr>", "New File" },
-  ["f"] = { "<cmd>lua require('telescope.builtin').find_files({hidden=true}) <CR>", "Find Files" },
+  ["f"] = { "<cmd>lua require 'plugins.telescope'.project_files({hidden=true})<CR>", "Find Files" },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["L"] = { "<cmd>:Lazy<CR>", "Lazy" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },

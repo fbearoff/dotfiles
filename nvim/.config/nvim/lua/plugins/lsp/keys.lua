@@ -64,6 +64,9 @@ function M.setup(client, buffer)
           w     = { "<Plug>RSaveClose", "Save and Close R" },
         },
         { cond = client.name == "marksman",
+          b = { 'o```{r}<cr>```<esc>O', "Insert R Code block" },
+          B = { 'o```{python}<cr>```<esc>O', "Insert Python Code Block" },
+          f = { "<cmd>FeMaco<cr>", "FeMaco" },
           g = { "<cmd>Glow<cr>", "Glow" },
           p = {
             function()
@@ -74,6 +77,14 @@ function M.setup(client, buffer)
                 peek.open()
               end
             end, "Peek"
+          },
+          q = {
+            name = 'Quarto',
+            p = { ":lua require'quarto'.quartoPreview()<cr>", 'Preview' },
+            q = { ":lua require'quarto'.quartoClosePreview()<cr>", 'Close' },
+            h = { ":QuartoHelp ", 'Help' },
+            e = { ":lua require'otter'.export()<cr>", 'Export' },
+            E = { ":lua require'otter'.export(true)<cr>", 'Export overwrite' },
           },
         },
         m = { "<cmd>lua require('codewindow').toggle_minimap()<cr>", "Toggle Minimap" },

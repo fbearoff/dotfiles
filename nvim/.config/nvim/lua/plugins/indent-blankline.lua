@@ -1,8 +1,9 @@
 local M = {
   "lukas-reineke/indent-blankline.nvim",
+  event = "BufReadPre",
+  enabled = true
 }
 
-M.event = "BufReadPre"
 
 function M.config()
   local indent = require("indent_blankline")

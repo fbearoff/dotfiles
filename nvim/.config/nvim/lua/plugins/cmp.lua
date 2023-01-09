@@ -119,8 +119,8 @@ function M.config()
       { name = "nvim_lsp", max_item_count = 10 },
       { name = "nvim_lua" },
       { name = "nvim_lsp_signature_help" },
-      { name = "luasnip" },
-      { name = "buffer", max_item_count = 10 },
+      { name = "luasnip", keyword_length = 3, max_item_count = 3 },
+      { name = "buffer", keyword_length = 5, max_item_count = 3 },
       { name = "path" },
     }),
     formatting = {

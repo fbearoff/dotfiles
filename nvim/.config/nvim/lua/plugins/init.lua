@@ -49,7 +49,7 @@ return {
     "m-demare/hlargs.nvim",
     event = "BufReadPost",
     enabled = true,
-    config = {
+    opts = {
       excluded_argnames = {
         usages = {
           lua = { "self", "use" },
@@ -59,14 +59,9 @@ return {
   },
 
   {
-    "nvim-tree/nvim-web-devicons",
-    config = { default = true },
-  },
-
-  {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
-    config = {
+    opts = {
       auto_open = false,
       use_diagnostic_signs = true,
     }
@@ -99,7 +94,7 @@ return {
 
   { "cappyzawa/trim.nvim",
     event = "BufReadPost",
-    config = { disable = { "markdown" },
+    opts = { disable = { "markdown" },
       patterns = {
         [[%s/\r//g]] --strip windows end of line character
       },
@@ -125,7 +120,7 @@ return {
 
   {
     "kosayoda/nvim-lightbulb",
-    config = {
+    opts = {
       autocmd = {
         enabled = true,
       },
@@ -197,17 +192,19 @@ return {
   {
     "echasnovski/mini.indentscope",
     event = "BufReadPre",
-    config = function()
+    opts = {
+      -- symbol = "▏",
+      symbol = "│",
+      options = { try_as_border = true },
+    },
+    config = function(_, opts)
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
         callback = function()
           vim.b.miniindentscope_disable = true
         end,
       })
-      require("mini.indentscope").setup({
-        symbol = "▏",
-        options = { try_as_border = true },
-      })
+      require("mini.indentscope").setup(opts)
     end,
   },
 
@@ -217,5 +214,15 @@ return {
     build = "deno task --quiet build:fast",
     keys = { "<leader>cp" },
     config = true,
+  },
+
+  -- Edit fenced language in popup
+  { "AckslD/nvim-FeMaco.lua",
+    cmd = "FeMaco",
+    opts = {
+      ensure_newline = function(base_filetype)
+        return true
+      end,
+    }
   },
 }

@@ -7,7 +7,7 @@ local options = {
   clipboard = "unnamedplus", -- allows neovim to access the system clipboard
   cmdheight = 0, -- more space in the neovim command line for displaying messages
   completeopt = { "menu", "menuone", "noselect" }, -- mostly just for cmp
-  conceallevel = 3, -- so that `` is visible in markdown files
+  conceallevel = 3, -- Hide * markup for bold and italic
   cursorline = true, -- highlight the current line
   expandtab = true, -- convert tabs to spaces
   fileencoding = "utf-8", -- the encoding written to a file
@@ -17,7 +17,7 @@ local options = {
   joinspaces = false, -- No double spaces with join after a dot
   laststatus = 0, -- not needed with lualine
   linebreak = true, -- break lines at delimiter chars
-  mouse = "nv", -- default value of "a", "nv" disables in insert
+  mouse = "a", -- default value of "a", "nv" disables in insert
   number = true, -- set numbered lines
   numberwidth = 2, -- set number column width to 2 {default 4}
   pumblend = 10, -- Popup blend
@@ -58,3 +58,7 @@ end
 
 vim.opt.iskeyword:append "-" -- hyphenated words recognized by searches
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode.
+
+vim.g.markdown_fenced_languages = { 'html', 'python', 'bash=sh', 'R=r' }
+-- fix markdown indentation settings
+vim.g.markdown_recommended_style = 0

@@ -21,7 +21,8 @@ function M.config()
     R_assign = 0,
     R_csv_app = ':TermExec cmd="vd %s"',
     R_auto_omni = {},
-    R_hi_fun = false
+    R_hi_fun = false,
+    rmd_fenced_languages = {'r'}
   }
 
   for k, v in pairs(options) do

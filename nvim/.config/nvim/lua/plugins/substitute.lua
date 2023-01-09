@@ -1,10 +1,9 @@
 local M = {
   "gbprod/substitute.nvim",
-  enable = true,
+  enabled = true,
   keys = {
-    "<M-s>",
-    "<M-S>",
-    "xc"
+    "<A-s>",
+    "<A-S>",
   },
 }
 
@@ -19,10 +18,10 @@ function M.config()
     },
   })
 
-  vim.keymap.set("n", "<M-s>", require('substitute').operator, { noremap = true })
-  vim.keymap.set("x", "<M-s>", require('substitute').visual, { noremap = true })
-  vim.keymap.set("n", "xc", require('substitute.exchange').operator, { noremap = true })
-  vim.keymap.set("x", "xc", require('substitute.exchange').visual, { noremap = true })
+  vim.keymap.set("n", "<A-s>", require('substitute').operator, { noremap = true })
+  vim.keymap.set("x", "<A-s>", require('substitute').visual, { noremap = true })
+  vim.keymap.set("n", "<A-x>", require('substitute.exchange').operator, { noremap = true })
+  vim.keymap.set("x", "<A-x>", require('substitute.exchange').visual, { noremap = true })
 end
 
 return M

@@ -122,6 +122,14 @@ function M.config()
           "mason"
         },
       },
+      ignore_focus = {
+        "dapui_watches",
+        "dapui_breakpoints",
+        "dapui_scopes",
+        "dapui_console",
+        "dapui_stacks",
+        "dap-repl",
+      },
       always_divide_middle = true,
       globalstatus = true,
       refresh = {
