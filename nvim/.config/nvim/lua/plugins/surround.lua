@@ -74,6 +74,14 @@ function M.config()
           target = "^(%*%*?)().-(%*%*?)()$",
         },
       },
+      -- fenced R
+      ["R"] = {
+        add = { "```{r}", "```"}
+      },
+      -- fenced python
+      ["P"] = {
+        add = { "```{python}", "```"}
+      },
     },
     aliases = {
       ["m"] = { "`", "*", "_" },
