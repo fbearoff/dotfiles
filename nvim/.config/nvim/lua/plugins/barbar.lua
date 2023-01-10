@@ -48,6 +48,8 @@ function M.init()
   keymap('n', '<A-.>', ':BufferNext<CR>')
   keymap("n", "<C-l>", ":bnext<CR>")
   keymap("n", "<C-h>", ":bprevious<CR>")
+  keymap("n", "]b", ":bnext<CR>")
+  keymap("n", "[b", ":bprevious<CR>")
 
   -- Re-order to previous/next
   keymap('n', '<A-<>', ':BufferMovePrevious<CR>')

@@ -1,4 +1,5 @@
-return { 'quarto-dev/quarto-nvim',
+return
+  { 'quarto-dev/quarto-nvim',
   dependencies = {
     'jmbuhr/otter.nvim',
     'neovim/nvim-lspconfig'

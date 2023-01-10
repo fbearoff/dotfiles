@@ -1,6 +1,6 @@
 local wk = require("which-key")
 local keymap = require('util').keymap
-
+local util = require("util")
 --Remap space as leader key
 -- keymap("", "<Space>", "<Nop>", { desc = 'Remove delay on leader press' })
 
@@ -189,11 +189,12 @@ local n_mappings = {
   ["-"] = { "<cmd>:split<CR>", "Split" },
   ["<TAB>"] = { "<cmd>lua require('grapple').cycle_backward()<cr>", "Grapple Cycle" },
   ["\\"] = { "<cmd>:vsplit<CR>", "VSplit" },
+  [":"] = { "<cmd>Telescop command_history<cr>", "Command History" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["E"] = { "<cmd>enew<cr>", "New File" },
   ["f"] = { "<cmd>lua require 'plugins.telescope'.project_files({hidden=true})<CR>", "Find Files" },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-  ["L"] = { "<cmd>:Lazy<CR>", "Lazy" },
+  ["l"] = { "<cmd>:Lazy<CR>", "Lazy" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["r"] = { "<cmd>SnipRun<cr>", "Sniprun" },
   ["u"] = { "<cmd>Telescope undo<cr>", "Undo" },
@@ -230,9 +231,14 @@ local n_mappings = {
   },
 
   o = { name = "Options",
-    c = { "<cmd>ColorizerToggle<CR>", "Colorize" },
-    h = { "<cmd>set invhlsearch<CR>", "Toggle Highlight" },
-    w = { "<cmd>set wrap!<CR>", "Toggle Word Wrap" },
+    C = { "<cmd>ColorizerToggle<CR>", "Toggle Colorizer" },
+    c = { function()
+      local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
+      util.toggle("conceallevel", false, { 0, conceallevel })
+    end, "Toggle Conceal" },
+    n = { function() util.toggle("relativenumber", true) util.toggle("number") end, "Toggle Line Number" },
+    s = { function() util.toggle("spell") end, "Toggle Spell" },
+    w = { function() util.toggle("wrap") end, "Toggle Word Wrap" },
   },
 
   s = { name = "Search",
@@ -242,11 +248,12 @@ local n_mappings = {
     h = { "<cmd>lua require('telescope.builtin').help_tags {default_text = vim.call('expand', '<cword>')}<cr>",
       "Find Help" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
+    m = { "<cmd>Telescope marks<cr>", "Marks" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
     p = { "<cmd>Telescope projects<cr>", "Projects" },
-    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+    r = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
-    s = { "<cmd>lua require 'util'.so_input()<CR>", "  StackOverflow" },
+    s = { "<cmd>lua require 'util'.so_input()<CR>", "StackOverflow" },
   },
 
   T = { name = "Terminal",

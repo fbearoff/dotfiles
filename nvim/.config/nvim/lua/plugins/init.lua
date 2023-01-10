@@ -87,10 +87,7 @@ return {
     config = true
   },
 
-  {
-    "ellisonleao/glow.nvim",
-    cmd = "Glow"
-  },
+
 
   { "cappyzawa/trim.nvim",
     event = "BufReadPost",
@@ -99,23 +96,6 @@ return {
         [[%s/\r//g]] --strip windows end of line character
       },
     },
-  },
-
-  {
-    "ahmedkhalf/project.nvim",
-    cmd = "Telescope projects",
-    config = function()
-      require("project_nvim").setup({
-        detection_methods = { "lsp", "pattern" },
-        patterns = {
-          ".git",
-          "Makefile",
-          "package.json",
-          "Deseq2.R",
-        },
-        datapath = vim.fn.stdpath("data"),
-      })
-    end
   },
 
   {
@@ -206,23 +186,5 @@ return {
       })
       require("mini.indentscope").setup(opts)
     end,
-  },
-
-  -- Markdown live preview, needs `webkit2gtk`
-  {
-    "toppair/peek.nvim",
-    build = "deno task --quiet build:fast",
-    keys = { "<leader>cp" },
-    config = true,
-  },
-
-  -- Edit fenced language in popup
-  { "AckslD/nvim-FeMaco.lua",
-    cmd = "FeMaco",
-    opts = {
-      ensure_newline = function(base_filetype)
-        return true
-      end,
-    }
   },
 }

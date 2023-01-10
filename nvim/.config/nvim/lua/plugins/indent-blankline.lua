@@ -12,7 +12,6 @@ function M.config()
     buftype_exclude = { "terminal", "nofile" },
     filetype_exclude = {
       "help",
-      "startify",
       "dashboard",
       "NvimTree",
       "neo-tree",

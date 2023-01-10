@@ -1,12 +1,30 @@
 local M = {
   "nvim-telescope/telescope.nvim",
-  cmd = { "Telescope" },
+  event = "VeryLazy",
+  -- cmd = { "Telescope" },
 
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope-symbols.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "debugloop/telescope-undo.nvim",
+    {
+      "ahmedkhalf/project.nvim",
+      config = function()
+        require("project_nvim").setup({
+          detection_methods = {
+            "lsp",
+            "pattern",
+          },
+          patterns = {
+            ".git",
+            "Makefile",
+            "package.json",
+            "Deseq2.R",
+          },
+        })
+      end
+    },
   },
 }
 
@@ -62,11 +80,7 @@ function M.config()
   telescope.setup({
     extensions = {
       undo = {
-        side_by_side = true,
-        layout_strategy = "vertical",
-        layout_config = {
-          preview_height = 0.8,
-        },
+        layout_strategy = "horizontal",
         mappings = {
           i = {
             ["<C-a>"] = undo.yank_additions,
@@ -86,7 +100,7 @@ function M.config()
       selection_caret = " ",
       buffer_previewer_maker = new_maker, -- don't preview binaries
       vimgrep_arguments = vimgrep_arguments,
-      file_ignore_patterns = { ".git/", "node_modules" },
+      file_ignore_patterns = { ".git/", "node_modules", "/tmp", "/usr", ".local" },
       winblend = 10,
       dynamic_preview_title = true,
       layout_strategy = "horizontal",

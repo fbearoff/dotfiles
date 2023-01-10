@@ -2,15 +2,14 @@ local M = {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
   dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
+    "dmitmel/cmp-cmdline-history",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-cmdline",
+    "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lua",
-    "hrsh7th/cmp-nvim-lsp-signature-help",
-    "dmitmel/cmp-cmdline-history",
     "hrsh7th/cmp-path",
+    "jalvesaq/cmp-nvim-r",
     "saadparwaiz1/cmp_luasnip",
-    "jalvesaq/cmp-nvim-r"
   },
 }
 
@@ -118,7 +117,6 @@ function M.config()
       { name = "cmp_nvim_r" },
       { name = "nvim_lsp", max_item_count = 10 },
       { name = "nvim_lua" },
-      { name = "nvim_lsp_signature_help" },
       { name = "luasnip", keyword_length = 3, max_item_count = 3 },
       { name = "buffer", keyword_length = 5, max_item_count = 3 },
       { name = "path" },
@@ -133,7 +131,6 @@ function M.config()
           buffer = "[Buffer]",
           path = "[Path]",
           cmp_nvim_r = "[R]",
-          nvim_lsp_signature_help = "[Signature]",
           nvim_lua = "[Lua]",
         })[entry.source.name]
         return vim_item
