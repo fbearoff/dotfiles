@@ -1,6 +1,7 @@
 local wk = require("which-key")
-local keymap = require('util').keymap
 local util = require("util")
+local keymap = util.keymap
+
 --Remap space as leader key
 -- keymap("", "<Space>", "<Nop>", { desc = 'Remove delay on leader press' })
 
@@ -171,7 +172,6 @@ local v_mappings = {
   },
 
   o = { ":'<,'>sort i<CR>", "Sort" },
-  r = { ":'<,'>SnipRun<CR>", "SnipRun" },
   S = { "<Plug>(nvim-surround-visual)", "Surround" },
 }
 
@@ -196,7 +196,6 @@ local n_mappings = {
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["l"] = { "<cmd>:Lazy<CR>", "Lazy" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
-  ["r"] = { "<cmd>SnipRun<cr>", "Sniprun" },
   ["u"] = { "<cmd>Telescope undo<cr>", "Undo" },
   ["v"] = { "<cmd>Telescope yank_history<cr>", "Clipboard" },
   ["w"] = { "<cmd>w!<CR>", "Save" },

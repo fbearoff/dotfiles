@@ -1,6 +1,5 @@
 return {
   "williamboman/mason-lspconfig.nvim",
-  "MunifTanjim/nui.nvim",
   "nvim-lua/plenary.nvim",
   "folke/which-key.nvim",
 
@@ -11,30 +10,6 @@ return {
   },
 
   { "ellisonleao/gruvbox.nvim" },
-
-  { "stevearc/dressing.nvim", init = function()
-    vim.ui.select = function(...)
-      require("lazy").load({ plugins = { "dressing.nvim" } })
-      return vim.ui.select(...)
-    end
-    vim.ui.input = function(...)
-      require("lazy").load({ plugins = { "dressing.nvim" } })
-      return vim.ui.input(...)
-    end
-  end,
-  },
-
-  {
-    "SmiteshP/nvim-navic",
-    config = function()
-      vim.g.navic_silence = true
-      require("nvim-navic").setup({
-        separator = " ",
-        highlight = false, -- lualine colors don't apply if highlight is on
-        depth_limit = 5,
-      })
-    end,
-  },
 
   {
     "simrat39/symbols-outline.nvim",
