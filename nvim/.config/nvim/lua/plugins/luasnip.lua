@@ -1,47 +1,28 @@
-local M = {
-  "L3MON4D3/LuaSnip",
+return {
 
-  dependencies = {
-    "rafamadriz/friendly-snippets",
-    config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-    end,
+  -- snippets
+  {
+    "L3MON4D3/LuaSnip",
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end,
+    },
+    opts = {
+      history = true,
+      delete_check_events = "TextChanged",
+    },
+    keys = {
+      {
+        "<tab>",
+        function()
+          return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+        end,
+        expr = true, remap = true, silent = true, mode = "i",
+      },
+      { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
+      { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+    },
   },
 }
-
-function M.config()
-  local util = require("util")
-  local luasnip = require("luasnip")
-
-  luasnip.config.setup({
-    history = true,
-    enable_autosnippets = true,
-    -- Update more often, :h events for more info.
-    -- updateevents = "TextChanged,TextChangedI",
-  })
-
-  --- <tab> to jump to next snippet's placeholder
-  local function on_tab()
-    return luasnip.jump(1) and "" or util.t("<Tab>")
-  end
-
-  --- <s-tab> to jump to next snippet's placeholder
-  local function on_s_tab()
-    return luasnip.jump(-1) and "" or util.t("<S-Tab>")
-  end
-
-
-
-  vim.cmd([[
-" press <Tab> to expand or jump in a snippet. These can also be mapped separately
-" via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
-imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
-" -1 for jumping backwards.
-inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
-
-snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
-snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
-]])
-end
-
-return M
