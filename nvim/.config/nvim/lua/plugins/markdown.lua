@@ -28,20 +28,18 @@ return {
       'neovim/nvim-lspconfig'
     },
     ft = "quarto",
-    config = function()
-      require 'quarto'.setup {
-        lspFeatures = {
-          enabled = true,
-          languages = { 'r', 'python', 'julia' },
-          diagnostics = {
-            enabled = true,
-            triggers = { "BufWrite" }
-          },
-          completion = {
-            enabled = false
-          }
+    opts = {
+      lspFeatures = {
+        enabled = true,
+        languages = { 'r', 'python', 'julia' },
+        diagnostics = {
+          enabled = false,
+          triggers = { "BufWrite" }
+        },
+        completion = {
+          enabled = false
         }
       }
-    end
+    }
   }
 }

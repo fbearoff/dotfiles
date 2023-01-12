@@ -106,7 +106,7 @@ function M.config()
     on_click = function()
       vim.cmd('Lazy')
     end
-  }
+}
 
   require("lualine").setup({
     options = {
@@ -121,14 +121,6 @@ function M.config()
           "lazy",
           "mason"
         },
-      },
-      ignore_focus = {
-        "dapui_watches",
-        "dapui_breakpoints",
-        "dapui_scopes",
-        "dapui_console",
-        "dapui_stacks",
-        "dap-repl",
       },
       always_divide_middle = true,
       globalstatus = true,
@@ -148,7 +140,6 @@ function M.config()
     },
 
     extensions = { "nvim-tree",
-      "nvim-dap-ui",
       "symbols-outline",
       "toggleterm" },
   })
