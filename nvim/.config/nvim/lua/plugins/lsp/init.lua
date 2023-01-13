@@ -26,7 +26,7 @@ function M.config()
       settings = {
         r = {
           lsp = {
-            rich_documentation = false
+            rich_documentation = false,
           },
         },
       },
