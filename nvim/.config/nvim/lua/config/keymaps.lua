@@ -45,11 +45,6 @@ keymap("n", "<C-u>", "<C-u>zz", { desc = 'Scroll Up and Center Page' })
 keymap("n", "n", "nzzzv", { desc = 'Next Search Item' })
 keymap("n", "N", "Nzzzv", { desc = 'Previous Search Item' })
 
---turn off Q (ex mode)
-keymap('n', 'Q', '<nop>')
-keymap("c", "Q", "q", { noremap = true, silent = false })
-keymap('n', 'q:', '<nop>')
-
 -- Select whole line
 keymap('n', "vv", "V", { desc = 'Select Whole Line' })
 

@@ -116,6 +116,15 @@ return {
     },
   },
 
+  -- Macro recording
+  {
+    "chrisgrieser/nvim-recorder",
+    lazy = false,
+    config = function()
+      require("recorder").setup({})
+    end,
+  },
+
   -- Quick tagged file switching
   {
     "cbochs/grapple.nvim",
