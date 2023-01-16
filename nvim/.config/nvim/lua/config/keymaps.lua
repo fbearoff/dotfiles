@@ -53,10 +53,6 @@ keymap('n', "vv", "V", { desc = 'Select Whole Line' })
 keymap("v", "<", "<gv^", { desc = 'Shift Selection Left' })
 keymap("v", ">", ">gv^", { desc = 'Shift Selection Right' })
 
--- Move text up and down
-keymap("v", "J", ":m '>+1<CR>gv=gv", { desc = 'Move Selected Text Up' })
-keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = 'Move Selected Text Down' })
-
 -- Better paste
 keymap("v", "p", '"_dP', { desc = 'Paste over selection' })
 
@@ -108,7 +104,7 @@ keymap("n", "<leader>ss", function() require 'util'.so_input() end, { desc = "St
 keymap("n", "<localleader>Mb", 'o```{r}<cr>```<esc>O', { desc = "Insert R Code Block" })
 keymap("n", "<localleader>MB", 'o```{python}<cr>```<esc>O', { desc = "Insert Python Code Block" })
 
-keymap("v", "<leader>o", ":'<,'>sort i<CR>", { desc = "Sort" })
+keymap("x", "<leader>o", ":'<,'>sort i<CR>", { desc = "Sort" })
 
 -- UI Toggles
 keymap("n", "<leader>uc",

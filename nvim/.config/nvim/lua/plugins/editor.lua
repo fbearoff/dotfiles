@@ -30,7 +30,6 @@ return {
         ["<leader>g"] = { name = "+Git" },
         ["<leader>gh"] = { name = "+Hunks" },
         ["<leader>n"] = { name = "+Noice" },
-        ["<leader>o"] = { name = "+Options" },
         ["<leader>s"] = { name = "+Search" },
         ["<leader>t"] = { name = "+Terminal" },
         ["<leader>u"] = { name = "+UI" },
@@ -140,7 +139,7 @@ return {
   {
     "NvChad/nvim-colorizer.lua",
     event = "BufReadPre",
-    keys = { { "<leader>oC", "<cmd>ColorizerToggle<CR>", desc = "Toggle Colorizer" } },
+    keys = { { "<leader>uC", "<cmd>ColorizerToggle<CR>", desc = "Toggle Colorizer" } },
     opts = {
       user_default_options = {
         RGB = true, -- #RGB hex codes
@@ -181,6 +180,39 @@ return {
         "!unlisted",
       },
     },
+  },
+
+  -- Location jumping and enhanced f/t
+  {
+    "ggandor/leap.nvim",
+    event = "BufReadPost",
+    keys = {
+      { mode = { "n", "x", "o" }, "s", "<Plug>(leap-forward-to)", desc = "Leap Forward" },
+      { mode = { "n", "x", "o" }, "S", "<Plug>(leap-backward-to)", desc = "Leap Backward" },
+      { "gS", "<Plug>(leap-cross-window)", desc = "Leap Across Window" },
+      { 'gs',
+        function()
+          require 'leap'.leap({ target_windows = { vim.api.nvim_get_current_win() } })
+        end,
+        desc = "Leap in Window" },
+      { mode = { 'n', 'x', 'o' }, '<M-a>',
+        function()
+          require 'leap-ast'.leap()
+        end,
+        desc = "Leap Node" },
+    },
+    dependencies = {
+      { "ggandor/flit.nvim",
+        opts = {
+          labeled_modes = "nvo",
+          multiline = false
+        }
+      },
+      "ggandor/leap-ast.nvim"
+    },
+    config = function()
+      vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' })
+    end,
   },
 
   -- Better % matching
@@ -236,6 +268,7 @@ return {
           return require("dial.map").inc_normal()
         end,
         expr = true,
+        desc = "Dial Increment",
       },
       {
         "<C-x>",
@@ -243,6 +276,7 @@ return {
           return require("dial.map").dec_normal()
         end,
         expr = true,
+        desc = "Dial Decrement",
       },
     },
     config = function()
@@ -378,13 +412,13 @@ return {
     "mrjones2014/smart-splits.nvim",
     event = "BufReadPost",
     keys = {
-      { "<M-h>", mode = { "n", "i" }, function() require('smart-splits').move_cursor_left() end,
+      { "<M-Right>", mode = { "n", "i" }, function() require('smart-splits').move_cursor_left() end,
         desc = "Move to Left Window" },
-      { "<M-j>", mode = { "n", "i" }, function() require('smart-splits').move_cursor_down() end,
+      { "<M-Down>", mode = { "n", "i" }, function() require('smart-splits').move_cursor_down() end,
         desc = "Move to Lower Window" },
-      { "<M-k>", mode = { "n", "i" }, function() require('smart-splits').move_cursor_up() end,
+      { "<M-Up>", mode = { "n", "i" }, function() require('smart-splits').move_cursor_up() end,
         desc = "Move to Upper Window" },
-      { "<M-l>", mode = { "n", "i" }, function() require('smart-splits').move_cursor_right() end,
+      { "<M-Left>", mode = { "n", "i" }, function() require('smart-splits').move_cursor_right() end,
         desc = "Move to Right Window" },
       { "<C-Left>", mode = { "n", "i" }, function() require('smart-splits').resize_left() end,
         desc = "Resize Window Left" },
@@ -404,5 +438,13 @@ return {
       ignored_buftypes = { 'NvimTree' },
       move_cursor_same_row = true,
     },
-  }
+  },
+
+  -- Better text moving
+  { "echasnovski/mini.move",
+    event = "BufReadPre",
+    config = function()
+      require('mini.move').setup()
+    end,
+  },
 }

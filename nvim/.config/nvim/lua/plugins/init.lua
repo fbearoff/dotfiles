@@ -2,13 +2,6 @@ return {
   "williamboman/mason-lspconfig.nvim",
   "nvim-lua/plenary.nvim",
 
-  -- UI to rename items incrementally
-  {
-    "smjonas/inc-rename.nvim",
-    cmd = "IncRename",
-    config = true,
-  },
-
   -- Show outline of document symbols
   {
     "simrat39/symbols-outline.nvim",
@@ -23,7 +16,6 @@ return {
   {
     "m-demare/hlargs.nvim",
     event = "BufReadPost",
-    enabled = true,
     opts = {
       excluded_argnames = {
         usages = {
@@ -63,7 +55,7 @@ return {
     config = true,
   },
 
-  -- Quicker escape from insert mode with jj/
+  -- Quicker escape from insert mode with jj/jk
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
