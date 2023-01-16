@@ -6,7 +6,6 @@ local M = {
     { "<leader>t\\", "<cmd>ToggleTerm size=80 direction=vertical<CR>", desc = "Vertical" },
   },
   cmd = "ToggleTerm",
-  enabled = true
 }
 
 function M.config()

@@ -2,6 +2,7 @@ return {
 
   { "ellisonleao/gruvbox.nvim" },
 
+  -- Notification provider
   { "rcarriga/nvim-notify",
     keys = {
       {
@@ -24,6 +25,7 @@ return {
     },
   },
 
+  -- Fancy UI elements
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -74,7 +76,6 @@ return {
       },
     },
 
-    -- stylua: ignore
     keys = {
       { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
       { "<leader>nl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
@@ -86,6 +87,8 @@ return {
         expr = true, desc = "Scroll backward" },
     },
   },
+
+  -- Scrollbar
   { "lewis6991/satellite.nvim",
     event = "BufReadPost",
     opts = {
@@ -100,6 +103,7 @@ return {
     },
   },
 
+  -- Floating filename
   { "b0o/incline.nvim",
     event = "BufReadPre",
     config = function()
@@ -133,6 +137,7 @@ return {
     end,
   },
 
+  -- Fancy select and input dialogs
   { "stevearc/dressing.nvim", init = function()
     vim.ui.select = function(...)
       require("lazy").load({ plugins = { "dressing.nvim" } })
@@ -145,6 +150,7 @@ return {
   end,
   },
 
+  -- Show code context
   {
     "SmiteshP/nvim-navic",
     config = function()
@@ -157,6 +163,7 @@ return {
     end,
   },
 
+  -- Show available code actions as lightbulb character
   {
     "kosayoda/nvim-lightbulb",
     opts = {
@@ -166,6 +173,51 @@ return {
     },
     event = "BufReadPost"
   },
+
+  -- Clickable status column items
+  { "luukvbaal/statuscol.nvim",
+    event = "VeryLazy",
+    opts = {
+      relculright = true,
+      setopt = true,
+      order = "FNS",
+    },
+  },
+
+  -- Indent guides
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufReadPre",
+    opts = {
+      char = "│",
+      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "NvimTree", "Trouble", "lazy" },
+      show_trailing_blankline_indent = false,
+      show_current_context = false,
+      buftype_exclude = { "terminal", "nofile" },
+    },
+  },
+
+  -- active indent guide and indent text objects
+  {
+    "echasnovski/mini.indentscope",
+    event = "BufReadPre",
+    opts = {
+      -- symbol = "▏",
+      symbol = "│",
+      options = { try_as_border = false },
+    },
+    config = function(_, opts)
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "help", "alpha", "dashboard", "neo-tree", "NvimTree", "Trouble", "lazy", "mason", "noice", "rdoc",
+          "terminal" },
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
+      require("mini.indentscope").setup(opts)
+    end,
+  },
+
   -- icons
   "nvim-tree/nvim-web-devicons",
 

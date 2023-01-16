@@ -1,4 +1,5 @@
 return {
+  -- Key hinting
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
@@ -39,6 +40,21 @@ return {
     end,
   },
 
+  -- Easy commenting
+  {
+    "numToStr/Comment.nvim",
+    keys = { { "gc", mode = { "n", "v" } },
+      "gcc",
+      "gbc" },
+    dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
+    config = function()
+      require("Comment").setup({
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+      })
+    end
+  },
+
+  -- Git signs in status column
   {
     "lewis6991/gitsigns.nvim",
     event = "BufReadPre",
@@ -83,6 +99,24 @@ return {
     },
   },
 
+  -- Marks in status column
+  {
+    "chentoast/marks.nvim",
+    event = "BufReadPost",
+    opts = {
+      default_mappings = false,
+      builtin_marks = false,
+      excluded_filetypes = { "lspinfo", "toggleterm" },
+      mappings = {
+        set_next = "m,",
+        delete_line = "dm",
+        next = "mj",
+        prev = "mk",
+      },
+    },
+  },
+
+  -- Quick tagged file switching
   {
     "cbochs/grapple.nvim",
     dependencies = "nvim-lua/plenary.nvim",
@@ -93,6 +127,7 @@ return {
     },
   },
 
+  -- Show color of color values
   {
     "NvChad/nvim-colorizer.lua",
     event = "BufReadPre",
@@ -139,6 +174,7 @@ return {
     },
   },
 
+  -- Better % matching
   {
     "andymass/vim-matchup",
     event = "BufReadPost",
@@ -147,6 +183,28 @@ return {
     end,
   },
 
+  -- Auto insert matching pair character
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-autopairs").setup({
+        check_ts = true,
+        ts_config = {
+          lua = { "string", "source", "comment" },
+        },
+        disable_filetype = { "TelescopePrompt", "spectre_panel" },
+        fast_wrap = {},
+      })
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      ---@diagnostic disable-next-line: undefined-field
+      require("cmp").event:on(
+        "confirm_done",
+        cmp_autopairs.on_confirm_done()
+      )
+    end
+  },
+  -- Code minimap
   {
     "gorbit99/codewindow.nvim",
     config = true,
@@ -158,4 +216,184 @@ return {
         desc = "Toggle Minimap" },
     },
   },
+
+  -- Better increment/decrement
+  {
+    "monaqa/dial.nvim",
+    keys = {
+      {
+        "<C-a>",
+        function()
+          return require("dial.map").inc_normal()
+        end,
+        expr = true,
+      },
+      {
+        "<C-x>",
+        function()
+          return require("dial.map").dec_normal()
+        end,
+        expr = true,
+      },
+    },
+    config = function()
+      local augend = require("dial.augend")
+      require("dial.config").augends:register_group({
+        default = {
+          augend.integer.alias.decimal,
+          augend.integer.alias.hex,
+          augend.date.alias["%Y/%m/%d"],
+          augend.semver.alias.semver,
+          augend.constant.new {
+            elements = { "true", "false" },
+            word = true,
+            cyclic = true,
+            preserve_case = true
+          },
+          augend.constant.new {
+            elements = { "&&", "||" },
+            word = false,
+            cyclic = true,
+          },
+          augend.date.new {
+            pattern = "%Y_%m_%d",
+            default_kind = "day",
+            only_valid = true,
+            word = false,
+          },
+        },
+      })
+    end
+  },
+
+  -- Enhanced yank/put
+  {
+    "gbprod/yanky.nvim",
+    event = "BufReadPost",
+    dependencies = {
+      "kkharji/sqlite.lua",
+    },
+    keys = {
+      { mode = { "n", "x" }, "y", "<Plug>(YankyYank)", desc = "Yanky Yank" },
+      { mode = { "n", "x" }, "p", "<Plug>(YankyPutAfter)", desc = "Yanky Put After" },
+      { mode = { "n", "x" }, "P", "<Plug>(YankyPutBefore)", desc = "Yanky Put Before" },
+      { "<c-n>", "<Plug>(YankyCycleForward)", desc = "Yanky Cycle Forward" },
+      { "<c-p>", "<Plug>(YankyCycleBackward)", desc = "Yanky Cycle Backward" },
+      { "]p", "<Plug>(YankyPutAfterFilter)", desc = "Put After Filter" },
+      { "[p", "<Plug>(YankyPutBeforeFilter)", desc = "Put Before Filter" },
+      { "<leader>v", function()
+        require("telescope").extensions.yank_history.yank_history({})
+      end, desc = "Yank History" },
+    },
+    opts = {
+      highlight = {
+        on_put = false,
+        on_yank = false,
+        timer = 150,
+      },
+      preserve_cursor_position = {
+        enabled = true,
+      },
+      ring = {
+        storage = "sqlite",
+      },
+    }
+  },
+
+  -- Enhanced substitute/exchange operator
+  {
+    "gbprod/substitute.nvim",
+    keys = {
+      { "<M-s>",
+        function()
+          require('substitute').operator()
+        end,
+        desc = "Substitute Operator" },
+      { mode = "x", "<M-s>",
+        function()
+          require('substitute').visual()
+        end,
+        desc = "Substitute Selection" },
+      { "<M-x>",
+        function()
+          require('substitute.exchange').operator()
+        end,
+        desc = "Exchange Operator" },
+      { mode = "x", "<M-x>",
+        function()
+          require('substitute.exchange').visual()
+        end,
+        desc = "Exchange Word" },
+    },
+    opts = {
+      on_substitute = nil,
+      yank_substituted_text = false,
+      exchange = {
+        motion = "iw",
+        use_esc_to_cancel = true,
+      },
+    },
+  },
+
+  -- references
+  {
+    "RRethy/vim-illuminate",
+    event = "BufReadPost",
+    opts = {
+      delay = 200,
+      filetypes_denylist = {
+        "dirvish",
+        "fugitive",
+        "alpha",
+        "NvimTree",
+        "Trouble",
+        "lir",
+        "Outline",
+        "spectre_panel",
+        "toggleterm",
+        "DressingSelect",
+        "TelescopePrompt",
+      },
+    },
+    config = function(_, opts)
+      require("illuminate").configure(opts)
+    end,
+    keys = {
+      { "]]", function() require("illuminate").goto_next_reference(false) end, desc = "Next Reference", },
+      { "[[", function() require("illuminate").goto_prev_reference(false) end, desc = "Prev Reference" },
+    },
+  },
+
+  -- More natural split navigation
+  {
+    "mrjones2014/smart-splits.nvim",
+    event = "BufReadPost",
+    keys = {
+      { "<M-h>", mode = { "n", "i" }, function() require('smart-splits').move_cursor_left() end,
+        desc = "Move to Left Window" },
+      { "<M-j>", mode = { "n", "i" }, function() require('smart-splits').move_cursor_down() end,
+        desc = "Move to Lower Window" },
+      { "<M-k>", mode = { "n", "i" }, function() require('smart-splits').move_cursor_up() end,
+        desc = "Move to Upper Window" },
+      { "<M-l>", mode = { "n", "i" }, function() require('smart-splits').move_cursor_right() end,
+        desc = "Move to Right Window" },
+      { "<C-Left>", mode = { "n", "i" }, function() require('smart-splits').resize_left() end,
+        desc = "Resize Window Left" },
+      { "<C-Down>", mode = { "n", "i" }, function() require('smart-splits').resize_down() end,
+        desc = "Resize  Window Down" },
+      { "<C-Up>", mode = { "n", "i" }, function() require('smart-splits').resize_up() end,
+        desc = "Resize Window Up " },
+      { "<C-Right>", mode = { "n", "i" }, function() require('smart-splits').resize_right() end,
+        desc = "Resize Window Right" },
+    },
+    opts = {
+      ignored_filetypes = {
+        'nofile',
+        'quickfix',
+        'prompt',
+      },
+      ignored_buftypes = { 'NvimTree' },
+      move_cursor_same_row = true,
+    },
+  }
 }

@@ -2,12 +2,14 @@ return {
   "williamboman/mason-lspconfig.nvim",
   "nvim-lua/plenary.nvim",
 
+  -- UI to rename items incrementally
   {
     "smjonas/inc-rename.nvim",
     cmd = "IncRename",
     config = true,
   },
 
+  -- Show outline of document symbols
   {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
@@ -17,6 +19,7 @@ return {
     config = true
   },
 
+  -- Highlight function arguments
   {
     "m-demare/hlargs.nvim",
     event = "BufReadPost",
@@ -30,6 +33,7 @@ return {
     }
   },
 
+  -- Better diagnostics list
   {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
@@ -37,12 +41,13 @@ return {
       auto_open = false,
       use_diagnostic_signs = true,
     },
-     keys = {
+    keys = {
       { "<leader>dx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
       { "<leader>dX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
     },
   },
 
+  -- Visualize startup time
   {
     "dstein64/vim-startuptime",
     cmd = "StartupTime",
@@ -51,12 +56,14 @@ return {
     end,
   },
 
+  -- Show code context as top line
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = "BufReadPre",
     config = true,
   },
 
+  -- Quicker escape from insert mode with jj/
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
@@ -64,7 +71,7 @@ return {
   },
 
 
-
+  -- Remove trailing lines and whitespace
   { "cappyzawa/trim.nvim",
     event = "BufReadPost",
     opts = { disable = { "markdown" },
@@ -74,6 +81,7 @@ return {
     },
   },
 
+  -- Code block joing/splitting
   {
     "Wansmer/treesj",
     keys = {
@@ -87,7 +95,7 @@ return {
     },
   },
 
-  -- better text-objects
+  -- Better text-objects
   {
     "echasnovski/mini.ai",
     keys = {
@@ -119,23 +127,4 @@ return {
     end,
   },
 
-  -- active indent guide and indent text objects
-  {
-    "echasnovski/mini.indentscope",
-    event = "BufReadPre",
-    opts = {
-      -- symbol = "▏",
-      symbol = "│",
-      options = { try_as_border = true },
-    },
-    config = function(_, opts)
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason", "noice", "rdoc", "terminal" },
-        callback = function()
-          vim.b.miniindentscope_disable = true
-        end,
-      })
-      require("mini.indentscope").setup(opts)
-    end,
-  },
 }
