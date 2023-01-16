@@ -1,4 +1,7 @@
 return {
+
+  { "ellisonleao/gruvbox.nvim" },
+
   { "rcarriga/nvim-notify",
     keys = {
       {
@@ -19,14 +22,70 @@ return {
         return math.floor(vim.o.columns * 0.75)
       end,
     },
-    init = function()
-      -- lazy-load notify here. Will be overriden by Noice when it loads
-      vim.notify = function(...)
-        return require("notify").notify(...)
-      end
-    end,
   },
 
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      lsp = {
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
+        },
+      },
+      presets = {
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+        inc_rename = true,
+        lsp_doc_border = true,
+      },
+      routes = {
+        {
+          filter = {
+            event = "msg_show",
+            find = "%d+L, %d+B",
+          },
+          view = "mini",
+        },
+        {
+          {
+            filter = {
+              event = "msg_show",
+              kind = "search_count",
+            },
+            opts = { skip = true },
+          },
+          filter = {
+            event = "msg_show",
+            kind = "search_count",
+          },
+          opts = { skip = true },
+        },
+        {
+          filter = {
+            event = "msg_show",
+            kind = "",
+          },
+          opts = { skip = true },
+        },
+      },
+    },
+
+    -- stylua: ignore
+    keys = {
+      { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
+      { "<leader>nl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
+      { "<leader>nh", function() require("noice").cmd("history") end, desc = "Noice History" },
+      { "<leader>na", function() require("noice").cmd("all") end, desc = "Noice All" },
+      { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true,
+        desc = "Scroll forward" },
+      { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true,
+        expr = true, desc = "Scroll backward" },
+    },
+  },
   { "lewis6991/satellite.nvim",
     event = "BufReadPost",
     opts = {
@@ -98,6 +157,15 @@ return {
     end,
   },
 
+  {
+    "kosayoda/nvim-lightbulb",
+    opts = {
+      autocmd = {
+        enabled = true,
+      },
+    },
+    event = "BufReadPost"
+  },
   -- icons
   "nvim-tree/nvim-web-devicons",
 

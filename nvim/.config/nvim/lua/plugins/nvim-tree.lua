@@ -1,7 +1,10 @@
 local M = {
   "nvim-tree/nvim-tree.lua",
   dependencies = "nvim-tree/nvim-web-devicons",
-  cmd = "NvimTreeToggle"
+  cmd = "NvimTreeToggle",
+  keys = {
+    { "<leader>e", "<cmd>NvimTreeToggle<CR>", desc = "Explorer" },
+  },
 }
 
 function M.config()

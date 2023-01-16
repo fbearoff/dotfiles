@@ -22,7 +22,7 @@ function M.config()
     R_csv_app = ':TermExec cmd="vd %s"',
     R_auto_omni = {},
     R_hi_fun = false,
-    rmd_fenced_languages = {'r'}
+    rmd_fenced_languages = { 'r' }
   }
 
   for k, v in pairs(options) do
@@ -32,9 +32,17 @@ function M.config()
   -- Keymaps
   local keymap = require('util').keymap
 
-  keymap('n', '<leader><Space>', '<Plug>RDSendLine')
-  keymap('v', '<leader><Space>', '<Plug>RDSendSelection')
-  keymap('n', '<LocalLeader>:', ':RSend ')
+  keymap("n", "<leader><Space>", "<Plug>RDSendLine", { desc = "which_key_ignore" })
+  keymap("v", "<leader><Space>", "<Plug>RDSendSelection", { desc = "Send Selection to R" })
+  keymap("n", "<LocalLeader>R:", ":RSend ", { desc = "Send R Command" })
+  keymap("n", "<LocalLeader>Rl", "<cmd>call RAction('levels')<CR>", { desc = "View Levels" })
+  keymap("n", "<LocalLeader>Rh", "<cmd>call RAction('head')<CR>", { desc = "View Head" })
+  keymap("n", "<LocalLeader>Rt", "<cmd>call RAction('tail')<CR>", { desc = "View Tail" })
+  keymap("n", "<LocalLeader>Ru", "<cmd>RSend update.packages(ask = FALSE)<CR>", { desc = "Update Packages" })
+  keymap("n", "<LocalLeader>Ri", function()
+    require 'util'.R_install()
+  end,
+    { desc = "Install Package" })
 
 end
 

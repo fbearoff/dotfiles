@@ -1,7 +1,6 @@
 return {
   "williamboman/mason-lspconfig.nvim",
   "nvim-lua/plenary.nvim",
-  "folke/which-key.nvim",
 
   {
     "smjonas/inc-rename.nvim",
@@ -9,13 +8,11 @@ return {
     config = true,
   },
 
-  { "ellisonleao/gruvbox.nvim" },
-
   {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
     init = function()
-      vim.keymap.set("n", "<leader>cls", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
+      vim.keymap.set("n", "<leader>cs", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
     end,
     config = true
   },
@@ -39,7 +36,11 @@ return {
     opts = {
       auto_open = false,
       use_diagnostic_signs = true,
-    }
+    },
+     keys = {
+      { "<leader>dx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+      { "<leader>dX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
+    },
   },
 
   {
@@ -74,41 +75,16 @@ return {
   },
 
   {
-    "kosayoda/nvim-lightbulb",
-    opts = {
-      autocmd = {
-        enabled = true,
-      },
-    },
-    event = "BufReadPost"
-  },
-
-  {
-    "andymass/vim-matchup",
-    event = "BufReadPost",
-    config = function()
-      vim.g.matchup_matchparen_offscreen = { method = "status_manual" }
-    end,
-  },
-
-  {
-    "gorbit99/codewindow.nvim",
-    config = true,
-    keys = "<leader>cm"
-  },
-
-  {
     "Wansmer/treesj",
-    keys = { "J", "<C-s>" },
+    keys = {
+      { "<leader>J", "<cmd>TSJJoin<CR>", desc = "Join Line" },
+      { "<leader>S", "<cmd>TSJSplit<CR>", desc = "Split Line" },
+    },
     cmd = { "TSJSplit", "TSJJoin" },
-    config = function()
-      require('treesj').setup({
-        use_default_keymaps = false,
-        max_join_length = 150,
-      })
-      vim.keymap.set("n", "J", "<cmd>TSJJoin<cr>", { desc = 'Join line' })
-      vim.keymap.set("n", "<C-s>", "<cmd>TSJSplit<cr>", { desc = 'Split line' })
-    end
+    opts = {
+      use_default_keymaps = false,
+      max_join_length = 150,
+    },
   },
 
   -- better text-objects

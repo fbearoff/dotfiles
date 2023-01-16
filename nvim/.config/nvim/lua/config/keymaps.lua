@@ -1,17 +1,5 @@
-local wk = require("which-key")
 local util = require("util")
 local keymap = util.keymap
-
---Remap space as leader key
--- keymap("", "<Space>", "<Nop>", { desc = 'Remove delay on leader press' })
-
--- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
 
 -- Insert --
 -- Add undo break-points
@@ -20,41 +8,42 @@ keymap("i", ".", ".<c-g>u")
 keymap("i", ";", ";<c-g>u")
 
 -- Home row navigation
-keymap('i', '<C-h>', '<left>', { desc = 'Move cursor left' })
-keymap('i', '<C-l>', require('util').EscapePair, { desc = 'Move cursor right, escape pair' })
-keymap('i', '<C-j>', '<down>', { desc = 'Move cursor down' })
-keymap('i', '<C-k>', '<up>', { desc = 'Move cursor up' })
+keymap('i', '<C-h>', '<left>', { desc = 'Move Cursor Left' })
+keymap('i', '<C-l>', require('util').EscapePair, { desc = 'Move Cursor Right, Escape Pair' })
+keymap('i', '<C-j>', '<down>', { desc = 'Move Cursor Down' })
+keymap('i', '<C-k>', '<up>', { desc = 'Move Cursor Up' })
 
 -- Normal --
 -- movement between buffers
-keymap("n", "<s-tab>", function() vim.cmd("bn") end, { desc = 'Buffer next' })
+keymap("n", "<s-tab>", function() vim.cmd("bn") end, { desc = 'Buffer Next' })
 keymap("n", "<tab>", "<C-w>w", { desc = 'Next window' })
+
 -- Remap for dealing with word wrap
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Enter inserts newline without leaving Normal mode
 -- Need to change keys in windows terminal https://github.com/microsoft/terminal/issues/530#issuecomment-892247092
-keymap("n", "<cr>", "o<Esc>", { desc = "Insert newline" })
-keymap("n", "<s-cr>", "O<Esc>", { desc = "Insert newline above" })
+keymap("n", "<cr>", "o<Esc>", { desc = "Insert Newline Below" })
+keymap("n", "<s-cr>", "O<Esc>", { desc = "Insert Newline Above" })
 
 -- change word with <c-c>
-keymap("n", "<C-c>", "<cmd>normal! ciw<cr>a")
+keymap("n", "<C-c>", "<cmd>normal! ciw<cr>a", { desc = "Change Inner Word" })
 
 -- H and L go to begining/end of line
-keymap('n', 'H', '^', { desc = 'Go to beginning of line' })
-keymap('n', 'L', '$', { desc = 'Go to end of line' })
+keymap('n', 'H', '^', { desc = 'Go to Beginning of Line' })
+keymap('n', 'L', '$', { desc = 'Go to End of Line' })
 
--- Keep cursor in place when joing lines
--- keymap("n", "J", "mzJ`z", { desc = 'Keep cursor in place when joing lines' })
+-- Keep cursor in place when joining lines
+keymap("n", "J", "mzJ`z", { desc = 'Keep Cursor in Place When Joining Lines' })
 
 -- Center cursor when scrolling page
-keymap("n", "<C-d>", "<C-d>zz", { desc = 'Scroll down and center page' })
-keymap("n", "<C-u>", "<C-u>zz", { desc = 'Scroll up and center page' })
+keymap("n", "<C-d>", "<C-d>zz", { desc = 'Scroll Down and Center Page' })
+keymap("n", "<C-u>", "<C-u>zz", { desc = 'Scroll Up and Center Page' })
 
 -- Keep search term in the middle of screen
-keymap("n", "n", "nzzzv", { desc = 'Next search item' })
-keymap("n", "N", "Nzzzv", { desc = 'Previous search item' })
+keymap("n", "n", "nzzzv", { desc = 'Next Search Item' })
+keymap("n", "N", "Nzzzv", { desc = 'Previous Search Item' })
 
 --turn off Q (ex mode)
 keymap('n', 'Q', '<nop>')
@@ -62,190 +51,93 @@ keymap("c", "Q", "q", { noremap = true, silent = false })
 keymap('n', 'q:', '<nop>')
 
 -- Select whole line
-keymap('n', "vv", "V", { desc = 'Select whole line' })
+keymap('n', "vv", "V", { desc = 'Select Whole Line' })
 
 -- Visual --
 -- Stay in indent mode
-keymap("v", "<", "<gv^", { desc = 'Shift selection left' })
-keymap("v", ">", ">gv^", { desc = 'Shift selection right' })
+keymap("v", "<", "<gv^", { desc = 'Shift Selection Left' })
+keymap("v", ">", ">gv^", { desc = 'Shift Selection Right' })
 
 -- Move text up and down
-keymap("v", "J", ":m '>+1<CR>gv=gv", { desc = 'Move selected text up' })
-keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = 'Move selected text down' })
+keymap("v", "J", ":m '>+1<CR>gv=gv", { desc = 'Move Selected Text Up' })
+keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = 'Move Selected Text Down' })
 
 -- Better paste
 keymap("v", "p", '"_dP', { desc = 'Paste over selection' })
 
 -- Open link under cursor
 keymap("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>',
-  { desc = 'Open link under cursor' })
+  { desc = 'Open Link Under Cursor' })
 
 -- Send deletions to blackhole register
 for _, lhs in ipairs(
   { "c", "C", "d", "D", "x", "X" }) do
-  keymap({ "n", "x" }, lhs, '"_' .. lhs)
+  keymap({ "n", "x" }, lhs, '"_' .. lhs, { desc = "which_key_ignore" })
 end
 
 -- Map "d" cut action to cut key
 local cut_key = "<A-d>"
 
-keymap({ "n", "x" }, cut_key, "d")
-keymap("n", cut_key .. cut_key, "dd")
-keymap("n", string.upper(cut_key), "D")
+keymap({ "n", "x" }, cut_key, "d", { desc = "Cut Operator" })
+keymap("n", cut_key .. cut_key, "dd", { desc = "Cut Line" })
+keymap("n", string.upper(cut_key), "D", { desc = "Cut To EOL" })
 --
 -- Clear search with <esc>
-keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>")
-keymap("n", "gw", "*N")
-keymap("x", "gw", "*N")
+keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear Hlsearch" })
 
--- WhichKey bindings
-wk.setup({
-  plugins = {
-    marks = false, -- shows a list of your marks on ' and `
-    registers = false, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-    spelling = {
-      enabled = true,
-      suggestions = 20,
-    },
-    presets = {
-      operators = false,
-      motions = false,
-      text_objects = false,
-      windows = true, -- default bindings on <c-w>
-      nav = true, -- misc bindings to work with windows
-      z = false, -- bindings for folds, spelling and others prefixed with z
-      g = false, -- bindings for prefixed with g
-    },
-  },
-  -- operators = {
-  --   gc = "Comments",
-  -- },
-  -- add operators that will trigger motion and text object completion
-  -- to enable all native operators, set the preset / operators plugin above
-  key_labels = {
+-- Search word under cursor
+keymap({ "n", "x" }, "gw", "*N", { desc = "Search current word" })
 
-    ["<Tab>"] = "TAB",
-    ["<leader>"] = "SPC"
-  },
-  icons = {
-    breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-    separator = "➜", -- symbol used between a key and it's label
-    group = "+", -- symbol prepended to a group
-  },
-  popup_mappings = {
-    scroll_down = "<c-d>", -- binding to scroll down inside the popup
-    scroll_up = "<c-u>", -- binding to scroll up inside the popup
-  },
-  window = {
-    border = "none", -- none, single, double, shadow
-    position = "bottom", -- bottom, top
-    margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-    padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-    winblend = 5,
-  },
-  layout = {
-    height = { min = 4, max = 25 }, -- min and max height of the columns
-    width = { min = 20, max = 50 }, -- min and max width of the columns
-    spacing = 3, -- spacing between columns
-    align = "center", -- align columns left, center or right
-  },
-  ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
-  hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-  show_help = false, -- show help message on the command line when the popup is visible
-  show_keys = true, -- show the currently pressed key and its label as a message in the command line
-  triggers = "auto", -- automatically setup triggers
-})
+-- Leader Mappings
+-- Lazygit
+keymap("n", "<leader>gg",
+  function()
+    require 'util'.open_term('lazygit', { direction = 'float' })
+  end,
+  { desc = "Lazygit" })
 
-local v_opts = {
-  mode = "v", -- VISUAL mode
-  prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
-}
+-- Splits
+keymap("n", "<leader>-", "<cmd>split<CR>", { desc = "Split" })
+keymap("n", "<leader>\\", "<cmd>vsplit<CR>", { desc = "VSplit" })
 
-local v_mappings = {
-  g = { name = "Comments",
-    c = { "<Plug>(comment_toggle_linewise_visual)<CR>", "Line Comment" },
-    b = { "<Plug>(comment_toggle_blockwise_visual)<CR>", "Block Comment" }
-  },
+-- Core file commands
+keymap("n", "<leader>E", "<cmd>enew<CR>", { desc = "New File" })
+keymap("n", "<leader>q", "<cmd>q!<CR>", { desc = "Quit" })
+keymap("n", "<leader>w", "<cmd>w!<CR>", { desc = "Save" })
 
-  o = { ":'<,'>sort i<CR>", "Sort" },
-  S = { "<Plug>(nvim-surround-visual)", "Surround" },
-}
+-- Lazy
+keymap("n", "<leader>l", "<cmd>:Lazy<CR>", { desc = "Lazy" })
+keymap("n", "<leader>ss", function() require 'util'.so_input() end, { desc = "StackOverflow" })
 
-local n_opts = {
-  mode = "n", -- NORMAL mode
-  prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
-}
+-- Markdown
+keymap("n", "<localleader>Mb", 'o```{r}<cr>```<esc>O', { desc = "Insert R Code Block" })
+keymap("n", "<localleader>MB", 'o```{python}<cr>```<esc>O', { desc = "Insert Python Code Block" })
 
-local n_mappings = {
-  ["!"] = { "<cmd>lua require('grapple').toggle()<cr>", "Grapple Toggle" },
-  ["-"] = { "<cmd>:split<CR>", "Split" },
-  ["<TAB>"] = { "<cmd>lua require('grapple').cycle_backward()<cr>", "Grapple Cycle" },
-  ["\\"] = { "<cmd>:vsplit<CR>", "VSplit" },
-  [":"] = { "<cmd>Telescop command_history<cr>", "Command History" },
-  ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-  ["E"] = { "<cmd>enew<cr>", "New File" },
-  ["f"] = { "<cmd>lua require 'plugins.telescope'.project_files({hidden=true})<CR>", "Find Files" },
-  ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-  ["l"] = { "<cmd>:Lazy<CR>", "Lazy" },
-  ["q"] = { "<cmd>q!<CR>", "Quit" },
-  ["u"] = { "<cmd>Telescope undo<cr>", "Undo" },
-  ["v"] = { "<cmd>Telescope yank_history<cr>", "Clipboard" },
-  ["w"] = { "<cmd>w!<CR>", "Save" },
+keymap("v", "<leader>o", ":'<,'>sort i<CR>", { desc = "Sort" })
 
-  b = { name = "Buffers",
-    b = { "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-      "Buffers" },
-    c = { "<cmd>BufferClose!<CR>", "Close Buffer" },
-    e = { "<cmd>BufferCloseAllButCurrent<cr>", "Close All But Current" },
-    g = { "<cmd>lua require('grapple').popup_tags(scope)<cr>", "Grapple Tags" },
-  },
+-- UI Toggles
+keymap("n", "<leader>uc",
+  function()
+    local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
+    util.toggle("conceallevel", false, { 0, conceallevel })
+  end, { desc = "Toggle Conceal" })
 
-  n = { name = "Notifications",
-    a = { "<cmd>lua require'noice'.cmd('all')<cr>", "Noice All" },
-    c = { "<cmd>lua require'notify'.dismiss({silent = true, pending = true})<cr>", "Clear Notifcations" },
-    h = { "<cmd>lua require'noice'.cmd('history')<cr>", "Noice History" },
-    l = { "<cmd>lua require'noice'.cmd('last')<cr>", "Noice Last Message" },
-  },
+keymap("n", "<leader>ul",
+  function()
+    util.toggle("relativenumber", true)
+    util.toggle("number")
+  end,
+  { desc = "Toggle Line Number " })
+keymap("n", "<leader>us",
+  function()
+    util.toggle("spell")
+  end,
+  { desc = "Toggle Spell" })
+keymap("n", "<leader>uw",
+  function()
+    util.toggle("wrap")
+  end,
+  { desc = "Toggle Word Wrap" })
 
-  o = { name = "Options",
-    C = { "<cmd>ColorizerToggle<CR>", "Toggle Colorizer" },
-    c = { function()
-      local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
-      util.toggle("conceallevel", false, { 0, conceallevel })
-    end, "Toggle Conceal" },
-    n = { function() util.toggle("relativenumber", true) util.toggle("number") end, "Toggle Line Number" },
-    s = { function() util.toggle("spell") end, "Toggle Spell" },
-    w = { function() util.toggle("wrap") end, "Toggle Word Wrap" },
-  },
-
-  s = { name = "Search",
-    c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-    C = { "<cmd>Telescope commands<cr>", "Commands" },
-    g = { "<cmd>Telescope grep_string<cr>", "Grep String" },
-    h = { "<cmd>lua require('telescope.builtin').help_tags {default_text = vim.call('expand', '<cword>')}<cr>",
-      "Find Help" },
-    k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-    m = { "<cmd>Telescope marks<cr>", "Marks" },
-    M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-    p = { "<cmd>Telescope projects<cr>", "Projects" },
-    r = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
-    R = { "<cmd>Telescope registers<cr>", "Registers" },
-    s = { "<cmd>lua require 'util'.so_input()<CR>", "StackOverflow" },
-  },
-
-  T = { name = "Terminal",
-    ["-"] = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-    ["\\"] = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
-  },
-}
-
-wk.register(n_mappings, n_opts)
-wk.register(v_mappings, v_opts)
+-- highlights under cursor
+vim.keymap.set("n", "<leader>sH", vim.show_pos, { desc = "Highlight Groups at Cursor" })

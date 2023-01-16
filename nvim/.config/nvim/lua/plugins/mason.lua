@@ -1,5 +1,6 @@
 local M = {
   "williamboman/mason.nvim",
+  keys = { { "<leader>cM", "<cmd>Mason<CR>", desc = "Mason" } }
 }
 
 M.tools = {

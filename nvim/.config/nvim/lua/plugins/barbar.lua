@@ -44,31 +44,33 @@ function M.init()
   local keymap = require('util').keymap
 
   -- Move to previous/next
-  keymap('n', '<A-,>', ':BufferPrevious<CR>')
-  keymap('n', '<A-.>', ':BufferNext<CR>')
-  keymap("n", "<C-l>", ":bnext<CR>")
-  keymap("n", "<C-h>", ":bprevious<CR>")
-  keymap("n", "]b", ":bnext<CR>")
-  keymap("n", "[b", ":bprevious<CR>")
+  keymap('n', '<A-,>', '<cmd>BufferPrevious<CR>')
+  keymap('n', '<A-.>', '<cmd>BufferNext<CR>')
+  keymap("n", "<C-l>", "<cmd>bnext<CR>")
+  keymap("n", "<C-h>", "<cmd>bprevious<CR>")
+  keymap("n", "]b", "<cmd>bnext<CR>", {desc = "Next Buffer"})
+  keymap("n", "[b", "<cmd>bprevious<CR>", {desc = "Previous Buffer"})
+  keymap("n", "<leader>bc", "<cmd>BufferClose!<CR>", {desc = "Close Buffer"})
+  keymap("n", "<leader>be", "<cmd>BufferCloseAllButCurrent<CR>", {desc = "Close All But Current Buffer"})
 
   -- Re-order to previous/next
-  keymap('n', '<A-<>', ':BufferMovePrevious<CR>')
-  keymap('n', '<A->>', ':BufferMoveNext<CR>')
+  keymap('n', '<A-<>', '<cmd>BufferMovePrevious<CR>')
+  keymap('n', '<A->>', '<cmd>BufferMoveNext<CR>')
 
   -- Goto buffer in position...
-  keymap('n', '<A-1>', ':BufferGoto 1<CR>')
-  keymap('n', '<A-2>', ':BufferGoto 2<CR>')
-  keymap('n', '<A-3>', ':BufferGoto 3<CR>')
-  keymap('n', '<A-4>', ':BufferGoto 4<CR>')
-  keymap('n', '<A-5>', ':BufferGoto 5<CR>')
-  keymap('n', '<A-6>', ':BufferGoto 6<CR>')
-  keymap('n', '<A-7>', ':BufferGoto 7<CR>')
-  keymap('n', '<A-8>', ':BufferGoto 8<CR>')
-  keymap('n', '<A-9>', ':BufferGoto 9<CR>')
-  keymap('n', '<A-0>', ':BufferLast<CR>')
+  keymap('n', '<A-1>', '<cmd>BufferGoto 1<CR>')
+  keymap('n', '<A-2>', '<cmd>BufferGoto 2<CR>')
+  keymap('n', '<A-3>', '<cmd>BufferGoto 3<CR>')
+  keymap('n', '<A-4>', '<cmd>BufferGoto 4<CR>')
+  keymap('n', '<A-5>', '<cmd>BufferGoto 5<CR>')
+  keymap('n', '<A-6>', '<cmd>BufferGoto 6<CR>')
+  keymap('n', '<A-7>', '<cmd>BufferGoto 7<CR>')
+  keymap('n', '<A-8>', '<cmd>BufferGoto 8<CR>')
+  keymap('n', '<A-9>', '<cmd>BufferGoto 9<CR>')
+  keymap('n', '<A-0>', '<cmd>BufferLast<CR>')
 
   -- Close buffer
-  keymap('n', '<A-c>', ':BufferClose<CR>')
+  keymap('n', '<A-c>', '<cmd>BufferClose<CR>')
 end
 
 return M

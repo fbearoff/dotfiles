@@ -74,8 +74,8 @@ function M.config()
   }
 
   local macro = {
-    require("noice").api.statusline.mode.get,
-    cond = require("noice").api.statusline.mode.has,
+    function() return require("noice").api.statusline.mode.get() end,
+    cond = function() return package.loaded["noice"] and require("noice").api.statusline.mode.has() end,
     color = { fg = colors.co },
   }
 
@@ -106,7 +106,7 @@ function M.config()
     on_click = function()
       vim.cmd('Lazy')
     end
-}
+  }
 
   require("lualine").setup({
     options = {

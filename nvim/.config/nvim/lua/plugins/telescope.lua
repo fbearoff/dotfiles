@@ -2,7 +2,31 @@ local M = {
   "nvim-telescope/telescope.nvim",
   event = "VeryLazy",
   -- cmd = { "Telescope" },
-
+  keys = {
+    { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
+    { "<leader>su", "<cmd>Telescope undo<cr>", desc = "Undo" },
+    { "<leader>f",
+      function()
+        require 'plugins.telescope'.project_files({ hidden = true })
+      end,
+      desc = "Find Files" },
+    { "<leader>F", "<cmd>Telescope live_grep theme=ivy<cr>", desc = "Find Text" },
+    { "<leader>bb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+    { "<leader>sc", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme" },
+    { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
+    { "<leader>sg", "<cmd>Telescope grep_string<cr>", desc = "Grep String" },
+    { "<leader>sh",
+      function()
+        require('telescope.builtin').help_tags { default_text = vim.call('expand', '<cword>') }
+      end,
+      desc = "Help" },
+    { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
+    { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Marks" },
+    { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
+    { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Projects" },
+    { "<leader>sr", "<cmd>Telescope oldfiles<cr>", desc = "Recent Files" },
+    { "<leader>sR", "<cmd>Telescope registers<cr>", desc = "Registers" },
+  },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope-symbols.nvim",

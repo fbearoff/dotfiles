@@ -56,6 +56,7 @@ function M.config()
         ['i;'] = 'textsubjects-container-inner',
       },
     },
+    matchup = { enable = true, },
   })
 end
 

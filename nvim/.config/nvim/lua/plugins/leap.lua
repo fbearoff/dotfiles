@@ -15,7 +15,7 @@ local M = {
       -- require("leap").add_default_mappings()
     vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-forward-to)")
     vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(leap-backward-to)")
-    vim.keymap.set("n", "gS", "<Plug>(leap-cross-window)")
+    vim.keymap.set("n", "gS", "<Plug>(leap-cross-window)", {desc = "Leap across window"})
     vim.keymap.set('n', 'gs',
       function()
         require 'leap'.leap({ target_windows = { vim.api.nvim_get_current_win() } })

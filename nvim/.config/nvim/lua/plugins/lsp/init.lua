@@ -9,10 +9,10 @@ function M.config()
   require("mason")
   require("plugins.lsp.diagnostics").setup()
 
-  local function on_attach(client, bufnr)
-    require("nvim-navic").attach(client, bufnr)
-    require("plugins.lsp.keys").setup(client, bufnr)
-  end
+  require('util').on_attach(function(client, buffer)
+    require("nvim-navic").attach(client, buffer)
+    require("plugins.lsp.keymaps").on_attach(client, buffer)
+  end)
 
   local servers = {
     ansiblels = {},

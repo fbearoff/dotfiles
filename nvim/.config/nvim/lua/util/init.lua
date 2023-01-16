@@ -1,12 +1,19 @@
 local M = {}
 
+function M.on_attach(on_attach)
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+      local buffer = args.buf
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      on_attach(client, buffer)
+    end,
+  })
+end
+
 -- Keymap helper function
 function M.keymap(mode, lhs, rhs, opts)
   local options = { noremap = true, silent = true }
   if opts then
-    if opts['desc'] then
-      opts['desc'] = 'User given: ' .. opts['desc']
-    end
     options = vim.tbl_extend('force', options, opts)
   end
   vim.keymap.set(mode, lhs, rhs, options)

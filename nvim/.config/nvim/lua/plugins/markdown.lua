@@ -1,19 +1,38 @@
 return {
   {
     "ellisonleao/glow.nvim",
-    cmd = "Glow"
+    cmd = "Glow",
+    keys = {
+      { "<localleader>Mg", "<cmd>Glow<cr>", desc = "Glow" }
+    }
   },
   -- Markdown live preview, needs `webkit2gtk`
   {
     "toppair/peek.nvim",
     build = "deno task --quiet build:fast",
-    keys = { "<leader>cp" },
+    keys = {
+      {
+        "<localleader>mp",
+        function()
+          local peek = require("peek")
+          if peek.is_open() then
+            peek.close()
+          else
+            peek.open()
+          end
+        end,
+        desc = "Peek",
+      },
+    },
     config = true,
   },
 
   -- Edit fenced language in popup
   { "AckslD/nvim-FeMaco.lua",
     cmd = "FeMaco",
+    keys = {
+      { "<localleader>Mf", "<cmd>FeMaco<cr>", desc = "FeMaco" }
+    },
     opts = {
       ---@diagnostic disable-next-line: unused-local
       ensure_newline = function(base_filetype)
@@ -26,6 +45,18 @@ return {
     dependencies = {
       'jmbuhr/otter.nvim',
       'neovim/nvim-lspconfig'
+    },
+    keys = {
+      { "<localleader>MP",
+        function()
+          require 'quarto'.quartoPreview()
+        end,
+        desc = 'Quarto Preview' },
+      { "<localleader>MQ",
+        function()
+          require 'quarto'.quartoClosePreview()
+        end,
+        desc = 'Close Quarto Preview' },
     },
     ft = "quarto",
     opts = {
