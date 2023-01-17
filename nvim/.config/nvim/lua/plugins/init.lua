@@ -48,13 +48,6 @@ return {
     end,
   },
 
-  -- Show code context as top line
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = "BufReadPre",
-    config = true,
-  },
-
   -- Quicker escape from insert mode with jj/jk
   {
     "max397574/better-escape.nvim",

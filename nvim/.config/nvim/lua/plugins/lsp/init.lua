@@ -3,6 +3,16 @@ local M = {
   name = "lsp",
   event = "BufReadPre",
   dependencies = { "hrsh7th/cmp-nvim-lsp" },
+  opts = {
+    capabilities = {
+      textDocument = {
+        foldingRange = {
+          dynamicRegistration = false,
+          lineFoldingOnly = true,
+        },
+      },
+    },
+  },
 }
 
 function M.config()

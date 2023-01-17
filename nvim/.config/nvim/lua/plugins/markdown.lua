@@ -44,7 +44,6 @@ return {
   { 'quarto-dev/quarto-nvim',
     dependencies = {
       'jmbuhr/otter.nvim',
-      'neovim/nvim-lspconfig'
     },
     keys = {
       { "<localleader>MP",

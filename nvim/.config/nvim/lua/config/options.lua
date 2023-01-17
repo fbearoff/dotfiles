@@ -11,7 +11,11 @@ local options = {
   cursorline = true, -- highlight the current line
   expandtab = true, -- convert tabs to spaces
   fileencoding = "utf-8", -- the encoding written to a file
-  fillchars = 'eob: ', -- remove ugly ~ ndicator for end of buffer
+  fillchars = { foldopen = "", foldclose = "", fold = " ", foldsep = " ", diff = "╱", eob = " " },
+  foldcolumn = "1",
+  foldenable = true,
+  foldlevel = 99, -- Using ufo provider need a large value, feel free to decrease the value
+  foldlevelstart = 99,
   hlsearch = true, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
   joinspaces = false, -- No double spaces with join after a dot

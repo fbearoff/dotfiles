@@ -184,9 +184,10 @@ return {
   { "luukvbaal/statuscol.nvim",
     event = "VeryLazy",
     opts = {
+      separator = " ",
       relculright = true,
       setopt = true,
-      order = "FNS",
+      order = "SNsFs",
     },
   },
 
@@ -208,7 +209,6 @@ return {
     "echasnovski/mini.indentscope",
     event = "BufReadPre",
     opts = {
-      -- symbol = "▏",
       symbol = "│",
       options = { try_as_border = false },
     },

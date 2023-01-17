@@ -1,14 +1,7 @@
-local M = {
+return {
   "rebelot/kanagawa.nvim",
-  lazy = false,
-  priority=1000
-}
-
-function M.config()
-
-  local kanagawa = require("kanagawa")
-
-  kanagawa.setup({
+  priority = 1000,
+  opts = {
     undercurl = true, -- enable undercurls
     commentStyle = { italic = false },
     functionStyle = {},
@@ -25,8 +18,8 @@ function M.config()
     colors = {},
     overrides = {},
     theme = "default"
-  })
-  kanagawa.load()
-end
-
-return M
+  },
+  config = function()
+    require("kanagawa").load()
+  end
+}
