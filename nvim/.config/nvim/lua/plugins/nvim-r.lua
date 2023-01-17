@@ -1,6 +1,6 @@
 return {
   "jalvesaq/Nvim-R",
-  ft = { "r", "rmd", "qmd" },
+  ft = { "r", "rmd" },
   keys = {
     { "<leader><Space>", "<Plug>RDSendLine", desc = "which_key_ignore" },
     { mode = "x", "<leader><Space>", "<Plug>RDSendSelection", desc = "Send Selection to R" },

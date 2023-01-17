@@ -11,36 +11,25 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = "BufReadPost",
+    keys = {
+      { "<C-space>", desc = "Increment selection" },
+      { "<bs>", desc = "Schrink selection", mode = "x" },
+    },
     dependencies = {
       "RRethy/nvim-treesitter-textsubjects",
       "mrjones2014/nvim-ts-rainbow"
     },
     opts = {
-      ensure_installed = {
-        "bash",
-        "comment",
-        "diff",
-        "gitignore",
-        "help",
-        "json",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "r",
-        "regex",
-        "yaml",
-      },
       highlight = { enable = true },
       indent = { enable = true },
       context_commentstring = { enable = true, enable_autocmd = false },
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = "<c-space>",
-          node_incremental = "<c-space>",
+          init_selection = "<C-space>",
+          node_incremental = "<C-space>",
           scope_incremental = "<c-s>",
-          node_decremental = "<c-backspace>",
+          node_decremental = "<C-backspace>",
         },
       },
       autopairs = {
@@ -60,6 +49,27 @@ return {
         },
       },
       matchup = { enable = true, },
-    }
+      ensure_installed = {
+        "bash",
+        "comment",
+        "diff",
+        "gitignore",
+        "help",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "r",
+        "regex",
+        "yaml",
+      },
+    },
+    config = function(plugin, opts)
+      if plugin.ensure_installed then
+        require("treesitter.opts.ensure_installed")
+      end
+      require("nvim-treesitter.configs").setup(opts)
+    end,
   },
 }

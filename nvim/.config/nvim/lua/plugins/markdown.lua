@@ -12,7 +12,7 @@ return {
     build = "deno task --quiet build:fast",
     keys = {
       {
-        "<localleader>mp",
+        "<localleader>Mp",
         function()
           local peek = require("peek")
           if peek.is_open() then
@@ -44,7 +44,9 @@ return {
   { 'quarto-dev/quarto-nvim',
     dependencies = {
       'jmbuhr/otter.nvim',
+      'neovim/nvim-lspconfig'
     },
+    ft = "quarto",
     keys = {
       { "<localleader>MP",
         function()
@@ -57,7 +59,6 @@ return {
         end,
         desc = 'Close Quarto Preview' },
     },
-    ft = "quarto",
     opts = {
       lspFeatures = {
         enabled = true,
