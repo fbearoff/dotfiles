@@ -130,9 +130,20 @@ return {
     dependencies = "nvim-lua/plenary.nvim",
     keys = {
       { "<leader>!", function() require('grapple').toggle() end, desc = "Grapple Toggle" },
-      { "<leader><tab>", function() require('grapple').cycle_backwards() end, desc = "Grapple Cycle" },
+      { "<leader><tab>", function() require('grapple').cycle_backward() end, desc = "Grapple Cycle" },
       { "<leader>bg", function() require('grapple').popup_tags() end, desc = "Grapple Tags" },
     },
+  },
+
+  -- Jumplist popup UI
+  { "cbochs/portal.nvim",
+    keys = {
+      { "<leader>o", function() require("portal").jump_backward() end, desc = "Jump Backward" },
+      { "<leader>i", function() require("portal").jump_forward() end, desc = "Jump Forward" },
+    },
+    opts = {
+      query = { "modified", "different", "valid", "grapple" }
+    }
   },
 
   -- Show color of color values
