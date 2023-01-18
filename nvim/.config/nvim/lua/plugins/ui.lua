@@ -182,7 +182,6 @@ return {
 
   -- Clickable status column items
   { "luukvbaal/statuscol.nvim",
-    commit = 'dd00c7f9019b750d54e47551dd7c80f5698df1c8',
     event = "VeryLazy",
     opts = {
       separator = " ",
