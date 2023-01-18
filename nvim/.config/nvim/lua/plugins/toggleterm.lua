@@ -1,7 +1,7 @@
 return {
   "akinsho/toggleterm.nvim",
   keys = {
-    { [[<c-\>]] },
+    { [[<c-\>]], desc = "ToggleTerm" },
     { "<leader>t-", "<cmd>ToggleTerm size=10 direction=horizontal<CR>", desc = "Horizontal" },
     { "<leader>t\\", "<cmd>ToggleTerm size=80 direction=vertical<CR>", desc = "Vertical" },
   },
