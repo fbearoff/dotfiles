@@ -1,5 +1,5 @@
 return {
-  "williamboman/mason-lspconfig.nvim",
+  -- "williamboman/mason-lspconfig.nvim",
   "nvim-lua/plenary.nvim",
 
   -- Show outline of document symbols

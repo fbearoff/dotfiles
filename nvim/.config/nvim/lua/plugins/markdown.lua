@@ -44,7 +44,7 @@ return {
   { 'quarto-dev/quarto-nvim',
     dependencies = {
       'jmbuhr/otter.nvim',
-      'neovim/nvim-lspconfig'
+      -- 'neovim/nvim-lspconfig'
     },
     ft = "quarto",
     keys = {
