@@ -1,10 +1,3 @@
-local signs = {
-  Error = " ",
-  Warn = " ",
-  Hint = " ",
-  Info = " ",
-}
-
 return {
   -- lspconfig
   {
@@ -16,6 +9,12 @@ return {
       "hrsh7th/cmp-nvim-lsp",
     },
     opts = {
+      signs = {
+        Error = " ",
+        Warn = " ",
+        Hint = " ",
+        Info = " ",
+      },
       capabilities = {
         textDocument = {
           foldingRange = {
@@ -68,6 +67,9 @@ return {
         sumneko_lua = {
           settings = {
             Lua = {
+              runtime = {
+                version = "LuaJIT"
+              },
               workspace = {
                 library = {
                   [vim.fn.expand "$VIMRUNTIME/lua"] = true,
@@ -109,7 +111,7 @@ return {
       end)
 
       -- diagnostics
-      for name, icon in pairs(signs) do
+      for name, icon in pairs(opts.signs) do
         name = "DiagnosticSign" .. name
         vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
       end

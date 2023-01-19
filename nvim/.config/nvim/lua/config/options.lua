@@ -13,9 +13,10 @@ local options = {
   fileencoding = "utf-8", -- the encoding written to a file
   fillchars = { foldopen = "", foldclose = "", fold = " ", foldsep = " ", diff = "╱", eob = " " },
   foldcolumn = "1",
-  foldenable = true,
+  foldenable = true, -- enable folding
   foldlevel = 99, -- Using ufo provider need a large value, feel free to decrease the value
   foldlevelstart = 99,
+  foldnestmax = 10, -- max fold nesting level
   hlsearch = true, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
   joinspaces = false, -- No double spaces with join after a dot

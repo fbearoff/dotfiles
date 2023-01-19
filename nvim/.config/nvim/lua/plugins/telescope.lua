@@ -44,7 +44,7 @@ local M = {
             ".git",
             "Makefile",
             "package.json",
-            "Deseq2.R",
+            "DESCRIPTION",
           },
         })
       end

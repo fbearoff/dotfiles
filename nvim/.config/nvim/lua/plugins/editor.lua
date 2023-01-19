@@ -423,6 +423,10 @@ return {
     "mrjones2014/smart-splits.nvim",
     event = "BufReadPost",
     keys = {
+      { "<C-h>", function() require('smart-splits').move_cursor_left() end, desc = "Move to Left Window" },
+      { "<C-j>", function() require('smart-splits').move_cursor_down() end, desc = "Move to Lower Window" },
+      { "<C-k>", function() require('smart-splits').move_cursor_up() end, desc = "Move to Upper Window" },
+      { "<C-l>", function() require('smart-splits').move_cursor_right() end, desc = "Move to Right Window" },
       { "<M-Right>", mode = { "n", "i" }, function() require('smart-splits').move_cursor_left() end,
         desc = "Move to Left Window" },
       { "<M-Down>", mode = { "n", "i" }, function() require('smart-splits').move_cursor_down() end,
@@ -454,6 +458,10 @@ return {
   -- Better text moving
   { "echasnovski/mini.move",
     event = "BufReadPre",
+    keys = {
+      { mode = { "n", "x" },
+        "<M-h>", "<M-j>", "<M-k>", "<M-l>" },
+    },
     config = function()
       require('mini.move').setup()
     end,
