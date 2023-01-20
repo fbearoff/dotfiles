@@ -215,7 +215,7 @@ return {
     config = function(_, opts)
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "help", "alpha", "dashboard", "neo-tree", "NvimTree", "Trouble", "lazy", "mason", "noice", "rdoc",
-          "terminal" },
+          "terminal", "checkhealth" },
         callback = function()
           vim.b.miniindentscope_disable = true
         end,

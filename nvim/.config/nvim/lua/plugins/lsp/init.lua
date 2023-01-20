@@ -23,6 +23,15 @@ return {
           },
         },
       },
+      -- Automatically format on save
+      autoformat = true,
+      -- options for vim.lsp.buf.format
+      -- `bufnr` and `filter` is handled by the LazyVim formatter,
+      -- but can be also overriden when specified
+      format = {
+        formatting_options = nil,
+        timeout_ms = nil,
+      },
       diagnostics = {
         virtual_text = {
           source = 'always',
@@ -104,9 +113,13 @@ return {
         require("lspconfig.opts.setup[SERVER]")
       end
 
+      -- setup autoformat
+      require("plugins.lsp.format").autoformat = opts.autoformat
+
       -- setup  keymaps
       require("util").on_attach(function(client, buffer)
         require("nvim-navic").attach(client, buffer)
+        require("plugins.lsp.format").on_attach(client, buffer)
         require("plugins.lsp.keymaps").on_attach(client, buffer)
       end)
 
@@ -150,7 +163,7 @@ return {
       return {
         sources = {
           nls.builtins.formatting.black.with { extra_args = { "--fast" } },
-          nls.builtins.diagnostics.flake8,
+          nls.builtins.formatting.shfmt,
         },
       }
     end,
@@ -164,9 +177,9 @@ return {
     keys = { { "<leader>cM", "<cmd>Mason<cr>", desc = "Mason" } },
     opts = {
       ensure_installed = {
-        "stylua",
         "shfmt",
         "deno",
+        "black"
       },
       ui = {
         icons = {

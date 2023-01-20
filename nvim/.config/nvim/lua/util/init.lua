@@ -1,5 +1,28 @@
 local M = {}
 
+-- Return options
+function M.opts(name)
+  local plugin = require("lazy.core.config").plugins[name]
+  if not plugin then
+    return {}
+  end
+  local Plugin = require("lazy.core.plugin")
+  return Plugin.values(plugin, "opts", false)
+end
+
+-- Toggle diagnostics
+local enabled = true
+function M.toggle_diagnostics()
+  enabled = not enabled
+  if enabled then
+    vim.diagnostic.enable()
+    require("lazy.core.util").info("Enabled diagnostics", { title = "Diagnostics" })
+  else
+    vim.diagnostic.disable()
+    require("lazy.core.util").warn("Disabled diagnostics", { title = "Diagnostics" })
+  end
+end
+
 function M.on_attach(on_attach)
   vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)

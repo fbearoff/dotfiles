@@ -22,9 +22,12 @@ function M.on_attach(client, buffer)
   self:map("]w", M.diagnostic_goto(true, "WARNING"), { desc = "Next Warning" })
   self:map("[w", M.diagnostic_goto(false, "WARNING"), { desc = "Prev Warning" })
   self:map("<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action", mode = { "n", "v" }, has = "codeAction" })
-  self:map("<leader>cf", vim.lsp.buf.format, { desc = "Format Document" })
-  self:map("=", vim.lsp.buf.format, { desc = "Format Document" })
   self:map("gm", M.format_range_operator, { desc = "Format Range", mode = { "n", "v" }, })
+
+  local format = require("plugins.lsp.format").format
+  self:map("<leader>cf", format, { desc = "Format Document", has = "documentFormatting" })
+  self:map("=", format, { desc = "Format Document", has = "documentFormatting" })
+  self:map("<leader>cf", format, { desc = "Format Range", mode = "v", has = "documentRangeFormatting" })
   self:map("<leader>cr", M.rename, { expr = true, desc = "Rename", has = "rename" })
 end
 

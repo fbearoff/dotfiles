@@ -240,7 +240,8 @@ return {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     config = function()
-      require("nvim-autopairs").setup({
+      local npairs = require('nvim-autopairs')
+      npairs.setup({
         check_ts = true,
         ts_config = {
           lua = { "string", "source", "comment" },
@@ -248,6 +249,11 @@ return {
         disable_filetype = { "TelescopePrompt", "spectre_panel" },
         fast_wrap = {},
       })
+      local Rule = require('nvim-autopairs.rule')
+
+      npairs.add_rule(
+        Rule("<", ">", "lua")
+      )
       local cmp_autopairs = require("nvim-autopairs.completion.cmp")
       ---@diagnostic disable-next-line: undefined-field
       require("cmp").event:on(

@@ -104,6 +104,7 @@ keymap("n", "<leader>ss", function() require 'util'.so_input() end, { desc = "St
 keymap("n", "<localleader>Mb", 'o```{r}<cr>```<esc>O', { desc = "Insert R Code Block" })
 keymap("n", "<localleader>MB", 'o```{python}<cr>```<esc>O', { desc = "Insert Python Code Block" })
 
+-- Sort selected lines
 keymap("x", "<leader>o", ":'<,'>sort i<CR>", { desc = "Sort" })
 
 -- UI Toggles
@@ -129,6 +130,8 @@ keymap("n", "<leader>uw",
     util.toggle("wrap")
   end,
   { desc = "Toggle Word Wrap" })
+keymap("n", "<leader>uf", require("plugins.lsp.format").toggle, { desc = "Toggle Format on Save" })
+keymap("n", "<leader>ud", require('util').toggle_diagnostics, { desc = "Toggle Diagnostics" })
 
 -- highlights under cursor
-vim.keymap.set("n", "<leader>sH", vim.show_pos, { desc = "Highlight Groups at Cursor" })
+keymap("n", "<leader>sH", vim.show_pos, { desc = "Highlight Groups at Cursor" })
