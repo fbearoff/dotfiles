@@ -1,7 +1,5 @@
 return {
 
-  { "ellisonleao/gruvbox.nvim" },
-
   -- Notification provider
   { "rcarriga/nvim-notify",
     keys = {

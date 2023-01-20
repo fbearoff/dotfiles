@@ -39,6 +39,20 @@ return {
     end,
   },
 
+  -- Better diagnostics list
+  {
+    "folke/trouble.nvim",
+    cmd = { "TroubleToggle", "Trouble" },
+    opts = {
+      auto_open = false,
+      use_diagnostic_signs = true,
+    },
+    keys = {
+      { "<leader>dx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+      { "<leader>dX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
+    },
+  },
+
   -- Easy commenting
   {
     "numToStr/Comment.nvim",
@@ -421,6 +435,7 @@ return {
     keys = {
       { "]]", function() require("illuminate").goto_next_reference(false) end, desc = "Next Reference", },
       { "[[", function() require("illuminate").goto_prev_reference(false) end, desc = "Prev Reference" },
+      { mode = { "x", "o" }, "<M-i>", desc = "Illuminated Word" }
     },
   },
 

@@ -120,18 +120,10 @@ keymap("n", "<leader>ul",
     util.toggle("number")
   end,
   { desc = "Toggle Line Number " })
-keymap("n", "<leader>us",
-  function()
-    util.toggle("spell")
-  end,
-  { desc = "Toggle Spell" })
-keymap("n", "<leader>uw",
-  function()
-    util.toggle("wrap")
-  end,
-  { desc = "Toggle Word Wrap" })
+keymap("n", "<leader>us", function() util.toggle("spell") end, { desc = "Toggle Spell" })
+keymap("n", "<leader>uw", function() util.toggle("wrap") end, { desc = "Toggle Word Wrap" })
 keymap("n", "<leader>uf", require("plugins.lsp.format").toggle, { desc = "Toggle Format on Save" })
-keymap("n", "<leader>ud", require('util').toggle_diagnostics, { desc = "Toggle Diagnostics" })
+keymap("n", "<leader>ud", function() util.toggle_diagnostics() end, { desc = "Toggle Diagnostics" })
 
 -- highlights under cursor
 keymap("n", "<leader>sH", vim.show_pos, { desc = "Highlight Groups at Cursor" })
