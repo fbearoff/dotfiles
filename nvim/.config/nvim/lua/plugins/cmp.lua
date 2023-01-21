@@ -10,6 +10,8 @@ local M = {
     "hrsh7th/cmp-path",
     "jalvesaq/cmp-nvim-r",
     "saadparwaiz1/cmp_luasnip",
+    "max397574/cmp-greek",
+    "hrsh7th/cmp-emoji"
   },
 }
 
@@ -104,12 +106,28 @@ function M.config()
       end, { "i", "s", }),
     }),
     sources = cmp.config.sources({
-      { name = "cmp_nvim_r" },
       { name = "nvim_lsp", max_item_count = 10 },
       { name = "nvim_lua" },
+      {
+        name = "buffer",
+        -- get words from visible buffers
+        option = {
+          keyword_length = 5,
+          max_item_count = 3,
+          get_bufnrs = function()
+            local bufs = {}
+            for _, win in ipairs(vim.api.nvim_list_wins()) do
+              bufs[vim.api.nvim_win_get_buf(win)] = true
+            end
+            return vim.tbl_keys(bufs)
+          end
+        }
+      },
+      { name = "cmp_nvim_r" },
       { name = "luasnip", keyword_length = 3, max_item_count = 3 },
-      { name = "buffer", keyword_length = 5, max_item_count = 3 },
       { name = "path" },
+      { name = "greek" },
+      { name = "emoji" },
     }),
     formatting = {
       fields = { "kind", "abbr", "menu" },
@@ -122,6 +140,8 @@ function M.config()
           path = "[Path]",
           cmp_nvim_r = "[R]",
           nvim_lua = "[Lua]",
+          greek = "[Greek]",
+          emoji = "[Emoji]",
         })[entry.source.name]
         return vim_item
       end,
@@ -136,7 +156,7 @@ function M.config()
       },
     },
   })
-  cmp.setup.cmdline('/', {
+  cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
       { name = 'buffer' }
