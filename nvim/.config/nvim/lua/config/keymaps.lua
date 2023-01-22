@@ -9,7 +9,7 @@ keymap("i", ";", ";<c-g>u")
 
 -- Home row navigation
 keymap('i', '<C-h>', '<left>', { desc = 'Move Cursor Left' })
-keymap('i', '<C-l>', require('util').EscapePair, { desc = 'Move Cursor Right, Escape Pair' })
+keymap('i', '<C-l>', '<right>', { desc = 'Move Cursor Right' })
 keymap('i', '<C-j>', '<down>', { desc = 'Move Cursor Down' })
 keymap('i', '<C-k>', '<up>', { desc = 'Move Cursor Up' })
 

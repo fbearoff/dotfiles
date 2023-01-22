@@ -103,4 +103,18 @@ return {
     end,
     config = true
   },
+
+  -- Highlight function arguments
+  {
+    "m-demare/hlargs.nvim",
+    event = "BufReadPost",
+    opts = {
+      excluded_argnames = {
+        usages = {
+          lua = { "self", "use" },
+        },
+      },
+    }
+  },
+
 }

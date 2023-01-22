@@ -2,19 +2,6 @@ return {
   -- "williamboman/mason-lspconfig.nvim",
   "nvim-lua/plenary.nvim",
 
-  -- Highlight function arguments
-  {
-    "m-demare/hlargs.nvim",
-    event = "BufReadPost",
-    opts = {
-      excluded_argnames = {
-        usages = {
-          lua = { "self", "use" },
-        },
-      },
-    }
-  },
-
   -- Visualize startup time
   {
     "dstein64/vim-startuptime",
@@ -41,16 +28,4 @@ return {
     },
   },
 
-  -- custom operator mappings
-  {
-    "zdcthomas/yop.nvim",
-    keys = {
-      { mode = { "n", "x" }, "<leader>O",
-        desc = "Sort"
-      },
-    },
-    config = function()
-      require("yop").op_map({ "n", "x" }, "<leader>O", require('util').sort)
-    end
-  },
 }

@@ -488,7 +488,7 @@ return {
     end,
   },
 
-  -- add nvim-ufo
+  -- Folding
   {
     "kevinhwang91/nvim-ufo",
     dependencies = "kevinhwang91/promise-async",
@@ -504,5 +504,42 @@ return {
         require("ufo").closeAllFolds()
       end)
     end,
+  },
+
+  -- Custom operator mappings
+  {
+    "zdcthomas/yop.nvim",
+    keys = {
+      { mode = { "n", "x" }, "<leader>O",
+        desc = "Sort"
+      },
+    },
+    config = function()
+      require("yop").op_map({ "n", "x" }, "<leader>O", require('util').sort)
+    end
+  },
+
+  -- Escape from surrounds
+  { 'abecodes/tabout.nvim',
+    keys = {
+      { mode = "i", "<M-h>" },
+      { mode = "i", "<M-l>" },
+    },
+    opts = {
+      tabkey = '<M-l>',
+      backwards_tabkey = '<M-h>',
+      act_as_tab = false,
+      act_as_shift_tab = false,
+      completion = false,
+      tabouts = {
+        { open = "<", close = ">" },
+        { open = "'", close = "'" },
+        { open = '"', close = '"' },
+        { open = '`', close = '`' },
+        { open = '(', close = ')' },
+        { open = '[', close = ']' },
+        { open = '{', close = '}' }
+      },
+    },
   },
 }
