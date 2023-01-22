@@ -135,4 +135,22 @@ function M.EscapePair()
   end
 end
 
+function M.sort(lines, _)
+
+  local utils = require('yop.utils')
+  local sort_without_leading_space = function(a, b)
+    local pattern = [[^%W*]]
+    return string.gsub(a, pattern, "") < string.gsub(b, pattern, "")
+  end
+  if #lines == 1 then
+    local delimeter = ","
+    local split = vim.split(lines[1], delimeter, { trimempty = true })
+    table.sort(split, sort_without_leading_space)
+    return { utils.join(split, delimeter) }
+  else
+    table.sort(lines, sort_without_leading_space)
+    return lines
+  end
+end
+
 return M

@@ -56,6 +56,28 @@ return {
             target = unquoted_pattern,
           },
         },
+        --markdown link from clipboard
+        ["l"] = {
+          add = function()
+            local clipboard = vim.fn.getreg("+"):gsub("\n", "")
+            return {
+              { "[" },
+              { "](" .. clipboard .. ")" },
+            }
+          end,
+          find = "%b[]%b()",
+          delete = "^(%[)().-(%]%b())()$",
+          change = {
+            target = "^()()%b[]%((.-)()%)$",
+            replacement = function()
+              local clipboard = vim.fn.getreg("+"):gsub("\n", "")
+              return {
+                { "" },
+                { clipboard },
+              }
+            end,
+          },
+        },
         --- markdown italic
         ["*"] = {
           find = "(%*+).-(%*+)",

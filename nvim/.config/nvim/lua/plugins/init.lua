@@ -41,5 +41,16 @@ return {
     },
   },
 
-
+  -- custom operator mappings
+  {
+    "zdcthomas/yop.nvim",
+    keys = {
+      { mode = { "n", "x" }, "<leader>O",
+        desc = "Sort"
+      },
+    },
+    config = function()
+      require("yop").op_map({ "n", "x" }, "<leader>O", require('util').sort)
+    end
+  },
 }

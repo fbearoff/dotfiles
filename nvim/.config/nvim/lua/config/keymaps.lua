@@ -104,9 +104,6 @@ keymap("n", "<leader>ss", function() require 'util'.so_input() end, { desc = "St
 keymap("n", "<localleader>Mb", 'o```{r}<cr>```<esc>O', { desc = "Insert R Code Block" })
 keymap("n", "<localleader>MB", 'o```{python}<cr>```<esc>O', { desc = "Insert Python Code Block" })
 
--- Sort selected lines
-keymap("x", "<leader>o", ":'<,'>sort i<CR>", { desc = "Sort" })
-
 -- UI Toggles
 keymap("n", "<leader>uc",
   function()
