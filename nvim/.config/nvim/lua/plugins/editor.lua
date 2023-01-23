@@ -30,6 +30,7 @@ return {
         ["<leader>g"] = { name = "+Git" },
         ["<leader>gh"] = { name = "+Hunks" },
         ["<leader>n"] = { name = "+Noice" },
+        ["<leader>m"] = { name = "+Marks" },
         ["<leader>s"] = { name = "+Search" },
         ["<leader>t"] = { name = "+Terminal" },
         ["<leader>u"] = { name = "+UI" },
@@ -116,16 +117,19 @@ return {
   {
     "chentoast/marks.nvim",
     event = "BufReadPost",
+    keys = {
+      { "<leader>ms", "<Plug>(Marks-set)", desc = "Set" },
+      { "<leader>mn", "<Plug>(Marks-setnext)", desc = "Set Next" },
+      { "<leader>md", "<Plug>(Marks-deleteline)", desc = "Delete Line" },
+      { "<leader>mD", "<Plug>(Marks-deletebuf)", desc = "Delete All" },
+      { "<leader>mj", "<Plug>(Marks-next)", desc = "Next" },
+      { "<leader>mk", "<Plug>(Marks-prev)", desc = "Previous" },
+      { "<leader>mp", "<Plug>(Marks-preview)", desc = "Preview" },
+    },
     opts = {
       default_mappings = false,
-      builtin_marks = false,
+      builtin_marks = { ".", "<", ">", "^", "[", "]" },
       excluded_filetypes = { "lspinfo", "toggleterm" },
-      mappings = {
-        set_next = "m,",
-        delete_line = "dm",
-        next = "mj",
-        prev = "mk",
-      },
     },
   },
 
