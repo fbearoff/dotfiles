@@ -4,3 +4,4 @@ lftp/.local/share/lftp/cwd_history
 lftp/.local/share/lftp/rl_history
 lftp/.local/share/lftp/transfer_log
 radian/.config/radian/history
+lazygit/.config/lazygit/state.yml
