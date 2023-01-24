@@ -1,20 +1,22 @@
+local Util = require("util")
+
 local M = {
   "nvim-telescope/telescope.nvim",
   event = "VeryLazy",
   -- cmd = { "Telescope" },
   keys = {
+    { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Search Buffer" },
     { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-    { "<leader>su", "<cmd>Telescope undo<cr>", desc = "Undo" },
-    { "<leader>f",
-      function()
-        require 'plugins.telescope'.project_files({ hidden = true })
-      end,
-      desc = "Find Files" },
-    { "<leader>F", "<cmd>Telescope live_grep theme=ivy<cr>", desc = "Find Text" },
+    { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Undo" },
+    { "<leader>ff", Util.telescope("files"), desc = "Find Files (Root)" },
+    { "<leader>fF", Util.telescope("files", { cwd = false }), desc = "Find Files (CWD)" },
+    { "<leader>fg", "<cmd>Telescope live_grep theme=ivy<cr>", desc = "Live Grep" },
     { "<leader>bb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-    { "<leader>sc", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme" },
+    { "<leader>sc", Util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme" },
+    { "<leader>sw", Util.telescope("grep_string"), desc = "Word (Root)" },
+    { "<leader>sW", Util.telescope("grep_string", { cwd = false }), desc = "Word (CWD)" },
+    { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
     { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
-    { "<leader>sg", "<cmd>Telescope grep_string<cr>", desc = "Grep String" },
     { "<leader>sh",
       function()
         require('telescope.builtin').help_tags { default_text = vim.call('expand', '<cword>') }
@@ -24,11 +26,28 @@ local M = {
     { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Marks" },
     { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
     { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Projects" },
-    { "<leader>sr", "<cmd>Telescope oldfiles<cr>", desc = "Recent Files" },
-    { "<leader>sR", "<cmd>Telescope registers<cr>", desc = "Registers" },
+    { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
+    { "<leader>sr", "<cmd>Telescope registers<cr>", desc = "Registers" },
+    {
+      "<leader>ss",
+      Util.telescope("lsp_document_symbols", {
+        symbols = {
+          "Class",
+          "Function",
+          "Method",
+          "Constructor",
+          "Interface",
+          "Module",
+          "Struct",
+          "Trait",
+          "Field",
+          "Property",
+        },
+      }),
+      desc = "Goto Symbol",
+    },
   },
   dependencies = {
-    "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope-symbols.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "debugloop/telescope-undo.nvim",
@@ -52,19 +71,6 @@ local M = {
   },
 }
 
-function M.project_files(opts)
-  opts = opts or {}
-  opts.show_untracked = true
-  if vim.loop.fs_stat(".git") then
-    require("telescope.builtin").git_files(opts)
-  else
-    local client = vim.lsp.get_active_clients()[1]
-    if client then
-      opts.cwd = client.config.root_dir
-    end
-    require("telescope.builtin").find_files(opts)
-  end
-end
 
 function M.config()
   local action_layout = require("telescope.actions.layout")
@@ -100,6 +106,9 @@ function M.config()
   local undo = require("telescope-undo.actions")
 
   local telescope = require("telescope")
+  local function no_ignore()
+    Util.telescope("find_files", { no_ignore = true })()
+  end
 
   telescope.setup({
     extensions = {
@@ -138,6 +147,10 @@ function M.config()
           ["<C-Down>"] = require("telescope.actions").cycle_history_next,
           ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
           ["<M-p>"] = action_layout.toggle_preview,
+          ["<M-i>"] = no_ignore,
+          ["<M-h>"] = function()
+            Util.telescope("find_files", { hidden = true })()
+          end,
         },
         n = {
           ["<M-p>"] = action_layout.toggle_preview,

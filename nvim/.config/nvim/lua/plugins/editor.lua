@@ -27,6 +27,7 @@ return {
         ["<leader>b"] = { name = "+Buffer" },
         ["<leader>c"] = { name = "+Code", mode = { "n", "v" }, },
         ["<leader>d"] = { name = "+Diagnostics" },
+        ["<leader>f"] = { name = "+Files" },
         ["<leader>g"] = { name = "+Git" },
         ["<leader>gh"] = { name = "+Hunks" },
         ["<leader>n"] = { name = "+Noice" },

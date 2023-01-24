@@ -6,7 +6,12 @@ return {
     dependencies = {
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/cmp-nvim-lsp",
+      {
+        "hrsh7th/cmp-nvim-lsp",
+        cond = function()
+          require("util").has("nvim-cmp")
+        end,
+      }
     },
     opts = {
       signs = {
@@ -184,6 +189,14 @@ return {
           nls.builtins.formatting.deno_fmt,
           nls.builtins.diagnostics.proselint,
         },
+        nls.register({
+          name = "more_actions",
+          method = { nls.methods.CODE_ACTION },
+          filetypes = { "_all" },
+          generator = {
+            fn = require("ts-node-action").available_actions
+          }
+        })
       }
     end,
   },

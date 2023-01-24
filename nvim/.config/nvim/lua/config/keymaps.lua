@@ -92,13 +92,13 @@ keymap("n", "<leader>-", "<cmd>split<CR>", { desc = "Split" })
 keymap("n", "<leader>\\", "<cmd>vsplit<CR>", { desc = "VSplit" })
 
 -- Core file commands
-keymap("n", "<leader>E", "<cmd>enew<CR>", { desc = "New File" })
+keymap("n", "<leader>fe", "<cmd>enew<CR>", { desc = "New File" })
 keymap("n", "<leader>q", "<cmd>q!<CR>", { desc = "Quit" })
 keymap("n", "<leader>w", "<cmd>w!<CR>", { desc = "Save" })
 
 -- Lazy
 keymap("n", "<leader>l", "<cmd>:Lazy<CR>", { desc = "Lazy" })
-keymap("n", "<leader>ss", function() require 'util'.so_input() end, { desc = "StackOverflow" })
+keymap("n", "<leader>sS", function() require 'util'.so_input() end, { desc = "StackOverflow" })
 
 -- Markdown
 keymap("n", "<localleader>Mb", 'o```{r}<cr>```<esc>O', { desc = "Insert R Code Block" })
@@ -123,4 +123,4 @@ keymap("n", "<leader>uf", require("plugins.lsp.format").toggle, { desc = "Toggle
 keymap("n", "<leader>ud", function() util.toggle_diagnostics() end, { desc = "Toggle Diagnostics" })
 
 -- highlights under cursor
-keymap("n", "<leader>sH", vim.show_pos, { desc = "Highlight Groups at Cursor" })
+keymap("n", "<leader>sH", vim.show_pos, { desc = "Highlight Groups" })

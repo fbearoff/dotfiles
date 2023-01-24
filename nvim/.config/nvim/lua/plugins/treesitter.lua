@@ -1,4 +1,11 @@
 return {
+  { "CKolkey/ts-node-action",
+    keys = {
+      { "<leader>cn", function() require("ts-node-action").node_action() end, desc = "Trigger Node Action" },
+    },
+    config = true,
+  },
+
   -- Show code context as top line
   {
     "nvim-treesitter/nvim-treesitter-context",
