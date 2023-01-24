@@ -1,6 +1,6 @@
 local Util = require("util")
 
-local M = {
+return {
   "nvim-telescope/telescope.nvim",
   event = "VeryLazy",
   -- cmd = { "Telescope" },
@@ -69,104 +69,103 @@ local M = {
       end
     },
   },
-}
 
+  config = function()
+    local action_layout = require("telescope.actions.layout")
 
-function M.config()
-  local action_layout = require("telescope.actions.layout")
-
-  -- Don't preview binaries
-  local previewers = require("telescope.previewers")
-  local Job = require("plenary.job")
-  local new_maker = function(filepath, bufnr, opts)
-    filepath = vim.fn.expand(filepath)
-    Job:new({
-      command = "file",
-      args = { "--mime-type", "-b", filepath },
-      on_exit = function(j)
-        local mime_type = vim.split(j:result()[1], "/")[1]
-        if mime_type == "text" then
-          previewers.buffer_previewer_maker(filepath, bufnr, opts)
-        else
-          -- maybe we want to write something to the buffer here
-          vim.schedule(function()
-            vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "BINARY" })
-          end)
+    -- Don't preview binaries
+    local previewers = require("telescope.previewers")
+    local Job = require("plenary.job")
+    local new_maker = function(filepath, bufnr, opts)
+      filepath = vim.fn.expand(filepath)
+      Job:new({
+        command = "file",
+        args = { "--mime-type", "-b", filepath },
+        on_exit = function(j)
+          local mime_type = vim.split(j:result()[1], "/")[1]
+          if mime_type == "text" then
+            previewers.buffer_previewer_maker(filepath, bufnr, opts)
+          else
+            -- maybe we want to write something to the buffer here
+            vim.schedule(function()
+              vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "BINARY" })
+            end)
+          end
         end
-      end
-    }):sync()
-  end
+      }):sync()
+    end
 
-  -- Search hidden/dot files, but not in `.git`.
-  local telescopeConfig = require("telescope.config")
-  local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
-  table.insert(vimgrep_arguments, { "--hidden", "--glob", "!**/.git/*" })
+    -- Search hidden/dot files, but not in `.git`.
+    local telescopeConfig = require("telescope.config")
+    local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+    table.insert(vimgrep_arguments, { "--hidden", "--glob", "!**/.git/*" })
 
-  local trouble = require("trouble.providers.telescope")
-  local undo = require("telescope-undo.actions")
+    local trouble = require("trouble.providers.telescope")
+    local undo = require("telescope-undo.actions")
 
-  local telescope = require("telescope")
-  local function no_ignore()
-    Util.telescope("find_files", { no_ignore = true })()
-  end
+    local telescope = require("telescope")
+    local function no_ignore()
+      Util.telescope("find_files", { no_ignore = true })()
+    end
 
-  telescope.setup({
-    extensions = {
-      undo = {
+    local function hidden()
+      Util.telescope("find_files", { hidden = true })()
+    end
+
+    telescope.setup({
+      extensions = {
+        undo = {
+          layout_strategy = "horizontal",
+          mappings = {
+            i = {
+              ["<C-a>"] = undo.yank_additions,
+              ["<C-r>"] = undo.yank_deletions,
+              ["<cr>"] = undo.restore,
+            },
+            n = {
+              ["<C-a>"] = undo.yank_additions,
+              ["<C-r>"] = undo.yank_deletions,
+              ["<cr>"] = undo.restore,
+            },
+          }
+        },
+      },
+      defaults = {
+        prompt_prefix = " ",
+        selection_caret = " ",
+        buffer_previewer_maker = new_maker, -- don't preview binaries
+        vimgrep_arguments = vimgrep_arguments,
+        file_ignore_patterns = { ".git/", "node_modules", "/tmp", "/usr", ".local" },
+        winblend = 10,
+        dynamic_preview_title = true,
         layout_strategy = "horizontal",
+        layout_config = {
+          prompt_position = "top",
+        },
+        sorting_strategy = "ascending",
         mappings = {
           i = {
-            ["<C-a>"] = undo.yank_additions,
-            ["<C-r>"] = undo.yank_deletions,
-            ["<cr>"] = undo.restore,
+            ["<c-t>"] = trouble.open_with_trouble,
+            ["<C-Down>"] = require("telescope.actions").cycle_history_next,
+            ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
+            ["<M-p>"] = action_layout.toggle_preview,
+            ["<M-i>"] = no_ignore,
+            ["<M-h>"] = hidden,
           },
           n = {
-            ["<C-a>"] = undo.yank_additions,
-            ["<C-r>"] = undo.yank_deletions,
-            ["<cr>"] = undo.restore,
+            ["<M-p>"] = action_layout.toggle_preview,
           },
-        }
-      },
-    },
-    defaults = {
-      prompt_prefix = " ",
-      selection_caret = " ",
-      buffer_previewer_maker = new_maker, -- don't preview binaries
-      vimgrep_arguments = vimgrep_arguments,
-      file_ignore_patterns = { ".git/", "node_modules", "/tmp", "/usr", ".local" },
-      winblend = 10,
-      dynamic_preview_title = true,
-      layout_strategy = "horizontal",
-      layout_config = {
-        prompt_position = "top",
-      },
-      sorting_strategy = "ascending",
-      mappings = {
-        i = {
-          ["<c-t>"] = trouble.open_with_trouble,
-          ["<C-Down>"] = require("telescope.actions").cycle_history_next,
-          ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
-          ["<M-p>"] = action_layout.toggle_preview,
-          ["<M-i>"] = no_ignore,
-          ["<M-h>"] = function()
-            Util.telescope("find_files", { hidden = true })()
-          end,
         },
-        n = {
-          ["<M-p>"] = action_layout.toggle_preview,
+        pickers = {
+          find_files = {
+            find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+          },
         },
       },
-      pickers = {
-        find_files = {
-          find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-        },
-      },
-    },
-  })
-  -- load extensions
-  telescope.load_extension("fzf")
-  telescope.load_extension("undo")
-  telescope.load_extension('projects')
-end
-
-return M
+    })
+    -- load extensions
+    telescope.load_extension("fzf")
+    telescope.load_extension("undo")
+    telescope.load_extension('projects')
+  end
+}
