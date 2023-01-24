@@ -41,15 +41,6 @@ function M.on_attach(on_attach)
   })
 end
 
--- Keymap helper function
-function M.keymap(mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
-  if opts then
-    options = vim.tbl_extend('force', options, opts)
-  end
-  vim.keymap.set(mode, lhs, rhs, options)
-end
-
 -- Toggle opts
 function M.toggle(option, silent, values)
   if values then
