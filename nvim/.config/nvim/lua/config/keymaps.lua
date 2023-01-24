@@ -1,5 +1,12 @@
+local function keymap(mode, lhs, rhs, opts)
+  local keys = require("lazy.core.handler").handlers.keys
+  -- do not create the keymap if a lazy keys handler exists
+  if not keys.active[keys.parse({ lhs, mode = mode }).id] then
+    vim.keymap.set(mode, lhs, rhs, opts)
+  end
+end
+
 local util = require("util")
-local keymap = util.keymap
 
 -- Insert --
 -- Add undo break-points
@@ -54,7 +61,7 @@ keymap("v", "<", "<gv^", { desc = 'Shift Selection Left' })
 keymap("v", ">", ">gv^", { desc = 'Shift Selection Right' })
 
 -- Better paste
-keymap("v", "p", '"_dP', { desc = 'Paste over selection' })
+keymap("v", "p", '"_dP', { desc = 'Paste Over Selection' })
 
 -- Open link under cursor
 keymap("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>',
@@ -67,7 +74,7 @@ for _, lhs in ipairs(
 end
 
 -- Map "d" cut action to cut key
-local cut_key = "<A-d>"
+local cut_key = "<M-d>"
 
 keymap({ "n", "x" }, cut_key, "d", { desc = "Cut Operator" })
 keymap("n", cut_key .. cut_key, "dd", { desc = "Cut Line" })
@@ -77,7 +84,7 @@ keymap("n", string.upper(cut_key), "D", { desc = "Cut To EOL" })
 keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear Hlsearch" })
 
 -- Search word under cursor
-keymap({ "n", "x" }, "gw", "*N", { desc = "Search current word" })
+keymap({ "n", "x" }, "gw", "*N", { desc = "Search Current Word" })
 
 -- Leader Mappings
 -- Lazygit
