@@ -45,7 +45,7 @@ return {
           ["cmp.entry.get_documentation"] = true,
         },
         progress = {
-          enabled = false,
+          enabled = true,
         },
       },
       presets = {
@@ -64,13 +64,6 @@ return {
           view = "mini",
         },
         {
-          {
-            filter = {
-              event = "msg_show",
-              kind = "search_count",
-            },
-            opts = { skip = true },
-          },
           filter = {
             event = "msg_show",
             kind = "search_count",
@@ -81,6 +74,21 @@ return {
           filter = {
             event = "msg_show",
             kind = "",
+          },
+          opts = { skip = true },
+        },
+        {
+          filter = {
+            event = "notify",
+            find = "No node found at cursor"
+          },
+          opts = { skip = true },
+        },
+        {
+          filter = {
+            event = "lsp",
+            kind = "progress",
+            find = "code_action"
           },
           opts = { skip = true },
         },

@@ -4,7 +4,11 @@ return {
     cmd = "Glow",
     keys = {
       { "<localleader>Mg", "<cmd>Glow<cr>", desc = "Glow" }
-    }
+    },
+    opts = {
+      pager = true,
+    },
+    config = true,
   },
   -- Markdown live preview, needs `webkit2gtk`
   {
