@@ -23,7 +23,7 @@ return {
       end,
       desc = "Help" },
     { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
-    { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Marks" },
+    { "<leader>mm", "<cmd>Telescope marks<cr>", desc = "Search Marks" },
     { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
     { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Projects" },
     { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },

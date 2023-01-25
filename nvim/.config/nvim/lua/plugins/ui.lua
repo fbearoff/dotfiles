@@ -107,6 +107,11 @@ return {
         "notify",
       },
       width = 1,
+      handlers = {
+        marks = {
+          enable = false,
+        },
+      },
     },
   },
 
