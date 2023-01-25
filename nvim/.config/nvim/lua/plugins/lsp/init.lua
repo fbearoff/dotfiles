@@ -111,13 +111,8 @@ return {
         -- ["*"] = function(server, opts) end,
       },
     },
+    ---@diagnostic disable-next-line: unused-local
     config = function(plugin, opts)
-      if plugin.servers then
-        require("lspconfig.opts.servers")
-      end
-      if plugin.setup_server then
-        require("lspconfig.opts.setup[SERVER]")
-      end
 
       -- setup autoformat
       require("plugins.lsp.format").autoformat = opts.autoformat
@@ -222,10 +217,8 @@ return {
         }
       },
     },
+    ---@diagnostic disable-next-line: unused-local
     config = function(plugin, opts)
-      if plugin.ensure_installed then
-        require("treesitter.opts.ensure_installed")
-      end
       require("mason").setup(opts)
       local mr = require("mason-registry")
       for _, tool in ipairs(opts.ensure_installed) do

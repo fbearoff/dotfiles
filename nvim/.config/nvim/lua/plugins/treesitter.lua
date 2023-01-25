@@ -1,7 +1,8 @@
 return {
   { "CKolkey/ts-node-action",
     keys = {
-      { "<leader>cn", function() require("ts-node-action").node_action() end, desc = "Trigger Node Action" },
+      { mode = { "n", "x" }, "<leader>cn", function() require("ts-node-action").node_action() end,
+        desc = "Trigger Node Action" },
     },
     config = true,
   },
@@ -76,10 +77,7 @@ return {
         "yaml",
       },
     },
-    config = function(plugin, opts)
-      if plugin.ensure_installed then
-        require("treesitter.opts.ensure_installed")
-      end
+    config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
     end,
   },

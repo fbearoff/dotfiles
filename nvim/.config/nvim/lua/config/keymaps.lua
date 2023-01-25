@@ -31,8 +31,8 @@ keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Enter inserts newline without leaving Normal mode
 -- Need to change keys in windows terminal https://github.com/microsoft/terminal/issues/530#issuecomment-892247092
-keymap("n", "<cr>", "mzo<Esc>`z <cmd>delmarks z<cr>", { desc = "Insert Newline Below" })
-keymap("n", "<s-cr>", "mzO<Esc>`z <cmd>delmarks z<cr>", { desc = "Insert Newline Above" })
+keymap("n", "<cr>", "m`o<Esc>``", { desc = "Insert Newline Below" })
+keymap("n", "<s-cr>", "m`O<Esc>``", { desc = "Insert Newline Above" })
 
 -- change word with <c-c>
 keymap("n", "<C-c>", "<cmd>normal! ciw<cr>a", { desc = "Change Inner Word" })
@@ -42,7 +42,7 @@ keymap('n', 'H', '^', { desc = 'Go to Beginning of Line' })
 keymap('n', 'L', '$', { desc = 'Go to End of Line' })
 
 -- Keep cursor in place when joining lines
-keymap("n", "J", "mzJ`z <cmd>delmarks z<cr>", { desc = 'Keep Cursor in Place When Joining Lines' })
+keymap("n", "J", "m`J``", { desc = 'Keep Cursor in Place When Joining Lines' })
 
 -- Center cursor when scrolling page
 keymap("n", "<C-d>", "<C-d>zz", { desc = 'Scroll Down and Center Page' })
