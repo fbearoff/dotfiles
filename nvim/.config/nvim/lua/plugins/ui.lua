@@ -44,6 +44,9 @@ return {
           ["vim.lsp.util.stylize_markdown"] = true,
           ["cmp.entry.get_documentation"] = true,
         },
+        progress = {
+          enabled = false,
+        },
       },
       presets = {
         bottom_search = true,
@@ -174,12 +177,19 @@ return {
       autocmd = {
         enabled = true,
       },
+      sign = {
+        enabled = false,
+      },
+      status_text = {
+        enabled = true,
+      },
     },
     event = "BufReadPost"
   },
 
   -- Clickable status column items
   { "luukvbaal/statuscol.nvim",
+    enabled = false,
     event = "VeryLazy",
     opts = {
       separator = " ",

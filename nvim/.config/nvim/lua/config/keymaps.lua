@@ -118,6 +118,11 @@ keymap("n", "<leader>uc",
     util.toggle("conceallevel", false, { 0, conceallevel })
   end, { desc = "Toggle Conceal" })
 
+keymap("n", "<leader>uz",
+  function()
+    util.toggle("foldcolumn", false, { "0", "1" })
+  end, { desc = "Toggle Foldcolumn" })
+
 keymap("n", "<leader>ul",
   function()
     util.toggle("relativenumber", true)

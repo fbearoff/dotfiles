@@ -108,6 +108,14 @@ return {
         vim.cmd('Lazy')
       end
     }
+    local lightbulb = {
+      function()
+        return require("nvim-lightbulb").get_status_text()
+      end,
+      on_click = function()
+        vim.lsp.buf.code_action()
+      end
+    }
 
     require("lualine").setup({
       options = {
@@ -134,7 +142,7 @@ return {
       sections = {
         lualine_a = { "mode" },
         lualine_b = { "branch", diff },
-        lualine_c = { diagnostics, grapple, filename, navic },
+        lualine_c = { diagnostics, lightbulb, grapple, filename, navic },
         lualine_x = { macro_record, lsp_server, macro,
           "fileformat", "encoding", filetype },
 

@@ -12,7 +12,7 @@ local options = {
   expandtab = true, -- convert tabs to spaces
   fileencoding = "utf-8", -- the encoding written to a file
   fillchars = { foldopen = "", foldclose = "", fold = " ", foldsep = " ", diff = "╱", eob = " " },
-  foldcolumn = "1",
+  foldcolumn = "0",
   foldenable = true, -- enable folding
   foldlevel = 99, -- Using ufo provider need a large value, feel free to decrease the value
   foldlevelstart = 99,
@@ -67,3 +67,5 @@ vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comm
 vim.g.markdown_fenced_languages = { 'html', 'python', 'bash=sh', 'R=r' }
 -- fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
+
+require("util.status")
