@@ -94,6 +94,15 @@ return {
     end,
   },
 
+  -- More textobjects
+  {
+    "chrisgrieser/nvim-various-textobjs",
+    event = "BufReadPost",
+    opts = {
+      useDefaultKeymaps = true
+    },
+  },
+
   -- Show outline of document symbols
   {
     "simrat39/symbols-outline.nvim",

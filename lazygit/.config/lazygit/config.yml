@@ -3,3 +3,4 @@ git:
     colorArg: always
     pager: delta --dark --paging=never
   showIcons: true
+notARepository: 'skip' # one of: 'prompt' | 'create' | 'skip' | 'quit'

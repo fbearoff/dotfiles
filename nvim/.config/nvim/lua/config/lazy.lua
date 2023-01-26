@@ -37,6 +37,7 @@ require("lazy").setup("plugins", {
         "netrwFileHandlers",
         "netrwPlugin",
         "netrwSettings",
+        "rplugin",
         "rrhelper",
         "tar",
         "tarPlugin",
