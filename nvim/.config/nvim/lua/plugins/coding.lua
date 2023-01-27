@@ -126,4 +126,22 @@ return {
     }
   },
 
+  -- Dim everything button current context
+  { "folke/twilight.nvim" },
+
+  -- Hide distraction
+  {
+    "folke/zen-mode.nvim",
+    cmd = "ZenMode",
+    opts = {
+      window = {
+        width = 1,
+      },
+      plugins = {
+        gitsigns = true,
+        tmux = true,
+      },
+    },
+    keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
+  },
 }
