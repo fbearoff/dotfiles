@@ -107,10 +107,6 @@ keymap("n", "<leader>w", "<cmd>w!<CR>", { desc = "Save" })
 keymap("n", "<leader>l", "<cmd>:Lazy<CR>", { desc = "Lazy" })
 keymap("n", "<leader>sS", function() require 'util'.so_input() end, { desc = "StackOverflow" })
 
--- Markdown
-keymap("n", "<localleader>Mb", 'o```{r}<cr>```<esc>O', { desc = "Insert R Code Block" })
-keymap("n", "<localleader>MB", 'o```{python}<cr>```<esc>O', { desc = "Insert Python Code Block" })
-
 -- UI Toggles
 keymap("n", "<leader>uc",
   function()

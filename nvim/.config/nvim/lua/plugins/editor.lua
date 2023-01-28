@@ -35,7 +35,6 @@ return {
         ["<leader>s"] = { name = "+Search" },
         ["<leader>t"] = { name = "+Terminal" },
         ["<leader>u"] = { name = "+UI" },
-        ["<localleader>M"] = { name = "+Markdown" },
         ["<localleader>R"] = { name = "+R" },
       })
     end,
@@ -100,8 +99,8 @@ return {
         map("n", "<leader>gD", function() gs.diffthis("~") end, "Diff This ~")
 
         -- hunks
-        map("n", "]h", gs.next_hunk, "Next Hunk")
-        map("n", "[h", gs.prev_hunk, "Prev Hunk")
+        map("n", "]g", gs.next_hunk, "Next Hunk")
+        map("n", "[g", gs.prev_hunk, "Prev Hunk")
         map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
         map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
         map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
