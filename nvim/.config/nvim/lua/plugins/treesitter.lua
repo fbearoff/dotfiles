@@ -24,7 +24,6 @@ return {
       { "<bs>", desc = "Schrink selection", mode = "x" },
     },
     dependencies = {
-      "RRethy/nvim-treesitter-textsubjects",
       "mrjones2014/nvim-ts-rainbow"
     },
     opts = {
@@ -36,8 +35,8 @@ return {
         keymaps = {
           init_selection = "<C-space>",
           node_incremental = "<C-space>",
-          scope_incremental = "<c-s>",
-          node_decremental = "<C-backspace>",
+          scope_incremental = "<nop>",
+          node_decremental = "<bs>",
         },
       },
       autopairs = {
@@ -47,14 +46,6 @@ return {
         enable = true,
         extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
         max_file_lines = nil, -- Do not enable for files with more than n lines, int
-      },
-      textsubjects = {
-        enable = true,
-        keymaps = {
-          ["."] = "textsubjects-smart",
-          [";"] = "textsubjects-container-outer",
-          ['i;'] = 'textsubjects-container-inner',
-        },
       },
       matchup = { enable = true, },
       ensure_installed = {
