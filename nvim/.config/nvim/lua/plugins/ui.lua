@@ -70,13 +70,13 @@ return {
           },
           opts = { skip = true },
         },
-        {
-          filter = {
-            event = "msg_show",
-            kind = "",
-          },
-          opts = { skip = true },
-        },
+        -- {
+        --   filter = {
+        --     event = "msg_show",
+        --     kind = "",
+        --   },
+        --   opts = { skip = true },
+        -- },
         {
           filter = {
             event = "notify",

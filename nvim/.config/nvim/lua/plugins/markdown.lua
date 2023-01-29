@@ -99,7 +99,7 @@ return {
         MkdnCreateLinkFromClipboard = { { 'n', 'v' }, '<localleader>ml' }, -- see MkdnEnter
         MkdnFollowLink = false, -- see MkdnEnter
         MkdnDestroyLink = { 'n', '<localleader>md' },
-        MkdnTagSpan = { 'v', '<localleader>mt' },
+        MkdnTagSpan = { 'v', '<localleader>ms' },
         MkdnMoveSource = { 'n', '<localleader>mm' },
         MkdnYankAnchorLink = { 'n', '<localleader>my' },
         MkdnYankFileAnchorLink = { 'n', '<localleader>mY' },
@@ -115,10 +115,10 @@ return {
         MkdnTablePrevCell = false,
         MkdnTableNextRow = false,
         MkdnTablePrevRow = false,
-        MkdnTableNewRowBelow = { 'n', '<localleader>mrb' },
-        MkdnTableNewRowAbove = { 'n', '<localleader>mra' },
-        MkdnTableNewColAfter = { 'n', '<localleader>mca' },
-        MkdnTableNewColBefore = { 'n', '<localleader>mcb' },
+        MkdnTableNewRowBelow = { 'n', '<localleader>mtr' },
+        MkdnTableNewRowAbove = { 'n', '<localleader>mtR' },
+        MkdnTableNewColAfter = { 'n', '<localleader>mtc' },
+        MkdnTableNewColBefore = { 'n', '<localleader>mtC' },
         MkdnFoldSection = { 'n', '<localleader>mf' },
         MkdnUnfoldSection = { 'n', '<localleader>mF' },
       },
@@ -127,15 +127,15 @@ return {
       require("mkdnflow").setup(opts)
       require("which-key").register(
         {
-          ["<localleader>m"] = { name = "+Markdown" },
-          ["<localleader>mc"] = { name = "+Column" },
-          ["<localleader>mr"] = { name = "+Row" },
+          ["<localleader>m"] = { mode = { "n", "v" }, name = "+Markdown" },
+          ["<localleader>mt"] = { name = "+Table" },
         }
       )
       vim.keymap.set("n", "<localleader>mb", 'o```{r}<cr>```<esc>O', { desc = "Insert R Code Block" })
       vim.keymap.set("n", "<localleader>mB", 'o```{python}<cr>```<esc>O', { desc = "Insert Python Code Block" })
       vim.keymap.set("n", "<localleader>mh", 'O# ', { desc = "Insert MD Header" })
       vim.keymap.set("n", "<localleader>mP", '""p', { desc = "Paste Heading Reference" })
+      vim.keymap.set("n", "<localleader>mtn", ':MkdnTable ', { desc = "New Table (col row)" })
     end
   },
 }
