@@ -30,11 +30,10 @@ keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Insert newline without leaving Normal mode
--- Need to change keys in windows terminal https://github.com/microsoft/terminal/issues/530#issuecomment-892247092
-keymap("n", "go", "m`o<Esc>``", { desc = "Insert Newline Below" })
-keymap("n", "gO", "m`O<Esc>``", { desc = "Insert Newline Above" })
+keymap('n', 'gO', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = 'Insert Newline Above' })
+keymap('n', 'go', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", { desc = 'Insert Newline Below' })
 
--- change word with <c-c>
+-- Change word with <c-c>
 keymap("n", "<C-c>", "<cmd>normal! ciw<cr>a", { desc = "Change Inner Word" })
 
 -- H and L go to begining/end of line
@@ -47,6 +46,13 @@ keymap("n", "J", "m`J``", { desc = 'Keep Cursor in Place When Joining Lines' })
 -- Center cursor when scrolling page
 keymap("n", "<C-d>", "<C-d>zz", { desc = 'Scroll Down and Center Page' })
 keymap("n", "<C-u>", "<C-u>zz", { desc = 'Scroll Up and Center Page' })
+
+-- Reselect latest changed, put, or yanked text
+keymap('n', 'gV', '"`[" . strpart(getregtype(), 0, 1) . "`]"', { expr = true, desc = 'Visually Select Changed Text' })
+
+-- Correct latest misspelled word by taking first suggestion
+keymap('n', '<C-z>', '[s1z=', { desc = 'Correct Latest Misspelled Word' })
+keymap('i', '<C-z>', '<C-g>u<Esc>[s1z=`]a<C-g>u', { desc = 'Correct Latest Misspelled Word' })
 
 -- Keep search term in the middle of screen
 keymap("n", "n", "nzzzv", { desc = 'Next Search Item' })
