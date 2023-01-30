@@ -29,10 +29,10 @@ keymap("n", "<tab>", "<C-w>w", { desc = 'Next window' })
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Enter inserts newline without leaving Normal mode
+-- Insert newline without leaving Normal mode
 -- Need to change keys in windows terminal https://github.com/microsoft/terminal/issues/530#issuecomment-892247092
-keymap("n", "<cr>", "m`o<Esc>``", { desc = "Insert Newline Below" })
-keymap("n", "<s-cr>", "m`O<Esc>``", { desc = "Insert Newline Above" })
+keymap("n", "go", "m`o<Esc>``", { desc = "Insert Newline Below" })
+keymap("n", "gO", "m`O<Esc>``", { desc = "Insert Newline Above" })
 
 -- change word with <c-c>
 keymap("n", "<C-c>", "<cmd>normal! ciw<cr>a", { desc = "Change Inner Word" })

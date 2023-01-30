@@ -1,14 +1,14 @@
 return {
   {
     "ellisonleao/glow.nvim",
+    commit = "20d1cd087f8728f21a048a3b6259f6177237b39e",
+    ft = "markdown",
     cmd = "Glow",
     keys = {
       { "<localleader>mg", "<cmd>Glow<cr>", desc = "Glow" }
     },
-    opts = {
-      pager = true,
-    },
     config = true,
+
   },
   -- Markdown live preview, needs `webkit2gtk`
   {
@@ -86,7 +86,7 @@ return {
         qmd = true,
       },
       mappings = {
-        MkdnEnter = { { 'n', 'v' }, '<localleader><CR>' },
+        MkdnEnter = { { 'n', 'v', 'i' }, '<CR>' },
         MkdnTab = { 'i', '<Tab>' },
         MkdnSTab = { 'i', '<S-Tab>' },
         MkdnNextLink = { 'n', ']l' },
@@ -106,7 +106,7 @@ return {
         MkdnIncreaseHeading = { 'n', '<localleader>m+' },
         MkdnDecreaseHeading = { 'n', '<localleader>m-' },
         MkdnToggleToDo = { { 'n', 'x' }, '<localleader><localleader>' },
-        MkdnNewListItem = { 'i', '<CR>' },
+        MkdnNewListItem = false,
         MkdnNewListItemBelowInsert = { 'n', 'o' },
         MkdnNewListItemAboveInsert = { 'n', 'O' },
         MkdnExtendList = false,
