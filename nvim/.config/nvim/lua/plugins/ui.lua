@@ -33,9 +33,9 @@ return {
       { "<leader>nh", function() require("noice").cmd("history") end, desc = "Noice History" },
       { "<leader>na", function() require("noice").cmd("all") end, desc = "Noice All" },
       { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true,
-        desc = "Scroll forward" },
+        desc = "Scroll forward", mode = { "i", "n", "s" } },
       { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true,
-        expr = true, desc = "Scroll backward" },
+        expr = true, desc = "Scroll backward", mode = { "i", "n", "s" } },
     },
     opts = {
       lsp = {
@@ -70,13 +70,13 @@ return {
           },
           opts = { skip = true },
         },
-        {
-          filter = {
-            event = "msg_show",
-            kind = "",
-          },
-          opts = { skip = true },
-        },
+        -- {
+        --   filter = {
+        --     event = "msg_show",
+        --     kind = "",
+        --   },
+        --   opts = { skip = true },
+        -- },
         {
           filter = {
             event = "notify",
@@ -202,10 +202,10 @@ return {
 
   -- Clickable status column items
   { "luukvbaal/statuscol.nvim",
-    enabled = false,
     event = "VeryLazy",
     opts = {
       separator = " ",
+      foldfunc = "builtin",
       relculright = true,
       setopt = true,
       order = "SNsFs",
@@ -218,7 +218,7 @@ return {
     event = "BufReadPost",
     opts = {
       char = "│",
-      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "NvimTree", "Trouble", "lazy" },
+      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "NvimTree", "Trouble", "lazy", "lspinfo" },
       show_trailing_blankline_indent = false,
       show_current_context = false,
       buftype_exclude = { "terminal", "nofile" },
@@ -236,7 +236,7 @@ return {
     config = function(_, opts)
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "help", "alpha", "dashboard", "neo-tree", "NvimTree", "Trouble", "lazy", "mason", "noice", "rdoc",
-          "terminal", "checkhealth" },
+          "terminal", "checkhealth", "lspinfo" },
         callback = function()
           vim.b.miniindentscope_disable = true
         end,
