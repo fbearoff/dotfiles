@@ -78,15 +78,9 @@ function M.config()
   nvim_tree.setup {
     disable_netrw = true,
     hijack_netrw = true,
-    open_on_setup = true,
     hijack_directories = {
       enable = true,
       auto_open = true,
-    },
-    ignore_ft_on_setup = {
-      "startify",
-      "dashboard",
-      "alpha",
     },
     open_on_tab = false,
     hijack_cursor = false,
