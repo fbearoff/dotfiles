@@ -76,3 +76,4 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export GOPATH="$XDG_DATA_HOME"/go
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
+# export PAPIS_ZSH_COMPLETION_DIR="$XDG_CONFIG_HOME"/zsh/oh-my-zsh/completions

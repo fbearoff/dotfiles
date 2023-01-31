@@ -12,7 +12,7 @@ local options = {
   expandtab = true, -- convert tabs to spaces
   fileencoding = "utf-8", -- the encoding written to a file
   fillchars = { foldopen = "", foldclose = "", fold = " ", foldsep = " ", diff = "╱", eob = " " },
-  foldcolumn = "0",
+  foldcolumn = "1",
   foldenable = true, -- enable folding
   foldlevel = 99, -- Using ufo provider need a large value, feel free to decrease the value
   foldlevelstart = 99,
@@ -23,6 +23,7 @@ local options = {
   laststatus = 0, -- not needed with lualine
   linebreak = true, -- break lines at delimiter chars
   mouse = "a", -- default value of "a", "nv" disables in insert
+  mousemodel = "extend",
   number = true, -- set numbered lines
   numberwidth = 2, -- set number column width to 2 {default 4}
   pumblend = 10, -- Popup blend
@@ -67,5 +68,3 @@ vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comm
 vim.g.markdown_fenced_languages = { 'html', 'python', 'bash=sh', 'R=r' }
 -- fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
-
-require("util.status")

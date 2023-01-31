@@ -18,11 +18,10 @@ return {
   {
     "echasnovski/mini.ai",
     keys = {
-      { "a", mode = { "x", "o" } },
-      { "i", mode = { "x", "o" } },
       { "[f", desc = "Prev function" },
       { "]f", desc = "Next function" }
     },
+    events = "VeryLazy",
     dependencies = {
       {
         "nvim-treesitter/nvim-treesitter-textobjects",

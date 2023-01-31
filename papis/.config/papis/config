@@ -1,0 +1,16 @@
+[papers]
+dir = ~/onedrive/Documents/papers
+ref-format = {doc[author_list][0][family]}-{doc[year]}
+add-folder-name = {doc[year]}/{doc[author_list][0][family]}/{doc[title]:.20}
+add-file-name = {doc[year]}-{doc[author_list][0][family]}-{doc[title]:.20}
+# add-folder-name = {doc[year]}/{doc[author_list][family]}/{doc[title][20]}
+# add-file-name = {doc[author_list][0]}-{doc[title][20]}
+# multiple-authors-format = {au[family]}, {au[given][0]}
+
+[settings]
+default-library = papers
+
+[tui]
+editmode = vi
+
+# vim:ft=ini
