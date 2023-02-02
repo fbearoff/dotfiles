@@ -27,34 +27,6 @@ return {
       return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
     end
 
-    local kind_icons = {
-      Text = "",
-      Method = "m",
-      Function = "",
-      Constructor = "",
-      Field = "",
-      Variable = "",
-      Class = "",
-      Interface = "",
-      Module = "",
-      Property = "",
-      Unit = "",
-      Value = "",
-      Enum = "",
-      Keyword = "",
-      Snippet = "",
-      Color = "",
-      File = "",
-      Reference = "",
-      Folder = "",
-      EnumMember = "",
-      Constant = "",
-      Struct = "",
-      Event = "",
-      Operator = "",
-      TypeParameter = "",
-    }
-
     -- Setup nvim-cmp.
     local cmp = require("cmp")
     local luasnip = require("luasnip")
@@ -132,21 +104,27 @@ return {
       }),
       formatting = {
         fields = { "kind", "abbr", "menu" },
-        format = function(entry, vim_item)
-          vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-          vim_item.menu = ({
-            nvim_lsp = "[LSP]",
-            luasnip = "[Snippet]",
-            buffer = "[Buffer]",
-            path = "[Path]",
-            cmp_nvim_r = "[R]",
-            nvim_lua = "[Lua]",
-            greek = "[Greek]",
-            emoji = "[Emoji]",
-            cmp_pandoc = "[Ref]",
-          })[entry.source.name]
-          return vim_item
+        format = function(_, item)
+          local icons = require("config.icons").kinds
+          if icons[item.kind] then
+            -- item.kind = icons[item.kind] .. item.kind
+            item.kind = string.format("%s", icons[item.kind])
+            item.menu = ({
+              nvim_lsp = "[LSP]",
+              luasnip = "[Snip]",
+              buffer = "[Buffer]",
+              path = "[Path]",
+              cmp_nvim_r = "[R]",
+              nvim_lua = "[Lua]",
+              greek = "[Greek]",
+              emoji = "[Emoji]",
+              cmp_pandoc = "[Ref]",
+            })[_.source.name]
+          end
+          return item
         end,
+
+
       },
       window = {
         documentation = cmp.config.window.bordered(),

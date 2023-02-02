@@ -56,6 +56,7 @@ return {
         "gitignore",
         "help",
         "html",
+        "ini",
         "json",
         "lua",
         "markdown",

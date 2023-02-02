@@ -2,12 +2,18 @@ return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   config = function()
+    local icons = require("config.icons")
     local colors = require("kanagawa.colors").setup()
 
     local diagnostics = {
       "diagnostics",
       sources = { "nvim_diagnostic" },
-      symbols = { error = " ", warn = " " },
+      symbols = {
+        error = icons.diagnostics.Error,
+        warn = icons.diagnostics.Warn,
+        info = icons.diagnostics.Info,
+        hint = icons.diagnostics.Hint,
+      },
       colored = true,
       update_in_insert = false,
       always_visible = false,
@@ -19,7 +25,11 @@ return {
     local diff = {
       "diff",
       colored = true,
-      symbols = { added = " ", modified = " ", removed = " " },
+      symbols = {
+        added = icons.git.added,
+        modified = icons.git.modified,
+        removed = icons.git.removed,
+      },
       cond = function()
         return vim.fn.winwidth(0) > 80
       end,
