@@ -3,14 +3,33 @@ dir = ~/onedrive/Documents/papers
 ref-format = {doc[author_list][0][family]}-{doc[year]}
 add-folder-name = {doc[year]}/{doc[author_list][0][family]}/{doc[title]:.20}
 add-file-name = {doc[year]}-{doc[author_list][0][family]}-{doc[title]:.20}
-# add-folder-name = {doc[year]}/{doc[author_list][family]}/{doc[title][20]}
-# add-file-name = {doc[author_list][0]}-{doc[title][20]}
-# multiple-authors-format = {au[family]}, {au[given][0]}
 
 [settings]
 default-library = papers
+use-git = True
+picktool = fzf
+add-confirm = True
+add-edit = True
+header-format = <ansiblue><b>{doc.html_escape[title]}</b></ansiblue> <ansimagenta>({doc.html_escape[year]})</ansimagenta>
+                <ansicyan>{doc.html_escape[author]}</ansicyan>
+                <ansiwhite>{doc.html_escape[tags]}</ansiwhite>
 
 [tui]
 editmode = vi
+move_down_key = j
+move_up_key = k
+status_line_style = fg:ansiwhite
+options_list.selected_margin_style =  bg:ansiblue
+options_list.unselected_margin_style =
+
+focus_command_line_key = tab
+edit_document_key = c-e
+edit_notes_key = c-q
+open_document_key = c-o
+show_help_key = f1
+show_info_key = s-tab
+go_top_key = home
+go_bottom_key = end
+mark_key = c-m
 
 # vim:ft=ini
