@@ -186,4 +186,12 @@ function M.sort(lines, _)
   end
 end
 
+--insert PMID from clipboard
+function M.PMID()
+  local clipboard = vim.fn.getreg("+"):gsub("\n", "")
+  require("Comment.api").insert.linewise.above()
+  vim.api.nvim_put({ "PMID:" .. clipboard }, "c", true, true)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), 'x', true) -- exits to Normal mode
+end
+
 return M

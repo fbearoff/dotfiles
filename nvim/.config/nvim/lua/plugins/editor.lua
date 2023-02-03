@@ -36,6 +36,7 @@ return {
         ["<leader>t"] = { name = "+Terminal" },
         ["<leader>u"] = { name = "+UI" },
         ["<localleader>R"] = { name = "+R" },
+        ["<localleader>t"] = { name = "+TODO Comments" },
       })
     end,
   },
@@ -45,12 +46,37 @@ return {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
     opts = {
-      auto_open = false,
       use_diagnostic_signs = true,
     },
     keys = {
       { "<leader>dx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
       { "<leader>dX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
+    },
+  },
+
+  -- todo comments
+  {
+    "folke/todo-comments.nvim",
+    cmd = { "TodoTrouble", "TodoTelescope" },
+    event = "BufReadPost",
+    opts = {
+      keywords = {
+        PMID = { icon = "", color = "warning", alt = { "CITE" } },
+      },
+      highlight = {
+        multiline = false,
+      },
+    },
+    --
+    keys = {
+      { "]t", function() require("todo-comments").jump_next() end, desc = "Next Todo Comment" },
+      { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous Todo Comment" },
+      { "<leader>dt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
+      { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
+      { "<localleader>tt", "<cmd>lua require('Comment.api').insert.linewise.above()<cr>TODO: ", desc = "TODO" },
+      { "<localleader>tn", "<cmd>lua require('Comment.api').insert.linewise.above()<cr>NOTE: ", desc = "NOTE" },
+      { "<localleader>tf", "<cmd>lua require('Comment.api').insert.linewise.above()<cr>FIX: ", desc = "FIX" },
+      { "<localleader>tp", function() require("util").PMID() end, desc = "PMID" },
     },
   },
 
