@@ -95,6 +95,7 @@ alias rccd="cd $HOME && fusermount -u $HOME/cloud"
 
 # wsl
 alias sw="/mnt/c/Windows/System32/wsl.exe --shutdown"
+alias uw="/mnt/c/Windows/System32/wsl.exe --update"
 
 #backup AUR files
 alias ba="rsync ~/aur hosting:~/backup/ -rlv --info=progress2"

@@ -244,7 +244,7 @@ return {
     keys = {
       { mode = { "n", "x", "o" }, "s", "<Plug>(leap-forward-to)", desc = "Leap Forward" },
       { mode = { "n", "x", "o" }, "S", "<Plug>(leap-backward-to)", desc = "Leap Backward" },
-      { "gS", "<Plug>(leap-cross-window)", desc = "Leap Across Window" },
+      { "gS", "<Plug>(leap-from-window)", desc = "Leap From Window" },
       { 'gs',
         function()
           require 'leap'.leap({ target_windows = { vim.api.nvim_get_current_win() } })
@@ -531,15 +531,16 @@ return {
     dependencies = "kevinhwang91/promise-async",
     event = "BufReadPost",
     opts = {},
-
     init = function()
-      -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
       vim.keymap.set("n", "zR", function()
         require("ufo").openAllFolds()
       end)
       vim.keymap.set("n", "zM", function()
         require("ufo").closeAllFolds()
       end)
+      vim.keymap.set("n", "zp", function()
+        require("ufo").peekFoldedLinesUnderCursor()
+      end, { desc = "Peek Fold" })
     end,
   },
 

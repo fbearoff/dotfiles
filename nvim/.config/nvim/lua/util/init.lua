@@ -190,8 +190,12 @@ end
 function M.PMID()
   local clipboard = vim.fn.getreg("+"):gsub("\n", "")
   require("Comment.api").insert.linewise.above()
-  vim.api.nvim_put({ "PMID:" .. clipboard }, "c", true, true)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), 'x', true) -- exits to Normal mode
+  if tonumber(clipboard) ~= nil then
+    vim.api.nvim_put({ "PMID:" .. clipboard }, "c", true, true)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), 'x', true) -- exits to Normal mode
+  else
+    vim.api.nvim_put({ "PMID:" }, "c", true, true)
+  end
 end
 
 return M
