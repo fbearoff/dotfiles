@@ -131,9 +131,6 @@ return {
           ["<localleader>mt"] = { name = "+Table" },
         }
       )
-      vim.keymap.set("n", "<localleader>mb", 'o```{r}<cr>```<esc>O', { desc = "Insert R Code Block" })
-      vim.keymap.set("n", "<localleader>mB", 'o```{python}<cr>```<esc>O', { desc = "Insert Python Code Block" })
-      vim.keymap.set("n", "<localleader>mh", 'O# ', { desc = "Insert MD Header" })
       vim.keymap.set("n", "<localleader>mP", '""p', { desc = "Paste Heading Reference" })
       vim.keymap.set("n", "<localleader>mtn", ':MkdnTable ', { desc = "New Table (col row)" })
     end

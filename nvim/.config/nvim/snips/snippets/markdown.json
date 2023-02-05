@@ -1,0 +1,49 @@
+{
+  "bibliography": {
+    "body": "bibliography: references.bib",
+    "description": "add bibliography yaml",
+    "prefix": "bib"
+  },
+  "diary header": {
+    "body": ["---", "title: \"$1\"", "date: \"$2\"", "categories: [$3]", "---"],
+    "description": "Add minimal yaml header",
+    "prefix": "diary"
+  },
+  "yaml header": {
+    "body": ["---", "title: $1", "format: $2", "---"],
+    "description": "Add minimal yaml header",
+    "prefix": "yml"
+  },
+  "crossref": {
+    "prefix": ["crossref"],
+    "body": [
+      "crossref:",
+      "  fig-title: Figure",
+      "  tbl-title: Table",
+      "  title-delim: .",
+      "  fig-prefix: Figure",
+      "  tbl-prefix: Table",
+      "  eq-prefix: Eq."
+    ]
+  },
+  "figref": {
+    "prefix": ["figref"],
+    "body": ["@fig-$1"]
+  },
+  "tblref": {
+    "prefix": ["tblref"],
+    "body": ["@tbl-$1"]
+  },
+  "pycode": {
+    "prefix": ["pyc"],
+    "body": ["```{python} ", "$1", "```"]
+  },
+  "rcode": {
+    "prefix": ["rco"],
+    "body": ["```{r} ", "$1", "```"]
+  },
+  "bashcode": {
+    "prefix": ["bco"],
+    "body": ["```{bash} ", "$1", "```"]
+  }
+}
