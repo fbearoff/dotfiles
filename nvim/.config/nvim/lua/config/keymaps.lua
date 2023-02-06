@@ -2,6 +2,8 @@ local function keymap(mode, lhs, rhs, opts)
   local keys = require("lazy.core.handler").handlers.keys
   -- do not create the keymap if a lazy keys handler exists
   if not keys.active[keys.parse({ lhs, mode = mode }).id] then
+    opts = opts or {}
+    opts.silent = opts.silent ~= false
     vim.keymap.set(mode, lhs, rhs, opts)
   end
 end
@@ -30,8 +32,8 @@ keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Insert newline without leaving Normal mode
-keymap('n', 'gO', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = 'Insert Newline Above' })
-keymap('n', 'go', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", { desc = 'Insert Newline Below' })
+keymap('n', '[<space>', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = 'Insert Newline Above' })
+keymap('n', ']<space>', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", { desc = 'Insert Newline Below' })
 
 -- Change word with <c-c>
 keymap("n", "<C-c>", "<cmd>normal! ciw<cr>a", { desc = "Change Inner Word" })

@@ -37,6 +37,7 @@ return {
         ["<leader>u"] = { name = "+UI" },
         ["<localleader>R"] = { name = "+R" },
         ["<localleader>t"] = { name = "+TODO Comments" },
+        ["<localleader>m"] = { name = "+Markdown" },
       })
     end,
   },
