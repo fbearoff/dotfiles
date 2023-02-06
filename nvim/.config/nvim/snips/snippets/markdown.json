@@ -1,6 +1,6 @@
 {
   "bibliography": {
-    "body": "bibliography: references.bib",
+    "body": "bibliography: main.bib",
     "description": "add bibliography yaml",
     "prefix": "bib"
   },

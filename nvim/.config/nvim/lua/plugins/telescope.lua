@@ -28,6 +28,8 @@ return {
     { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Projects" },
     { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
     { "<leader>sr", "<cmd>Telescope registers<cr>", desc = "Registers" },
+    { "<leader>sl", "<cmd>Telescope luasnip<cr>", desc = "Luasnips" },
+    { "<leader>sb", "<cmd>Telescope bibtex<cr>", desc = "Bibtex" },
     {
       "<leader>ss",
       Util.telescope("lsp_document_symbols", {
@@ -49,6 +51,8 @@ return {
   },
   dependencies = {
     "nvim-telescope/telescope-symbols.nvim",
+    "benfowler/telescope-luasnip.nvim",
+    "nvim-telescope/telescope-bibtex.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "debugloop/telescope-undo.nvim",
     {
@@ -129,6 +133,12 @@ return {
             },
           }
         },
+        bibtex = {
+          global_files = { "~/onedrive/Documents/papers/bibfile.bib" },
+          context = true,
+          context_fallback = true,
+          wrap = true,
+        },
       },
       defaults = {
         prompt_prefix = " ",
@@ -167,5 +177,7 @@ return {
     telescope.load_extension("fzf")
     telescope.load_extension("undo")
     telescope.load_extension('projects')
+    telescope.load_extension('luasnip')
+    telescope.load_extension('bibtex')
   end
 }

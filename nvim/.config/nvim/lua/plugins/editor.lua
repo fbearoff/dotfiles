@@ -530,7 +530,11 @@ return {
     "kevinhwang91/nvim-ufo",
     dependencies = "kevinhwang91/promise-async",
     event = "BufReadPost",
-    opts = {},
+    opts = {
+      provider_selector = function(bufnr, filetype, buftype)
+        return { 'lsp', 'treesitter' }
+      end
+    },
     init = function()
       vim.keymap.set("n", "zR", function()
         require("ufo").openAllFolds()
