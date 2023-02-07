@@ -3,7 +3,6 @@ local Util = require("util")
 return {
   "nvim-telescope/telescope.nvim",
   event = "VeryLazy",
-  -- cmd = { "Telescope" },
   keys = {
     { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Search Buffer" },
     { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
@@ -73,10 +72,7 @@ return {
       end
     },
   },
-
   config = function()
-    local action_layout = require("telescope.actions.layout")
-
     -- Don't preview binaries
     local previewers = require("telescope.previewers")
     local Job = require("plenary.job")
@@ -104,17 +100,8 @@ return {
     local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
     table.insert(vimgrep_arguments, { "--hidden", "--glob", "!**/.git/*" })
 
-    local trouble = require("trouble.providers.telescope")
-    local undo = require("telescope-undo.actions")
-
     local telescope = require("telescope")
-    local function no_ignore()
-      Util.telescope("find_files", { no_ignore = true })()
-    end
-
-    local function hidden()
-      Util.telescope("find_files", { hidden = true })()
-    end
+    local undo = require("telescope-undo.actions")
 
     telescope.setup({
       extensions = {
@@ -155,15 +142,44 @@ return {
         sorting_strategy = "ascending",
         mappings = {
           i = {
-            ["<c-t>"] = trouble.open_with_trouble,
-            ["<C-Down>"] = require("telescope.actions").cycle_history_next,
-            ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
-            ["<M-p>"] = action_layout.toggle_preview,
-            ["<M-i>"] = no_ignore,
-            ["<M-h>"] = hidden,
+            ["<c-t>"] = function(...)
+              return require("trouble.providers.telescope").open_with_trouble(...)
+            end,
+            ["<M-i>"] = function()
+              Util.telescope("find_files", { no_ignore = true })()
+            end,
+            ["<M-h>"] = function()
+              Util.telescope("find_files", { hidden = true })()
+            end,
+            ["<C-Down>"] = function(...)
+              return require("telescope.actions").cycle_history_next(...)
+            end,
+            ["<C-Up>"] = function(...)
+              return require("telescope.actions").cycle_history_prev(...)
+            end,
+            ["<C-n>"] = function(...)
+              return require("telescope.actions").cycle_history_next(...)
+            end,
+            ["<C-p>"] = function(...)
+              return require("telescope.actions").cycle_history_prev(...)
+            end,
+            ["<C-j>"] = function(...)
+              return require("telescope.actions").move_selection_next(...)
+            end,
+            ["<C-k>"] = function(...)
+              return require("telescope.actions").move_selection_previous(...)
+            end,
+            ["<M-p>"] = function(...)
+              return require("telescope.actions.layout").toggle_preview(...)
+            end,
           },
           n = {
-            ["<M-p>"] = action_layout.toggle_preview,
+            ["<M-p>"] = function(...)
+              return require("telescope.actions.layout").toggle_preview(...)
+            end,
+            ["q"] = function(...)
+              return require("telescope.actions").close(...)
+            end,
           },
         },
         pickers = {
