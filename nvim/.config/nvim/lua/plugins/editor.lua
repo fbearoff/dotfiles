@@ -532,6 +532,7 @@ return {
     dependencies = "kevinhwang91/promise-async",
     event = "BufReadPost",
     opts = {
+      ---@diagnostic disable-next-line: unused-local
       provider_selector = function(bufnr, filetype, buftype)
         return { 'lsp', 'treesitter' }
       end
