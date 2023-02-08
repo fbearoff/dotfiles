@@ -161,13 +161,17 @@ return {
       "rafamadriz/friendly-snippets",
       config = function()
         require("luasnip.loaders.from_vscode").lazy_load()
-        require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snips" } })
       end,
     },
     opts = {
       history = true,
       delete_check_events = "TextChanged",
+      store_selection_keys = '<tab>',
     },
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snips/vscode" } })
+      require("luasnip.loaders.from_lua").lazy_load({ paths = { "./lua/snippets" } })
+    end,
     keys = {
       {
         "<tab>",
@@ -178,6 +182,9 @@ return {
       },
       { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
       { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+      { "<C-d>", function() require("luasnip.extras.select_choice")() end, mode = { "i", "s" } },
+      { "<C-f>", function() require 'luasnip'.change_choice(1) end, mode = { "i", "s" } },
+      { "<C-b>", function() require 'luasnip'.change_choice(-1) end, mode = { "i", "s" } },
       { "<leader>cS", function() require("luasnip.loaders").edit_snippet_files() end, desc = "Edit Snippets" },
     },
   }

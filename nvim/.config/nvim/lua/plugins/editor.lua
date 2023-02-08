@@ -52,6 +52,8 @@ return {
     keys = {
       { "<leader>dx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
       { "<leader>dX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
+      { "<leader>dL", "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
+      { "<leader>dQ", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
     },
   },
 
@@ -59,7 +61,7 @@ return {
   {
     "folke/todo-comments.nvim",
     cmd = { "TodoTrouble", "TodoTelescope" },
-    event = "BufReadPost",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       keywords = {
         PMID = { icon = "", color = "warning", alt = { "CITE" } },
@@ -98,7 +100,7 @@ return {
   -- Git signs in status column
   {
     "lewis6991/gitsigns.nvim",
-    event = "BufReadPre",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       signs = {
         add = { text = "▎" },
@@ -443,7 +445,7 @@ return {
   -- references
   {
     "RRethy/vim-illuminate",
-    event = "BufReadPost",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       delay = 200,
       filetypes_denylist = {

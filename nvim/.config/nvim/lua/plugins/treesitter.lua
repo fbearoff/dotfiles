@@ -18,7 +18,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    event = "BufReadPost",
+    event = { "BufReadPost", "BufNewFile" },
     keys = {
       { "<C-space>", desc = "Increment selection" },
       { "<bs>", desc = "Schrink selection", mode = "x" },

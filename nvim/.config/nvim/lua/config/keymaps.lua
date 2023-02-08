@@ -110,6 +110,8 @@ keymap("n", "<leader>\\", "<cmd>vsplit<CR>", { desc = "VSplit" })
 keymap("n", "<leader>fe", "<cmd>enew<CR>", { desc = "New File" })
 keymap("n", "<leader>q", "<cmd>q!<CR>", { desc = "Quit" })
 keymap("n", "<leader>w", "<cmd>w!<CR>", { desc = "Save" })
+keymap("n", "<leader>dl", "<cmd>lopen<cr>", { desc = "Location List" })
+keymap("n", "<leader>dq", "<cmd>copen<cr>", { desc = "Quickfix List" })
 
 -- Lazy
 keymap("n", "<leader>l", "<cmd>:Lazy<CR>", { desc = "Lazy" })

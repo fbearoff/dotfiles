@@ -98,7 +98,7 @@ return {
 
   -- Scrollbar
   { "lewis6991/satellite.nvim",
-    event = "BufReadPost",
+    event = { "BufReadPost", "BufNewFile" },
     opts = {
       current_only = true,
       excluded_filetypes = {
@@ -216,7 +216,7 @@ return {
   -- Indent guides
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPost",
+    event = { "BufReadPost", "BufNewFile" },
     opts = {
       char = "│",
       filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "NvimTree", "Trouble", "lazy", "lspinfo" },
@@ -229,7 +229,7 @@ return {
   -- active indent guide and indent text objects
   {
     "echasnovski/mini.indentscope",
-    event = "BufReadPre",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       symbol = "│",
       options = { try_as_border = false },
