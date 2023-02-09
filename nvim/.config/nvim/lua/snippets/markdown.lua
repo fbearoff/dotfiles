@@ -1,15 +1,8 @@
 local ls = require("luasnip")
--- some shorthands...
 local s = ls.snippet
-local sn = ls.snippet_node
 local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
-local c = ls.choice_node
-local d = ls.dynamic_node
-local fmt = require("luasnip.extras.fmt").fmt
-local fmta = require("luasnip.extras.fmt").fmta
-local rep = require("luasnip.extras").rep
 
 local date = function() return { os.date('%Y-%m-%d') } end
 
@@ -33,7 +26,7 @@ ls.add_snippets(nil, {
         i(0)
       }),
     s({
-      trig = "l2",
+      trig = "link2",
       namr = "markdown_link",
       dscr = "Create markdown link [txt](url)"
     },
