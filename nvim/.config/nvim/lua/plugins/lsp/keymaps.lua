@@ -4,33 +4,47 @@ M._keys = nil
 
 function M.get()
   local format = require("plugins.lsp.format").format
-  M._keys = M._keys or {
-
-    { "<leader>cd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
-    { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
-    { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
-    { "<leader>dd", "<cmd>Telescope diagnostics<cr>", desc = "Telescope Diagnostics" },
-    { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition" },
-    { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
-    { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
-    { "gI", "<cmd>Telescope lsp_implementations<cr>", desc = "Goto Implementation" },
-    { "gt", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definition" },
-    { "K", vim.lsp.buf.hover, desc = "Hover" },
-    { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
-    { "<M-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" },
-    { "]d", M.diagnostic_goto(true), desc = "Next Diagnostic" },
-    { "[d", M.diagnostic_goto(false), desc = "Prev Diagnostic" },
-    { "]e", M.diagnostic_goto(true, "ERROR"), desc = "Next Error" },
-    { "[e", M.diagnostic_goto(false, "ERROR"), desc = "Prev Error" },
-    { "]w", M.diagnostic_goto(true, "WARN"), desc = "Next Warning" },
-    { "[w", M.diagnostic_goto(false, "WARN"), desc = "Prev Warning" },
-    { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
-    { "gm", M.format_range_operator, desc = "Format Range", mode = { "n", "v" }, },
-    { "<leader>cf", format, desc = "Format Document", has = "documentFormatting" },
-    { "=", format, desc = "Format Document", has = "documentFormatting" },
-    { "<leader>cf", format, desc = "Format Range", mode = "v", has = "documentRangeFormatting" },
-    { "<leader>cr", M.rename, expr = true, desc = "Rename", has = "rename" },
-  }
+  if not M._keys then
+    M._keys = {
+      { "<leader>cd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
+      { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
+      { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
+      { "<leader>dd", "<cmd>Telescope diagnostics<cr>", desc = "Telescope Diagnostics" },
+      { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition" },
+      { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
+      { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
+      { "gI", "<cmd>Telescope lsp_implementations<cr>", desc = "Goto Implementation" },
+      { "gt", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definition" },
+      { "K", vim.lsp.buf.hover, desc = "Hover" },
+      { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
+      { "<M-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" },
+      { "]d", M.diagnostic_goto(true), desc = "Next Diagnostic" },
+      { "[d", M.diagnostic_goto(false), desc = "Prev Diagnostic" },
+      { "]e", M.diagnostic_goto(true, "ERROR"), desc = "Next Error" },
+      { "[e", M.diagnostic_goto(false, "ERROR"), desc = "Prev Error" },
+      { "]w", M.diagnostic_goto(true, "WARN"), desc = "Next Warning" },
+      { "[w", M.diagnostic_goto(false, "WARN"), desc = "Prev Warning" },
+      { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
+      { "gm", M.format_range_operator, desc = "Format Range", mode = { "n", "v" }, },
+      { "<leader>cf", format, desc = "Format Document", has = "documentFormatting" },
+      { "=", format, desc = "Format Document", has = "documentFormatting" },
+      { "<leader>cf", format, desc = "Format Range", mode = "v", has = "documentRangeFormatting" },
+    }
+    if require("util").has("inc-rename.nvim") then
+      M._keys[#M._keys + 1] = {
+        "<leader>cr",
+        function()
+          require("inc_rename")
+          return ":IncRename " .. vim.fn.expand("<cword>")
+        end,
+        expr = true,
+        desc = "Rename",
+        has = "rename",
+      }
+    else
+      M._keys[#M._keys + 1] = { "<leader>cr", vim.lsp.buf.rename, desc = "Rename", has = "rename" }
+    end
+  end
   return M._keys
 end
 
@@ -55,14 +69,6 @@ function M.on_attach(client, buffer)
       opts.buffer = buffer
       vim.keymap.set(keys.mode or "n", keys[1], keys[2], opts)
     end
-  end
-end
-
-function M.rename()
-  if pcall(require, "inc_rename") then
-    return ":IncRename " .. vim.fn.expand("<cword>")
-  else
-    vim.lsp.buf.rename()
   end
 end
 

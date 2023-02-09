@@ -29,6 +29,7 @@ return {
     { "<leader>sr", "<cmd>Telescope registers<cr>", desc = "Registers" },
     { "<leader>sl", "<cmd>Telescope luasnip<cr>", desc = "Luasnips" },
     { "<leader>sb", "<cmd>Telescope bibtex<cr>", desc = "Bibtex" },
+    { "<localleader>mh", "<cmd>Telescope heading<cr>", desc = "Heading" },
     {
       "<leader>ss",
       Util.telescope("lsp_document_symbols", {
@@ -52,6 +53,7 @@ return {
     "nvim-telescope/telescope-symbols.nvim",
     "benfowler/telescope-luasnip.nvim",
     "nvim-telescope/telescope-bibtex.nvim",
+    "crispgm/telescope-heading.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "debugloop/telescope-undo.nvim",
     {
@@ -126,6 +128,9 @@ return {
           context_fallback = true,
           wrap = true,
         },
+        heading = {
+          treesitter = true,
+        },
       },
       defaults = {
         prompt_prefix = " ",
@@ -189,5 +194,6 @@ return {
     telescope.load_extension('projects')
     telescope.load_extension('luasnip')
     telescope.load_extension('bibtex')
+    telescope.load_extension('heading')
   end
 }

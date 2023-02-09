@@ -163,12 +163,15 @@ return {
         require("luasnip.loaders.from_vscode").lazy_load()
       end,
     },
-    opts = {
-      history = true,
-      delete_check_events = "TextChanged",
-      store_selection_keys = '<tab>',
-    },
     config = function()
+      require("luasnip").setup {
+        history = true,
+        update_events = "InsertLeave",
+        enable_autosnippets = true,
+        region_check_events = "CursorHold,InsertLeave",
+        delete_check_events = "TextChanged,InsertEnter",
+        store_selection_keys = "<Tab>",
+      }
       require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snips/vscode" } })
       require("luasnip.loaders.from_lua").lazy_load({ paths = { "./lua/snippets" } })
     end,

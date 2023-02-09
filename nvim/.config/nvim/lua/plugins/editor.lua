@@ -534,21 +534,22 @@ return {
     dependencies = "kevinhwang91/promise-async",
     event = "BufReadPost",
     opts = {
+      close_fold_kinds = { 'imports', 'comment' },
       ---@diagnostic disable-next-line: unused-local
       provider_selector = function(bufnr, filetype, buftype)
-        return { 'lsp', 'treesitter' }
+        local ftMap = {
+          markdown = { 'treesitter' },
+        }
+        return ftMap[filetype]
       end
     },
     init = function()
-      vim.keymap.set("n", "zR", function()
-        require("ufo").openAllFolds()
-      end)
-      vim.keymap.set("n", "zM", function()
-        require("ufo").closeAllFolds()
-      end)
-      vim.keymap.set("n", "zp", function()
-        require("ufo").peekFoldedLinesUnderCursor()
-      end, { desc = "Peek Fold" })
+      vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open All Folds" })
+      vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds, { desc = "Open Folds Except Kinds" })
+      vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "Close All Folds" })
+      vim.keymap.set("n", "zp", require("ufo").peekFoldedLinesUnderCursor, { desc = "Peek Fold" })
+      vim.keymap.set('n', '[z', require('ufo').goPreviousClosedFold, { desc = "Previous Closed Fold" })
+      vim.keymap.set('n', ']z', require('ufo').goNextClosedFold, { desc = "Next Closed Fold" })
     end,
   },
 
