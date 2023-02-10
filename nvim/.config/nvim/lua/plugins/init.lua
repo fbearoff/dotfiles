@@ -27,6 +27,6 @@ return {
       },
     },
   },
-  -- makes some plugins dot-repeatable like leap
+  -- makes some plugins dot-repeatable
   { "tpope/vim-repeat", event = "VeryLazy" },
 }

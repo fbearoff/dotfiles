@@ -50,7 +50,6 @@ return {
       matchup = { enable = true, },
       ensure_installed = {
         "bash",
-        "comment",
         "diff",
         "git_rebase",
         "gitignore",

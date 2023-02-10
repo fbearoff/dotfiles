@@ -70,6 +70,21 @@ return {
           },
           opts = { skip = true },
         },
+        { -- filter annoying buffer messages
+          filter = {
+            event = "msg_show",
+            kind = "",
+            any = {
+              { find = "written" },
+              { find = "line less" },
+              { find = "fewer lines" },
+              { find = "more line" },
+              { find = "change; before" },
+              { find = "change; after" },
+            },
+          },
+          opts = { skip = true },
+        },
         {
           filter = {
             event = "notify",
