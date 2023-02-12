@@ -25,17 +25,14 @@ function M.config()
 
     -- Just copy what's done normally with vsplit
     if node.link_to and not node.nodes then
-      require('nvim-tree.actions.node.open-file').fn(action, node.link_to)
+      require("nvim-tree.actions.node.open-file").fn(action, node.link_to)
       view.close() -- Close the tree if file was opened
-
     elseif node.nodes ~= nil then
       lib.expand_or_collapse(node)
-
     else
-      require('nvim-tree.actions.node.open-file').fn(action, node.absolute_path)
+      require("nvim-tree.actions.node.open-file").fn(action, node.absolute_path)
       view.close() -- Close the tree if file was opened
     end
-
   end
 
   local function vsplit_preview()
@@ -45,14 +42,11 @@ function M.config()
 
     -- Just copy what's done normally with vsplit
     if node.link_to and not node.nodes then
-      require('nvim-tree.actions.node.open-file').fn(action, node.link_to)
-
+      require("nvim-tree.actions.node.open-file").fn(action, node.link_to)
     elseif node.nodes ~= nil then
       lib.expand_or_collapse(node)
-
     else
-      require('nvim-tree.actions.node.open-file').fn(action, node.absolute_path)
-
+      require("nvim-tree.actions.node.open-file").fn(action, node.absolute_path)
     end
 
     -- Finally refocus on tree if it was lost
@@ -75,7 +69,7 @@ function M.config()
     lib.refresh_tree()
   end
 
-  nvim_tree.setup {
+  nvim_tree.setup({
     disable_netrw = true,
     hijack_netrw = true,
     hijack_directories = {
@@ -87,7 +81,7 @@ function M.config()
     update_cwd = true,
     reload_on_bufenter = true,
     renderer = {
-      root_folder_modifier = ':t',
+      root_folder_modifier = ":t",
       highlight_git = true,
       indent_markers = {
         enable = true,
@@ -182,31 +176,30 @@ function M.config()
         quit_on_open = false,
         resize_window = true,
         window_picker = {
-          enable = true
-        }
-      }
-    }
-  }
+          enable = true,
+        },
+      },
+    },
+  })
 
-  local nvim_tree_events = require('nvim-tree.events')
-  local bufferline_api = require('bufferline.api')
+  local nvim_tree_events = require("nvim-tree.events")
+  local bufferline_api = require("bufferline.api")
 
   local function get_tree_size()
-    return require 'nvim-tree.view'.View.width
+    return require("nvim-tree.view").View.width
   end
 
-  nvim_tree_events.subscribe('TreeOpen', function()
+  nvim_tree_events.subscribe("TreeOpen", function()
     bufferline_api.set_offset(get_tree_size())
   end)
 
-  nvim_tree_events.subscribe('Resize', function()
+  nvim_tree_events.subscribe("Resize", function()
     bufferline_api.set_offset(get_tree_size())
   end)
 
-  nvim_tree_events.subscribe('TreeClose', function()
+  nvim_tree_events.subscribe("TreeClose", function()
     bufferline_api.set_offset(0)
   end)
-
 end
 
 return M

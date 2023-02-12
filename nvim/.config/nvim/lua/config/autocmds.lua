@@ -85,7 +85,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "startuptime",
     "tsplayground",
     "PlenaryTestPopup",
-    "checkhealth"
+    "checkhealth",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
@@ -95,9 +95,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 -- -- Terminal options
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
-  pattern = '',
+  pattern = "",
   callback = function()
-    vim.api.nvim_command('startinsert')
+    vim.api.nvim_command("startinsert")
     vim.opt_local.listchars = {}
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false

@@ -124,21 +124,21 @@ end
 -- For creating new Terminal Instance
 function M.open_term(cmd, opts)
   local TERMINAL = require("toggleterm.terminal").Terminal
-  opts           = opts or {}
-  opts.size      = opts.size or vim.o.columns * 0.5
+  opts = opts or {}
+  opts.size = opts.size or vim.o.columns * 0.5
   opts.direction = opts.direction or "vertical"
-  opts.on_open   = opts.on_open
-  opts.on_exit   = opts.on_exit or nil
+  opts.on_open = opts.on_open
+  opts.on_exit = opts.on_exit or nil
 
-  local new_term = TERMINAL:new {
-    cmd             = cmd,
-    dir             = "git_dir",
-    auto_scroll     = false,
-    close_on_exit   = false,
+  local new_term = TERMINAL:new({
+    cmd = cmd,
+    dir = "git_dir",
+    auto_scroll = false,
+    close_on_exit = false,
     start_in_insert = false,
-    on_open         = opts.on_open,
-    on_exit         = opts.on_exit
-  }
+    on_open = opts.on_open,
+    on_exit = opts.on_exit,
+  })
   new_term:open(opts.size, opts.direction)
 end
 
@@ -146,31 +146,30 @@ end
 function M.so_input()
   local buf = vim.api.nvim_get_current_buf()
   local file_type = vim.api.nvim_buf_get_option(buf, "filetype")
-  local current_word = vim.call('expand', '<cword>')
-  vim.ui.input({ prompt = "StackOverflow input: ", default = file_type .. " " .. current_word },
-    function(input)
-      local cmd = ""
-      if input == "" or not input then
-        return
-      elseif input == "h" then
-        cmd = "-h"
-      else
-        cmd = input
-      end
-      M.open_term("so " .. cmd, { direction = 'float' })
-    end)
+  local current_word = vim.call("expand", "<cword>")
+  vim.ui.input({ prompt = "StackOverflow input: ", default = file_type .. " " .. current_word }, function(input)
+    local cmd = ""
+    if input == "" or not input then
+      return
+    elseif input == "h" then
+      cmd = "-h"
+    else
+      cmd = input
+    end
+    M.open_term("so " .. cmd, { direction = "float" })
+  end)
 end
 
 -- Installs the package under cursor via Nvim-R
 function M.R_install()
-  local current_word = vim.call('expand', '<cword>')
+  local current_word = vim.call("expand", "<cword>")
   local rsend_command = string.format(':RSend install.packages("' .. current_word .. '")')
   vim.api.nvim_command(rsend_command)
 end
 
 -- Sort operator
 function M.sort(lines, _)
-  local utils = require('yop.utils')
+  local utils = require("yop.utils")
   local sort_without_leading_space = function(a, b)
     local pattern = [[^%W*]]
     return string.gsub(a, pattern, "") < string.gsub(b, pattern, "")
@@ -192,7 +191,7 @@ function M.PMID()
   require("Comment.api").insert.linewise.above()
   if tonumber(clipboard) ~= nil then
     vim.api.nvim_put({ "PMID:" .. clipboard }, "c", true, true)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), 'x', true) -- exits to Normal mode
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "x", true) -- exits to Normal mode
   else
     vim.api.nvim_put({ "PMID:" }, "c", true, true)
   end

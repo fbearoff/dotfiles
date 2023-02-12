@@ -1,8 +1,15 @@
 return {
-  { "CKolkey/ts-node-action",
+  {
+    "CKolkey/ts-node-action",
     keys = {
-      { mode = { "n", "x" }, "<leader>cn", function() require("ts-node-action").node_action() end,
-        desc = "Trigger Node Action" },
+      {
+        mode = { "n", "x" },
+        "<leader>cn",
+        function()
+          require("ts-node-action").node_action()
+        end,
+        desc = "Trigger Node Action",
+      },
     },
     config = true,
   },
@@ -24,7 +31,7 @@ return {
       { "<bs>", desc = "Schrink selection", mode = "x" },
     },
     dependencies = {
-      "mrjones2014/nvim-ts-rainbow"
+      "mrjones2014/nvim-ts-rainbow",
     },
     opts = {
       highlight = { enable = true },
@@ -47,7 +54,7 @@ return {
         extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
         max_file_lines = nil, -- Do not enable for files with more than n lines, int
       },
-      matchup = { enable = true, },
+      matchup = { enable = true },
       ensure_installed = {
         "bash",
         "diff",

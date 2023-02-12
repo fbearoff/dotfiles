@@ -18,8 +18,8 @@ return {
       update_in_insert = false,
       always_visible = false,
       on_click = function()
-        vim.cmd('TroubleToggle document_diagnostics')
-      end
+        vim.cmd("TroubleToggle document_diagnostics")
+      end,
     }
 
     local diff = {
@@ -35,7 +35,7 @@ return {
       end,
       on_click = function()
         package.loaded.gitsigns.diffthis()
-      end
+      end,
     }
 
     local filetype = {
@@ -52,17 +52,17 @@ return {
       "filename",
       path = 1,
       symbols = {
-        modified = '[+]',
-        readonly = '[-]',
-        unnamed = '[No Name]',
+        modified = "[+]",
+        readonly = "[-]",
+        unnamed = "[No Name]",
       },
     }
 
     -- Lsp server name .
     local lsp_server = {
       function()
-        local msg = 'No Active Lsp'
-        local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+        local msg = "No Active Lsp"
+        local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
         local clients = vim.lsp.get_active_clients()
         if next(clients) == nil then
           return msg
@@ -75,30 +75,35 @@ return {
         end
         return msg
       end,
-      icon = ' :',
+      icon = " :",
       on_click = function()
-        require 'lspconfig.ui.lspinfo' ()
-      end
+        require("lspconfig.ui.lspinfo")()
+      end,
     }
 
     local macro_record = {
-      function() return require("recorder").recordingStatus() end,
+      function()
+        return require("recorder").recordingStatus()
+      end,
       color = { fg = colors.co },
     }
 
     local macro = {
-      function() return require("recorder").displaySlots() end,
+      function()
+        return require("recorder").displaySlots()
+      end,
     }
 
-    local grapple = { function()
-      local key = require("grapple").key()
-      return " [" .. key .. "]"
-    end,
+    local grapple = {
+      function()
+        local key = require("grapple").key()
+        return " [" .. key .. "]"
+      end,
       cond = require("grapple").exists,
       color = { fg = colors.fn },
       on_click = function()
-        vim.cmd('GrapplePopup tags')
-      end
+        vim.cmd("GrapplePopup tags")
+      end,
     }
 
     local navic = {
@@ -115,8 +120,8 @@ return {
       end,
       cond = require("lazy.status").has_updates,
       on_click = function()
-        vim.cmd('Lazy')
-      end
+        vim.cmd("Lazy")
+      end,
     }
     local lightbulb = {
       function()
@@ -124,7 +129,7 @@ return {
       end,
       on_click = function()
         vim.lsp.buf.code_action()
-      end
+      end,
     }
 
     require("lualine").setup({
@@ -135,10 +140,10 @@ return {
         section_separators = { left = "", right = "" },
         disabled_filetypes = {
           statusline = {
-            'alpha',
-            'dashboard',
+            "alpha",
+            "dashboard",
             "lazy",
-            "mason"
+            "mason",
           },
         },
         always_divide_middle = true,
@@ -147,14 +152,13 @@ return {
           statusline = 1000,
           tabline = 1000,
           winbar = 1000,
-        }
+        },
       },
       sections = {
         lualine_a = { "mode" },
         lualine_b = { "branch", diff },
         lualine_c = { diagnostics, lightbulb, grapple, filename, navic },
-        lualine_x = { macro_record, lsp_server, macro,
-          "fileformat", "encoding", filetype },
+        lualine_x = { macro_record, lsp_server, macro, "fileformat", "encoding", filetype },
 
         lualine_y = { location },
         lualine_z = { "searchcount", lazy },
@@ -162,8 +166,8 @@ return {
       extensions = {
         "nvim-tree",
         "symbols-outline",
-        "toggleterm"
+        "toggleterm",
       },
     })
-  end
+  end,
 }

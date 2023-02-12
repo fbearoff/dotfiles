@@ -5,10 +5,9 @@ return {
     ft = "markdown",
     cmd = "Glow",
     keys = {
-      { "<localleader>mg", "<cmd>Glow<cr>", desc = "Glow" }
+      { "<localleader>mg", "<cmd>Glow<cr>", desc = "Glow" },
     },
     config = true,
-
   },
   -- Markdown live preview, needs `webkit2gtk`
   {
@@ -32,52 +31,57 @@ return {
   },
 
   -- Edit fenced language in popup
-  { "AckslD/nvim-FeMaco.lua",
+  {
+    "AckslD/nvim-FeMaco.lua",
     cmd = "FeMaco",
     keys = {
-      { "<localleader>mf", "<cmd>FeMaco<cr>", desc = "FeMaco" }
+      { "<localleader>mf", "<cmd>FeMaco<cr>", desc = "FeMaco" },
     },
     opts = {
       ---@diagnostic disable-next-line: unused-local
       ensure_newline = function(base_filetype)
         return true
       end,
-    }
+    },
   },
 
-  { 'quarto-dev/quarto-nvim',
+  {
+    "quarto-dev/quarto-nvim",
     dependencies = {
-      'jmbuhr/otter.nvim',
+      "jmbuhr/otter.nvim",
       -- 'neovim/nvim-lspconfig'
     },
     ft = "quarto",
     opts = {
       lspFeatures = {
         enabled = true,
-        languages = { 'r', 'python', 'julia' },
+        languages = { "r", "python", "julia" },
         diagnostics = {
           enabled = false,
-          triggers = { "BufWrite" }
+          triggers = { "BufWrite" },
         },
         completion = {
-          enabled = false
+          enabled = false,
         },
       },
     },
     config = function(_, opts)
       require("quarto").setup(opts)
       require("which-key").register({ ["<localleader>q"] = { name = "+Quarto" } })
-      vim.keymap.set("n", "<localleader>qp", function() require 'quarto'.quartoPreview() end, { desc = 'Quarto Preview' })
-      vim.keymap.set("n", "<localleader>qq", function() require 'quarto'.quartoClosePreview() end,
-        { desc = 'Quarto Quit' })
-    end
+      vim.keymap.set("n", "<localleader>qp", function()
+        require("quarto").quartoPreview()
+      end, { desc = "Quarto Preview" })
+      vim.keymap.set("n", "<localleader>qq", function()
+        require("quarto").quartoClosePreview()
+      end, { desc = "Quarto Quit" })
+    end,
   },
 
-  { "jakewvincent/mkdnflow.nvim",
+  {
+    "jakewvincent/mkdnflow.nvim",
     ft = { "markdown", "qmd" },
     keys = {
       { mode = { "n", "x" }, "<localleader><CR>", desc = "MD Enter" },
-
     },
     opts = {
       filetypes = {
@@ -86,53 +90,51 @@ return {
         qmd = true,
       },
       mappings = {
-        MkdnEnter = { { 'n', 'v', 'i' }, '<CR>' },
-        MkdnTab = { 'i', '<Tab>' },
-        MkdnSTab = { 'i', '<S-Tab>' },
-        MkdnNextLink = { 'n', ']l' },
-        MkdnPrevLink = { 'n', '[l' },
-        MkdnNextHeading = { 'n', ']h' },
-        MkdnPrevHeading = { 'n', '[h' },
+        MkdnEnter = { { "n", "v", "i" }, "<CR>" },
+        MkdnTab = { "i", "<Tab>" },
+        MkdnSTab = { "i", "<S-Tab>" },
+        MkdnNextLink = { "n", "]l" },
+        MkdnPrevLink = { "n", "[l" },
+        MkdnNextHeading = { "n", "]h" },
+        MkdnPrevHeading = { "n", "[h" },
         MkdnGoBack = false,
         MkdnGoForward = false,
         MkdnCreateLink = false, -- see MkdnEnter
-        MkdnCreateLinkFromClipboard = { { 'n', 'v' }, '<localleader>ml' }, -- see MkdnEnter
+        MkdnCreateLinkFromClipboard = { { "n", "v" }, "<localleader>ml" }, -- see MkdnEnter
         MkdnFollowLink = false, -- see MkdnEnter
-        MkdnDestroyLink = { 'n', '<localleader>md' },
-        MkdnTagSpan = { 'v', '<localleader>ms' },
-        MkdnMoveSource = { 'n', '<localleader>mm' },
-        MkdnYankAnchorLink = { 'n', '<localleader>my' },
-        MkdnYankFileAnchorLink = { 'n', '<localleader>mY' },
-        MkdnIncreaseHeading = { 'n', '<localleader>m+' },
-        MkdnDecreaseHeading = { 'n', '<localleader>m-' },
-        MkdnToggleToDo = { { 'n', 'x' }, '<localleader><localleader>' },
+        MkdnDestroyLink = { "n", "<localleader>md" },
+        MkdnTagSpan = { "v", "<localleader>ms" },
+        MkdnMoveSource = { "n", "<localleader>mm" },
+        MkdnYankAnchorLink = { "n", "<localleader>my" },
+        MkdnYankFileAnchorLink = { "n", "<localleader>mY" },
+        MkdnIncreaseHeading = { "n", "<localleader>m+" },
+        MkdnDecreaseHeading = { "n", "<localleader>m-" },
+        MkdnToggleToDo = { { "n", "x" }, "<localleader><localleader>" },
         MkdnNewListItem = false,
-        MkdnNewListItemBelowInsert = { 'n', 'o' },
-        MkdnNewListItemAboveInsert = { 'n', 'O' },
+        MkdnNewListItemBelowInsert = { "n", "o" },
+        MkdnNewListItemAboveInsert = { "n", "O" },
         MkdnExtendList = false,
-        MkdnUpdateNumbering = { 'n', '<localleader>mn' },
+        MkdnUpdateNumbering = { "n", "<localleader>mn" },
         MkdnTableNextCell = false,
         MkdnTablePrevCell = false,
         MkdnTableNextRow = false,
         MkdnTablePrevRow = false,
-        MkdnTableNewRowBelow = { 'n', '<localleader>mtr' },
-        MkdnTableNewRowAbove = { 'n', '<localleader>mtR' },
-        MkdnTableNewColAfter = { 'n', '<localleader>mtc' },
-        MkdnTableNewColBefore = { 'n', '<localleader>mtC' },
-        MkdnFoldSection = { 'n', '<localleader>mf' },
-        MkdnUnfoldSection = { 'n', '<localleader>mF' },
+        MkdnTableNewRowBelow = { "n", "<localleader>mtr" },
+        MkdnTableNewRowAbove = { "n", "<localleader>mtR" },
+        MkdnTableNewColAfter = { "n", "<localleader>mtc" },
+        MkdnTableNewColBefore = { "n", "<localleader>mtC" },
+        MkdnFoldSection = { "n", "<localleader>mf" },
+        MkdnUnfoldSection = { "n", "<localleader>mF" },
       },
     },
     config = function(_, opts)
       require("mkdnflow").setup(opts)
-      require("which-key").register(
-        {
-          ["<localleader>m"] = { mode = { "n", "v" }, name = "+Markdown" },
-          ["<localleader>mt"] = { name = "+Table" },
-        }
-      )
+      require("which-key").register({
+        ["<localleader>m"] = { mode = { "n", "v" }, name = "+Markdown" },
+        ["<localleader>mt"] = { name = "+Table" },
+      })
       vim.keymap.set("n", "<localleader>mP", '""p', { desc = "Paste Heading Reference" })
-      vim.keymap.set("n", "<localleader>mtn", ':MkdnTable ', { desc = "New Table (col row)" })
-    end
+      vim.keymap.set("n", "<localleader>mtn", ":MkdnTable ", { desc = "New Table (col row)" })
+    end,
   },
 }

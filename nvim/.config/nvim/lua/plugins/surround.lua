@@ -94,16 +94,16 @@ return {
         },
         -- fenced R
         ["R"] = {
-          add = { "```{r}", "```" }
+          add = { "```{r}", "```" },
         },
         -- fenced python
         ["P"] = {
-          add = { "```{python}", "```" }
+          add = { "```{python}", "```" },
         },
       },
       aliases = {
         ["m"] = { "`", "*", "_" },
-      }
+      },
     })
-  end
+  end,
 }

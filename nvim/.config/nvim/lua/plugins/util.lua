@@ -15,15 +15,17 @@ return {
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
-    config = true
+    config = true,
   },
 
   -- Remove trailing lines and whitespace
-  { "cappyzawa/trim.nvim",
+  {
+    "cappyzawa/trim.nvim",
     event = "BufReadPost",
-    opts = { disable = { "markdown" },
+    opts = {
+      disable = { "markdown" },
       patterns = {
-        [[%s/\r//g]] --strip windows end of line character
+        [[%s/\r//g]], --strip windows end of line character
       },
     },
   },

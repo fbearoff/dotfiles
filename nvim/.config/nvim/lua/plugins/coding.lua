@@ -76,7 +76,9 @@ return {
         local ic = vim.deepcopy(i)
         local ac = vim.deepcopy(a)
         for key, name in pairs({ n = "Next", l = "Last" }) do
+          ---@diagnostic disable-next-line: assign-type-mismatch
           i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " textobject" }, ic)
+          ---@diagnostic disable-next-line: assign-type-mismatch
           a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " textobject" }, ac)
         end
         require("which-key").register({
@@ -94,7 +96,7 @@ return {
     enabled = true,
     event = "BufReadPost",
     opts = {
-      useDefaultKeymaps = true
+      useDefaultKeymaps = true,
     },
   },
 
@@ -105,7 +107,7 @@ return {
     init = function()
       vim.keymap.set("n", "<leader>cs", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
     end,
-    config = true
+    config = true,
   },
 
   -- Highlight function arguments
@@ -118,7 +120,7 @@ return {
           lua = { "self", "use" },
         },
       },
-    }
+    },
   },
 
   -- Dim everything button current context

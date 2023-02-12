@@ -16,11 +16,13 @@ return {
     { "<leader>sW", Util.telescope("grep_string", { cwd = false }), desc = "Word (CWD)" },
     { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
     { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
-    { "<leader>sh",
+    {
+      "<leader>sh",
       function()
-        require('telescope.builtin').help_tags { default_text = vim.call('expand', '<cword>') }
+        require("telescope.builtin").help_tags({ default_text = vim.call("expand", "<cword>") })
       end,
-      desc = "Help" },
+      desc = "Help",
+    },
     { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
     { "<leader>mm", "<cmd>Telescope marks<cr>", desc = "Search Marks" },
     { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
@@ -71,7 +73,7 @@ return {
             "DESCRIPTION",
           },
         })
-      end
+      end,
     },
   },
   config = function()
@@ -93,7 +95,7 @@ return {
               vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "BINARY" })
             end)
           end
-        end
+        end,
       }):sync()
     end
 
@@ -120,7 +122,7 @@ return {
               ["<C-r>"] = undo.yank_deletions,
               ["<cr>"] = undo.restore,
             },
-          }
+          },
         },
         bibtex = {
           global_files = { "~/onedrive/Documents/papers/bibfile.bib" },
@@ -191,9 +193,9 @@ return {
     -- load extensions
     telescope.load_extension("fzf")
     telescope.load_extension("undo")
-    telescope.load_extension('projects')
-    telescope.load_extension('luasnip')
-    telescope.load_extension('bibtex')
-    telescope.load_extension('heading')
-  end
+    telescope.load_extension("projects")
+    telescope.load_extension("luasnip")
+    telescope.load_extension("bibtex")
+    telescope.load_extension("heading")
+  end,
 }
