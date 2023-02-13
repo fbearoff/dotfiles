@@ -17,19 +17,13 @@ local get_cstring = function(ctype)
 end
 
 local vars = {
-  initials = "fb",
+  pmid = "PMID: " .. vim.fn.getreg("+"):gsub("\n", ""),
 }
 
 --- Options for marks to be used in a TODO comment
 local marks = {
   signature = function()
-    return fmt("<{}>", i(1, vars.initials))
-  end,
-  date_signature = function()
-    return fmt("<{}{}>", { i(1, os.date("%d-%m-%y")), i(2, ", " .. vars.initials) })
-  end,
-  date = function()
-    return fmt("<{}>", i(1, os.date("%d-%m-%y")))
+    return fmt("<{}>", i(1, vars.pmid))
   end,
   empty = function()
     return t("")
@@ -77,16 +71,8 @@ local todo_snippet = function(context, aliases, opts)
 end
 
 local todo_snippet_specs = {
-  { { trig = "todo" }, "TODO" },
-  -- { { trig = "cite" }, { "CITE", "PMID" } },
-  { { trig = "fix" }, { "FIX", "BUG", "ISSUE" } },
-  { { trig = "warn" }, { "WARN", "WARNING" } },
-  { { trig = "note" }, { "NOTE", "INFO" } },
-  { { trig = "todob" }, "TODO", { ctype = 2 } },
-  -- { { trig = "citeb" }, { "CITE", "PMID" }, { ctype = 2 } },
-  { { trig = "fixb" }, { "FIX", "BUG", "ISSUE" }, { ctype = 2 } },
-  { { trig = "warnb" }, { "WARN", "WARNING" }, { ctype = 2 } },
-  { { trig = "noteb" }, { "NOTE", "INFO" }, { ctype = 2 } },
+  { { trig = "cite" }, "CITE" },
+  { { trig = "citeb" }, "CITE", { ctype = 2 } },
 }
 
 local todo_comment_snippets = {}
@@ -94,4 +80,4 @@ for _, v in ipairs(todo_snippet_specs) do
   table.insert(todo_comment_snippets, todo_snippet(v[1], v[2], v[3]))
 end
 
-ls.add_snippets("all", todo_comment_snippets, { type = "snippets", key = "todo_comments" })
+ls.add_snippets("markdown", todo_comment_snippets, { type = "snippets", key = "cite_comments" })

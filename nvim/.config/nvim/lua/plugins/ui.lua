@@ -222,8 +222,8 @@ return {
         require("lazy").load({ plugins = { "dressing.nvim" } })
         return vim.ui.select(...)
       end
-      ---@diagnostic disable-next-line: different-requires
       vim.ui.input = function(...)
+        ---@diagnostic disable-next-line: different-requires
         require("lazy").load({ plugins = { "dressing.nvim" } })
         return vim.ui.input(...)
       end
@@ -408,6 +408,7 @@ return {
         vim.api.nvim_create_autocmd("User", {
           pattern = "AlphaReady",
           callback = function()
+            ---@diagnostic disable-next-line: different-requires
             require("lazy").show()
           end,
         })
@@ -418,6 +419,7 @@ return {
       vim.api.nvim_create_autocmd("User", {
         pattern = "LazyVimStarted",
         callback = function()
+          ---@diagnostic disable-next-line: different-requires
           local stats = require("lazy").stats()
           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
           dashboard.section.footer.val = "💪 Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms 💪"

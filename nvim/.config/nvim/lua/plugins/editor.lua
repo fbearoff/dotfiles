@@ -64,7 +64,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       keywords = {
-        PMID = { icon = "", color = "warning", alt = { "CITE" } },
+        CITE = { icon = "", color = "warning" },
       },
       highlight = {
         multiline = false,
@@ -92,11 +92,11 @@ return {
       { "<localleader>tn", "<cmd>lua require('Comment.api').insert.linewise.above()<cr>NOTE: ", desc = "NOTE" },
       { "<localleader>tf", "<cmd>lua require('Comment.api').insert.linewise.above()<cr>FIX: ", desc = "FIX" },
       {
-        "<localleader>tp",
+        "<localleader>tc",
         function()
-          require("util").PMID()
+          require("util").cite()
         end,
-        desc = "PMID",
+        desc = "CITE",
       },
     },
   },
