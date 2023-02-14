@@ -59,6 +59,11 @@ return {
         desc = "Noice All",
       },
       {
+        "<leader>nm",
+        "<cmd>messages<cr>",
+        desc = "Messages",
+      },
+      {
         "<c-f>",
         function()
           if not require("noice.lsp").scroll(4) then
