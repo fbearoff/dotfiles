@@ -49,13 +49,13 @@ return {
     "quarto-dev/quarto-nvim",
     dependencies = {
       "jmbuhr/otter.nvim",
-      -- 'neovim/nvim-lspconfig'
     },
     ft = "quarto",
     opts = {
       lspFeatures = {
         enabled = true,
         languages = { "r", "python", "julia" },
+        chunks = "curly", -- 'curly' or 'all'
         diagnostics = {
           enabled = false,
           triggers = { "BufWrite" },
