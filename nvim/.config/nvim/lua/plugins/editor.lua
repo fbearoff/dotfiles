@@ -294,7 +294,6 @@ return {
   -- Location jumping and enhanced f/t
   {
     "ggandor/leap.nvim",
-    event = "BufReadPost",
     keys = {
       { mode = { "n", "x", "o" }, "s", "<Plug>(leap-forward-to)", desc = "Leap Forward" },
       { mode = { "n", "x", "o" }, "S", "<Plug>(leap-backward-to)", desc = "Leap Backward" },
@@ -318,8 +317,15 @@ return {
     dependencies = {
       {
         "ggandor/flit.nvim",
+        keys = function()
+          local ret = {}
+          for _, key in ipairs({ "f", "F", "t", "T" }) do
+            ret[#ret + 1] = { key, mode = { "n", "x", "o" }, desc = key }
+          end
+          return ret
+        end,
         opts = {
-          labeled_modes = "nvo",
+          labeled_modes = "nxo",
           multiline = false,
         },
       },

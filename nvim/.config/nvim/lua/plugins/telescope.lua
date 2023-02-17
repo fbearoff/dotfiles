@@ -29,6 +29,7 @@ return {
     { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Projects" },
     { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
     { "<leader>sr", "<cmd>Telescope registers<cr>", desc = "Registers" },
+    { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
     { "<leader>sl", "<cmd>Telescope luasnip<cr>", desc = "Luasnips" },
     { "<leader>sb", "<cmd>Telescope bibtex<cr>", desc = "Bibtex" },
     { "<localleader>mh", "<cmd>Telescope heading<cr>", desc = "Heading" },
