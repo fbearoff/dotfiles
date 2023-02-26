@@ -27,7 +27,9 @@ return {
         desc = "Peek",
       },
     },
-    config = true,
+    opts = {
+      filetype = { "markdown", "quarto" },
+    },
   },
 
   -- Edit fenced language in popup
