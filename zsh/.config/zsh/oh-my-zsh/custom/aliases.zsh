@@ -67,6 +67,7 @@ alias gcm="git commit -m"
 alias gp="git push"
 alias gl="git pull"
 alias gd="git diff"
+alias lg="lazygit"
 
 # get external IP address
 alias myip='curl http://ipecho.net/plain; echo'
@@ -97,5 +98,8 @@ alias rccd="cd $HOME && fusermount -u $HOME/cloud"
 alias sw="/mnt/c/Windows/System32/wsl.exe --shutdown"
 alias uw="/mnt/c/Windows/System32/wsl.exe --update"
 
-#backup AUR files
+# backup AUR files
 alias ba="rsync ~/aur hosting:~/backup/ -rlv --info=progress2"
+
+# docker
+alias ldh="DOCKER_HOST=ssh://hosting lazydocker"

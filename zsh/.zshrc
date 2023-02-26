@@ -5,11 +5,8 @@ ZSH_THEME="bira"
 
 # update automatically without asking
 zstyle ':omz:update' mode auto
-
 ENABLE_CORRECTION="true"
-
 COMPLETION_WAITING_DOTS="true"
-
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 if [[ -x "$(command -v docker)" ]]; then
@@ -37,7 +34,6 @@ ZSH_COMPDUMP="$ZSH_CACHE_DIR/.zcompdump"
 source $ZSH/oh-my-zsh.sh
 
 ## User config
-
 PATH=$HOME/.local/bin:$PATH
 
 # Preferred editor for local and remote sessions
