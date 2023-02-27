@@ -583,6 +583,43 @@ return {
     event = "BufReadPost",
     keys = {
       {
+        "<leader>br",
+        function()
+          require("smart-splits").start_resize_mode()
+        end,
+        desc = "Resize Windows",
+      },
+      -- swap buffers
+      {
+        "<leader>bh",
+        function()
+          require("smart-splits").swap_buf_left()
+        end,
+        desc = "Swap Left",
+      },
+      {
+        "<leader>bj",
+        function()
+          require("smart-splits").swap_buf_down()
+        end,
+        desc = "Swap Down",
+      },
+      {
+        "<leader>bk",
+        function()
+          require("smart-splits").swap_buf_up()
+        end,
+        desc = "Swap Up",
+      },
+      {
+        "<leader>bl",
+        function()
+          require("smart-splits").swap_buf_right()
+        end,
+        desc = "Swap Right",
+      },
+      -- navigate buffers
+      {
         "<C-h>",
         function()
           require("smart-splits").move_cursor_left()
@@ -642,6 +679,7 @@ return {
         end,
         desc = "Move to Right Window",
       },
+      -- resize buffers
       {
         "<C-Left>",
         mode = { "n", "i" },
@@ -676,12 +714,6 @@ return {
       },
     },
     opts = {
-      ignored_filetypes = {
-        "nofile",
-        "quickfix",
-        "prompt",
-      },
-      ignored_buftypes = { "NvimTree" },
       move_cursor_same_row = true,
     },
   },
