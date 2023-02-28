@@ -123,9 +123,14 @@ keymap("n", "<leader>\\", "<cmd>vsplit<CR>", { desc = "VSplit" })
 keymap("n", "<leader>fe", "<cmd>enew<CR>", { desc = "New File" })
 keymap("n", "<leader>q", "<cmd>q!<CR>", { desc = "Quit" })
 keymap("n", "<leader>w", "<cmd>w!<CR>", { desc = "Save" })
+
+-- Quickfix/Location list
 keymap("n", "<leader>dl", "<cmd>lopen<cr>", { desc = "Location List" })
 keymap("n", "<leader>dq", "<cmd>copen<cr>", { desc = "Quickfix List" })
-
+if not util.has("trouble.nvim") then
+  keymap("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
+  keymap("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
+end
 -- Lazy
 keymap("n", "<leader>l", "<cmd>:Lazy<CR>", { desc = "Lazy" })
 keymap("n", "<leader>sS", function()

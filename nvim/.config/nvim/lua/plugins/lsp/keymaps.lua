@@ -10,7 +10,7 @@ function M.get()
       { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
       { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
       { "<leader>dd", "<cmd>Telescope diagnostics<cr>", desc = "Telescope Diagnostics" },
-      { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition" },
+      { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition", has = "definition" },
       { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
       { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
       { "gI", "<cmd>Telescope lsp_implementations<cr>", desc = "Goto Implementation" },

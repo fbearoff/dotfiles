@@ -277,13 +277,24 @@ return {
   {
     "luukvbaal/statuscol.nvim",
     event = "VeryLazy",
-    opts = {
-      separator = " ",
-      foldfunc = "builtin",
-      relculright = true,
-      setopt = true,
-      order = "SNsFs",
-    },
+    config = function()
+      local builtin = require("statuscol.builtin")
+      require("statuscol").setup({
+        relculright = true,
+        segments = {
+          { text = { "%s" }, click = "v:lua.ScSa" },
+          {
+            text = { builtin.lnumfunc },
+            condition = { true, builtin.not_empty },
+            click = "v:lua.ScLa",
+          },
+          {
+            text = { " ", builtin.foldfunc, " " },
+            click = "v:lua.ScFa",
+          },
+        },
+      })
+    end,
   },
 
   -- Indent guides
@@ -393,7 +404,7 @@ return {
         dashboard.button("t", " " .. " Find text", ":Telescope live_grep <CR>"),
         dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
         dashboard.button("p", " " .. " Open Project", ":Telescope projects<CR>"),
-        dashboard.button("l", "鈴 " .. " Lazy", ":Lazy<CR>"),
+        dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
         dashboard.button("q", " " .. " Quit", ":qa<CR>"),
       }
       for _, button in ipairs(dashboard.section.buttons.val) do
