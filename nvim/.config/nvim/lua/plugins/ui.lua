@@ -276,7 +276,7 @@ return {
   -- Clickable status column items
   {
     "luukvbaal/statuscol.nvim",
-    event = "VeryLazy",
+    event = "BufReadPost",
     config = function()
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
