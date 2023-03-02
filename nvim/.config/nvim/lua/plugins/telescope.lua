@@ -153,6 +153,9 @@ return {
             ["<c-t>"] = function(...)
               return require("trouble.providers.telescope").open_with_trouble(...)
             end,
+            ["<M-t>"] = function(...)
+              return require("trouble.providers.telescope").open_selected_with_trouble(...)
+            end,
             ["<M-i>"] = function()
               Util.telescope("find_files", { no_ignore = true })()
             end,

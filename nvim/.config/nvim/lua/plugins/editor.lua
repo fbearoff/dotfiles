@@ -7,7 +7,6 @@ return {
       plugins = {
         marks = false,
         registers = false,
-        spelling = true,
       },
       key_labels = {
         ["<leader>"] = "SPC",
@@ -737,6 +736,7 @@ return {
     },
     opts = {
       move_cursor_same_row = true,
+      cursor_follows_swapped_bufs = true,
     },
   },
 
