@@ -162,5 +162,6 @@ keymap("n", "<leader>ud", function()
   util.toggle_diagnostics()
 end, { desc = "Toggle Diagnostics" })
 
+keymap("n", "<leader>ut", "<cmd>TrimToggle<cr>", { desc = "Toggle Trim" })
 -- highlights under cursor
 keymap("n", "<leader>sH", vim.show_pos, { desc = "Highlight Groups" })

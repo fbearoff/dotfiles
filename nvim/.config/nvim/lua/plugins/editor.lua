@@ -245,23 +245,8 @@ return {
   {
     "cbochs/portal.nvim",
     keys = {
-      {
-        "<leader>o",
-        function()
-          require("portal").jump_backward()
-        end,
-        desc = "Jump Backward",
-      },
-      {
-        "<leader>i",
-        function()
-          require("portal").jump_forward()
-        end,
-        desc = "Jump Forward",
-      },
-    },
-    opts = {
-      query = { "modified", "different", "valid", "grapple" },
+      { "<leader>o", "<cmd>Portal jumplist backward<cr>", desc = "Jump Backward" },
+      { "<leader>i", "<cmd>Portal jumplist forward<cr>", desc = "Jump Forward" },
     },
   },
 

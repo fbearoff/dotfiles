@@ -23,7 +23,7 @@ return {
     "cappyzawa/trim.nvim",
     event = "BufReadPost",
     opts = {
-      disable = { "markdown" },
+      ft_blocklist = { "markdown" },
       patterns = {
         [[%s/\r//g]], --strip windows end of line character
       },
