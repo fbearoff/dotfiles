@@ -376,7 +376,7 @@ return {
   -- Code minimap
   {
     "gorbit99/codewindow.nvim",
-    config = true,
+    opts = {},
     keys = {
       {
         "<leader>cm",
@@ -801,7 +801,7 @@ return {
   -- Highlight csv column in rainbow colors
   {
     "cameron-wags/rainbow_csv.nvim",
-    config = true,
+    opts = {},
     ft = {
       "csv",
       "tsv",

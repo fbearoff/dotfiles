@@ -159,7 +159,7 @@ return {
   {
     "smjonas/inc-rename.nvim",
     cmd = "IncRename",
-    config = true,
+    opts = {},
   },
 
   -- Scrollbar
@@ -249,7 +249,7 @@ return {
     opts = function()
       return {
         separator = " ",
-        highlight = true, -- lualine colors don't apply if highlight is on
+        highlight = true,
         depth_limit = 5,
         icons = require("config.icons").kinds,
         safe_output = true,

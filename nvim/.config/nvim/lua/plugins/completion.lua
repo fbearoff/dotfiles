@@ -13,7 +13,7 @@ return {
       "saadparwaiz1/cmp_luasnip",
       "max397574/cmp-greek",
       "hrsh7th/cmp-emoji",
-      { "aspeddro/cmp-pandoc.nvim", config = true },
+      { "aspeddro/cmp-pandoc.nvim", opts = {} },
     },
     config = function()
       local check_backspace = function()

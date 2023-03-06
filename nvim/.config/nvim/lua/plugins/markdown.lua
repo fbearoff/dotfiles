@@ -7,7 +7,7 @@ return {
     keys = {
       { "<localleader>mg", "<cmd>Glow<cr>", desc = "Glow" },
     },
-    config = true,
+    opts = {},
   },
   -- Markdown live preview, needs `webkit2gtk`
   {

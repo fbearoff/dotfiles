@@ -12,14 +12,14 @@ return {
         desc = "Trigger Node Action",
       },
     },
-    config = true,
+    opts = {},
   },
 
   -- Show code context as top line
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = "BufReadPre",
-    config = true,
+    opts = {},
   },
 
   -- Code tree based highlighting and other features

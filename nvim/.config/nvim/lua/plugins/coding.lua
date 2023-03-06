@@ -107,7 +107,7 @@ return {
     init = function()
       vim.keymap.set("n", "<leader>cs", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
     end,
-    config = true,
+    opts = {},
   },
 
   -- Highlight function arguments
