@@ -31,4 +31,15 @@ return {
   },
   -- makes some plugins dot-repeatable
   { "tpope/vim-repeat", event = "VeryLazy" },
+
+  -- URL opening
+  {
+    "axieax/urlview.nvim",
+    cmd = "UrlView",
+    opts = {},
+    keys = {
+      { "[u", desc = "Previous URL" },
+      { "]u", desc = "Next URL" },
+    },
+  },
 }

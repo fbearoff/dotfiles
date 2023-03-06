@@ -93,8 +93,26 @@ return {
   -- More textobjects
   {
     "chrisgrieser/nvim-various-textobjs",
-    enabled = true,
     event = "BufReadPost",
+    keys = {
+      {
+        "gx",
+        function()
+          require("various-textobjs").url() -- select URL
+          local foundURL = vim.fn.mode():find("v") -- only switches to visual mode if found
+          local url
+          if foundURL then
+            vim.cmd.normal({ '"zy', bang = true }) -- retrieve URL with "z as intermediary
+            url = vim.fn.getreg("z")
+            os.execute("xdg-open '" .. url .. "'")
+          else
+            -- if not found in proximity, search whole buffer via urlview.nvim instead
+            vim.cmd.UrlView("buffer")
+          end
+        end,
+        { desc = "Smart URL Opener" },
+      },
+    },
     opts = {
       useDefaultKeymaps = true,
     },

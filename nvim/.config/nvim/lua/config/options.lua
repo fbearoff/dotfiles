@@ -26,7 +26,6 @@ local options = {
   mousemodel = "extend",
   number = true, -- set numbered lines
   numberwidth = 2, -- set number column width to 2 {default 4}
-  pumblend = 10, -- Popup blend
   pumheight = 10, -- pop up menu height
   relativenumber = true, -- set relative numbered lines
   ruler = false,

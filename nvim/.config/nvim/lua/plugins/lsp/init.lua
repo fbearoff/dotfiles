@@ -105,8 +105,7 @@ return {
         -- ["*"] = function(server, opts) end,
       },
     },
-    ---@diagnostic disable-next-line: unused-local
-    config = function(plugin, opts)
+    config = function(_, opts)
       -- setup autoformat
       require("plugins.lsp.format").autoformat = opts.autoformat
       -- setup  keymaps
@@ -222,8 +221,7 @@ return {
         },
       },
     },
-    ---@diagnostic disable-next-line: unused-local
-    config = function(plugin, opts)
+    config = function(_, opts)
       require("mason").setup(opts)
       local mr = require("mason-registry")
       for _, tool in ipairs(opts.ensure_installed) do

@@ -244,6 +244,7 @@ return {
   -- Jumplist popup UI
   {
     "cbochs/portal.nvim",
+    cmd = "Portal",
     keys = {
       { "<leader>o", "<cmd>Portal jumplist backward<cr>", desc = "Jump Backward" },
       { "<leader>i", "<cmd>Portal jumplist forward<cr>", desc = "Jump Forward" },

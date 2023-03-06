@@ -1,7 +1,6 @@
 return {
   {
     "ellisonleao/glow.nvim",
-    commit = "20d1cd087f8728f21a048a3b6259f6177237b39e",
     ft = "markdown",
     cmd = "Glow",
     keys = {
