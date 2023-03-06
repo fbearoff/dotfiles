@@ -85,7 +85,7 @@ return {
       function()
         return require("recorder").recordingStatus()
       end,
-      color = { fg = colors.co },
+      color = { fg = colors.theme.syn.constant },
     }
 
     local macro = {
@@ -100,7 +100,7 @@ return {
         return " [" .. key .. "]"
       end,
       cond = require("grapple").exists,
-      color = { fg = colors.fn },
+      color = { fg = colors.theme.syn.fun },
       on_click = function()
         vim.cmd("GrapplePopup tags")
       end,
@@ -111,7 +111,7 @@ return {
         return require("nvim-navic").get_location()
       end,
       cond = require("nvim-navic").is_available,
-      color = { fg = colors.fg },
+      padding = { left = 1, right = 0 },
     }
 
     local lazy = {
@@ -159,7 +159,6 @@ return {
         lualine_b = { "branch", diff },
         lualine_c = { diagnostics, lightbulb, grapple, filename, navic },
         lualine_x = { macro_record, lsp_server, macro, "fileformat", "encoding", filetype },
-
         lualine_y = { location },
         lualine_z = { "searchcount", lazy },
       },

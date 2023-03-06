@@ -193,13 +193,13 @@ return {
         highlight = {
           groups = {
             InclineNormal = {
-              guibg = colors.bg,
-              guifg = colors.fg,
+              guibg = colors.theme.ui.bg,
+              guifg = colors.theme.ui.fg,
               gui = "bold",
             },
             InclineNormalNC = {
-              guifg = colors.fg,
-              guibg = colors.bg_dim,
+              guifg = colors.theme.ui.fg,
+              guibg = colors.theme.ui.bg_dim,
             },
           },
         },
@@ -249,9 +249,10 @@ return {
     opts = function()
       return {
         separator = " ",
-        highlight = false, -- lualine colors don't apply if highlight is on
+        highlight = true, -- lualine colors don't apply if highlight is on
         depth_limit = 5,
         icons = require("config.icons").kinds,
+        safe_output = true,
       }
     end,
   },
