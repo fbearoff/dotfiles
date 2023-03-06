@@ -76,16 +76,17 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 -- q to quit these filetypes
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = {
-    "qf",
+    "PlenaryTestPopup",
+    "checkhealth",
     "help",
+    "lspinfo",
     "man",
     "notify",
-    "lspinfo",
+    "qf",
+    "query",
     "spectre_panel",
     "startuptime",
     "tsplayground",
-    "PlenaryTestPopup",
-    "checkhealth",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

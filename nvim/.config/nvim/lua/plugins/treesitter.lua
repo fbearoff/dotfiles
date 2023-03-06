@@ -29,7 +29,7 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     keys = {
       { "<C-space>", desc = "Increment selection" },
-      { "<bs>", desc = "Schrink selection", mode = "x" },
+      { "<bs>", desc = "Decrement selection", mode = "x" },
     },
     dependencies = {
       "mrjones2014/nvim-ts-rainbow",
@@ -66,6 +66,7 @@ return {
         "ini",
         "json",
         "lua",
+        "luap",
         "markdown",
         "markdown_inline",
         "python",
