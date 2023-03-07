@@ -373,7 +373,12 @@ return {
       ---@diagnostic disable-next-line: undefined-field
       require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
+    dependencies = {
+      "utilyre/sentiment.nvim", -- highlight outer brackets
+      opts = {},
+    },
   },
+
   -- Code minimap
   {
     "gorbit99/codewindow.nvim",
