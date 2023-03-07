@@ -128,19 +128,6 @@ return {
     opts = {},
   },
 
-  -- Highlight function arguments
-  {
-    "m-demare/hlargs.nvim",
-    event = "BufReadPost",
-    opts = {
-      excluded_argnames = {
-        usages = {
-          lua = { "self", "use" },
-        },
-      },
-    },
-  },
-
   -- Dim everything button current context
   { "folke/twilight.nvim" },
 
