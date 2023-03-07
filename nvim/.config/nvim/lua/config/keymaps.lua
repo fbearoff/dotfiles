@@ -131,6 +131,7 @@ if not util.has("trouble.nvim") then
   keymap("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
   keymap("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
 end
+
 -- Lazy
 keymap("n", "<leader>l", "<cmd>:Lazy<CR>", { desc = "Lazy" })
 keymap("n", "<leader>sS", function()
@@ -163,5 +164,6 @@ keymap("n", "<leader>ud", function()
 end, { desc = "Toggle Diagnostics" })
 
 keymap("n", "<leader>ut", "<cmd>TrimToggle<cr>", { desc = "Toggle Trim" })
+
 -- highlights under cursor
 keymap("n", "<leader>sH", vim.show_pos, { desc = "Highlight Groups" })

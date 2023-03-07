@@ -352,6 +352,13 @@ return {
     end,
   },
 
+  -- Highlight outer brackets
+  {
+    "utilyre/sentiment.nvim",
+    event = "BufReadPost",
+    opts = {},
+  },
+
   -- Auto insert matching pair character
   {
     "windwp/nvim-autopairs",
@@ -373,10 +380,6 @@ return {
       ---@diagnostic disable-next-line: undefined-field
       require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
-    dependencies = {
-      "utilyre/sentiment.nvim", -- highlight outer brackets
-      opts = {},
-    },
   },
 
   -- Code minimap
