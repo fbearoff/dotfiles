@@ -25,7 +25,7 @@ return {
       disable_netrw = true,
       hijack_netrw = true,
       open_on_tab = false,
-      hijack_cursor = false,
+      hijack_cursor = true,
       update_cwd = true,
       reload_on_bufenter = true,
       renderer = {
@@ -55,6 +55,7 @@ return {
         custom = { "^.git$" },
       },
       view = {
+        width = 40,
         adaptive_size = true,
       },
       trash = {
