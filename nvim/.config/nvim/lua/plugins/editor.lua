@@ -357,23 +357,6 @@ return {
     "utilyre/sentiment.nvim",
     event = "BufReadPost",
     opts = {},
-    config = function()
-      local enabled = true
-      local function toggle_sentiment()
-        enabled = not enabled
-        if enabled then
-          require("sentiment").enable()
-          require("lazy.core.util").info("Enabled Parens", { title = "Option" })
-        else
-          require("sentiment").disable()
-          require("lazy.core.util").info("Disabled Parens", { title = "Option" })
-        end
-      end
-
-      vim.keymap.set("n", "<leader>up", function()
-        toggle_sentiment()
-      end, { desc = "Toggle Parens" })
-    end,
   },
 
   -- Auto insert matching pair character

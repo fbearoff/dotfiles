@@ -17,16 +17,8 @@ return {
   -- Better text-objects
   {
     "echasnovski/mini.ai",
-    events = "VeryLazy",
-    dependencies = {
-      {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        init = function()
-          -- no need to load the plugin, since we only need its queries
-          require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
-        end,
-      },
-    },
+    event = "VeryLazy",
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     opts = function()
       local ai = require("mini.ai")
       return {
@@ -38,55 +30,55 @@ return {
           }, {}),
           f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
           c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
+          ["#"] = ai.gen_spec.treesitter({ a = "@number.inner", i = "@number.inner" }, {}),
         },
       }
     end,
     config = function(_, opts)
       -- register all text objects with which-key
       require("mini.ai").setup(opts)
-      if require("util").has("which-key.nvim") then
-        local i = {
-          [" "] = "Whitespace",
-          ['"'] = 'Balanced "',
-          ["'"] = "Balanced '",
-          ["`"] = "Balanced `",
-          ["("] = "Balanced (",
-          [")"] = "Balanced ) including white-space",
-          [">"] = "Balanced > including white-space",
-          ["<lt>"] = "Balanced <",
-          ["]"] = "Balanced ] including white-space",
-          ["["] = "Balanced [",
-          ["}"] = "Balanced } including white-space",
-          ["{"] = "Balanced {",
-          ["?"] = "User Prompt",
-          _ = "Underscore",
-          a = "Argument",
-          b = "Balanced ), ], }",
-          c = "Class",
-          f = "Function",
-          o = "Block, conditional, loop",
-          q = "Quote `, \", '",
-          t = "Tag",
-        }
-        local a = vim.deepcopy(i)
-        for k, v in pairs(a) do
-          a[k] = v:gsub(" including.*", "")
-        end
-
-        local ic = vim.deepcopy(i)
-        local ac = vim.deepcopy(a)
-        for key, name in pairs({ n = "Next", l = "Last" }) do
-          ---@diagnostic disable-next-line: assign-type-mismatch
-          i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " textobject" }, ic)
-          ---@diagnostic disable-next-line: assign-type-mismatch
-          a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " textobject" }, ac)
-        end
-        require("which-key").register({
-          mode = { "o", "x" },
-          i = i,
-          a = a,
-        })
+      local i = {
+        [" "] = "Whitespace",
+        ['"'] = 'Balanced "',
+        ["'"] = "Balanced '",
+        ["`"] = "Balanced `",
+        ["("] = "Balanced (",
+        [")"] = "Balanced ) including white-space",
+        [">"] = "Balanced > including white-space",
+        ["<lt>"] = "Balanced <",
+        ["]"] = "Balanced ] including white-space",
+        ["["] = "Balanced [",
+        ["}"] = "Balanced } including white-space",
+        ["{"] = "Balanced {",
+        ["?"] = "User Prompt",
+        _ = "Underscore",
+        a = "Argument",
+        b = "Balanced ), ], }",
+        c = "Class",
+        f = "Function",
+        ["#"] = "Number",
+        o = "Block, conditional, loop",
+        q = "Quote `, \", '",
+        t = "Tag",
+      }
+      local a = vim.deepcopy(i)
+      for k, v in pairs(a) do
+        a[k] = v:gsub(" including.*", "")
       end
+
+      local ic = vim.deepcopy(i)
+      local ac = vim.deepcopy(a)
+      for key, name in pairs({ n = "Next", l = "Last" }) do
+        ---@diagnostic disable-next-line: assign-type-mismatch
+        i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " textobject" }, ic)
+        ---@diagnostic disable-next-line: assign-type-mismatch
+        a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " textobject" }, ac)
+      end
+      require("which-key").register({
+        mode = { "o", "x" },
+        i = i,
+        a = a,
+      })
     end,
   },
 
@@ -95,6 +87,70 @@ return {
     "chrisgrieser/nvim-various-textobjs",
     event = "BufReadPost",
     keys = {
+      {
+        mode = { "o", "x" },
+        "!",
+        function()
+          require("various-textobjs").diagnostic()
+        end,
+        desc = "Diagnostic",
+      },
+      {
+        mode = { "o", "x" },
+        "aS",
+        function()
+          require("various-textobjs").subword(false)
+        end,
+        desc = "Subword",
+      },
+      {
+        mode = { "o", "x" },
+        "iS",
+        function()
+          require("various-textobjs").subword(true)
+        end,
+        desc = "Subword",
+      },
+      {
+        mode = { "x", "o" },
+        "gG",
+        function()
+          require("various-textobjs").entireBuffer()
+        end,
+        desc = "Entire Buffer",
+      },
+      {
+        mode = "o",
+        "L",
+        function()
+          require("various-textobjs").url()
+        end,
+        desc = "Link",
+      },
+      {
+        mode = { "o", "x" },
+        "iE",
+        function()
+          require("various-textobjs").mdFencedCodeBlock(true)
+        end,
+        desc = "MD Codeblock",
+      },
+      {
+        mode = { "o", "x" },
+        "aE",
+        function()
+          require("various-textobjs").mdFencedCodeBlock(false)
+        end,
+        desc = "MD Codeblock",
+      },
+      {
+        mode = { "o", "x" },
+        "E",
+        function()
+          require("various-textobjs").nearEoL()
+        end,
+        desc = "Near EOL",
+      },
       {
         "gx",
         function()
@@ -110,11 +166,11 @@ return {
             vim.cmd.UrlView("buffer")
           end
         end,
-        { desc = "Smart URL Opener" },
+        desc = "Smart URL Opener",
       },
     },
     opts = {
-      useDefaultKeymaps = true,
+      lookForwardLines = 500,
     },
   },
 
