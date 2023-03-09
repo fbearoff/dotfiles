@@ -31,6 +31,7 @@ return {
           f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
           c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
           ["#"] = ai.gen_spec.treesitter({ a = "@number.inner", i = "@number.inner" }, {}),
+          C = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.outer" }, {}), -- TODO: update when @comment.inner is added <09-03-23>
         },
       }
     end,
@@ -57,6 +58,7 @@ return {
         c = "Class",
         f = "Function",
         ["#"] = "Number",
+        C = "Comment",
         o = "Block, conditional, loop",
         q = "Quote `, \", '",
         t = "Tag",
