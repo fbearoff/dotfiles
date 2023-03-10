@@ -1,5 +1,4 @@
 return {
-  -- "williamboman/mason-lspconfig.nvim",
   "nvim-lua/plenary.nvim",
 
   -- Visualize startup time
@@ -40,6 +39,8 @@ return {
     keys = {
       { "[u", desc = "Previous URL" },
       { "]u", desc = "Next URL" },
+      { "<leader>su", "<cmd>UrlView<cr>", desc = "URLs" },
+      { "<leader>sU", "<cmd>UrlView lazy<cr>", desc = "Plugin URLs" },
     },
   },
 }

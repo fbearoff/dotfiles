@@ -132,6 +132,12 @@ return {
       end,
     }
 
+    local escape_status = {
+      function()
+        return require("better_escape").waiting and "󰠚" or ""
+      end,
+    }
+
     require("lualine").setup({
       options = {
         icons_enabled = true,
@@ -158,7 +164,7 @@ return {
         lualine_a = { "mode" },
         lualine_b = { "branch", diff },
         lualine_c = { diagnostics, lightbulb, grapple, filename, navic },
-        lualine_x = { macro_record, lsp_server, macro, "fileformat", "encoding", filetype },
+        lualine_x = { macro_record, escape_status, lsp_server, macro, "fileformat", "encoding", filetype },
         lualine_y = { location },
         lualine_z = { "searchcount", lazy },
       },
