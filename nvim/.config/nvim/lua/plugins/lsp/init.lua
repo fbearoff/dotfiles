@@ -62,7 +62,9 @@ return {
           filetypes = { "sh", "zsh" },
         },
         html = {},
-        marksman = {},
+        marksman = {
+          filetypes = { "markdown", "quarto" },
+        },
         pyright = {},
         r_language_server = {
           settings = {
