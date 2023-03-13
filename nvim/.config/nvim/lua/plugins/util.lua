@@ -47,7 +47,8 @@ return {
   -- Prevent nesting of nvim instances
   {
     "willothy/flatten.nvim",
-    event = "VeryLazy",
+    lazy = false,
+    priority = 1001,
     opts = {
       callbacks = {
         pre_open = function()
