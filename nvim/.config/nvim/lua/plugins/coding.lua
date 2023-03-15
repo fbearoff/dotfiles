@@ -154,6 +154,38 @@ return {
         desc = "Near EOL",
       },
       {
+        mode = { "o", "x" },
+        "ri",
+        function()
+          require("various-textobjs").restOfIndentation()
+        end,
+        desc = "Rest of Indent",
+      },
+      {
+        mode = { "o", "x" },
+        "rp",
+        function()
+          require("various-textobjs").restOfParagraph()
+        end,
+        desc = "Rest of Paragraph",
+      },
+      {
+        "o",
+        "_",
+        function()
+          require("various-textobjs").lineCharacterwise()
+        end,
+        desc = "Line",
+      },
+      {
+        mode = { "o", "x" },
+        "|",
+        function()
+          require("various-textobjs").column()
+        end,
+        desc = "Column",
+      },
+      {
         "gx",
         function()
           require("various-textobjs").url() -- select URL
