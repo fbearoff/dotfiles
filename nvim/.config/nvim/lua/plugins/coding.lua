@@ -189,16 +189,16 @@ return {
         "gx",
         function()
           require("various-textobjs").url() -- select URL
-          local foundURL = vim.fn.mode():find("v") -- only switches to visual mode if found
-          local url
-          if foundURL then
-            vim.cmd.normal({ '"zy', bang = true }) -- retrieve URL with "z as intermediary
-            url = vim.fn.getreg("z")
-            os.execute("xdg-open '" .. url .. "'")
-          else
-            -- if not found in proximity, search whole buffer via urlview.nvim instead
+          local foundURL = vim.fn.mode():find("v")
+          if not foundURL then
             vim.cmd.UrlView("buffer")
+            return
           end
+          vim.cmd.normal({ '"zy', bang = true })
+          local url = vim.fn.getreg("z")
+          local opener = "xdg-open"
+          local openCommand = string.format("%s '%s' &>/dev/null", opener, url)
+          os.execute(openCommand)
         end,
         desc = "Smart URL Opener",
       },

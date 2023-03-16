@@ -520,28 +520,32 @@ return {
         desc = "Substitute Selection",
       },
       {
-        "<M-r>",
+        "cx",
         function()
           require("substitute.exchange").operator()
         end,
         desc = "Exchange Operator",
       },
       {
+        "cxx",
+        function()
+          require("substitute.exchange").line()
+        end,
+        desc = "Exchange Line",
+      },
+      {
         mode = "x",
-        "<M-r>",
+        "cx",
         function()
           require("substitute.exchange").visual()
         end,
-        desc = "Exchange Word",
+        desc = "Exchange",
       },
     },
     opts = {
-      on_substitute = nil,
-      yank_substituted_text = false,
-      exchange = {
-        motion = "iw",
-        use_esc_to_cancel = true,
-      },
+      on_substitute = function()
+        require("yanky.integration").substitute()
+      end,
     },
   },
 
