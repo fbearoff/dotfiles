@@ -282,16 +282,41 @@ return {
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
         relculright = true,
+        clickhandlers = {},
         segments = {
-          { text = { "%s" }, click = "v:lua.ScSa" },
+          -- GitSigns
           {
-            text = { builtin.lnumfunc },
-            condition = { true, builtin.not_empty },
-            click = "v:lua.ScLa",
+            sign = {
+              name = { "Git*" },
+              maxwidth = 1,
+            },
+            click = "v:lua.ScSa",
           },
+          -- Marks signs
           {
-            text = { " ", builtin.foldfunc, " " },
+            sign = {
+              name = { "Marks*" },
+              maxwidth = 1,
+              colwidth = 1,
+              auto = true,
+            },
+            click = "v:lua.ScSa",
+          },
+          -- line numbers
+          { text = { builtin.lnumfunc }, click = "v:lua.ScLa" },
+          -- folds
+          {
+            text = { builtin.foldfunc },
+            condition = { true },
             click = "v:lua.ScFa",
+          },
+          -- Diagnostic signs
+          {
+            sign = {
+              name = { "Diagnostic" },
+              maxwidth = 1,
+            },
+            click = "v:lua.ScSa",
           },
         },
       })
