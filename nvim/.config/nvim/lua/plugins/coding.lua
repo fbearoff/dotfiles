@@ -170,7 +170,7 @@ return {
         desc = "Rest of Paragraph",
       },
       {
-        "o",
+        mode = "o",
         "_",
         function()
           require("various-textobjs").lineCharacterwise()

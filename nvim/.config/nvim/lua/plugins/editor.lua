@@ -198,7 +198,7 @@ return {
     },
     opts = {
       default_mappings = false,
-      builtin_marks = false,
+      builtin_marks = { ".", "<", ">", "^", "`", "[", "]" },
       excluded_filetypes = { "lspinfo", "toggleterm" },
     },
   },
