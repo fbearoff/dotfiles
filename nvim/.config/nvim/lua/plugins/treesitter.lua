@@ -19,7 +19,13 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = "BufReadPre",
-    opts = {},
+    keys = {
+      { "<leader>uT", "<cmd>TSContextToggle<cr>", desc = "Toggle TS Context" },
+    },
+    opts = {
+      max_lines = 2,
+      line_numbers = false,
+    },
   },
 
   -- Code tree based highlighting and other features
