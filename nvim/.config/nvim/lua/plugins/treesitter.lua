@@ -38,7 +38,7 @@ return {
       { "<bs>", desc = "Decrement selection", mode = "x" },
     },
     dependencies = {
-      "mrjones2014/nvim-ts-rainbow",
+      "HiPhish/nvim-ts-rainbow2",
     },
     opts = {
       highlight = { enable = true },
@@ -58,8 +58,6 @@ return {
       },
       rainbow = {
         enable = true,
-        extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-        max_file_lines = nil, -- Do not enable for files with more than n lines, int
       },
       matchup = { enable = true },
       ensure_installed = {
