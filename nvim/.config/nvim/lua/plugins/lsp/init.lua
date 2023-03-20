@@ -68,6 +68,7 @@ return {
             r = {
               lsp = {
                 rich_documentation = false,
+                max_completions = 20,
               },
             },
           },

@@ -9,9 +9,9 @@ local({
   r <- getOption("repos")
   r["CRAN"] <- "https://cloud.r-project.org/"
   options(
-    repos = r,
-    languageserver.server_capabilities =
-      list(completionProvider = FALSE, completionItemResolve = FALSE)
+    repos = r
+    # languageserver.server_capabilities =
+    #   list(completionProvider = FALSE, completionItemResolve = FALSE)
   )
 })
 
@@ -37,9 +37,9 @@ colorout::setOutputColors(
 options(menu.graphics = FALSE)
 
 if (Sys.getenv("NVIMR_TMPDIR") == "") {
-options(defaultPackages = c("utils", "grDevices", "graphics", "stats", "methods"))
+  options(defaultPackages = c("utils", "grDevices", "graphics", "stats", "methods"))
 } else {
-options(defaultPackages = c("utils", "grDevices", "graphics", "stats", "methods", "nvimcom"))
+  options(defaultPackages = c("utils", "grDevices", "graphics", "stats", "methods", "nvimcom"))
 }
 
 # vim:ft=r
