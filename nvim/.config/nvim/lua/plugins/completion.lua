@@ -82,24 +82,22 @@ return {
           end, { "i", "s" }),
         }),
         sources = cmp.config.sources({
+          { name = "cmp_nvim_r" },
           { name = "nvim_lsp", max_item_count = 10 },
           { name = "nvim_lua" },
           {
             name = "buffer",
             -- get words from visible buffers
-            option = {
-              keyword_length = 5,
-              max_item_count = 3,
-              get_bufnrs = function()
-                local bufs = {}
-                for _, win in ipairs(vim.api.nvim_list_wins()) do
-                  bufs[vim.api.nvim_win_get_buf(win)] = true
-                end
-                return vim.tbl_keys(bufs)
-              end,
-            },
+            keyword_length = 5,
+            max_item_count = 3,
+            get_bufnrs = function()
+              local bufs = {}
+              for _, win in ipairs(vim.api.nvim_list_wins()) do
+                bufs[vim.api.nvim_win_get_buf(win)] = true
+              end
+              return vim.tbl_keys(bufs)
+            end,
           },
-          { name = "cmp_nvim_r" },
           { name = "luasnip", keyword_length = 3, max_item_count = 3 },
           { name = "path" },
           { name = "greek" },
@@ -114,11 +112,11 @@ return {
             if icons[item.kind] then
               item.kind = string.format("%s", icons[item.kind])
               item.menu = ({
+                cmp_nvim_r = "[R]",
                 nvim_lsp = "[LSP]",
                 luasnip = "[Snip]",
                 buffer = "[Buffer]",
                 path = "[Path]",
-                cmp_nvim_r = "[R]",
                 nvim_lua = "[Lua]",
                 greek = "[Greek]",
                 emoji = "[Emoji]",
