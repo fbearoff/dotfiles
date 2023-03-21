@@ -282,7 +282,7 @@ return {
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
         relculright = true,
-        clickhandlers = {},
+        bt_ignore = { "terminal", "nofile" },
         segments = {
           -- GitSigns
           {
@@ -301,7 +301,10 @@ return {
             -- click = "v:lua.ScSa",
           },
           -- line numbers
-          { text = { builtin.lnumfunc }, click = "v:lua.ScLa" },
+          {
+            text = { builtin.lnumfunc },
+            click = "v:lua.ScLa",
+          },
           -- folds
           {
             text = { " ", builtin.foldfunc },
