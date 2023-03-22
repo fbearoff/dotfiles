@@ -125,7 +125,7 @@ return {
   -- Easy commenting
   {
     "numToStr/Comment.nvim",
-    keys = { { "gc", mode = { "n", "v" } }, "gcc", "gbc" },
+    event = "BufReadPost",
     dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
     config = function()
       require("Comment").setup({

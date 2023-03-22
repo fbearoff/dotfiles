@@ -134,6 +134,8 @@ end
 
 -- Lazy
 keymap("n", "<leader>l", "<cmd>:Lazy<CR>", { desc = "Lazy" })
+
+-- StackOverflow Search
 keymap("n", "<leader>sS", function()
   require("util").so_input()
 end, { desc = "StackOverflow" })
@@ -167,3 +169,6 @@ keymap("n", "<leader>ut", "<cmd>TrimToggle<cr>", { desc = "Toggle Trim" })
 
 -- highlights under cursor
 keymap("n", "<leader>sH", vim.show_pos, { desc = "Highlight Groups" })
+
+-- View Code Tree
+keymap("n", "<leader>si", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })

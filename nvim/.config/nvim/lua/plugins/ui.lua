@@ -282,6 +282,7 @@ return {
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
         relculright = true,
+        ft_ignore = { "query" },
         bt_ignore = { "terminal", "nofile" },
         segments = {
           -- GitSigns
@@ -361,6 +362,7 @@ return {
           "terminal",
           "checkhealth",
           "lspinfo",
+          "query",
         },
         callback = function()
           vim.b.miniindentscope_disable = true
