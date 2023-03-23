@@ -60,6 +60,7 @@ return {
         enable = true,
       },
       matchup = { enable = true },
+      auto_install = true,
       ensure_installed = {
         "bash",
         "diff",
