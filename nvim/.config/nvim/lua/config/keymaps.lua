@@ -97,7 +97,7 @@ for _, lhs in ipairs({ "c", "C", "d", "D", "x", "X" }) do
 end
 
 -- Map "d" cut action to cut key
-local cut_key = "<M-d>"
+local cut_key = "m"
 
 keymap({ "n", "x" }, cut_key, "d", { desc = "Cut Operator" })
 keymap("n", cut_key .. cut_key, "dd", { desc = "Cut Line" })
