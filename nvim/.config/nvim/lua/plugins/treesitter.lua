@@ -65,6 +65,20 @@ return {
     keys = {
       { "<C-space>", desc = "Increment selection" },
       { "<bs>", desc = "Decrement selection", mode = "x" },
+      {
+        "]C",
+        function()
+          require("nvim-treesitter.textobjects.move").goto_next_start("@comment.outer")
+        end,
+        desc = "Next Comment",
+      },
+      {
+        "[C",
+        function()
+          require("nvim-treesitter.textobjects.move").goto_previous_start("@comment.outer")
+        end,
+        desc = "Previous Comment",
+      },
     },
     dependencies = {
       "HiPhish/nvim-ts-rainbow2",
