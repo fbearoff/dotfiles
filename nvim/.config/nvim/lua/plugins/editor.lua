@@ -479,6 +479,24 @@ return {
             only_valid = true,
             word = false,
           }),
+          augend.paren.new({
+            patterns = {
+              { "(", ")" },
+              { "{", "}" },
+              { "[", "]" },
+            },
+            nested = false,
+            cyclic = true,
+          }),
+          augend.paren.new({
+            patterns = {
+              { "'", "'" },
+              { '"', '"' },
+            },
+            nested = false,
+            escape_char = [[\]],
+            cyclic = true,
+          }),
         },
       })
     end,
