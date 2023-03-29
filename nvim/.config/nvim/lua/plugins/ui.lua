@@ -399,10 +399,12 @@ return {
     },
     opts = {
       tabpages = false,
-      diagnostics = {
-        [vim.diagnostic.severity.ERROR] = { enabled = true, icon = " " },
+      icons = {
+        buffer_index = true,
+        diagnostics = {
+          [vim.diagnostic.severity.ERROR] = { enabled = true, icon = " " },
+        },
       },
-      icons = "both",
       maximum_padding = 1,
     },
   },
