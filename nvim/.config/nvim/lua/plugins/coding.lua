@@ -186,6 +186,38 @@ return {
         desc = "Column",
       },
       {
+        mode = { "o", "x" },
+        "ak",
+        function()
+          require("various-textobjs").key(false)
+        end,
+        desc = "Key",
+      },
+      {
+        mode = { "o", "x" },
+        "ik",
+        function()
+          require("various-textobjs").key(true)
+        end,
+        desc = "Key",
+      },
+      {
+        mode = { "o", "x" },
+        "av",
+        function()
+          require("various-textobjs").value(false)
+        end,
+        desc = "Value",
+      },
+      {
+        mode = { "o", "x" },
+        "iv",
+        function()
+          require("various-textobjs").value(true)
+        end,
+        desc = "Value",
+      },
+      {
         "gx",
         function()
           require("various-textobjs").url() -- select URL

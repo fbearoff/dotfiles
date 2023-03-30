@@ -405,6 +405,7 @@ return {
           [vim.diagnostic.severity.ERROR] = { enabled = true, icon = " " },
         },
       },
+      highlight_visible = false,
       maximum_padding = 1,
     },
   },
