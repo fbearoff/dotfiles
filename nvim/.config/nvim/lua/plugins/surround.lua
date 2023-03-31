@@ -1,7 +1,7 @@
 return {
   "kylechui/nvim-surround",
   event = "VeryLazy",
-  config = function()
+  opts = function()
     local config = require("nvim-surround.config")
 
     -- Factory that returns function that surrounds key with a given character
@@ -21,24 +21,11 @@ return {
     local quoted_surround = add_key_surround([["]])
     local unquoted_surround = add_key_surround("")
 
-    require("nvim-surround").setup({
-
-      keymaps = { -- vim-surround style keymaps
-        insert = "<C-g>s",
-        insert_line = "<C-g>S",
-        normal = "ys",
-        normal_cur = "yss",
-        normal_line = "yS",
-        normal_cur_line = "ySS",
+    return {
+      keymaps = {
         visual = "gs",
         visual_line = "gS",
-        delete = "ds",
-        change = "cs",
       },
-      highlight = {
-        duration = 0,
-      },
-      move_cursor = "begin",
       surrounds = {
         ["k"] = {
           add = quoted_surround,
@@ -104,6 +91,6 @@ return {
       aliases = {
         ["m"] = { "`", "*", "_" },
       },
-    })
+    }
   end,
 }
