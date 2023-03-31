@@ -290,6 +290,7 @@ return {
             sign = {
               name = { "Git*" },
               maxwidth = 1,
+              auto = true,
             },
             click = "v:lua.ScSa",
           },
@@ -299,7 +300,11 @@ return {
               name = { "Marks*" },
               maxwidth = 1,
             },
-            -- click = "v:lua.ScSa",
+            condition = {
+              function(args)
+                return vim.api.nvim_get_current_win() == args.win
+              end,
+            },
           },
           -- line numbers
           {
@@ -309,7 +314,12 @@ return {
           -- folds
           {
             text = { " ", builtin.foldfunc },
-            condition = { true },
+            condition = {
+              builtin.not_empty,
+              function(args)
+                return vim.api.nvim_get_current_win() == args.win
+              end,
+            },
             click = "v:lua.ScFa",
           },
           -- Diagnostic signs
@@ -317,8 +327,10 @@ return {
             sign = {
               name = { "Diagnostic" },
               maxwidth = 1,
+              auto = true,
             },
             click = "v:lua.ScSa",
+            condition = { true },
           },
         },
       })
