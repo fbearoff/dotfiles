@@ -1,7 +1,7 @@
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
-  config = function()
+  opts = function()
     local icons = require("config.icons")
     local colors = require("kanagawa.colors").setup()
 
@@ -138,7 +138,7 @@ return {
       end,
     }
 
-    require("lualine").setup({
+    return {
       options = {
         icons_enabled = true,
         theme = "auto",
@@ -148,8 +148,6 @@ return {
           statusline = {
             "alpha",
             "dashboard",
-            "lazy",
-            "mason",
           },
         },
         always_divide_middle = true,
@@ -172,7 +170,9 @@ return {
         "nvim-tree",
         "symbols-outline",
         "toggleterm",
+        "trouble",
+        "lazy",
       },
-    })
+    }
   end,
 }
