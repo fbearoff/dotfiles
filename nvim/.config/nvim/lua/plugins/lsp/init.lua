@@ -210,6 +210,7 @@ return {
         "black",
         "proselint",
         "stylua",
+        "ansible-lint",
       },
       ui = {
         icons = {

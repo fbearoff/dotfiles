@@ -72,3 +72,4 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export GOPATH="$XDG_DATA_HOME"/go
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export ANSIBLE_HOME="$XDG_CACHE_HOME"/ansible
