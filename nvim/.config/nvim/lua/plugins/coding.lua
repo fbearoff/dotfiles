@@ -92,129 +92,97 @@ return {
       {
         mode = { "o", "x" },
         "!",
-        function()
-          require("various-textobjs").diagnostic()
-        end,
+        "<cmd>lua require('various-textobjs').diagnostic()<cr>",
         desc = "Diagnostic",
       },
       {
         mode = { "o", "x" },
         "aS",
-        function()
-          require("various-textobjs").subword(false)
-        end,
+        "<cmd>lua require('various-textobjs').subword(false)<cr>",
         desc = "Subword",
       },
       {
         mode = { "o", "x" },
         "iS",
-        function()
-          require("various-textobjs").subword(true)
-        end,
+        "<cmd>lua require('various-textobjs').subword(true)<cr>",
         desc = "Subword",
       },
       {
         mode = { "x", "o" },
         "gG",
-        function()
-          require("various-textobjs").entireBuffer()
-        end,
+        "<cmd>lua require('various-textobjs').entireBuffer()<cr>",
         desc = "Entire Buffer",
       },
       {
         mode = "o",
         "L",
-        function()
-          require("various-textobjs").url()
-        end,
+        "<cmd>lua require('various-textobjs').url()<cr>",
         desc = "Link",
       },
       {
         mode = { "o", "x" },
         "iE",
-        function()
-          require("various-textobjs").mdFencedCodeBlock(true)
-        end,
+        "<cmd>lua require('various-textobjs').mdFencedCodeBlock(true)<cr>",
         desc = "MD Codeblock",
       },
       {
         mode = { "o", "x" },
         "aE",
-        function()
-          require("various-textobjs").mdFencedCodeBlock(false)
-        end,
+        "<cmd>lua require('various-textobjs').mdFencedCodeBlock(false)<cr>",
         desc = "MD Codeblock",
       },
       {
         mode = { "o", "x" },
         "E",
-        function()
-          require("various-textobjs").nearEoL()
-        end,
+        "<cmd>lua require('various-textobjs').nearEoL()<cr>",
         desc = "Near EOL",
       },
       {
         mode = { "o", "x" },
         "ri",
-        function()
-          require("various-textobjs").restOfIndentation()
-        end,
+        "<cmd>lua require('various-textobjs').restOfIndentation()<cr>",
         desc = "Rest of Indent",
       },
       {
         mode = { "o", "x" },
         "rp",
-        function()
-          require("various-textobjs").restOfParagraph()
-        end,
+        "<cmd>lua require('various-textobjs').restOfParagraph()<cr>",
         desc = "Rest of Paragraph",
       },
       {
         mode = "o",
         "_",
-        function()
-          require("various-textobjs").lineCharacterwise()
-        end,
+        "<cmd>lua require('various-textobjs').lineCharacterwise()<cr>",
         desc = "Line",
       },
       {
         mode = { "o", "x" },
         "|",
-        function()
-          require("various-textobjs").column()
-        end,
+        "<cmd>lua require('various-textobjs').column()<cr>",
         desc = "Column",
       },
       {
         mode = { "o", "x" },
         "ak",
-        function()
-          require("various-textobjs").key(false)
-        end,
+        "<cmd>lua require('various-textobjs').key(false)<cr>",
         desc = "Key",
       },
       {
         mode = { "o", "x" },
         "ik",
-        function()
-          require("various-textobjs").key(true)
-        end,
+        "<cmd>lua require('various-textobjs').key(true)<cr>",
         desc = "Key",
       },
       {
         mode = { "o", "x" },
         "av",
-        function()
-          require("various-textobjs").value(false)
-        end,
+        "<cmd>lua require('various-textobjs').value(false)<cr>",
         desc = "Value",
       },
       {
         mode = { "o", "x" },
         "iv",
-        function()
-          require("various-textobjs").value(true)
-        end,
+        "<cmd>lua require('various-textobjs').value(true)<cr>",
         desc = "Value",
       },
       {

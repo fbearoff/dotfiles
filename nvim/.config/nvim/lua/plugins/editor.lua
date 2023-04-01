@@ -216,33 +216,25 @@ return {
       {
         mode = { "n", "o", "x" },
         "w",
-        function()
-          require("spider").motion("w")
-        end,
+        "<cmd>lua require('spider').motion('w')<cr>",
         desc = "Spider-w",
       },
       {
         mode = { "n", "o", "x" },
         "e",
-        function()
-          require("spider").motion("e")
-        end,
+        "<cmd>lua require('spider').motion('e')<cr>",
         desc = "Spider-e",
       },
       {
         mode = { "n", "o", "x" },
         "b",
-        function()
-          require("spider").motion("b")
-        end,
+        "<cmd>lua require('spider').motion('b')<cr>",
         desc = "Spider-b",
       },
       {
         mode = { "n", "o", "x" },
         "ge",
-        function()
-          require("spider").motion("ge")
-        end,
+        "<cmd>lua require('spider').motion('ge')<cr>",
         desc = "Spider-ge",
       },
     },
