@@ -294,6 +294,19 @@ return {
             },
             click = "v:lua.ScSa",
           },
+          -- Todo Comments
+          {
+            sign = {
+              name = { "todo*" },
+              maxwidth = 1,
+              auto = true,
+            },
+            condition = {
+              function(args)
+                return vim.api.nvim_get_current_win() == args.win
+              end,
+            },
+          },
           -- Marks signs
           {
             sign = {
