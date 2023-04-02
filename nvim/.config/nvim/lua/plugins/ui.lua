@@ -415,49 +415,20 @@ return {
       { "<M-0>", "<cmd>BufferLast<CR>", desc = "Last Buffer" },
       { "<M-c>", "<cmd>BufferClose<CR>", desc = "Close Buffer" },
     },
-    opts = function()
-      vim.api.nvim_create_autocmd("FileType", {
-        callback = function(tbl)
-          local set_offset = require("barbar.api").set_offset
-
-          local bufwinid
-          local last_width
-          local autocmd = vim.api.nvim_create_autocmd("WinScrolled", {
-            callback = function()
-              bufwinid = bufwinid or vim.fn.bufwinid(tbl.buf)
-
-              local width = vim.api.nvim_win_get_width(bufwinid)
-              if width ~= last_width then
-                set_offset(width, "FileTree")
-                last_width = width
-              end
-            end,
-          })
-
-          vim.api.nvim_create_autocmd("BufWipeout", {
-            buffer = tbl.buf,
-            callback = function()
-              vim.api.nvim_del_autocmd(autocmd)
-              set_offset(0)
-            end,
-            once = true,
-          })
-        end,
-        pattern = "NvimTree",
-      })
-      return {
-        sidebar_filetypes = { "NvimTree", "undotree" },
-        tabpages = false,
-        icons = {
-          buffer_index = true,
-          diagnostics = {
-            [vim.diagnostic.severity.ERROR] = { enabled = true, icon = " " },
-          },
+    opts = {
+      sidebar_filetypes = {
+        NvimTree = { text = "NvimTree" },
+      },
+      tabpages = false,
+      icons = {
+        buffer_index = true,
+        diagnostics = {
+          [vim.diagnostic.severity.ERROR] = { enabled = true, icon = " " },
         },
-        highlight_visible = false,
-        maximum_padding = 1,
-      }
-    end,
+      },
+      highlight_visible = false,
+      maximum_padding = 1,
+    },
   },
 
   -- Dashboard
