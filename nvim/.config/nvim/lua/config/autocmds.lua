@@ -1,14 +1,14 @@
 -- Check if we need to reload the file when it changed
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
 
--- resize splits if window got resized
+-- Resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
   callback = function()
     vim.cmd("tabdo wincmd =")
   end,
 })
 
--- show cursor line only in active window
+-- Show cursor line only in active window
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
   callback = function()
     local ok, cl = pcall(vim.api.nvim_win_get_var, 0, "auto-cursorline")
@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
   end,
 })
 
--- create directories when needed, when saving a file
+-- Create directories when needed, when saving a file
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup("auto_create_dir", { clear = true }),
   callback = function(event)
@@ -50,7 +50,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
--- go to last loc when opening a buffer
+-- Go to last loc when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPre", {
   pattern = "*",
   callback = function()
@@ -93,7 +93,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
--- -- Terminal options
+-- Terminal options
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
   pattern = "",
   callback = function()
@@ -105,6 +105,7 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
     vim.opt_local.signcolumn = "no"
   end,
 })
+
 -- turn on spelling
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "gitcommit", "markdown" },

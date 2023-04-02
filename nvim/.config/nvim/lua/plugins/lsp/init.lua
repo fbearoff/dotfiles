@@ -110,7 +110,6 @@ return {
       require("plugins.lsp.format").autoformat = opts.autoformat
       -- setup  keymaps
       require("util").on_attach(function(client, buffer)
-        require("nvim-navic").attach(client, buffer)
         require("plugins.lsp.format").on_attach(client, buffer)
         require("plugins.lsp.keymaps").on_attach(client, buffer)
       end)

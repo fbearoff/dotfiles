@@ -187,9 +187,9 @@ return {
   {
     "b0o/incline.nvim",
     event = "BufReadPre",
-    config = function()
+    opts = function()
       local colors = require("kanagawa.colors").setup()
-      require("incline").setup({
+      return {
         highlight = {
           groups = {
             InclineNormal = {
@@ -214,7 +214,7 @@ return {
           local icon, color = require("nvim-web-devicons").get_icon_color(filename)
           return { { icon, guifg = color }, { " " }, { filename } }
         end,
-      })
+      }
     end,
   },
 
@@ -238,23 +238,16 @@ return {
   -- Show code context
   {
     "SmiteshP/nvim-navic",
-    init = function()
-      vim.g.navic_silence = true
-      require("util").on_attach(function(client, buffer)
-        if client.server_capabilities.documentSymbolProvider then
-          require("nvim-navic").attach(client, buffer)
-        end
-      end)
-    end,
-    opts = function()
-      return {
-        separator = " ",
-        highlight = true,
-        depth_limit = 5,
-        icons = require("config.icons").kinds,
-        safe_output = true,
-      }
-    end,
+    opts = {
+      separator = " ",
+      highlight = true,
+      depth_limit = 5,
+      icons = require("config.icons").kinds,
+      safe_output = true,
+      lsp = {
+        auto_attach = true,
+      },
+    },
   },
 
   -- Show available code actions as lightbulb character
@@ -278,9 +271,9 @@ return {
   {
     "luukvbaal/statuscol.nvim",
     event = "BufReadPost",
-    config = function()
+    opts = function()
       local builtin = require("statuscol.builtin")
-      require("statuscol").setup({
+      return {
         relculright = true,
         ft_ignore = { "query" },
         bt_ignore = { "terminal", "nofile" },
@@ -346,7 +339,7 @@ return {
             condition = { true },
           },
         },
-      })
+      }
     end,
   },
 
@@ -422,17 +415,49 @@ return {
       { "<M-0>", "<cmd>BufferLast<CR>", desc = "Last Buffer" },
       { "<M-c>", "<cmd>BufferClose<CR>", desc = "Close Buffer" },
     },
-    opts = {
-      tabpages = false,
-      icons = {
-        buffer_index = true,
-        diagnostics = {
-          [vim.diagnostic.severity.ERROR] = { enabled = true, icon = " " },
+    opts = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(tbl)
+          local set_offset = require("barbar.api").set_offset
+
+          local bufwinid
+          local last_width
+          local autocmd = vim.api.nvim_create_autocmd("WinScrolled", {
+            callback = function()
+              bufwinid = bufwinid or vim.fn.bufwinid(tbl.buf)
+
+              local width = vim.api.nvim_win_get_width(bufwinid)
+              if width ~= last_width then
+                set_offset(width, "FileTree")
+                last_width = width
+              end
+            end,
+          })
+
+          vim.api.nvim_create_autocmd("BufWipeout", {
+            buffer = tbl.buf,
+            callback = function()
+              vim.api.nvim_del_autocmd(autocmd)
+              set_offset(0)
+            end,
+            once = true,
+          })
+        end,
+        pattern = "NvimTree",
+      })
+      return {
+        sidebar_filetypes = { "NvimTree", "undotree" },
+        tabpages = false,
+        icons = {
+          buffer_index = true,
+          diagnostics = {
+            [vim.diagnostic.severity.ERROR] = { enabled = true, icon = " " },
+          },
         },
-      },
-      highlight_visible = false,
-      maximum_padding = 1,
-    },
+        highlight_visible = false,
+        maximum_padding = 1,
+      }
+    end,
   },
 
   -- Dashboard

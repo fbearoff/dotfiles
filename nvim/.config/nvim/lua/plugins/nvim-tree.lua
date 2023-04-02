@@ -4,9 +4,7 @@ return {
   keys = {
     { "<leader>e", "<cmd>NvimTreeToggle<CR>", desc = "Explorer" },
   },
-  config = function()
-    local nvim_tree = require("nvim-tree")
-
+  opts = function()
     local function on_attach(bufnr)
       local api = require("nvim-tree.api")
 
@@ -20,7 +18,7 @@ return {
       vim.keymap.set("n", "H", api.tree.collapse_all, opts("Collapse"))
     end
 
-    nvim_tree.setup({
+    return {
       on_attach = on_attach,
       disable_netrw = true,
       hijack_netrw = true,
@@ -62,25 +60,6 @@ return {
         cmd = "trash",
         require_confirm = true,
       },
-    })
-
-    local nvim_tree_events = require("nvim-tree.events")
-    local bufferline_api = require("bufferline.api")
-
-    local function get_tree_size()
-      return require("nvim-tree.view").View.width
-    end
-
-    nvim_tree_events.subscribe("TreeOpen", function()
-      bufferline_api.set_offset(get_tree_size())
-    end)
-
-    nvim_tree_events.subscribe("Resize", function()
-      bufferline_api.set_offset(get_tree_size())
-    end)
-
-    nvim_tree_events.subscribe("TreeClose", function()
-      bufferline_api.set_offset(0)
-    end)
+    }
   end,
 }
