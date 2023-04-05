@@ -461,6 +461,59 @@ return {
         expr = true,
         desc = "Dial Decrement",
       },
+      {
+        "g<C-a>",
+        function()
+          return require("dial.map").inc_gnormal()
+        end,
+        expr = true,
+        desc = "Dial Additive Increment",
+      },
+      {
+        "g<C-x>",
+        function()
+          return require("dial.map").dec_gnormal()
+        end,
+        expr = true,
+        desc = "Dial Additive Decrement",
+      },
+
+      {
+        "<C-a>",
+        function()
+          return require("dial.map").inc_visual()
+        end,
+        mode = "v",
+        expr = true,
+        desc = "Dial Increment",
+      },
+      {
+        "<C-x>",
+        function()
+          return require("dial.map").dec_visual()
+        end,
+        mode = "v",
+        expr = true,
+        desc = "Dial Decrement",
+      },
+      {
+        "g<C-a>",
+        function()
+          return require("dial.map").inc_gvisual()
+        end,
+        mode = "v",
+        expr = true,
+        desc = "Dial Additive Increment",
+      },
+      {
+        "g<C-x>",
+        function()
+          return require("dial.map").dec_gvisual()
+        end,
+        mode = "v",
+        expr = true,
+        desc = "Dial Additive Decrement",
+      },
     },
     config = function()
       local augend = require("dial.augend")
@@ -486,24 +539,6 @@ return {
             default_kind = "day",
             only_valid = true,
             word = false,
-          }),
-          augend.paren.new({
-            patterns = {
-              { "(", ")" },
-              { "{", "}" },
-              { "[", "]" },
-            },
-            nested = false,
-            cyclic = true,
-          }),
-          augend.paren.new({
-            patterns = {
-              { "'", "'" },
-              { '"', '"' },
-            },
-            nested = false,
-            escape_char = [[\]],
-            cyclic = true,
           }),
         },
       })
