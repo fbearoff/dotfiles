@@ -23,6 +23,7 @@ return {
         ["g"] = { name = "+Goto" },
         ["]"] = { name = "+Next" },
         ["["] = { name = "+Prev" },
+        ["gz"] = { name = "+Surround" },
         ["<leader>b"] = { name = "+Buffer" },
         ["<leader>c"] = { name = "+Code", mode = { "n", "v" } },
         ["<leader>d"] = { name = "+Diagnostics" },
@@ -330,11 +331,12 @@ return {
   {
     "ggandor/leap.nvim",
     keys = {
-      { mode = { "n", "x", "o" }, "s", "<Plug>(leap-forward-to)", desc = "Leap Forward" },
-      { mode = { "n", "x", "o" }, "S", "<Plug>(leap-backward-to)", desc = "Leap Backward" },
-      { "gS", "<Plug>(leap-from-window)", desc = "Leap From Window" },
+      { "s", mode = { "n", "x", "o" }, desc = "Leap Forward" },
+      { "S", mode = { "n", "x", "o" }, desc = "Leap Backward" },
+      { "gs", mode = { "n", "x", "o" }, desc = "Leap from Window" },
       {
-        "gs",
+        "gS",
+        mode = { "n", "x" },
         function()
           require("leap").leap({ target_windows = { vim.api.nvim_get_current_win() } })
         end,
@@ -349,6 +351,16 @@ return {
         desc = "Leap Node",
       },
     },
+    config = function(_, opts)
+      vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
+      local leap = require("leap")
+      for k, v in pairs(opts) do
+        leap.opts[k] = v
+      end
+      leap.add_default_mappings(true)
+      vim.keymap.del({ "x", "o" }, "x")
+      vim.keymap.del({ "x", "o" }, "X")
+    end,
     dependencies = {
       {
         "ggandor/flit.nvim",
@@ -365,10 +377,14 @@ return {
         },
       },
       "ggandor/leap-ast.nvim",
+      {
+        "ggandor/leap-spooky.nvim",
+        event = "VeryLazy",
+        opts = {
+          paste_on_remote_yank = true,
+        },
+      },
     },
-    config = function()
-      vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
-    end,
   },
 
   -- Better % matching

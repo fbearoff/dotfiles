@@ -1,6 +1,14 @@
 return {
   "kylechui/nvim-surround",
-  event = "VeryLazy",
+  keys = {
+    { "gza", "<Plug>(nvim-surround-normal)", desc = "Add" },
+    { "gzaa", "<Plug>(nvim-surround-normal-cur)", desc = "Add Current Line" },
+    { "gzA", "<Plug>(nvim-surround-normal-cur-line)", desc = "Add Around Current Line" },
+    { "gzd", "<Plug>(nvim-surround-delete)", desc = "Delete" },
+    { "gzc", "<Plug>(nvim-surround-delete)", desc = "Change" },
+    { mode = "x", "gz", "<Plug>(nvim-surround-visual)", desc = "Surround" },
+    { mode = "x", "gZ", "<Plug>(nvim-surround-visual-line)", desc = "Surround Line" },
+  },
   opts = function()
     local config = require("nvim-surround.config")
 
@@ -23,8 +31,16 @@ return {
 
     return {
       keymaps = {
-        visual = "gs",
-        visual_line = "gS",
+        insert = false,
+        insert_line = false,
+        normal = false,
+        normal_cur = false,
+        normal_line = false,
+        normal_cur_line = false,
+        visual = false,
+        visual_line = false,
+        delete = false,
+        change = false,
       },
       surrounds = {
         ["k"] = {

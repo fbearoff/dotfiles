@@ -109,7 +109,7 @@ return {
         "diff",
         "git_rebase",
         "gitignore",
-        "help",
+        "vimdoc",
         "html",
         "ini",
         "json",

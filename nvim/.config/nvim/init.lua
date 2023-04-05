@@ -1,3 +1,4 @@
+vim.loader.enable()
 require("config.options")
 ---@diagnostic disable-next-line: different-requires
 require("config.lazy")

@@ -24,7 +24,6 @@ function M.get()
       { "[e", M.diagnostic_goto(false, "ERROR"), desc = "Prev Error" },
       { "]w", M.diagnostic_goto(true, "WARN"), desc = "Next Warning" },
       { "[w", M.diagnostic_goto(false, "WARN"), desc = "Prev Warning" },
-      { "gm", M.format_range_operator, desc = "Format Range", mode = { "n", "v" } },
       { "<leader>cf", format, desc = "Format Document", has = "documentFormatting" },
       { "=", format, desc = "Format Document", has = "documentFormatting" },
       { "<leader>cf", format, desc = "Format Range", mode = "v", has = "documentRangeFormatting" },
@@ -85,19 +84,6 @@ function M.on_attach(client, buffer)
       vim.keymap.set(keys.mode or "n", keys[1], keys[2], opts)
     end
   end
-end
-
-function M.format_range_operator()
-  local old_func = vim.go.operatorfunc
-  _G.op_func_formatting = function()
-    local start = vim.api.nvim_buf_get_mark(0, "[")
-    local finish = vim.api.nvim_buf_get_mark(0, "]")
-    vim.lsp.buf.format({}, start, finish)
-    vim.go.operatorfunc = old_func
-    _G.op_func_formatting = nil
-  end
-  vim.go.operatorfunc = "v:lua.op_func_formatting"
-  vim.api.nvim_feedkeys("g@", "n", false)
 end
 
 function M.diagnostic_goto(next, severity)
