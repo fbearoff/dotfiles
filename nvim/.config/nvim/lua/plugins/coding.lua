@@ -29,7 +29,7 @@ return {
             i = { "@block.inner", "@conditional.inner", "@loop.inner" },
           }, {}),
           f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
-          c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
+          c = ai.gen_spec.treesitter({ a = "@call.outer", i = "@call.inner" }, {}),
           ["#"] = ai.gen_spec.treesitter({ a = "@number.inner", i = "@number.inner" }, {}),
           C = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }, {}),
         },
@@ -55,7 +55,7 @@ return {
         _ = "Underscore",
         a = "Argument",
         b = "Balanced ), ], }",
-        c = "Class",
+        c = "Call",
         f = "Function",
         ["#"] = "Number",
         C = "Comment",
@@ -121,39 +121,15 @@ return {
       },
       {
         mode = { "o", "x" },
-        "iE",
-        "<cmd>lua require('various-textobjs').mdFencedCodeBlock(true)<cr>",
-        desc = "MD Codeblock",
-      },
-      {
-        mode = { "o", "x" },
-        "aE",
-        "<cmd>lua require('various-textobjs').mdFencedCodeBlock(false)<cr>",
-        desc = "MD Codeblock",
-      },
-      {
-        mode = { "o", "x" },
         "E",
         "<cmd>lua require('various-textobjs').nearEoL()<cr>",
         desc = "Near EOL",
       },
       {
-        mode = { "o", "x" },
-        "ri",
-        "<cmd>lua require('various-textobjs').restOfIndentation()<cr>",
-        desc = "Rest of Indent",
-      },
-      {
-        mode = { "o", "x" },
-        "rp",
-        "<cmd>lua require('various-textobjs').restOfParagraph()<cr>",
-        desc = "Rest of Paragraph",
-      },
-      {
         mode = "o",
         "_",
         "<cmd>lua require('various-textobjs').lineCharacterwise()<cr>",
-        desc = "Line",
+        desc = "Line (CharWise)",
       },
       {
         mode = { "o", "x" },
@@ -204,7 +180,7 @@ return {
       },
     },
     opts = {
-      lookForwardLines = 500,
+      lookForwardLines = 100,
     },
   },
 

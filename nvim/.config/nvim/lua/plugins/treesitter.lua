@@ -79,6 +79,20 @@ return {
         end,
         desc = "Previous Comment",
       },
+      {
+        "]#",
+        function()
+          require("nvim-treesitter.textobjects.move").goto_next_start("@number.inner")
+        end,
+        desc = "Next Number",
+      },
+      {
+        "[#",
+        function()
+          require("nvim-treesitter.textobjects.move").goto_previous_start("@number.inner")
+        end,
+        desc = "Previous Number",
+      },
     },
     dependencies = {
       "HiPhish/nvim-ts-rainbow2",
