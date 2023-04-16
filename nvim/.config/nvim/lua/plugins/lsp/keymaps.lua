@@ -3,18 +3,21 @@ local M = {}
 M._keys = nil
 
 function M.get()
-  local format = require("plugins.lsp.format").format
+  local format = function()
+    require("plugins.plugins.lsp.format").format({ force = true })
+  end
   if not M._keys then
     M._keys = {
       { "<leader>cd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
       { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
       { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
-      { "<leader>dd", "<cmd>Telescope diagnostics<cr>", desc = "Telescope Diagnostics" },
+      { "<leader>dd", "<cmd>Telescope diagnostics<cr>", desc = "Document" },
+      { "<leader>dD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace" },
       { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition", has = "definition" },
       { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
       { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
       { "gI", "<cmd>Telescope lsp_implementations<cr>", desc = "Goto Implementation" },
-      { "gt", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definition" },
+      { "gT", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definition" },
       { "K", vim.lsp.buf.hover, desc = "Hover" },
       { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
       { "<M-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" },
@@ -48,8 +51,8 @@ function M.get()
       M._keys[#M._keys + 1] = {
         "<leader>cr",
         function()
-          require("inc_rename")
-          return ":IncRename " .. vim.fn.expand("<cword>")
+          local inc_rename = require("inc_rename")
+          return ":" .. inc_rename.config.cmd_name .. " " .. vim.fn.expand("<cword>")
         end,
         expr = true,
         desc = "Rename",

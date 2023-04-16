@@ -51,6 +51,24 @@ return {
       }),
       desc = "Goto Symbol",
     },
+    {
+      "<leader>sS",
+      Util.telescope("lsp_dynamic_workspace_symbols", {
+        symbols = {
+          "Class",
+          "Function",
+          "Method",
+          "Constructor",
+          "Interface",
+          "Module",
+          "Struct",
+          "Trait",
+          "Field",
+          "Property",
+        },
+      }),
+      desc = "Goto Symbol (Workspace)",
+    },
   },
   dependencies = {
     "nvim-telescope/telescope-symbols.nvim",

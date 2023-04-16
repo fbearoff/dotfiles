@@ -136,7 +136,7 @@ end
 keymap("n", "<leader>l", "<cmd>:Lazy<CR>", { desc = "Lazy" })
 
 -- StackOverflow Search
-keymap("n", "<leader>sS", function()
+keymap("n", "<leader>sO", function()
   require("util").so_input()
 end, { desc = "StackOverflow" })
 
