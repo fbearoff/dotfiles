@@ -59,6 +59,13 @@ return {
         desc = "Noice All",
       },
       {
+        "<leader>nd",
+        function()
+          require("noice").cmd("dismiss")
+        end,
+        desc = "Dismiss All",
+      },
+      {
         "<leader>nm",
         "<cmd>messages<cr>",
         desc = "Messages",
