@@ -1,5 +1,16 @@
 return {
   "jalvesaq/Nvim-R",
+  -- which key integration
+  dependencies = {
+    {
+      "folke/which-key.nvim",
+      opts = function(_, opts)
+        if require("util").has("Nvim-R") then
+          opts.defaults["<localleader>R"] = { name = "+R" }
+        end
+      end,
+    },
+  },
   ft = { "r", "rmd" },
   keys = {
     { "<leader><Space>", "<Plug>RDSendLine", desc = "which_key_ignore" },

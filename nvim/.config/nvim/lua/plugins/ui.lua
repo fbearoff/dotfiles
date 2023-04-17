@@ -28,6 +28,17 @@ return {
   {
     "folke/noice.nvim",
     event = "VeryLazy",
+    dependencies = {
+      -- which key integration
+      {
+        "folke/which-key.nvim",
+        opts = function(_, opts)
+          if require("util").has("noice.nvim") then
+            opts.defaults["<leader>n"] = { name = "+Noice" }
+          end
+        end,
+      },
+    },
     keys = {
       {
         "<S-Enter>",

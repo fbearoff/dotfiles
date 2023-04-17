@@ -50,8 +50,33 @@ return {
     "quarto-dev/quarto-nvim",
     dependencies = {
       "jmbuhr/otter.nvim",
+      -- which key integration
+      {
+        "folke/which-key.nvim",
+        opts = function(_, opts)
+          if require("util").has("quarto-nvim") then
+            opts.defaults["<localleader>q"] = { name = "+Quarto" }
+          end
+        end,
+      },
     },
     ft = "quarto",
+    keys = {
+      {
+        "<localleader>qp",
+        function()
+          require("quarto").quartoPreview()
+        end,
+        desc = "Quarto Preview",
+      },
+      {
+        "<localleader>qq",
+        function()
+          require("quarto").quartoClosePreview()
+        end,
+        desc = "Quarto Quit",
+      },
+    },
     opts = {
       lspFeatures = {
         enabled = true,
@@ -66,23 +91,26 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      require("quarto").setup(opts)
-      require("which-key").register({ ["<localleader>q"] = { name = "+Quarto" } })
-      vim.keymap.set("n", "<localleader>qp", function()
-        require("quarto").quartoPreview()
-      end, { desc = "Quarto Preview" })
-      vim.keymap.set("n", "<localleader>qq", function()
-        require("quarto").quartoClosePreview()
-      end, { desc = "Quarto Quit" })
-    end,
   },
 
   {
     "jakewvincent/mkdnflow.nvim",
-    ft = { "markdown", "qmd" },
+    -- which key integration
+    dependencies = {
+      {
+        "folke/which-key.nvim",
+        opts = function(_, opts)
+          if require("util").has("mkdnflow.nvim") then
+            opts.defaults["<localleader>mt"] = { name = "+Table" }
+          end
+        end,
+      },
+    },
+    ft = { "markdown", "quarto" },
     keys = {
       { mode = { "n", "x" }, "<localleader><CR>", desc = "MD Enter" },
+      { "<localleader>mP", '""p', desc = "Paste Heading Reference" },
+      { "<localleader>mtn", ":MkdnTable ", desc = "New Table (col row)" },
     },
     opts = {
       filetypes = {
@@ -128,14 +156,5 @@ return {
         MkdnUnfoldSection = { "n", "<localleader>mF" },
       },
     },
-    config = function(_, opts)
-      require("mkdnflow").setup(opts)
-      require("which-key").register({
-        ["<localleader>m"] = { mode = { "n", "v" }, name = "+Markdown" },
-        ["<localleader>mt"] = { name = "+Table" },
-      })
-      vim.keymap.set("n", "<localleader>mP", '""p', { desc = "Paste Heading Reference" })
-      vim.keymap.set("n", "<localleader>mtn", ":MkdnTable ", { desc = "New Table (col row)" })
-    end,
   },
 }

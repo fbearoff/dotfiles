@@ -15,11 +15,7 @@ return {
       window = { winblend = 5 },
       layout = { align = "center" },
       show_help = false,
-    },
-    config = function(_, opts)
-      local wk = require("which-key")
-      wk.setup(opts)
-      wk.register({
+      defaults = {
         ["g"] = { name = "+Goto" },
         ["]"] = { name = "+Next" },
         ["["] = { name = "+Prev" },
@@ -30,15 +26,16 @@ return {
         ["<leader>f"] = { name = "+Files" },
         ["<leader>g"] = { name = "+Git" },
         ["<leader>gh"] = { name = "+Hunks" },
-        ["<leader>n"] = { name = "+Noice" },
-        ["<leader>m"] = { name = "+Marks" },
         ["<leader>s"] = { name = "+Search" },
         ["<leader>t"] = { name = "+Terminal" },
         ["<leader>u"] = { name = "+UI" },
-        ["<localleader>R"] = { name = "+R" },
-        ["<localleader>t"] = { name = "+TODO Comments" },
-        ["<localleader>m"] = { name = "+Markdown" },
-      })
+        ["<localleader>m"] = { name = "+Markdown", mode = { "n", "v" } },
+      },
+    },
+    config = function(_, opts)
+      local wk = require("which-key")
+      wk.setup(opts)
+      wk.register(opts.defaults)
     end,
   },
 
@@ -80,6 +77,17 @@ return {
   -- todo comments
   {
     "folke/todo-comments.nvim",
+    -- which key integration
+    dependencies = {
+      {
+        "folke/which-key.nvim",
+        opts = function(_, opts)
+          if require("util").has("todo-comments.nvim") then
+            opts.defaults["<localleader>t"] = { name = "+TODO Comments" }
+          end
+        end,
+      },
+    },
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = { "BufReadPre", "BufNewFile" },
     opts = {
@@ -186,6 +194,16 @@ return {
   {
     "chentoast/marks.nvim",
     event = "BufReadPost",
+    dependencies = {
+      {
+        "folke/which-key.nvim",
+        opts = function(_, opts)
+          if require("util").has("marks.nvim") then
+            opts.defaults["<leader>m"] = { name = "+Marks" }
+          end
+        end,
+      },
+    },
     keys = {
       { "<leader>ms", "<Plug>(Marks-set)", desc = "Set" },
       { "<leader>mn", "<Plug>(Marks-setnext)", desc = "Set Next" },
