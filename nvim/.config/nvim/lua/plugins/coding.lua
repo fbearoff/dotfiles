@@ -179,9 +179,7 @@ return {
         desc = "Smart URL Opener",
       },
     },
-    opts = {
-      lookForwardLines = 100,
-    },
+    opts = {},
   },
 
   -- Show outline of document symbols

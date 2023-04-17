@@ -1,6 +1,44 @@
 return {
   "nvim-lua/plenary.nvim",
 
+  -- Easy terminal access
+  {
+    "akinsho/toggleterm.nvim",
+    keys = {
+      { [[<c-\>]], desc = "ToggleTerm" },
+      { "<leader>t-", "<cmd>ToggleTerm size=10 direction=horizontal<CR>", desc = "Horizontal" },
+      { "<leader>t\\", "<cmd>ToggleTerm size=80 direction=vertical<CR>", desc = "Vertical" },
+      { "<leader>ts", "<cmd>ToggleTermSendCurrentLine<CR>", desc = "Send Line" },
+      { mode = "x", "<leader>s", ":ToggleTermSendVisualLines<CR>", desc = "Send Lines to Terminal" },
+    },
+    cmd = { "ToggleTerm", "TermExec" },
+    opts = function()
+      function _G.set_terminal_keymaps()
+        local opts = { buffer = 0 }
+        vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
+        vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
+        vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
+        vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
+        vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
+      end
+
+      vim.api.nvim_create_autocmd({ "TermOpen" }, {
+        pattern = "term://*",
+        callback = set_terminal_keymaps,
+      })
+      return {
+        autochdir = true,
+        open_mapping = [[<c-\>]],
+        shading_factor = 2,
+        direction = "float",
+        float_opts = {
+          border = "curved",
+          winblend = 5,
+        },
+      }
+    end,
+  },
+
   -- Visualize startup time
   {
     "dstein64/vim-startuptime",

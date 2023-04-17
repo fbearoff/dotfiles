@@ -13,7 +13,7 @@ return {
       },
     },
     opts = {
-      timeout = 0,
+      timeout = 1000,
       render = "minimal",
       max_height = function()
         return math.floor(vim.o.lines * 0.75)
