@@ -172,3 +172,19 @@ keymap("n", "<leader>sH", vim.show_pos, { desc = "Highlight Groups" })
 
 -- View Code Tree
 keymap("n", "<leader>si", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
+
+-- Save current document with pandoc
+vim.api.nvim_create_user_command("Pandoc", function(args)
+  vim.cmd(
+    "!pandoc -i "
+      .. vim.fn.fnameescape(vim.fn.expand("%"))
+      .. " -o "
+      .. vim.fn.fnameescape(vim.fn.expand("%:r"))
+      .. "."
+      .. args.args
+  )
+end, {
+  nargs = 1,
+})
+keymap("n", "<leader>fp", "<cmd>Pandoc pdf<CR>", { desc = "Export PDF" })
+keymap("n", "<leader>fh", "<cmd>Pandoc html<CR>", { desc = "Export HTML" })
