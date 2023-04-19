@@ -30,7 +30,7 @@ return {
       },
       diagnostics = {
         virtual_text = {
-          source = "always",
+          source = "if_many",
           prefix = "■",
           severity = {
             min = vim.diagnostic.severity.ERROR,
@@ -41,13 +41,12 @@ return {
             min = vim.diagnostic.severity.HINT,
           },
         },
-        update_in_insert = false,
         severity_sort = true,
         float = {
           focusable = true,
           style = "minimal",
           border = "rounded",
-          source = "always",
+          source = "if_many",
           header = "",
           prefix = "",
         },

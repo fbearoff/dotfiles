@@ -66,6 +66,15 @@ return {
             PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
             PmenuSbar = { bg = theme.ui.bg_m1 },
             PmenuThumb = { bg = theme.ui.bg_p2 },
+
+            -- nvim-ts-rainbow2
+            TSRainbowRed = { fg = colors.palette.autumnRed },
+            TSRainbowYellow = { fg = colors.palette.carpYellow },
+            TSRainbowBlue = { fg = colors.palette.dragonBlue },
+            TSRainbowOrange = { fg = colors.palette.surimiOrange },
+            TSRainbowGreen = { fg = colors.palette.springGreen },
+            TSRainbowViolet = { fg = colors.palette.oniViolet },
+            TSRainbowCyan = { fg = colors.palette.waveAqua1 },
           }
         end,
         theme = "wave", -- Load "wave" theme when 'background' option is not set
