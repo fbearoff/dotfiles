@@ -26,7 +26,6 @@ return {
     { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
     { "<leader>mm", "<cmd>Telescope marks<cr>", desc = "Search Marks" },
     { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
-    { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Projects" },
     { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
     { "<leader>sr", "<cmd>Telescope registers<cr>", desc = "Registers" },
     { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
@@ -79,19 +78,25 @@ return {
     "debugloop/telescope-undo.nvim",
     {
       "ahmedkhalf/project.nvim",
-      config = function()
-        require("project_nvim").setup({
-          detection_methods = {
-            "lsp",
-            "pattern",
-          },
-          patterns = {
-            ".git",
-            "Makefile",
-            "package.json",
-            "DESCRIPTION",
-          },
-        })
+      event = "VeryLazy",
+      keys = {
+        { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Projects" },
+      },
+      opts = {
+        detection_methods = {
+          "lsp",
+          "pattern",
+        },
+        patterns = {
+          ".git",
+          "Makefile",
+          "package.json",
+          "DESCRIPTION",
+        },
+      },
+      config = function(_, opts)
+        require("project_nvim").setup(opts)
+        require("telescope").load_extension("projects")
       end,
     },
   },
@@ -215,7 +220,6 @@ return {
     -- load extensions
     telescope.load_extension("fzf")
     telescope.load_extension("undo")
-    telescope.load_extension("projects")
     telescope.load_extension("luasnip")
     telescope.load_extension("bibtex")
     telescope.load_extension("heading")
