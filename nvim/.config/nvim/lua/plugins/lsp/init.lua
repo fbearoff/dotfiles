@@ -200,15 +200,8 @@ return {
           nls.builtins.formatting.deno_fmt,
           nls.builtins.formatting.stylua,
           nls.builtins.diagnostics.proselint,
+          nls.builtins.code_actions.ts_node_action,
         },
-        nls.register({
-          name = "more_actions",
-          method = { nls.methods.CODE_ACTION },
-          filetypes = { "_all" },
-          generator = {
-            fn = require("ts-node-action").available_actions,
-          },
-        }),
       }
     end,
   },

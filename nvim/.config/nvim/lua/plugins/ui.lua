@@ -265,6 +265,7 @@ return {
       lsp = {
         auto_attach = true,
       },
+      click = true,
     },
   },
 
