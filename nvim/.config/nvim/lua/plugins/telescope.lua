@@ -2,7 +2,6 @@ local Util = require("util")
 
 return {
   "nvim-telescope/telescope.nvim",
-  event = "VeryLazy",
   keys = {
     { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Search Buffer" },
     { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },

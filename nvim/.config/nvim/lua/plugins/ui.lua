@@ -302,6 +302,7 @@ return {
               name = { "Git*" },
               maxwidth = 1,
               auto = true,
+              wrap = true,
             },
             click = "v:lua.ScSa",
           },
