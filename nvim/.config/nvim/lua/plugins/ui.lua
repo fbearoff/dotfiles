@@ -257,7 +257,6 @@ return {
   {
     "SmiteshP/nvim-navic",
     opts = {
-      separator = " ",
       highlight = true,
       depth_limit = 5,
       icons = require("config.icons").kinds,
@@ -265,7 +264,6 @@ return {
       lsp = {
         auto_attach = true,
       },
-      click = true,
     },
   },
 

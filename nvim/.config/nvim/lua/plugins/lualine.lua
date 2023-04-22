@@ -105,12 +105,12 @@ return {
         vim.cmd("GrapplePopup tags")
       end,
     }
-
     local navic = {
-      function()
-        return require("nvim-navic").get_location()
-      end,
-      cond = require("nvim-navic").is_available,
+      "navic",
+      navic_opts = {
+        click = true,
+      },
+      color_correction = "dynamic",
       padding = { left = 1, right = 0 },
     }
 
