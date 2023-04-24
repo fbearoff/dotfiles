@@ -73,3 +73,5 @@ export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export GOPATH="$XDG_DATA_HOME"/go
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export ANSIBLE_HOME="$XDG_CACHE_HOME"/ansible
+export XCURSOR_PATH=/usr/share/icons:$XDG_DATA_HOME/icons
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
