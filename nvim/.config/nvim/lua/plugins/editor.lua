@@ -856,7 +856,10 @@ return {
     "echasnovski/mini.move",
     event = "BufReadPre",
     keys = {
-      { mode = { "n", "x" }, "<M-h>", "<M-j>", "<M-k>", "<M-l>" },
+      { "<M-h>", mode = { "n", "x" } },
+      { "<M-j>", mode = { "n", "x" } },
+      { "<M-k>", mode = { "n", "x" } },
+      { "<M-l>", mode = { "n", "x" } },
     },
     config = function()
       require("mini.move").setup()
