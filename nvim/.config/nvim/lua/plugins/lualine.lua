@@ -110,7 +110,7 @@ return {
       navic_opts = {
         click = true,
       },
-      color_correction = "dynamic",
+      color_correction = "static",
       padding = { left = 1, right = 0 },
     }
 

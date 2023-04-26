@@ -445,7 +445,9 @@ return {
   -- Code minimap
   {
     "gorbit99/codewindow.nvim",
-    opts = {},
+    opts = {
+      relative = "editor",
+    },
     keys = {
       {
         "<leader>cm",
