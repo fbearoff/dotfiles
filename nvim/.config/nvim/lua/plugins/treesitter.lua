@@ -129,6 +129,7 @@ return {
   -- Highlight defined TS nodes
   {
     "atusy/tsnode-marker.nvim",
+    enabled = false,
     init = function()
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("tsnode-marker-markdown", {}),
@@ -141,5 +142,14 @@ return {
         end,
       })
     end,
+  },
+
+  {
+    "yaocccc/nvim-hl-mdcodeblock.lua",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    ft = "markdown",
+    opts = {
+      hl_group = "CursorLine",
+    },
   },
 }
