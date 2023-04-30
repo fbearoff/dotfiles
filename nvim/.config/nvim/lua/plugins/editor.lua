@@ -182,6 +182,7 @@ return {
         map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
         map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
         map("n", "<leader>ghp", gs.preview_hunk, "Preview Hunk")
+        map("n", "<leader>ghP", gs.preview_hunk_inline, "Preview Hunk Inline")
         map("n", "<leader>ghb", function()
           gs.blame_line({ full = true })
         end, "Blame Line")
@@ -212,6 +213,7 @@ return {
       { "<leader>mj", "<Plug>(Marks-next)", desc = "Next" },
       { "<leader>mk", "<Plug>(Marks-prev)", desc = "Previous" },
       { "<leader>mp", "<Plug>(Marks-preview)", desc = "Preview" },
+      { "<leader>mt", "<cmd>MarksToggleSigns<cr>", desc = "Toggle Signs" },
     },
     opts = {
       default_mappings = false,
