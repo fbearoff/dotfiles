@@ -323,6 +323,7 @@ return {
             sign = {
               name = { "Marks*" },
               maxwidth = 1,
+              auto = true,
             },
             condition = {
               function(args)
@@ -355,6 +356,14 @@ return {
             },
             click = "v:lua.ScSa",
             condition = { true },
+          },
+          -- All other signs
+          {
+            sign = {
+              name = { ".*" },
+              maxwidth = 1,
+              auto = true,
+            },
           },
         },
       }
@@ -415,8 +424,10 @@ return {
     keys = {
       { "<M-,>", "<cmd>BufferPrevious<CR>", desc = "Previous Buffer" },
       { "<M-.>", "<cmd>BufferNext<CR>", desc = "Next Buffer" },
-      { "]b", "<cmd>bnext<CR>", desc = "Next Buffer" },
-      { "[b", "<cmd>bprevious<CR>", desc = "Previous Buffer" },
+      { "]b", "<cmd>BufferNextCR>", desc = "Next Buffer" },
+      { "[b", "<cmd>BufferPrevious<CR>", desc = "Previous Buffer" },
+      { "]B", "<cmd>BufferLast<CR>", desc = "Last Buffer" },
+      { "[B", "<cmd>BufferFirst<CR>", desc = "First Buffer" },
       { "<leader>bc", "<cmd>BufferClose!<CR>", desc = "Close Buffer" },
       { "<leader>be", "<cmd>BufferCloseAllButCurrent<CR>", desc = "Close All But Current Buffer" },
       { "<M-<>", "<cmd>BufferMovePrevious<CR>", desc = "Move Buffer Left" },

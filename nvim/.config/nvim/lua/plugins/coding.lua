@@ -210,4 +210,59 @@ return {
     },
     keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
   },
+
+  {
+    "jackMort/ChatGPT.nvim",
+    cmd = {
+      "ChatGPT",
+      "ChatGPTActAs",
+      "ChatGPTEditWithInstructions",
+      "ChatGPTRun",
+    },
+    keys = {
+      {
+        mode = { "n", "x" },
+        "<leader>ae",
+        function()
+          require("chatgpt").edit_with_instructions()
+        end,
+        desc = "ChatGTP Edit",
+      },
+      { mode = { "n", "x" }, "<leader>ar", ":ChatGPTRun ", desc = "ChatGTP Run" },
+      {
+        "<leader>aa",
+        function()
+          require("chatgpt").selectAwesomePrompt()
+        end,
+        desc = "ChatGTP Act As",
+      },
+      {
+        "<leader>ac",
+        function()
+          require("chatgpt").openChat()
+        end,
+        desc = "ChatGTP Prompt",
+      },
+    },
+    opts = {
+      edit_with_instructions = {
+        keymaps = {
+          accept = "<C-cr>",
+          use_output_as_input = "<S-cr>",
+        },
+      },
+      popup_layout = {
+        size = {
+          height = "50%",
+          width = "50%",
+        },
+      },
+      popup_window = {
+        filetype = "markdown",
+      },
+      popup_input = {
+        submit = "<cr>",
+      },
+    },
+  },
 }
