@@ -29,6 +29,7 @@ return {
         ["<leader>s"] = { name = "+Search" },
         ["<leader>t"] = { name = "+Terminal" },
         ["<leader>u"] = { name = "+UI" },
+        ["<leader>a"] = { name = "+AI" },
         ["<localleader>m"] = { name = "+Markdown", mode = { "n", "v" } },
       },
     },

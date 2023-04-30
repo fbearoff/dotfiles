@@ -424,7 +424,7 @@ return {
     keys = {
       { "<M-,>", "<cmd>BufferPrevious<CR>", desc = "Previous Buffer" },
       { "<M-.>", "<cmd>BufferNext<CR>", desc = "Next Buffer" },
-      { "]b", "<cmd>BufferNextCR>", desc = "Next Buffer" },
+      { "]b", "<cmd>BufferNext<CR>", desc = "Next Buffer" },
       { "[b", "<cmd>BufferPrevious<CR>", desc = "Previous Buffer" },
       { "]B", "<cmd>BufferLast<CR>", desc = "Last Buffer" },
       { "[B", "<cmd>BufferFirst<CR>", desc = "First Buffer" },
