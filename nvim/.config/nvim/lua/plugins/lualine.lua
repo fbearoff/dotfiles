@@ -56,6 +56,9 @@ return {
         readonly = "[-]",
         unnamed = "[No Name]",
       },
+      on_click = function()
+        print("cwd:" .. vim.loop.cwd())
+      end,
     }
 
     -- Lsp server name .

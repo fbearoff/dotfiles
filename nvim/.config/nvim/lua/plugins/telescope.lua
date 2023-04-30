@@ -84,8 +84,8 @@ return {
       },
       opts = {
         detection_methods = {
-          "lsp",
           "pattern",
+          "lsp",
         },
         patterns = {
           ".git",
