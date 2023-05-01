@@ -32,6 +32,7 @@ return {
           c = ai.gen_spec.treesitter({ a = "@call.outer", i = "@call.inner" }, {}),
           ["#"] = ai.gen_spec.treesitter({ a = "@number.inner", i = "@number.inner" }, {}),
           C = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }, {}),
+          P = ai.gen_spec.treesitter({ a = "@pipe.outer", i = "@pipe.inner" }, {}),
         },
       }
     end,
@@ -62,6 +63,7 @@ return {
         o = "Block, conditional, loop",
         q = "Quote `, \", '",
         t = "Tag",
+        P = "Pipe",
       }
       local a = vim.deepcopy(i)
       for k, v in pairs(a) do

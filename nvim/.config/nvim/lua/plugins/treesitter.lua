@@ -67,8 +67,12 @@ return {
     },
     dependencies = {
       "HiPhish/nvim-ts-rainbow2",
+      "nvim-treesitter/playground",
     },
     opts = {
+      playground = {
+        enable = true,
+      },
       highlight = { enable = true },
       indent = { enable = true },
       context_commentstring = { enable = true, enable_autocmd = false },
