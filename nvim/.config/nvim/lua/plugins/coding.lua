@@ -4,10 +4,24 @@ return {
   {
     "Wansmer/treesj",
     keys = {
-      { "<leader>J", "<cmd>TSJJoin<CR>", desc = "Join Line" },
-      { "<leader>S", "<cmd>TSJSplit<CR>", desc = "Split Line" },
+      {
+        mode = { "n", "x" },
+        "gj",
+        function()
+          require("treesj").join()
+        end,
+        desc = "Join Line",
+      },
+      {
+        mode = { "n", "x" },
+        "gk",
+        function()
+          require("treesj").split()
+        end,
+        desc = "Split Line",
+      },
     },
-    cmd = { "TSJSplit", "TSJJoin" },
+    cmd = { "TSJSplit", "TSJJoin", "TSJToggle" },
     opts = {
       use_default_keymaps = false,
       max_join_length = 150,
@@ -257,10 +271,7 @@ return {
         },
       },
       popup_layout = {
-        size = {
-          height = "50%",
-          width = "50%",
-        },
+        default = "right",
       },
       popup_window = {
         filetype = "markdown",
