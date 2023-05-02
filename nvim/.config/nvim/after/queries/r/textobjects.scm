@@ -1,8 +1,10 @@
 ; extends
 ;native pipe
-(pipe
-  left: (_)
-  right: (_) @pipe.inner)
+((pipe
+    left: (_)
+    "|>" @_start
+    right: (_) @pipe.inner)
+(#make-range! "pipe.outer" @_start @pipe.inner))
 
 ; magrittr pipe
 ((binary

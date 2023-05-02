@@ -27,12 +27,15 @@ return {
           o = ai.gen_spec.treesitter({
             a = { "@block.outer", "@conditional.outer", "@loop.outer" },
             i = { "@block.inner", "@conditional.inner", "@loop.inner" },
-          }, {}),
-          f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }, {}),
-          c = ai.gen_spec.treesitter({ a = "@call.outer", i = "@call.inner" }, {}),
-          ["#"] = ai.gen_spec.treesitter({ a = "@number.inner", i = "@number.inner" }, {}),
-          C = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }, {}),
-          P = ai.gen_spec.treesitter({ a = "@pipe.outer", i = "@pipe.inner" }, {}),
+          }),
+          f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
+          c = ai.gen_spec.treesitter({ a = "@call.outer", i = "@call.inner" }),
+          ["#"] = ai.gen_spec.treesitter({ a = "@number.inner", i = "@number.inner" }),
+          C = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }),
+          ["|"] = ai.gen_spec.treesitter({
+            a = { "@pipe.outer", "@command.outer" },
+            i = { "@pipe.inner", "@command.inner" },
+          }),
         },
       }
     end,
@@ -63,7 +66,7 @@ return {
         o = "Block, conditional, loop",
         q = "Quote `, \", '",
         t = "Tag",
-        P = "Pipe",
+        ["|"] = "Pipe, Command",
       }
       local a = vim.deepcopy(i)
       for k, v in pairs(a) do
