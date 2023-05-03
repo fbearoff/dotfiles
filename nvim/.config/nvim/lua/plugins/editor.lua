@@ -377,6 +377,7 @@ return {
         leap.opts[k] = v
       end
       leap.add_default_mappings(true)
+      leap.opts.highlight_unlabeled_phase_one_targets = true
       vim.keymap.del({ "x", "o" }, "x")
       vim.keymap.del({ "x", "o" }, "X")
     end,
@@ -400,7 +401,7 @@ return {
         "ggandor/leap-spooky.nvim",
         event = "VeryLazy",
         opts = {
-          paste_on_remote_yank = true,
+          paste_on_remote_yank = false,
         },
       },
     },
