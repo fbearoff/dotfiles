@@ -38,6 +38,7 @@ return {
       return {
         n_lines = 100,
         custom_textobjects = {
+          r = ai.gen_spec.argument(),
           o = ai.gen_spec.treesitter({
             a = { "@block.outer", "@conditional.outer", "@loop.outer" },
             i = { "@block.inner", "@conditional.inner", "@loop.inner" },
@@ -50,10 +51,8 @@ return {
             a = { "@pipe.outer", "@command.outer" },
             i = { "@pipe.inner", "@command.inner" },
           }),
-          A = ai.gen_spec.treesitter({
-            a = { "@assignment.outer", "@assignment.lhs" },
-            i = { "@assignment.inner", "@assignment.rhs" },
-          }),
+          a = ai.gen_spec.treesitter({ a = "@assignment.outer", i = "@assignment.inner" }),
+          A = ai.gen_spec.treesitter({ a = "@assignment.lhs", i = "@assignment.rhs" }),
         },
       }
     end,
@@ -75,8 +74,9 @@ return {
         ["{"] = "Balanced {",
         ["?"] = "User Prompt",
         _ = "Underscore",
-        a = "Argument",
-        A = "Assignment",
+        r = "Argument",
+        a = "Assignment",
+        A = "Assignment LHS, RHS",
         b = "Balanced ), ], }",
         c = "Call",
         f = "Function",
@@ -96,9 +96,9 @@ return {
       local ac = vim.deepcopy(a)
       for key, name in pairs({ n = "Next", l = "Last" }) do
         ---@diagnostic disable-next-line: assign-type-mismatch
-        i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " textobject" }, ic)
+        i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " Textobject" }, ic)
         ---@diagnostic disable-next-line: assign-type-mismatch
-        a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " textobject" }, ac)
+        a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " Textobject" }, ac)
       end
       require("which-key").register({
         mode = { "o", "x" },

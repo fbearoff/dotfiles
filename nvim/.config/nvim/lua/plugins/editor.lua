@@ -397,13 +397,6 @@ return {
         },
       },
       "ggandor/leap-ast.nvim",
-      {
-        "ggandor/leap-spooky.nvim",
-        event = "VeryLazy",
-        opts = {
-          paste_on_remote_yank = false,
-        },
-      },
     },
   },
 

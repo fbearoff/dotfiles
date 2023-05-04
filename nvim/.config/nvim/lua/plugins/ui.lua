@@ -292,7 +292,6 @@ return {
       local builtin = require("statuscol.builtin")
       return {
         relculright = true,
-        ft_ignore = { "query" },
         bt_ignore = { "terminal", "nofile" },
         segments = {
           -- GitSigns
