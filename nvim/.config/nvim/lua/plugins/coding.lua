@@ -50,6 +50,10 @@ return {
             a = { "@pipe.outer", "@command.outer" },
             i = { "@pipe.inner", "@command.inner" },
           }),
+          A = ai.gen_spec.treesitter({
+            a = { "@assignment.outer", "@assignment.lhs" },
+            i = { "@assignment.inner", "@assignment.rhs" },
+          }),
         },
       }
     end,
@@ -72,6 +76,7 @@ return {
         ["?"] = "User Prompt",
         _ = "Underscore",
         a = "Argument",
+        A = "Assignment",
         b = "Balanced ), ], }",
         c = "Call",
         f = "Function",
