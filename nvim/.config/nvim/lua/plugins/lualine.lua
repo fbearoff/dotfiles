@@ -84,16 +84,9 @@ return {
       end,
     }
 
-    local macro_record = {
-      function()
-        return require("recorder").recordingStatus()
-      end,
-      color = { fg = colors.theme.syn.constant },
-    }
-
     local macro = {
       function()
-        return require("recorder").displaySlots()
+        return require("NeoComposer.ui").status_recording()
       end,
     }
 
@@ -165,7 +158,7 @@ return {
         lualine_a = { "mode" },
         lualine_b = { "branch", diff },
         lualine_c = { diagnostics, lightbulb, grapple, filename, navic },
-        lualine_x = { macro_record, escape_status, lsp_server, macro, "fileformat", "encoding", filetype },
+        lualine_x = { escape_status, macro, lsp_server, "fileformat", "encoding", filetype },
         lualine_y = { location },
         lualine_z = { "searchcount", lazy },
       },

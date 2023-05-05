@@ -225,8 +225,27 @@ return {
 
   -- Macro recording
   {
-    "chrisgrieser/nvim-recorder",
-    opts = {},
+    "ecthelionvi/NeoComposer.nvim",
+    opts = function()
+      local colors = require("kanagawa.colors").setup()
+      return {
+        colors = {
+          bg = colors.theme.ui.bg_p1,
+          fg = "#ff9e64",
+          red = "#ec5f67",
+          blue = "#5fb3b3",
+          green = "#99c794",
+        },
+        keymaps = {
+          cycle_next = "<m-n>",
+          cycle_prev = "<m-p>",
+        },
+      }
+    end,
+    config = function(_, opts)
+      require("NeoComposer").setup(opts)
+      require("telescope").load_extension("macros")
+    end,
   },
 
   -- Additional Word Definitions
