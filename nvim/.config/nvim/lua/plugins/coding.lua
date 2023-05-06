@@ -206,16 +206,6 @@ return {
     opts = {},
   },
 
-  -- Show outline of document symbols
-  {
-    "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
-    init = function()
-      vim.keymap.set("n", "<leader>cs", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
-    end,
-    opts = {},
-  },
-
   -- Dim everything button current context
   { "folke/twilight.nvim" },
 

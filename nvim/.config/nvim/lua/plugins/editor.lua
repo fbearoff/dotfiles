@@ -448,23 +448,6 @@ return {
     end,
   },
 
-  -- Code minimap
-  {
-    "gorbit99/codewindow.nvim",
-    opts = {
-      relative = "editor",
-    },
-    keys = {
-      {
-        "<leader>cm",
-        function()
-          require("codewindow").toggle_minimap()
-        end,
-        desc = "Toggle Minimap",
-      },
-    },
-  },
-
   -- Better increment/decrement
   {
     "monaqa/dial.nvim",

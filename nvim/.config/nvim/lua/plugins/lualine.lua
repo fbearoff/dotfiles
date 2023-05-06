@@ -164,7 +164,6 @@ return {
       },
       extensions = {
         "nvim-tree",
-        "symbols-outline",
         "toggleterm",
         "trouble",
         "lazy",

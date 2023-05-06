@@ -164,8 +164,8 @@ return {
       end,
     },
     opts = function()
-      require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snips/vscode" } })
-      require("luasnip.loaders.from_lua").lazy_load({ paths = { "./lua/snippets" } })
+      require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snips/vscode" } })
+      require("luasnip.loaders.from_lua").lazy_load({ paths = { vim.fn.stdpath("config") .. "/lua/snippets" } })
       return {
         history = true,
         update_events = "InsertLeave",
