@@ -99,7 +99,6 @@ return {
         multiline = false,
       },
     },
-    --
     keys = {
       {
         "]t",
@@ -380,14 +379,6 @@ return {
         end,
         desc = "Leap in Window",
       },
-      {
-        mode = { "n", "x", "o" },
-        "<M-a>",
-        function()
-          require("leap-ast").leap()
-        end,
-        desc = "Leap Node",
-      },
     },
     config = function(_, opts)
       vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
@@ -415,7 +406,6 @@ return {
           multiline = false,
         },
       },
-      "ggandor/leap-ast.nvim",
     },
   },
 
@@ -621,6 +611,8 @@ return {
   {
     "gbprod/substitute.nvim",
     keys = {
+      { "<m-r>", "r", desc = "Replace" },
+      { "<m-R>", "R", desc = "Replace Mode" },
       {
         "r",
         function()

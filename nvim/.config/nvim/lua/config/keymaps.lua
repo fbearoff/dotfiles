@@ -73,14 +73,6 @@ keymap("v", ">", ">gv^", { desc = "Shift Selection Right" })
 -- Better paste
 keymap("v", "p", '"_dP', { desc = "Paste Over Selection" })
 
--- Open link under cursor
-keymap(
-  "",
-  "gx",
-  '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>',
-  { desc = "Open Link Under Cursor" }
-)
-
 -- Send deletions to blackhole register
 for _, lhs in ipairs({ "c", "C", "d", "D", "x", "X" }) do
   keymap({ "n", "x" }, lhs, '"_' .. lhs, { desc = "which_key_ignore" })
@@ -92,7 +84,7 @@ local cut_key = "m"
 keymap({ "n", "x" }, cut_key, "d", { desc = "Cut Operator" })
 keymap("n", cut_key .. cut_key, "dd", { desc = "Cut Line" })
 keymap("n", string.upper(cut_key), "D", { desc = "Cut To EOL" })
---
+
 -- Clear search with <esc>
 keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear Hlsearch" })
 
