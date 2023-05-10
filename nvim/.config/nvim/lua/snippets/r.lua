@@ -20,5 +20,13 @@ ls.add_snippets(nil, {
     }, {
       t({ "<- " }),
     }),
+    s({
+      trig = ">i",
+      namr = "in_operator",
+      dscr = "%in% Operator",
+      snippetType = "autosnippet",
+    }, {
+      t({ "%in% " }),
+    }),
   },
 })
