@@ -78,12 +78,10 @@ end
 
 local todo_snippet_specs = {
   { { trig = "todo" }, "TODO" },
-  -- { { trig = "cite" }, { "CITE", "PMID" } },
   { { trig = "fix" }, { "FIX", "BUG", "ISSUE" } },
   { { trig = "warn" }, { "WARN", "WARNING" } },
   { { trig = "note" }, { "NOTE", "INFO" } },
   { { trig = "todob" }, "TODO", { ctype = 2 } },
-  -- { { trig = "citeb" }, { "CITE", "PMID" }, { ctype = 2 } },
   { { trig = "fixb" }, { "FIX", "BUG", "ISSUE" }, { ctype = 2 } },
   { { trig = "warnb" }, { "WARN", "WARNING" }, { ctype = 2 } },
   { { trig = "noteb" }, { "NOTE", "INFO" }, { ctype = 2 } },

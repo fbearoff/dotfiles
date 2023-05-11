@@ -1,12 +1,14 @@
 local ls = require("luasnip")
 local s = ls.snippet
 local t = ls.text_node
+local c = ls.choice_node
+local i = ls.insert_node
 
 ls.add_snippets(nil, {
   r = {
     s({
       trig = ">>",
-      namr = "pipe",
+      name = "mpipe",
       dscr = "Magrittr Pipe (%>%)",
       snippetType = "autosnippet",
     }, {
@@ -14,7 +16,7 @@ ls.add_snippets(nil, {
     }),
     s({
       trig = "<<",
-      namr = "l_assign",
+      name = "l_assign",
       dscr = "Left Assign (<-)",
       snippetType = "autosnippet",
     }, {
@@ -22,11 +24,26 @@ ls.add_snippets(nil, {
     }),
     s({
       trig = ">i",
-      namr = "in_operator",
+      name = "in_operator",
       dscr = "%in% Operator",
       snippetType = "autosnippet",
     }, {
       t({ "%in% " }),
+    }),
+    s({
+      trig = "pipe",
+      name = "pipe_sel",
+      dscr = "Pipe Selector",
+      snippetType = "snippet",
+    }, {
+      c(1, {
+        t("%>% "),
+        t("|> "),
+        t("%<>% "),
+        t("%T>% "),
+        t("%$% "),
+      }),
+      i(0),
     }),
   },
 })

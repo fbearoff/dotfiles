@@ -12,7 +12,7 @@ ls.add_snippets(nil, {
   markdown = {
     s({
       trig = "meta",
-      namr = "Metadata",
+      name = "Metadata",
       dscr = "Yaml metadata format for markdown",
     }, {
       t({ "---", "title: " }),
@@ -32,7 +32,7 @@ ls.add_snippets(nil, {
     }),
     s({
       trig = "link2",
-      namr = "markdown_link",
+      name = "markdown_link",
       dscr = "Create markdown link [txt](url)",
     }, {
       t("["),
@@ -46,7 +46,7 @@ ls.add_snippets(nil, {
     }),
     s({
       trig = "codewrap",
-      namr = "markdown_code_wrap",
+      name = "markdown_code_wrap",
       dscr = "Create markdown code block from existing text",
     }, {
       t("``` "),
