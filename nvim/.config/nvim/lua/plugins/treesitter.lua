@@ -21,6 +21,13 @@ return {
     event = "BufReadPre",
     keys = {
       { "<leader>uT", "<cmd>TSContextToggle<cr>", desc = "Toggle TS Context" },
+      {
+        "gC",
+        function()
+          require("treesitter-context").go_to_context()
+        end,
+        desc = "Goto Context",
+      },
     },
     opts = {
       max_lines = 2,

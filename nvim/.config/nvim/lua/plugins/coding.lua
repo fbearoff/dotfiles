@@ -57,6 +57,19 @@ return {
           a = ai.gen_spec.treesitter({ a = "@assignment.outer", i = "@assignment.inner" }, {}),
           R = ai.gen_spec.treesitter({ a = "@return.outer", i = "@return.inner" }, {}),
           A = ai.gen_spec.treesitter({ a = "@assignment.lhs", i = "@assignment.rhs" }, {}),
+          -- Whole buffer
+          g = function(ai_type)
+            local n_lines = vim.fn.line("$")
+            local start_line, end_line = 1, n_lines
+            if ai_type == "i" then
+              local first_nonblank, last_nonblank = vim.fn.nextnonblank(1), vim.fn.prevnonblank(n_lines)
+              start_line = first_nonblank == 0 and 1 or first_nonblank
+              end_line = last_nonblank == 0 and n_lines or last_nonblank
+            end
+
+            local to_col = math.max(vim.fn.getline(end_line):len(), 1)
+            return { from = { line = start_line, col = 1 }, to = { line = end_line, col = to_col } }
+          end,
         },
       }
     end,
@@ -89,6 +102,7 @@ return {
         q = "Quote `, \", '",
         t = "Tag",
         ["|"] = "Pipe, Command",
+        g = "Entire Buffer",
       }
       local a = vim.deepcopy(i)
       for k, v in pairs(a) do
@@ -133,12 +147,6 @@ return {
         "iS",
         "<cmd>lua require('various-textobjs').subword(true)<cr>",
         desc = "Subword",
-      },
-      {
-        mode = { "x", "o" },
-        "gG",
-        "<cmd>lua require('various-textobjs').entireBuffer()<cr>",
-        desc = "Entire Buffer",
       },
       {
         mode = "o",
