@@ -388,9 +388,9 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       symbol = "│",
-      options = { try_as_border = false },
+      options = { try_as_border = true },
     },
-    config = function(_, opts)
+    init = function()
       vim.api.nvim_create_autocmd("FileType", {
         pattern = {
           "help",
@@ -412,7 +412,6 @@ return {
           vim.b.miniindentscope_disable = true
         end,
       })
-      require("mini.indentscope").setup(opts)
     end,
   },
 
@@ -450,9 +449,6 @@ return {
       tabpages = false,
       icons = {
         buffer_index = true,
-        diagnostics = {
-          [vim.diagnostic.severity.ERROR] = { enabled = true, icon = " " },
-        },
       },
       highlight_visible = false,
       maximum_padding = 1,

@@ -854,9 +854,7 @@ return {
       { "<M-k>", mode = { "n", "x" } },
       { "<M-l>", mode = { "n", "x" } },
     },
-    config = function()
-      require("mini.move").setup()
-    end,
+    opts = {},
   },
 
   -- Folding
