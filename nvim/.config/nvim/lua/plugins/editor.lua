@@ -306,16 +306,6 @@ return {
     },
   },
 
-  -- Jumplist popup UI
-  {
-    "cbochs/portal.nvim",
-    cmd = "Portal",
-    keys = {
-      { "<leader>o", "<cmd>Portal jumplist backward<cr>", desc = "Jump Backward" },
-      { "<leader>i", "<cmd>Portal jumplist forward<cr>", desc = "Jump Forward" },
-    },
-  },
-
   -- Show color of color values
   {
     "NvChad/nvim-colorizer.lua",
@@ -576,9 +566,7 @@ return {
     },
     opts = {
       highlight = {
-        on_put = false,
-        on_yank = false,
-        timer = 150,
+        timer = 200,
       },
       preserve_cursor_position = {
         enabled = true,
