@@ -30,7 +30,6 @@ return {
       { "<leader>fR", Util.telescope("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent (CWD)" },
       { "<leader>sr", "<cmd>Telescope registers<cr>", desc = "Registers" },
       { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
-      { "<leader>sl", "<cmd>Telescope luasnip<cr>", desc = "Luasnips" },
       {
         "<leader>ss",
         Util.telescope("lsp_document_symbols", {
@@ -69,8 +68,6 @@ return {
       },
     },
     dependencies = {
-      "nvim-telescope/telescope-symbols.nvim",
-      "benfowler/telescope-luasnip.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       "debugloop/telescope-undo.nvim",
       {
@@ -97,7 +94,7 @@ return {
         end,
       },
     },
-    config = function()
+    opts = function()
       -- Don't preview binaries
       local previewers = require("telescope.previewers")
       local Job = require("plenary.job")
@@ -125,15 +122,11 @@ return {
       local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
       table.insert(vimgrep_arguments, { "--hidden", "--glob", "!**/.git/*" })
 
-      local telescope = require("telescope")
       local undo = require("telescope-undo.actions")
-
-      telescope.setup({
+      return {
         extensions = {
           file_browser = {
             theme = "ivy",
-            -- disables netrw and use telescope-file-browser in its place
-            hijack_netrw = true,
           },
           undo = {
             layout_strategy = "horizontal",
@@ -218,11 +211,12 @@ return {
             },
           },
         },
-      })
-      -- load extensions
-      telescope.load_extension("fzf")
-      telescope.load_extension("undo")
-      telescope.load_extension("luasnip")
+      }
+    end,
+    config = function(_, opts)
+      require("telescope").setup(opts)
+      require("telescope").load_extension("fzf")
+      require("telescope").load_extension("undo")
     end,
   },
 
@@ -255,5 +249,24 @@ return {
     config = function()
       require("telescope").load_extension("bibtex")
     end,
+  },
+
+  -- search snippets
+  {
+    "benfowler/telescope-luasnip.nvim",
+    keys = {
+      { "<leader>sl", "<cmd>Telescope luasnip<cr>", desc = "Luasnips" },
+    },
+    config = function()
+      require("telescope").load_extension("luasnip")
+    end,
+  },
+
+  -- search emojis
+  {
+    "nvim-telescope/telescope-symbols.nvim",
+    keys = {
+      { "<leader>se", "<cmd>Telescope symbols<cr>", desc = "Emoji" },
+    },
   },
 }
