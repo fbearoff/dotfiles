@@ -217,7 +217,6 @@ return {
     },
     opts = {
       default_mappings = false,
-      builtin_marks = { ".", "<", ">", "^", "`", "[", "]" },
       excluded_filetypes = { "lspinfo", "toggleterm" },
     },
   },
@@ -403,7 +402,7 @@ return {
         end,
         opts = {
           labeled_modes = "nxo",
-          multiline = false,
+          multiline = true,
         },
       },
     },
