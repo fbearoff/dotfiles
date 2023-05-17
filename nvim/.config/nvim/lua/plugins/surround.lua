@@ -5,7 +5,7 @@ return {
     { "gzaa", "<Plug>(nvim-surround-normal-cur)", desc = "Add Current Line" },
     { "gzA", "<Plug>(nvim-surround-normal-cur-line)", desc = "Add Around Current Line" },
     { "gzd", "<Plug>(nvim-surround-delete)", desc = "Delete" },
-    { "gzc", "<Plug>(nvim-surround-delete)", desc = "Change" },
+    { "gzc", "<Plug>(nvim-surround-change)", desc = "Change" },
     { mode = "x", "gz", "<Plug>(nvim-surround-visual)", desc = "Surround" },
     { mode = "x", "gZ", "<Plug>(nvim-surround-visual-line)", desc = "Surround Line" },
   },
