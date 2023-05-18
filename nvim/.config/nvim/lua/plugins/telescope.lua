@@ -122,6 +122,44 @@ return {
       local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
       table.insert(vimgrep_arguments, { "--hidden", "--glob", "!**/.git/*" })
 
+      -- named functions to show action in telescope which_key
+      -- show hidden files
+      local show_hidden = function(...)
+        local action_state = require("telescope.actions.state")
+        local line = action_state.get_current_line()
+        return Util.telescope("find_files", { hidden = true, default_text = line })(...)
+      end
+      -- show ignored files
+      local show_ignore = function(...)
+        local action_state = require("telescope.actions.state")
+        local line = action_state.get_current_line()
+        return Util.telescope("find_files", { no_ignore = true, default_text = line })(...)
+      end
+      -- toggle preview
+      local toggle_preview = function(...)
+        return require("telescope.actions.layout").toggle_preview(...)
+      end
+      -- cycle history next
+      local cycle_history_next = function(...)
+        return require("telescope.actions").cycle_history_next(...)
+      end
+      -- cycle history previous
+      local cycle_history_prev = function(...)
+        return require("telescope.actions").cycle_history_prev(...)
+      end
+      -- move selection next
+      local move_selection_next = function(...)
+        return require("telescope.actions").move_selection_next(...)
+      end
+      -- move selection previous
+      local move_selection_prev = function(...)
+        return require("telescope.actions").move_selection_previous(...)
+      end
+      -- close
+      local close = function(...)
+        return require("telescope.actions").close(...)
+      end
+
       local undo = require("telescope-undo.actions")
       return {
         extensions = {
@@ -168,41 +206,17 @@ return {
           sorting_strategy = "ascending",
           mappings = {
             i = {
-              ["<c-t>"] = function(...)
-                return require("trouble.providers.telescope").open_with_trouble(...)
-              end,
-              ["<M-t>"] = function(...)
-                return require("trouble.providers.telescope").open_selected_with_trouble(...)
-              end,
-              ["<M-i>"] = function()
-                Util.telescope("find_files", { no_ignore = true })()
-              end,
-              ["<M-h>"] = function()
-                Util.telescope("find_files", { hidden = true })()
-              end,
-              ["<C-Down>"] = function(...)
-                return require("telescope.actions").cycle_history_next(...)
-              end,
-              ["<C-Up>"] = function(...)
-                return require("telescope.actions").cycle_history_prev(...)
-              end,
-              ["<C-j>"] = function(...)
-                return require("telescope.actions").move_selection_next(...)
-              end,
-              ["<C-k>"] = function(...)
-                return require("telescope.actions").move_selection_previous(...)
-              end,
-              ["<M-p>"] = function(...)
-                return require("telescope.actions.layout").toggle_preview(...)
-              end,
+              ["<M-i>"] = show_ignore,
+              ["<M-h>"] = show_hidden,
+              ["<C-Down>"] = cycle_history_next,
+              ["<C-Up>"] = cycle_history_prev,
+              ["<C-j>"] = move_selection_next,
+              ["<C-k>"] = move_selection_prev,
+              ["<M-p>"] = toggle_preview,
             },
             n = {
-              ["<M-p>"] = function(...)
-                return require("telescope.actions.layout").toggle_preview(...)
-              end,
-              ["q"] = function(...)
-                return require("telescope.actions").close(...)
-              end,
+              ["p"] = toggle_preview,
+              ["q"] = close,
             },
           },
           pickers = {
