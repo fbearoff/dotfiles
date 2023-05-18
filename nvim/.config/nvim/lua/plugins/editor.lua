@@ -420,22 +420,21 @@ return {
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    config = function()
+    opts = {
+      check_ts = true,
+      ts_config = {
+        lua = { "string", "source", "comment" },
+      },
+      disable_filetype = { "TelescopePrompt", "spectre_panel" },
+      -- enable_check_bracket_line = true,
+      fast_wrap = {},
+    },
+    config = function(_, opts)
       local npairs = require("nvim-autopairs")
-      npairs.setup({
-        check_ts = true,
-        ts_config = {
-          lua = { "string", "source", "comment" },
-        },
-        disable_filetype = { "TelescopePrompt", "spectre_panel" },
-        fast_wrap = {},
-      })
+      npairs.setup(opts)
       local Rule = require("nvim-autopairs.rule")
-
       npairs.add_rule(Rule("<", ">", "lua"))
-      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      ---@diagnostic disable-next-line: undefined-field
-      require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+      require("cmp").event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())
     end,
   },
 
