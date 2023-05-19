@@ -360,14 +360,6 @@ return {
       { "s", mode = { "n", "x", "o" }, desc = "Leap Forward" },
       { "S", mode = { "n", "x", "o" }, desc = "Leap Backward" },
       { "gs", mode = { "n", "x", "o" }, desc = "Leap from Window" },
-      {
-        "gS",
-        mode = { "n", "x" },
-        function()
-          require("leap").leap({ target_windows = { vim.api.nvim_get_current_win() } })
-        end,
-        desc = "Leap in Window",
-      },
     },
     opts = {
       highlight_unlabeled_phase_one_targets = true,
@@ -874,10 +866,10 @@ return {
   {
     "zdcthomas/yop.nvim",
     keys = {
-      { mode = { "n", "x" }, "<leader>O", desc = "Sort" },
+      { mode = { "n", "x" }, "gS", desc = "Sort" },
     },
     config = function()
-      require("yop").op_map({ "n", "x" }, "<leader>O", require("util").sort)
+      require("yop").op_map({ "n", "x" }, "gS", require("util").sort)
     end,
   },
 
