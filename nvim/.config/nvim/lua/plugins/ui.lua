@@ -182,21 +182,24 @@ return {
 
   -- Scrollbar
   {
-    "lewis6991/satellite.nvim",
+    "petertriho/nvim-scrollbar",
     event = { "BufReadPost", "BufNewFile" },
     opts = {
-      current_only = true,
-      excluded_filetypes = {
-        "prompt",
-        "TelescopePrompt",
-        "noice",
-        "notify",
-      },
-      width = 1,
-      handlers = {
-        marks = {
-          enable = false,
+      show_in_active_only = true,
+      marks = {
+        GitAdd = {
+          text = "│",
         },
+        GitChange = {
+          text = "│",
+        },
+      },
+      excluded_buftypes = {
+        "terminal",
+        "nofile",
+      },
+      handlers = {
+        gitsigns = true,
       },
     },
   },
