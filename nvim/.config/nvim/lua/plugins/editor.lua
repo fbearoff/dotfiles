@@ -916,4 +916,25 @@ return {
       "rfc_semicolon",
     },
   },
+  {
+    "stevearc/oil.nvim",
+    keys = {
+      {
+        "<M-->",
+        function()
+          require("oil").toggle_float()
+        end,
+        desc = "Open parent directory",
+      },
+    },
+    cmd = "Oil",
+    opts = {
+      columns = {
+        "icon",
+        -- "permissions",
+        "size",
+        "mtime",
+      },
+    },
+  },
 }
