@@ -21,7 +21,7 @@ return {
     return {
       on_attach = on_attach,
       disable_netrw = true,
-      hijack_netrw = true,
+      hijack_netrw = false,
       open_on_tab = false,
       hijack_cursor = true,
       update_cwd = true,

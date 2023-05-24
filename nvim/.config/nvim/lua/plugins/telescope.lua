@@ -163,9 +163,6 @@ return {
       local undo = require("telescope-undo.actions")
       return {
         extensions = {
-          file_browser = {
-            theme = "ivy",
-          },
           undo = {
             layout_strategy = "horizontal",
             mappings = {
@@ -231,17 +228,6 @@ return {
       require("telescope").setup(opts)
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("undo")
-    end,
-  },
-
-  -- telescope as file browser
-  {
-    "nvim-telescope/telescope-file-browser.nvim",
-    keys = {
-      { "<leader>fb", "<cmd>Telescope file_browser<cr>", desc = "Browser" },
-    },
-    config = function()
-      require("telescope").load_extension("file_browser")
     end,
   },
 

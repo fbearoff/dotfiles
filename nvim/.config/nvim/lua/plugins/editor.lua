@@ -916,13 +916,15 @@ return {
       "rfc_semicolon",
     },
   },
+
+  -- Buffer as file editor
   {
     "stevearc/oil.nvim",
     keys = {
       {
         "<M-->",
         function()
-          require("oil").toggle_float()
+          require("oil").open()
         end,
         desc = "Open parent directory",
       },
@@ -931,10 +933,12 @@ return {
     opts = {
       columns = {
         "icon",
-        -- "permissions",
         "size",
         "mtime",
       },
+      skip_confirm_for_simple_edits = true,
+      delete_to_trash = true,
+      trash_command = "trash",
     },
   },
 }
