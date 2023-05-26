@@ -21,6 +21,9 @@ return {
       },
       -- Automatically format on save
       autoformat = true,
+      -- Enable this to show formatters used in a notification
+      -- Useful for debugging formatter issues
+      format_notify = false,
       -- options for vim.lsp.buf.format
       -- `bufnr` and `filter` is handled by the LazyVim formatter,
       -- but can be also overridden when specified
@@ -90,6 +93,9 @@ return {
               completion = {
                 callSnippet = "Replace",
               },
+              format = {
+                enable = false,
+              },
             },
           },
         },
@@ -105,11 +111,11 @@ return {
       },
     },
     config = function(_, opts)
+      local Util = require("util")
       -- setup autoformat
-      require("plugins.lsp.format").autoformat = opts.autoformat
+      require("plugins.lsp.format").setup(opts)
       -- setup  keymaps
-      require("util").on_attach(function(client, buffer)
-        require("plugins.lsp.format").on_attach(client, buffer)
+      Util.on_attach(function(client, buffer)
         require("plugins.lsp.keymaps").on_attach(client, buffer)
       end)
 
