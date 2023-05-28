@@ -1,13 +1,17 @@
 return {
   "kylechui/nvim-surround",
   keys = {
-    { "gza", "<Plug>(nvim-surround-normal)", desc = "Add" },
-    { "gzaa", "<Plug>(nvim-surround-normal-cur)", desc = "Add Current Line" },
-    { "gzA", "<Plug>(nvim-surround-normal-cur-line)", desc = "Add Around Current Line" },
-    { "gzd", "<Plug>(nvim-surround-delete)", desc = "Delete" },
-    { "gzc", "<Plug>(nvim-surround-change)", desc = "Change" },
-    { mode = "x", "gz", "<Plug>(nvim-surround-visual)", desc = "Surround" },
-    { mode = "x", "gZ", "<Plug>(nvim-surround-visual-line)", desc = "Surround Line" },
+    { mode = "i", "<C-g>s", "<Plug>(nvim-surround-insert)", desc = "Surround" },
+    { mode = "i", "<C-g>S", "<Plug>(nvim-surround-insert-line)", desc = "Surround Line" },
+    { "ys", "<Plug>(nvim-surround-normal)", desc = "Surround" },
+    { "yss", "<Plug>(nvim-surround-normal-cur)", desc = "Surround Current Line" },
+    { "yS", "<Plug>(nvim-surround-normal-line)", desc = "Surround Around Motion on New Lines" },
+    { "ySS", "<Plug>(nvim-surround-normal-cur-line)", desc = "Surround Around Current Line" },
+    { mode = "x", "S", "<Plug>(nvim-surround-visual)", desc = "Surround" },
+    { mode = "x", "gS", "<Plug>(nvim-surround-visual-line)", desc = "Surround Line" },
+    { "ds", "<Plug>(nvim-surround-delete)", desc = "Delete" },
+    { "cs", "<Plug>(nvim-surround-change)", desc = "Change" },
+    { "cS", "<Plug>(nvim-surround-change-line)", desc = "Change Line" },
   },
   opts = function()
     local config = require("nvim-surround.config")
@@ -30,18 +34,6 @@ return {
     local unquoted_surround = add_key_surround("")
 
     return {
-      keymaps = {
-        insert = false,
-        insert_line = false,
-        normal = false,
-        normal_cur = false,
-        normal_line = false,
-        normal_cur_line = false,
-        visual = false,
-        visual_line = false,
-        delete = false,
-        change = false,
-      },
       surrounds = {
         ["k"] = {
           add = quoted_surround,

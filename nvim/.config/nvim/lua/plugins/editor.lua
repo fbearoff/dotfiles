@@ -19,7 +19,6 @@ return {
         ["g"] = { name = "+Goto" },
         ["]"] = { name = "+Next" },
         ["["] = { name = "+Prev" },
-        ["gz"] = { name = "+Surround" },
         ["<leader>b"] = { name = "+Buffer" },
         ["<leader>c"] = { name = "+Code", mode = { "n", "v" } },
         ["<leader>d"] = { name = "+Diagnostics" },
@@ -357,8 +356,8 @@ return {
   {
     "ggandor/leap.nvim",
     keys = {
-      { "s", mode = { "n", "x", "o" }, desc = "Leap Forward" },
-      { "S", mode = { "n", "x", "o" }, desc = "Leap Backward" },
+      { "<M-s>", mode = { "n", "x", "o" }, "<Plug>(leap-forward-to)", desc = "Leap Forward" },
+      { "<M-S>", mode = { "n", "x", "o" }, "<Plug>(leap-backward-to)", desc = "Leap Backward" },
       { "gs", mode = { "n", "x", "o" }, desc = "Leap from Window" },
     },
     opts = {
@@ -370,9 +369,6 @@ return {
       for k, v in pairs(opts) do
         leap.opts[k] = v
       end
-      leap.add_default_mappings(true)
-      vim.keymap.del({ "x", "o" }, "x")
-      vim.keymap.del({ "x", "o" }, "X")
     end,
     dependencies = {
       {
