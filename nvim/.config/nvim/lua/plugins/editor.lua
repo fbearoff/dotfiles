@@ -574,24 +574,22 @@ return {
   {
     "gbprod/substitute.nvim",
     keys = {
-      { "<m-r>", "r", desc = "Replace" },
-      { "<m-R>", "R", desc = "Replace Mode" },
       {
-        "r",
+        "s",
         function()
           require("substitute").operator()
         end,
         desc = "Substitute Operator",
       },
       {
-        "rr",
+        "ss",
         function()
           require("substitute").line()
         end,
         desc = "Substitute Line",
       },
       {
-        "R",
+        "S",
         function()
           require("substitute").eol()
         end,
@@ -599,21 +597,21 @@ return {
       },
       {
         mode = "x",
-        "r",
+        "s",
         function()
           require("substitute").visual()
         end,
         desc = "Substitute Selection",
       },
       {
-        "cx",
+        "sx",
         function()
           require("substitute.exchange").operator()
         end,
         desc = "Exchange Operator",
       },
       {
-        "cxx",
+        "sxx",
         function()
           require("substitute.exchange").line()
         end,
@@ -621,7 +619,7 @@ return {
       },
       {
         mode = "x",
-        "cx",
+        "sx",
         function()
           require("substitute.exchange").visual()
         end,
