@@ -112,7 +112,10 @@ return {
       rainbow = {
         enable = true,
       },
-      matchup = { enable = true },
+      matchup = {
+        enable = true,
+        enable_quotes = true,
+      },
       auto_install = true,
       ensure_installed = {
         "bash",
