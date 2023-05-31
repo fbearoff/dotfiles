@@ -193,7 +193,7 @@ return {
           selection_caret = " ",
           buffer_previewer_maker = new_maker, -- don't preview binaries
           vimgrep_arguments = vimgrep_arguments,
-          file_ignore_patterns = { ".git/", "node_modules", "/tmp", "/usr", ".local" },
+          file_ignore_patterns = { ".git/", "node_modules", "/tmp", ".local" },
           winblend = 10,
           dynamic_preview_title = true,
           layout_strategy = "horizontal",

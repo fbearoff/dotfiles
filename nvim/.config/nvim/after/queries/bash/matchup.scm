@@ -1,15 +1,15 @@
 ; inherits: bash
 (while_statement
-  ("while")? @open.while
-  ("until")? @open.while
+  ("while")? @open.loop
+  ("until")? @open.loop
   (do_group
-    "done" @close.while)) @scope.while
+    "done" @close.loop)) @scope.loop
 
 (for_statement
-  ("for")? @open.for
-  ("select")? @open.for
+  ("for")? @open.loop
+  ("select")? @open.loop
   (do_group
-    "done" @close.for)) @scope.for
+    "done" @close.loop)) @scope.loop
 
 (if_statement
   "if" @open.if
@@ -21,8 +21,8 @@
 (elif_clause
   "elif" @mid.if.2)
 
-((word) @mid.if.3 (#eq? @mid.if.3 "break"))
-((word) @mid.if.4 (#eq? @mid.if.4 "continue"))
+((word) @mid.loop.1 (#eq? @mid.loop.1 "break"))
+((word) @mid.loop.2 (#eq? @mid.loop.2 "continue"))
 
 (case_statement
   "case" @open.case
