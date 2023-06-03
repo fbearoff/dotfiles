@@ -128,7 +128,11 @@ return {
         {
           filter = {
             event = "msg_show",
-            find = "%d+L, %d+B",
+            any = {
+              { find = "%d+L, %d+B" },
+              { find = "; after" },
+              { find = "; before" },
+            },
           },
           view = "mini",
         },
@@ -144,12 +148,8 @@ return {
             event = "msg_show",
             kind = "",
             any = {
+              { find = "line" },
               { find = "written" },
-              { find = "line less" },
-              { find = "fewer lines" },
-              { find = "more line" },
-              { find = "change; before" },
-              { find = "change; after" },
             },
           },
           opts = { skip = true },
@@ -378,7 +378,19 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     opts = {
       char = "│",
-      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "NvimTree", "Trouble", "lazy", "lspinfo" },
+      filetype_exclude = {
+        "NvimTree",
+        "Trouble",
+        "alpha",
+        "dashboard",
+        "help",
+        "lazy",
+        "lspinfo",
+        "mason",
+        "neo-tree",
+        "notify",
+        "toggleterm",
+      },
       show_trailing_blankline_indent = false,
       show_current_context = false,
       buftype_exclude = { "terminal", "nofile" },
@@ -396,20 +408,22 @@ return {
     init = function()
       vim.api.nvim_create_autocmd("FileType", {
         pattern = {
-          "help",
-          "alpha",
-          "dashboard",
-          "neo-tree",
           "NvimTree",
           "Trouble",
+          "alpha",
+          "checkhealth",
+          "dashboard",
+          "help",
           "lazy",
+          "lspinfo",
           "mason",
+          "neo-tree",
           "noice",
+          "notify",
+          "query",
           "rdoc",
           "terminal",
-          "checkhealth",
-          "lspinfo",
-          "query",
+          "toggleterm",
         },
         callback = function()
           vim.b.miniindentscope_disable = true

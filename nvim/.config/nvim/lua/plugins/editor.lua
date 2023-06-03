@@ -639,6 +639,10 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       delay = 200,
+      large_file_cutoff = 2000,
+      large_file_overrides = {
+        providers = { "lsp" },
+      },
       filetypes_denylist = {
         "dirvish",
         "fugitive",
@@ -864,10 +868,10 @@ return {
   {
     "zdcthomas/yop.nvim",
     keys = {
-      { mode = { "n", "x" }, "gS", desc = "Sort" },
+      { mode = { "n", "x" }, "<leader>S", desc = "Sort" },
     },
     config = function()
-      require("yop").op_map({ "n", "x" }, "gS", require("util").sort)
+      require("yop").op_map({ "n", "x" }, "<leader>S", require("util").sort)
     end,
   },
 

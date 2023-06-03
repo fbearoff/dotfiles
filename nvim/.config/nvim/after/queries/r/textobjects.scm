@@ -11,3 +11,6 @@
   operator: (special) @_start
   right: (_) @pipe.inner)
  (#make-range! "pipe.outer" @_start @pipe.inner))
+
+;binary blocks
+(binary) @block.outer

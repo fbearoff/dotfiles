@@ -6,6 +6,7 @@ return {
     "akinsho/toggleterm.nvim",
     keys = {
       { [[<c-\>]], desc = "ToggleTerm" },
+      { "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", desc = "Float" },
       { "<leader>t-", "<cmd>ToggleTerm size=10 direction=horizontal<CR>", desc = "Horizontal" },
       { "<leader>t\\", "<cmd>ToggleTerm size=80 direction=vertical<CR>", desc = "Vertical" },
       { "<leader>ts", "<cmd>ToggleTermSendCurrentLine<CR>", desc = "Send Line" },
@@ -30,7 +31,7 @@ return {
         autochdir = true,
         open_mapping = [[<c-\>]],
         shading_factor = 2,
-        direction = "float",
+        direction = "horizontal",
         float_opts = {
           border = "curved",
           winblend = 5,
