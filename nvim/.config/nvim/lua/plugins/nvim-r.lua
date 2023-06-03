@@ -6,7 +6,7 @@ return {
       "folke/which-key.nvim",
       opts = function(_, opts)
         if require("util").has("Nvim-R") then
-          opts.defaults["<localleader>R"] = { name = "+R" }
+          opts.defaults["<localleader>r"] = { name = "+R" }
         end
       end,
     },
@@ -15,21 +15,32 @@ return {
   keys = {
     { "<leader><Space>", "<Plug>RDSendLine", desc = "which_key_ignore" },
     { mode = "x", "<leader><Space>", "<Plug>RDSendSelection", desc = "Send Selection to R" },
-    { "<LocalLeader>R:", ":RSend ", desc = "Send R Command" },
-    { "<LocalLeader>Rl", "<cmd>call RAction('levels')<CR>", desc = "View Levels" },
-    { "<LocalLeader>Rh", "<cmd>call RAction('head')<CR>", desc = "View Head" },
-    { "<LocalLeader>Rt", "<cmd>call RAction('tail')<CR>", desc = "View Tail" },
-    { "<LocalLeader>Ru", "<cmd>RSend update.packages(ask = FALSE)<CR>", desc = "Update Packages" },
+    { "<LocalLeader>r:", ":RSend ", desc = "Send R Command" },
+    { "<LocalLeader>rf", "<Plug>RStart", desc = "Start R" },
+    { "<LocalLeader>rq", "<Plug>RStop", desc = "Stop R" },
+    { "<LocalLeader>rH", "<Plug>RHelp", desc = "R Help" },
+    { "<LocalLeader>rp", "<Plug>RObjectPr", desc = "Print Object" },
+    { "<LocalLeader>rs", "<Plug>RObjectStr", desc = "Print Structure" },
+    { "<LocalLeader>rS", "<Plug>RSummary", desc = "Summary" },
+    { "<LocalLeader>rn", "<Plug>RObjectNames", desc = "View Names" },
+    { "<LocalLeader>rv", "<Plug>RViewDF", desc = "View DF" },
+    { "<LocalLeader>rl", "<cmd>call RAction('levels')<CR>", desc = "View Levels" },
+    { "<LocalLeader>rh", "<cmd>call RAction('head')<CR>", desc = "View Head" },
+    { "<LocalLeader>rt", "<cmd>call RAction('tail')<CR>", desc = "View Tail" },
+    { "<LocalLeader>ru", "<cmd>RSend update.packages(ask = FALSE)<CR>", desc = "Update Packages" },
     {
-      "<LocalLeader>Ri",
+      "<LocalLeader>ri",
       function()
-        require("util").R_install()
+        local current_word = vim.call("expand", "<cword>")
+        local rsend_command = string.format(':RSend install.packages("' .. current_word .. '")')
+        vim.api.nvim_command(rsend_command)
       end,
       desc = "Install Package",
     },
   },
   config = function()
     local options = {
+      R_user_maps_only = true,
       R_bracketed_paste = true,
       R_esc_term = false,
       R_commented_lines = true,
@@ -42,9 +53,11 @@ return {
       R_clear_line = true,
       R_specialplot = true,
       R_assign = 0,
-      R_csv_app = ':TermExec cmd="vd %s"',
+      R_csv_app = ':TermExec direction=float cmd="vd %s"',
       R_hi_fun = false,
       rmd_fenced_languages = { "r" },
+      R_app = "radian",
+      R_cmd = "R",
     }
     for k, v in pairs(options) do
       vim.g[k] = v

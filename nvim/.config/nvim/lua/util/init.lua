@@ -173,13 +173,6 @@ function M.so_input()
   end)
 end
 
--- Installs the package under cursor via Nvim-R
-function M.R_install()
-  local current_word = vim.call("expand", "<cword>")
-  local rsend_command = string.format(':RSend install.packages("' .. current_word .. '")')
-  vim.api.nvim_command(rsend_command)
-end
-
 -- Sort operator
 function M.sort(lines, _)
   local utils = require("yop.utils")
