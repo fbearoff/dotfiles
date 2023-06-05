@@ -8,6 +8,7 @@ local options = {
   cmdheight = 0, -- more space in the neovim command line for displaying messages
   completeopt = { "menu", "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0, -- Hide * markup for bold and italic
+  confirm = true,
   cursorline = true, -- highlight the current line
   expandtab = true, -- convert tabs to spaces
   fileencoding = "utf-8", -- the encoding written to a file

@@ -11,6 +11,7 @@ end
 local util = require("util")
 
 -- Insert --
+keymap("i", "<M-BS>", "<Esc>cvb", { desc = "Delete Word Before Cursor" })
 -- Add undo break-points
 keymap("i", ",", ",<c-g>u")
 keymap("i", ".", ".<c-g>u")
@@ -102,8 +103,8 @@ keymap("n", "<leader>-", "<cmd>split<CR>", { desc = "Split" })
 keymap("n", "<leader>\\", "<cmd>vsplit<CR>", { desc = "VSplit" })
 
 -- Core file commands
-keymap("n", "<leader>fe", "<cmd>enew<CR>", { desc = "New File" })
-keymap("n", "<leader>q", "<cmd>q!<CR>", { desc = "Quit" })
+keymap("n", "<leader>fn", "<cmd>enew<CR>", { desc = "New File" })
+keymap("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 keymap("n", "<leader>w", "<cmd>w!<CR>", { desc = "Save" })
 
 -- Quickfix/Location list

@@ -364,7 +364,7 @@ return {
       highlight_unlabeled_phase_one_targets = true,
     },
     config = function(_, opts)
-      vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
+      vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment", italic = false })
       local leap = require("leap")
       for k, v in pairs(opts) do
         leap.opts[k] = v

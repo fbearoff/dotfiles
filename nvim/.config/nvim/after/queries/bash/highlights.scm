@@ -1,3 +1,0 @@
-; inherits: bash
-
-"select" @repeat
