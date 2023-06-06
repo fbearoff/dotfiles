@@ -21,7 +21,7 @@ plugins+=(
   autoupdate
   sudo
   zsh-autopair
-  zsh-vi-mode
+  # zsh-vi-mode
   zsh-syntax-highlighting
 )
 

@@ -45,71 +45,6 @@ function fb() {
   which "$1"
 }
 
-# Septa Status
-function isf() {
-  rr_late="$(curl 'http://www.isseptafucked.com/api/rr' --silent|jq '.status.late')"
-  advisory="$(curl 'http://www3.septa.org/hackathon/Alerts/get_alert_data.php?req1=all' --silent|jq '.')"
-  rr_nor="$(echo "$advisory" | jq '.[] | select(.route_id == "rr_route_nor").advisory_message')"
-  bus_k="$(echo "$advisory" | jq '.[] | select(.route_id == "bus_route_K").current_message' | head -1)"
- if [[ $rr_nor != "null" ]]; then
-   echo "$rr_nor"
- else
-   echo "No RR Advisories!"
- fi
- if [[ $bus_k != "null" ]]; then
-   echo "Bus K: $bus_k"
- else
-   echo "Bus K: No Advisories!"
- fi
- if [[  $rr_late  == "null" ]]; then
-   echo "RR is on time!"
- elif [[ $rr_late =~ Norristown ]]; then
-   echo "$rr_late"
- else
-   echo "RR is on time!"
- fi
-}
-
-function nta() {
-  next_n=$1
-  dir=$2
-  re='^[0-9]+$'
-  if ! [[ $next_n =~ $re ]]; then
-     next_n=1
-  fi
-  tt=$(curl http://www3.septa.org/hackathon/Arrivals/East%20Falls/"$next_n" --silent |jq)
-  if [[ $dir == "home" ]]; then
-   echo "$tt" | jq '.[] | .[].Northbound'
-  elif [[ $dir == "work" ]]; then
-     echo "$tt" | jq '.[] | .[].Southbound'
-  else
-     echo "$tt" | jq '.[]'
-  fi
-}
-
-function septa() {
-  read "?What is the departing station?: "  depart
-  read "?What is the destination?: "  dest
-  timetable=$(curl -X 'GET' \
-            'https://www3.septa.org/api/Arrivals/index.php?station='${depart// /%20}'&results=20&direction=N' \
-            -H 'accept: application/json' \
-            --silent | jq)
-  out=$(echo "$timetable" | jq '.[] | .[].Northbound | first(.[] | select(.destination == "'$dest'")) | .train_id, .status, .depart_time')
-
-  tn=$(echo $out | sed '1q;d' | tr -d "\"")
-  ts=$(echo $out | sed '2q;d' | tr -d "\"")
-  dt=$(echo $out | sed '3q;d' | tr -d "\"")
-
-  if [[ $ts == "On Time" ]]; then
-    ts=$(echo "\033[1;32m"$ts"\033[0m");
-  else
-    ts=$(echo "\033[1;31m"$ts "late\033[0m")
-  fi
-
-  dt=$(echo $dt | awk '{print $2 }' | cut --delimiter=":" --fields=1-2 | date -f - "+%I:%M %p")
-  echo -e "Train\033[1;32m" $tn "\033[0mis" $ts "and departing at\033[1;32m" $dt
-}
-
 # music
 function am() {
   for d in ~/downloads/music/* ; do
@@ -122,3 +57,14 @@ function am() {
 function fx() {
   sudo ln -s /mnt/wslg/.X11-unix /tmp/.X11-unix
 }
+
+# Shell-GPT integration ZSH v0.1
+_sgpt_zsh() {
+  _sgpt_prev_cmd=$BUFFER
+  BUFFER+="⌛"
+  zle -I && zle redisplay
+  BUFFER=$(sgpt --shell <<< "$_sgpt_prev_cmd")
+  zle end-of-line
+}
+zle -N _sgpt_zsh
+bindkey ^l _sgpt_zsh
