@@ -19,6 +19,7 @@ alias ll cls -lhtr
 alias l cls -lhtr
 alias .. cd ..
 alias cf cache flush
+alias w wait
 set bmk:save-passwords yes
 set xfer:clobber on
 set prompt "\[\e[1;30m\][\[\e[0;34m\]lftp\[\e[1m\]\[\e[37m\]\[\e[30m\]] \[\e[34m\]\u\[\e[0;34m\]\@\[\e[1m\]\h\[\e[1;30m\]:\[\e[1;34m\]\w\[\e[1;30m\]>\[\e[0m\] "

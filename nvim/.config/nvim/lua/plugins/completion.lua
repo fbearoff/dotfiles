@@ -103,7 +103,6 @@ return {
           { name = "greek" },
           { name = "emoji" },
           { name = "cmp_pandoc" },
-          { name = "jupyter" },
         }),
         formatting = {
           fields = { "kind", "abbr", "menu" },
@@ -121,7 +120,6 @@ return {
                 greek = "[Greek]",
                 emoji = "[Emoji]",
                 cmp_pandoc = "[Ref]",
-                jupyter = "[Jupyter]",
               })[_.source.name]
             end
             return item

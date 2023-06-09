@@ -103,3 +103,11 @@ alias ba="rsync ~/aur hosting:~/backup/ -rlv --info=progress2"
 
 # docker
 alias ldh="DOCKER_HOST=ssh://hosting lazydocker"
+
+# global aliases
+alias -g C='cat'
+alias -g H='| head'
+alias -g T='| tail'
+alias -g L='| less'
+alias -g G='| rg -S' #smartcase
+alias -g W='| wc -l'
