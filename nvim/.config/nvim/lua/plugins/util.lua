@@ -115,4 +115,11 @@ return {
       },
     },
   },
+
+  -- Highlight undo
+  {
+    "tzachar/highlight-undo.nvim",
+    keys = { "u", "<C-r>" },
+    opts = {},
+  },
 }

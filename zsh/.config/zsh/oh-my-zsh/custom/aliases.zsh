@@ -104,6 +104,9 @@ alias ba="rsync ~/aur hosting:~/backup/ -rlv --info=progress2"
 # docker
 alias ldh="DOCKER_HOST=ssh://hosting lazydocker"
 
+# tmux
+alias ta="tmux a"
+
 # global aliases
 alias -g C='cat'
 alias -g H='| head'

@@ -245,7 +245,7 @@ return {
     opts = {},
   },
 
-  -- Dim everything button current context
+  -- Dim everything but current context
   { "folke/twilight.nvim" },
 
   -- Hide distraction
@@ -268,6 +268,7 @@ return {
     "jackMort/ChatGPT.nvim",
     cmd = {
       "ChatGPT",
+      "ChatGPTCompleteCode",
       "ChatGPTActAs",
       "ChatGPTEditWithInstructions",
       "ChatGPTRun",
@@ -290,11 +291,18 @@ return {
         desc = "ChatGTP Act As",
       },
       {
-        "<leader>ac",
+        "<leader>ap",
         function()
           require("chatgpt").openChat()
         end,
         desc = "ChatGTP Prompt",
+      },
+      {
+        "<leader>ac",
+        function()
+          require("chatgpt").complete_code()
+        end,
+        desc = "ChatGTP Complete Code",
       },
     },
     opts = {
