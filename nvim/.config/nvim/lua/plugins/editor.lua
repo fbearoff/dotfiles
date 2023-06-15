@@ -514,7 +514,6 @@ return {
       local augend = require("dial.augend")
       require("dial.config").augends:register_group({
         default = {
-          augend.integer.alias.decimal,
           augend.integer.alias.hex,
           augend.date.alias["%Y/%m/%d"],
           augend.semver.alias.semver,
@@ -534,6 +533,10 @@ return {
             default_kind = "day",
             only_valid = true,
             word = false,
+          }),
+          augend.decimal_fraction.new({
+            signed = false,
+            point_char = ".",
           }),
         },
       })
