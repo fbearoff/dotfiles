@@ -55,7 +55,6 @@ ls.add_snippets(nil, {
       f(function(_, snip)
         local tmp = {}
         tmp = snip.env.TM_SELECTED_TEXT
-        tmp[0] = nil
         return tmp or {}
       end, {}),
       t({ "", "```", "" }),
