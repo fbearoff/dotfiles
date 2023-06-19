@@ -1,10 +1,9 @@
 return {
-  { "ellisonleao/gruvbox.nvim" },
+  { "ellisonleao/gruvbox.nvim", event = "User LoadColorSchemes" },
 
-  { "folke/tokyonight.nvim" },
+  { "folke/tokyonight.nvim", event = "User LoadColorSchemes" },
   {
     "rebelot/kanagawa.nvim",
-    event = "VimEnter",
     priority = 1000,
     config = function()
       require("kanagawa").setup({

@@ -11,7 +11,14 @@ return {
       { "<leader>fF", Util.telescope("files", { cwd = false }), desc = "Find Files (CWD)" },
       { "<leader>fg", "<cmd>Telescope live_grep theme=ivy<cr>", desc = "Live Grep" },
       { "<leader>bb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-      { "<leader>sc", Util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme" },
+      {
+        "<leader>sc",
+        function()
+          pcall(vim.api.nvim_command, "doautocmd User LoadColorSchemes")
+          pcall(require("telescope.builtin").colorscheme, { enable_preview = true })
+        end,
+        desc = "Colorscheme",
+      },
       { "<leader>sw", Util.telescope("grep_string"), desc = "Word (Root)" },
       { "<leader>sW", Util.telescope("grep_string", { cwd = false }), desc = "Word (CWD)" },
       { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
