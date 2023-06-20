@@ -1,6 +1,7 @@
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
+  dependencies = { "chrisgrieser/nvim-dr-lsp" },
   opts = function()
     local icons = require("config.icons")
     local colors = require("kanagawa.colors").setup()
@@ -84,6 +85,22 @@ return {
       end,
     }
 
+    local def_ref = {
+      require("dr-lsp").lspCount,
+      fmt = function(str)
+        return str:gsub("LSP: ", "")
+      end,
+      ---@diagnostic disable-next-line: unused-local
+      on_click = function(clicks, buttons, modifiers)
+        if "l" == buttons then
+          vim.cmd("Telescope lsp_definitions")
+        end
+        if "r" == buttons then
+          vim.cmd("Telescope lsp_references")
+        end
+      end,
+    }
+
     local macro = {
       function()
         return require("NeoComposer.ui").status_recording()
@@ -101,6 +118,7 @@ return {
         vim.cmd("GrapplePopup tags")
       end,
     }
+
     local navic = {
       "navic",
       navic_opts = {
@@ -119,6 +137,7 @@ return {
         vim.cmd("Lazy")
       end,
     }
+
     local lightbulb = {
       function()
         return require("nvim-lightbulb").get_status_text()
@@ -158,7 +177,15 @@ return {
         lualine_a = { "mode" },
         lualine_b = { "branch", diff },
         lualine_c = { diagnostics, lightbulb, grapple, filename, navic },
-        lualine_x = { escape_status, macro, lsp_server, "fileformat", "encoding", filetype },
+        lualine_x = {
+          escape_status,
+          macro,
+          lsp_server,
+          def_ref,
+          "fileformat",
+          "encoding",
+          filetype,
+        },
         lualine_y = { location },
         lualine_z = { "searchcount", lazy },
       },

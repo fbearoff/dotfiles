@@ -4,6 +4,7 @@ return {
   { "folke/tokyonight.nvim", event = "User LoadColorSchemes" },
   {
     "rebelot/kanagawa.nvim",
+    event = "VimEnter",
     priority = 1000,
     config = function()
       require("kanagawa").setup({
