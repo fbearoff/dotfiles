@@ -251,37 +251,6 @@ return {
     end,
   },
 
-  -- Additional Word Definitions
-  {
-    "chrisgrieser/nvim-spider",
-    keys = {
-      {
-        mode = { "n", "o", "x" },
-        "w",
-        "<cmd>lua require('spider').motion('w')<cr>",
-        desc = "Spider-w",
-      },
-      {
-        mode = { "n", "o", "x" },
-        "e",
-        "<cmd>lua require('spider').motion('e')<cr>",
-        desc = "Spider-e",
-      },
-      {
-        mode = { "n", "o", "x" },
-        "b",
-        "<cmd>lua require('spider').motion('b')<cr>",
-        desc = "Spider-b",
-      },
-      {
-        mode = { "n", "o", "x" },
-        "ge",
-        "<cmd>lua require('spider').motion('ge')<cr>",
-        desc = "Spider-ge",
-      },
-    },
-  },
-
   -- Quick tagged file switching
   {
     "cbochs/grapple.nvim",
