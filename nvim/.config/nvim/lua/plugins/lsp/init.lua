@@ -54,6 +54,9 @@ return {
           prefix = "",
         },
       },
+      inlay_hints = {
+        enabled = true,
+      },
       servers = {
         -- mason = false, -- set to false if you don't want this server to be installed with mason
         ansiblels = {},
@@ -96,19 +99,14 @@ return {
               format = {
                 enable = false,
               },
+              hint = {
+                enable = true,
+              },
             },
           },
         },
       },
-      setup = {
-        -- example to setup with typescript.nvim
-        -- tsserver = function(_, opts)
-        --   require("typescript").setup({ server = opts })
-        --   return true
-        -- end,
-        -- Specify * to use this function as a fallback for any server
-        -- ["*"] = function(server, opts) end,
-      },
+      setup = {},
     },
     config = function(_, opts)
       local Util = require("util")
@@ -125,8 +123,25 @@ return {
         vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
       end
 
+      if opts.inlay_hints.enabled and vim.lsp.buf.inlay_hint then
+        Util.on_attach(function(client, buffer)
+          if client.server_capabilities.inlayHintProvider then
+            vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+              callback = function()
+                vim.lsp.buf.inlay_hint(buffer, true)
+              end,
+            })
+            vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+              callback = function()
+                vim.lsp.buf.inlay_hint(buffer, false)
+              end,
+            })
+          end
+        end)
+      end
+
       if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
-        opts.diagnostics.virtual_text.prefix = vim.fn.has("nvim-0.10.0") == 0 and "●"
+        opts.diagnostics.virtual_text.prefix = vim.fn.has("nvim-0.10.0") == 0
           or function(diagnostic)
             local icons = require("config.icons").diagnostics
             for d, icon in pairs(icons) do

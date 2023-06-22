@@ -137,17 +137,26 @@ keymap("n", "<leader>ul", function()
   util.toggle("relativenumber", true)
   util.toggle("number")
 end, { desc = "Toggle Line Number " })
+
 keymap("n", "<leader>us", function()
   util.toggle("spell")
 end, { desc = "Toggle Spell" })
+
 keymap("n", "<leader>uw", function()
   util.toggle("wrap")
 end, { desc = "Toggle Word Wrap" })
+
 keymap("n", "<leader>uf", require("plugins.lsp.format").toggle, { desc = "Toggle Format on Save" })
+
 keymap("n", "<leader>ud", function()
   util.toggle_diagnostics()
 end, { desc = "Toggle Diagnostics" })
 
+if vim.lsp.buf.inlay_hint then
+  keymap("n", "<leader>uh", function()
+    vim.lsp.buf.inlay_hint(0, nil)
+  end, { desc = "Toggle Inlay Hints" })
+end
 keymap("n", "<leader>ut", "<cmd>TrimToggle<cr>", { desc = "Toggle Trim" })
 
 -- highlights under cursor

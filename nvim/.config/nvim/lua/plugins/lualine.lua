@@ -1,7 +1,6 @@
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
-  dependencies = { "chrisgrieser/nvim-dr-lsp" },
   opts = function()
     local icons = require("config.icons")
     local colors = require("kanagawa.colors").setup()
@@ -58,7 +57,7 @@ return {
         unnamed = "[No Name]",
       },
       on_click = function()
-        print("cwd:" .. vim.loop.cwd())
+        print("cwd:" .. vim.uv.cwd())
       end,
     }
 
@@ -82,22 +81,6 @@ return {
       icon = " :",
       on_click = function()
         require("lspconfig.ui.lspinfo")()
-      end,
-    }
-
-    local def_ref = {
-      require("dr-lsp").lspCount,
-      fmt = function(str)
-        return str:gsub("LSP: ", "")
-      end,
-      ---@diagnostic disable-next-line: unused-local
-      on_click = function(clicks, buttons, modifiers)
-        if "l" == buttons then
-          vim.cmd("Telescope lsp_definitions")
-        end
-        if "r" == buttons then
-          vim.cmd("Telescope lsp_references")
-        end
       end,
     }
 
@@ -181,7 +164,6 @@ return {
           escape_status,
           macro,
           lsp_server,
-          def_ref,
           "fileformat",
           "encoding",
           filetype,

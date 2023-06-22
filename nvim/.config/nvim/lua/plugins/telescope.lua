@@ -34,7 +34,7 @@ return {
       { "<leader>mm", "<cmd>Telescope marks<cr>", desc = "Search Marks" },
       { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
       { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
-      { "<leader>fR", Util.telescope("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent (CWD)" },
+      { "<leader>fR", Util.telescope("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent (CWD)" },
       { "<leader>sr", "<cmd>Telescope registers<cr>", desc = "Registers" },
       { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
       {
