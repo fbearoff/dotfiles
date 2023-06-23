@@ -78,7 +78,7 @@ return {
     keys = {
       { "[u", desc = "Previous URL" },
       { "]u", desc = "Next URL" },
-      { "<leader>su", "<cmd>UrlView<cr>", desc = "URLs" },
+      { "<leader>su", "<cmd>UrlView buffer bufnr=0<cr>", desc = "URLs" },
       { "<leader>sU", "<cmd>UrlView lazy<cr>", desc = "Plugin URLs" },
     },
   },
