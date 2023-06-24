@@ -167,6 +167,25 @@ return {
         return require("telescope.actions").close(...)
       end
 
+      local function flash(prompt_bufnr)
+        require("flash").jump({
+          pattern = "^",
+          highlight = { label = { after = { 0, 0 } } },
+          search = {
+            mode = "search",
+            exclude = {
+              function(win)
+                return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "TelescopeResults"
+              end,
+            },
+          },
+          action = function(match)
+            local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+            picker:set_selection(match.pos[1] - 1)
+          end,
+        })
+      end
+
       local undo = require("telescope-undo.actions")
       return {
         extensions = {
@@ -217,10 +236,12 @@ return {
               ["<C-j>"] = move_selection_next,
               ["<C-k>"] = move_selection_prev,
               ["<M-p>"] = toggle_preview,
+              ["<c-s>"] = flash,
             },
             n = {
               ["p"] = toggle_preview,
               ["q"] = close,
+              ["s"] = flash,
             },
           },
           pickers = {

@@ -31,7 +31,7 @@ return {
     },
     opts = {
       max_lines = 2,
-      line_numbers = false,
+      line_numbers = true,
     },
   },
 

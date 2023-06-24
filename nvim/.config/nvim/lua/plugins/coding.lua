@@ -38,7 +38,7 @@ return {
       return {
         n_lines = 100,
         custom_textobjects = {
-          r = ai.gen_spec.argument(),
+          R = ai.gen_spec.argument(),
           o = ai.gen_spec.treesitter({
             a = { "@block.outer", "@conditional.outer", "@loop.outer" },
             i = { "@block.inner", "@conditional.inner", "@loop.inner" },
@@ -55,7 +55,6 @@ return {
             i = { "@pipe.inner", "@command.inner" },
           }, {}),
           a = ai.gen_spec.treesitter({ a = "@assignment.outer", i = "@assignment.inner" }, {}),
-          R = ai.gen_spec.treesitter({ a = "@return.outer", i = "@return.inner" }, {}),
           A = ai.gen_spec.treesitter({ a = "@assignment.lhs", i = "@assignment.rhs" }, {}),
           -- Whole buffer
           g = function(ai_type)
@@ -218,28 +217,6 @@ return {
           os.execute(openCommand)
         end,
         desc = "Smart URL Opener",
-      },
-      {
-        "gzdi",
-        function()
-          -- select inner indentation
-          require("various-textobjs").indentation(true, true)
-          -- plugin only switches to visual mode when textobj found
-          local notOnIndentedLine = vim.fn.mode():find("V") == nil
-          if notOnIndentedLine then
-            return
-          end
-
-          -- dedent indentation
-          vim.cmd.normal({ ">", bang = true })
-
-          -- delete surrounding lines
-          local endBorderLn = vim.api.nvim_buf_get_mark(0, ">")[1] + 1
-          local startBorderLn = vim.api.nvim_buf_get_mark(0, "<")[1] - 1
-          vim.cmd(tostring(endBorderLn) .. " delete") -- delete end first so line index is not shifted
-          vim.cmd(tostring(startBorderLn) .. " delete")
-        end,
-        desc = "Indentation",
       },
     },
     opts = {},
