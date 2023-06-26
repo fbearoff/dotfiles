@@ -38,7 +38,6 @@ return {
       return {
         n_lines = 100,
         custom_textobjects = {
-          R = ai.gen_spec.argument(),
           o = ai.gen_spec.treesitter({
             a = { "@block.outer", "@conditional.outer", "@loop.outer" },
             i = { "@block.inner", "@conditional.inner", "@loop.inner" },
@@ -89,7 +88,6 @@ return {
         ["}"] = "Balanced } including white-space",
         ["{"] = "Balanced {",
         ["?"] = "User Prompt",
-        r = "Argument",
         a = "Assignment",
         A = "Assignment LHS, RHS",
         b = "Balanced ), ], }",

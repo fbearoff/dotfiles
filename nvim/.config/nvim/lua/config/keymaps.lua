@@ -116,7 +116,7 @@ if not util.has("trouble.nvim") then
 end
 
 -- Lazy
-keymap("n", "<leader>l", "<cmd>:Lazy<CR>", { desc = "Lazy" })
+keymap("n", "<leader>l", "<cmd>Lazy<CR>", { desc = "Lazy" })
 
 -- StackOverflow Search
 keymap("n", "<leader>sO", function()
