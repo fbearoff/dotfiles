@@ -330,7 +330,13 @@ return {
   -- Location jumping and enhanced f/t
   {
     "folke/flash.nvim",
-    opts = {},
+    opts = {
+      label = {
+        format = function(opts)
+          return { { opts.match.label:upper(), opts.hl_group } }
+        end,
+      },
+    },
     keys = {
       "f",
       "F",
@@ -350,7 +356,7 @@ return {
         function()
           require("flash").jump({
             search = { mode = "search" },
-            highlight = { label = { after = { 0, 0 } } },
+            label = { after = { 0, 0 } },
             pattern = "^",
           })
         end,
@@ -374,11 +380,27 @@ return {
       },
       {
         "R",
-        mode = { "n", "o", "x" },
+        mode = { "o", "x" },
         function()
-          require("flash").treesitter_search()
+          require("flash").treesitter_search({
+
+            label = {
+              rainbow = {
+                enabled = true,
+                shade = 5,
+              },
+            },
+          })
         end,
         desc = "Treesitter Search",
+      },
+      {
+        "<c-s>",
+        mode = { "c" },
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle Flash Search",
       },
     },
   },
@@ -503,6 +525,7 @@ return {
       local augend = require("dial.augend")
       require("dial.config").augends:register_group({
         default = {
+          augend.integer.alias.decimal,
           augend.integer.alias.hex,
           augend.date.alias["%Y/%m/%d"],
           augend.semver.alias.semver,
@@ -543,8 +566,8 @@ return {
       { mode = { "n", "x" }, "y", "<Plug>(YankyYank)", desc = "Yanky Yank" },
       { mode = { "n", "x" }, "p", "<Plug>(YankyPutAfter)", desc = "Yanky Put After" },
       { mode = { "n", "x" }, "P", "<Plug>(YankyPutBefore)", desc = "Yanky Put Before" },
-      { "<c-n>", "<Plug>(YankyCycleForward)", desc = "Yanky Cycle Forward" },
-      { "<c-p>", "<Plug>(YankyCycleBackward)", desc = "Yanky Cycle Backward" },
+      { "[y", "<Plug>(YankyCycleForward)", desc = "Yanky Cycle Forward" },
+      { "]y", "<Plug>(YankyCycleBackward)", desc = "Yanky Cycle Backward" },
       { "]p", "<Plug>(YankyPutAfterFilter)", desc = "Put After Filter" },
       { "[p", "<Plug>(YankyPutBeforeFilter)", desc = "Put Before Filter" },
       {
