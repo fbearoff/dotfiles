@@ -330,13 +330,7 @@ return {
   -- Location jumping and enhanced f/t
   {
     "folke/flash.nvim",
-    opts = {
-      label = {
-        format = function(opts)
-          return { { opts.match.label:upper(), opts.hl_group } }
-        end,
-      },
-    },
+    opts = {},
     keys = {
       "f",
       "F",

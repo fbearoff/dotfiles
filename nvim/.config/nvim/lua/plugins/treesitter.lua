@@ -87,7 +87,7 @@ return {
       },
     },
     dependencies = {
-      "HiPhish/nvim-ts-rainbow2",
+      "hiphish/rainbow-delimiters.nvim",
       "nvim-treesitter/playground",
     },
     opts = {
@@ -107,9 +107,6 @@ return {
         },
       },
       autopairs = {
-        enable = true,
-      },
-      rainbow = {
         enable = true,
       },
       matchup = {

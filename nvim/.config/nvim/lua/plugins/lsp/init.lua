@@ -117,23 +117,33 @@ return {
         require("plugins.lsp.keymaps").on_attach(client, buffer)
       end)
 
+      local register_capability = vim.lsp.handlers["client/registerCapability"]
+
+      vim.lsp.handlers["client/registerCapability"] = function(err, res, ctx)
+        local ret = register_capability(err, res, ctx)
+        local client_id = ctx.client_id
+        local client = vim.lsp.get_client_by_id(client_id)
+        local buffer = vim.api.nvim_get_current_buf()
+        require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
+        return ret
+      end
       -- diagnostics
       for name, icon in pairs(require("config.icons").diagnostics) do
         name = "DiagnosticSign" .. name
         vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
       end
 
-      if opts.inlay_hints.enabled and vim.lsp.buf.inlay_hint then
+      if opts.inlay_hints.enabled and vim.lsp.inlay_hint then
         Util.on_attach(function(client, buffer)
           if client.server_capabilities.inlayHintProvider then
             vim.api.nvim_create_autocmd({ "InsertEnter" }, {
               callback = function()
-                vim.lsp.buf.inlay_hint(buffer, true)
+                vim.lsp.inlay_hint(buffer, true)
               end,
             })
             vim.api.nvim_create_autocmd({ "InsertLeave" }, {
               callback = function()
-                vim.lsp.buf.inlay_hint(buffer, false)
+                vim.lsp.inlay_hint(buffer, false)
               end,
             })
           end

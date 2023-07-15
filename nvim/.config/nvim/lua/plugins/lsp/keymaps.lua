@@ -66,6 +66,43 @@ function M.get()
   return M._keys
 end
 
+function M.has(buffer, method)
+  method = method:find("/") and method or "textDocument/" .. method
+  local clients = vim.lsp.get_active_clients({ bufnr = buffer })
+  for _, client in ipairs(clients) do
+    if client.supports_method(method) then
+      return true
+    end
+  end
+  return false
+end
+
+function M.resolve(buffer)
+  local Keys = require("lazy.core.handler.keys")
+  local keymaps = {}
+
+  local function add(keymap)
+    local keys = Keys.parse(keymap)
+    if keys[2] == false then
+      keymaps[keys.id] = nil
+    else
+      keymaps[keys.id] = keys
+    end
+  end
+  for _, keymap in ipairs(M.get()) do
+    add(keymap)
+  end
+
+  local opts = require("util").opts("nvim-lspconfig")
+  local clients = vim.lsp.get_active_clients({ bufnr = buffer })
+  for _, client in ipairs(clients) do
+    local maps = opts.servers[client.name] and opts.servers[client.name].keys or {}
+    for _, keymap in ipairs(maps) do
+      add(keymap)
+    end
+  end
+  return keymaps
+end
 function M.on_attach(client, buffer)
   local Keys = require("lazy.core.handler.keys")
   local keymaps = {}

@@ -152,9 +152,9 @@ keymap("n", "<leader>ud", function()
   util.toggle_diagnostics()
 end, { desc = "Toggle Diagnostics" })
 
-if vim.lsp.buf.inlay_hint then
+if vim.lsp.inlay_hint then
   keymap("n", "<leader>uh", function()
-    vim.lsp.buf.inlay_hint(0, nil)
+    vim.lsp.inlay_hint(0, nil)
   end, { desc = "Toggle Inlay Hints" })
 end
 keymap("n", "<leader>ut", "<cmd>TrimToggle<cr>", { desc = "Toggle Trim" })

@@ -68,13 +68,13 @@ return {
             PmenuThumb = { bg = theme.ui.bg_p2 },
 
             -- nvim-ts-rainbow2
-            TSRainbowRed = { fg = colors.palette.autumnRed },
-            TSRainbowYellow = { fg = colors.palette.carpYellow },
-            TSRainbowBlue = { fg = colors.palette.dragonBlue },
-            TSRainbowOrange = { fg = colors.palette.surimiOrange },
-            TSRainbowGreen = { fg = colors.palette.springGreen },
-            TSRainbowViolet = { fg = colors.palette.oniViolet },
-            TSRainbowCyan = { fg = colors.palette.waveAqua1 },
+            RainbowDelimiterRed = { fg = colors.palette.autumnRed },
+            RainbowDelimiterYellow = { fg = colors.palette.carpYellow },
+            RainbowDelimiterBlue = { fg = colors.palette.dragonBlue },
+            RainbowDelimiterOrange = { fg = colors.palette.surimiOrange },
+            RainbowDelimiterGreen = { fg = colors.palette.springGreen },
+            RainbowDelimiterViolet = { fg = colors.palette.oniViolet },
+            RainbowDelimiterCyan = { fg = colors.palette.waveAqua1 },
           }
         end,
         theme = "wave", -- Load "wave" theme when 'background' option is not set
