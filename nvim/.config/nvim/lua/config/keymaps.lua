@@ -134,8 +134,7 @@ keymap("n", "<leader>uz", function()
 end, { desc = "Toggle Foldcolumn" })
 
 keymap("n", "<leader>ul", function()
-  util.toggle("relativenumber", true)
-  util.toggle("number")
+  util.toggle_number()
 end, { desc = "Toggle Line Number " })
 
 keymap("n", "<leader>us", function()

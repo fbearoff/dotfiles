@@ -135,7 +135,7 @@ return {
 
       if opts.inlay_hints.enabled and vim.lsp.inlay_hint then
         Util.on_attach(function(client, buffer)
-          if client.server_capabilities.inlayHintProvider then
+          if client.supports_method("textDocument/inlayHint") then
             vim.api.nvim_create_autocmd({ "InsertEnter" }, {
               callback = function()
                 vim.lsp.inlay_hint(buffer, true)
@@ -243,6 +243,7 @@ return {
     "williamboman/mason.nvim",
     cmd = "Mason",
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+    build = ":MasonUpdate",
     opts = {
       ensure_installed = {
         "shfmt",

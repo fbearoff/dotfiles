@@ -36,6 +36,7 @@ function M.on_load(name, fn)
     })
   end
 end
+
 -- Toggle diagnostics
 local enabled = true
 function M.toggle_diagnostics()
@@ -46,6 +47,20 @@ function M.toggle_diagnostics()
   else
     vim.diagnostic.disable()
     require("lazy.core.util").warn("Disabled diagnostics", { title = "Diagnostics" })
+  end
+end
+
+local nu = { number = true, relativenumber = true }
+function M.toggle_number()
+  if vim.opt_local.number:get() or vim.opt_local.relativenumber:get() then
+    nu = { number = vim.opt_local.number:get(), relativenumber = vim.opt_local.relativenumber:get() }
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    require("lazy.core.util").warn("Disabled line numbers", { title = "Option" })
+  else
+    vim.opt_local.number = nu.number
+    vim.opt_local.relativenumber = nu.relativenumber
+    require("lazy.core.util").info("Enabled line numbers", { title = "Option" })
   end
 end
 
