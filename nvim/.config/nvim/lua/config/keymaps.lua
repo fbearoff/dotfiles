@@ -89,9 +89,6 @@ keymap("n", string.upper(cut_key), "D", { desc = "Cut To EOL" })
 -- Clear search with <esc>
 keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear Hlsearch" })
 
--- Search word under cursor
-keymap({ "n", "x" }, "gw", "*N", { desc = "Search Current Word" })
-
 -- Leader Mappings
 -- Lazygit
 keymap("n", "<leader>gg", function()
