@@ -88,13 +88,9 @@ return {
     },
     dependencies = {
       "hiphish/rainbow-delimiters.nvim",
-      "nvim-treesitter/playground",
     },
     opts = {
-      playground = {
-        enable = true,
-      },
-      highlight = { enable = true },
+      highlight = { enable = true, disable = { "csv", "tsv" } },
       indent = { enable = true },
       context_commentstring = { enable = true, enable_autocmd = false },
       incremental_selection = {
