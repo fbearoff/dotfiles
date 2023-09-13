@@ -31,36 +31,6 @@ return {
         overrides = function(colors)
           local theme = colors.theme
           return {
-            -- Nvim-Navic
-            NavicIconsFile = { link = "Directory" },
-            NavicIconsModule = { link = "@include" },
-            NavicIconsNamespace = { link = "@namespace" },
-            NavicIconsPackage = { link = "@include" },
-            NavicIconsClass = { link = "Type" },
-            NavicIconsMethod = { link = "Function" },
-            NavicIconsProperty = { link = "@property" },
-            NavicIconsField = { link = "@field" },
-            NavicIconsConstructor = { link = "@constructor" },
-            NavicIconsEnum = { link = "Type" },
-            NavicIconsInterface = { link = "Type" },
-            NavicIconsFunction = { link = "Function" },
-            NavicIconsVariable = { link = "@variable" },
-            NavicIconsConstant = { link = "Constant" },
-            NavicIconsString = { link = "String" },
-            NavicIconsNumber = { link = "Number" },
-            NavicIconsBoolean = { link = "Boolean" },
-            NavicIconsArray = { link = "Type" },
-            NavicIconsObject = { link = "Type" },
-            NavicIconsKey = { link = "@keyword" },
-            NavicIconsNull = { link = "Type" },
-            NavicIconsEnumMember = { link = "@field" },
-            NavicIconsStruct = { link = "Structure" },
-            NavicIconsEvent = { link = "Structure" },
-            NavicIconsOperator = { link = "Operator" },
-            NavicIconsTypeParameter = { link = "@lsp.type.parameter" },
-            NavicText = { fg = theme.ui.fg },
-            NavicSeparator = { fg = theme.ui.fg },
-
             -- Popup menu
             Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
             PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
