@@ -218,10 +218,10 @@ return {
 
   -- formatters
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = { "mason.nvim" },
-    keys = { { "<leader>cN", "<cmd>NullLsInfo<cr>", desc = "Null-LS Info" } },
+    keys = { { "<leader>cN", "<cmd>NullLsInfo<cr>", desc = "None-LS Info" } },
     opts = function()
       local nls = require("null-ls")
       return {
