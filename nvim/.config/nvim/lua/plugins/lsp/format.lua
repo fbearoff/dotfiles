@@ -24,6 +24,12 @@ function M.format(opts)
     return
   end
 
+  if M.custom_format and Util.try(function()
+    M.custom_format(buf)
+  end, { msg = "Custom formatter failed" }) then
+    return
+  end
+
   local formatters = M.get_formatters(buf)
   local client_ids = vim.tbl_map(function(client)
     return client.id
