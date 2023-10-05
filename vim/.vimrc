@@ -42,7 +42,6 @@ set directory=~/.vim/tmp
 set mouse=a
 set updatetime=100
 set hidden
-set vb
 
 " change cursor style dependent on mode
 let &t_SI = "\<Esc>[6 q"
@@ -101,16 +100,6 @@ nnoremap <silent> <C-t> :tabnew<CR>
 "pad empty line
 noremap <silent> <c-o> :call append('.', '')<CR>
 noremap <silent> <c-i> :call append(line('.')-1, '')<CR>
-"simplify help navigation
-autocmd FileType help nnoremap <buffer> <CR> <C-]>
-autocmd FileType help nnoremap <buffer> <BS> <C-T>
-autocmd FileType help nnoremap <buffer> o /'\l\{2,\}'<CR>
-autocmd FileType help nnoremap <buffer> O ?'\l\{2,\}'<CR>
-autocmd FileType help nnoremap <buffer> s /\|\zs\S\+\ze\|<CR>
-autocmd FileType help nnoremap <buffer> S ?\|\zs\S\+\ze\|<CR>
-" Select the font for the hardcopy
-set printfont=Courier:h8
-command! -range=% HardcopyPdf <line1>,<line2> hardcopy > %.ps | !ps2pdf %.ps && rm %.ps && echo 'Created: %.pdf'
 
 " VimPlug
 call plug#begin()
@@ -122,7 +111,6 @@ Plug 'https://github.com/airblade/vim-gitgutter.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
 Plug 'https://github.com/Yggdroot/indentLine.git'
 Plug 'https://github.com/ervandew/supertab.git'
-Plug 'https://github.com/edkolev/tmuxline.vim.git'
 Plug 'https://github.com/luochen1990/rainbow.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/jpalardy/vim-slime.git'
@@ -203,15 +191,6 @@ let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 let g:SuperTabContextDiscoverDiscovery =
     \ ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
-
-" tmuxline
-let g:tmuxline_preset = {
-      \'a'    : '#S',
-      \'c'    : ['#(whoami)', '#(uptime | cut -d " " -f3,4,5,6,7 | cut -d "," -f1,2)'],
-      \'win'  : ['#I', '#W'],
-      \'cwin' : ['#I', '#W', '#F'],
-      \'y'    : ['%r', '%a', '%d/%m/%Y'],
-      \'z'    : '#H'}
 
 "Rainbow Parenthesis
 let g:rainbow_active = 1

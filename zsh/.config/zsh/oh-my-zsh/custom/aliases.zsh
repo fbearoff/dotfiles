@@ -87,6 +87,8 @@ alias sp="pacman -Qeq > $HOME/.dotfiles/packages"
 # bat
 if (( $+commands[bat] )); then
   alias cat='bat'
+elif (( $+commands[batcat] )); then
+  alias cat='batcat'
 fi
 
 # rclone
