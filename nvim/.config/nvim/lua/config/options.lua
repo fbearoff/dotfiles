@@ -41,6 +41,7 @@ local options = {
   signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
   smartcase = true, -- smart case
   smartindent = true, -- make indenting smarter again
+  smoothscroll = true,
   softtabstop = 2, -- how many spaces is a tab press worth
   spelllang = "en_us",
   splitbelow = true, -- force all horizontal splits to go below current window
