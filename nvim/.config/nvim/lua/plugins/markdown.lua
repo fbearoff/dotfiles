@@ -4,7 +4,7 @@ return {
     ft = "markdown",
     cmd = "Glow",
     keys = {
-      { "<localleader>mg", "<cmd>Glow<cr>", desc = "Glow" },
+      { ft = "markdown", "<localleader>mg", "<cmd>Glow<cr>", desc = "Glow" },
     },
     opts = {},
   },
@@ -14,6 +14,7 @@ return {
     build = "deno task --quiet build:fast",
     keys = {
       {
+        ft = "markdown",
         "<localleader>mp",
         function()
           local peek = require("peek")
@@ -36,7 +37,7 @@ return {
     "AckslD/nvim-FeMaco.lua",
     cmd = "FeMaco",
     keys = {
-      { "<localleader>mf", "<cmd>FeMaco<cr>", desc = "FeMaco" },
+      { ft = "markdown", "<localleader>mf", "<cmd>FeMaco<cr>", desc = "FeMaco" },
     },
     opts = {
       ---@diagnostic disable-next-line: unused-local
@@ -63,6 +64,7 @@ return {
     ft = "quarto",
     keys = {
       {
+        ft = "quarto",
         "<localleader>qp",
         function()
           require("quarto").quartoPreview()
@@ -70,6 +72,7 @@ return {
         desc = "Quarto Preview",
       },
       {
+        ft = "quarto",
         "<localleader>qq",
         function()
           require("quarto").quartoClosePreview()
@@ -101,16 +104,18 @@ return {
         "folke/which-key.nvim",
         opts = function(_, opts)
           if require("util").has("mkdnflow.nvim") then
-            opts.defaults["<localleader>mt"] = { name = "+Table" }
+            table.insert(opts.defaults, {
+              ["<localleader>m"] = { name = "+Markdown", mode = { "n", "v" }, t = { name = "+Table" } },
+            })
           end
         end,
       },
     },
     ft = { "markdown", "quarto" },
     keys = {
-      { mode = { "n", "x" }, "<localleader><CR>", desc = "MD Enter" },
-      { "<localleader>mP", '""p', desc = "Paste Heading Reference" },
-      { "<localleader>mtn", ":MkdnTable ", desc = "New Table (col row)" },
+      { ft = "markdown", mode = { "n", "x" }, "<localleader><CR>", desc = "MD Enter" },
+      { ft = "markdown", "<localleader>mP", '""p', desc = "Paste Heading Reference" },
+      { ft = "markdown", "<localleader>mtn", ":MkdnTable ", desc = "New Table (col row)" },
     },
     opts = {
       filetypes = {

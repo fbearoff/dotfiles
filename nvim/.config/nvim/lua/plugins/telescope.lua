@@ -266,7 +266,7 @@ return {
   -- heading search for markdown and help
   {
     "crispgm/telescope-heading.nvim",
-    keys = { { "<localleader>mh", "<cmd>Telescope heading<cr>", desc = "Heading" } },
+    keys = { { ft = "markdown", "<localleader>mh", "<cmd>Telescope heading<cr>", desc = "Heading" } },
     config = function()
       require("telescope").load_extension("heading")
     end,
