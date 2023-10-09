@@ -109,7 +109,7 @@ function M.get_root()
   path = path ~= "" and vim.uv.fs_realpath(path) or nil
   local roots = {}
   if path then
-    for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+    for _, client in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
       local workspace = client.config.workspace_folders
       local paths = workspace and vim.tbl_map(function(ws)
         return vim.uri_to_fname(ws.uri)
@@ -238,9 +238,9 @@ function M.cite()
 end
 
 function M.on_rename(from, to)
-  local clients = vim.lsp.get_active_clients()
+  local clients = vim.lsp.get_clients()
   for _, client in ipairs(clients) do
-    if client:supports_method("workspace/willRenameFiles") then
+    if client.supports_method("workspace/willRenameFiles") then
       local resp = client.request_sync("workspace/willRenameFiles", {
         files = {
           {

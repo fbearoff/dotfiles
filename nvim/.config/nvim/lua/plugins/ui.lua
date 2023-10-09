@@ -264,6 +264,7 @@ return {
       depth_limit = 5,
       icons = require("config.icons").kinds,
       safe_output = true,
+      lazy_update_context = true,
       lsp = {
         auto_attach = true,
       },
@@ -300,7 +301,7 @@ return {
           -- GitSigns
           {
             sign = {
-              name = { "Git*" },
+              namespace = { "gitsigns" },
               maxwidth = 1,
               auto = true,
               wrap = true,

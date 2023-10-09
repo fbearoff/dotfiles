@@ -1,10 +1,16 @@
 local function keymap(mode, lhs, rhs, opts)
   local keys = require("lazy.core.handler").handlers.keys
+  local modes = type(mode) == "string" and { mode } or mode
+
+  modes = vim.tbl_filter(function(mode)
+    return not (keys.have and keys:have(lhs, mode))
+  end, modes)
+
   -- do not create the keymap if a lazy keys handler exists
-  if not keys.active[keys.parse({ lhs, mode = mode }).id] then
+  if #modes > 0 then
     opts = opts or {}
     opts.silent = opts.silent ~= false
-    vim.keymap.set(mode, lhs, rhs, opts)
+    vim.keymap.set(modes, lhs, rhs, opts)
   end
 end
 
