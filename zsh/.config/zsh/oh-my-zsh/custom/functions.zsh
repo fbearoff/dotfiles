@@ -58,6 +58,14 @@ function fx() {
   sudo ln -s /mnt/wslg/.X11-unix /tmp/.X11-unix
 }
 
+# exta z commands
+function zhead() {
+  zcat "$1" | head -n 50
+}
+function ztail() {
+  zcat "$1" | tail -n 50
+}
+
 # Shell-GPT integration ZSH v0.1
 _sgpt_zsh() {
   _sgpt_prev_cmd=$BUFFER
