@@ -92,7 +92,6 @@ return {
     opts = {
       highlight = { enable = true, disable = { "csv", "tsv" } },
       indent = { enable = true },
-      context_commentstring = { enable = true, enable_autocmd = false },
       incremental_selection = {
         enable = true,
         keymaps = {

@@ -137,12 +137,18 @@ return {
   {
     "numToStr/Comment.nvim",
     event = "BufReadPost",
-    dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
-    config = function()
-      require("Comment").setup({
-        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-      })
-    end,
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      opts = function()
+        vim.g.skip_ts_context_commentstring_module = true
+        return { enable_autocmd = false }
+      end,
+    },
+    opts = {
+      pre_hook = function()
+        require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()
+      end,
+    },
   },
 
   -- Git signs in status column
