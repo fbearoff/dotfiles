@@ -52,7 +52,7 @@ return {
         },
       },
       inlay_hints = {
-        enabled = true,
+        enabled = false,
       },
       servers = {
         -- mason = false, -- set to false if you don't want this server to be installed with mason
@@ -129,20 +129,13 @@ return {
         name = "DiagnosticSign" .. name
         vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
       end
+      -- inlay hints
+      local inlay_hint = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint.enable
 
-      if opts.inlay_hints.enabled and vim.lsp.inlay_hint then
+      if opts.inlay_hints.enabled and inlay_hint then
         Util.on_attach(function(client, buffer)
           if client.supports_method("textDocument/inlayHint") then
-            vim.api.nvim_create_autocmd({ "InsertEnter" }, {
-              callback = function()
-                vim.lsp.inlay_hint(buffer, true)
-              end,
-            })
-            vim.api.nvim_create_autocmd({ "InsertLeave" }, {
-              callback = function()
-                vim.lsp.inlay_hint(buffer, false)
-              end,
-            })
+            inlay_hint(buffer, true)
           end
         end)
       end

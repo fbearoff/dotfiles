@@ -256,4 +256,14 @@ function M.on_rename(from, to)
   end
 end
 
+function M.inlay_hints(bufnr)
+  bufnr = bufnr or 0
+  local inlay_hint = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint
+  if inlay_hint.enable then
+    vim.lsp.inlay_hint.enable(bufnr, not inlay_hint.is_enabled())
+  else
+    vim.lsp.inlay_hint(bufnr, nil)
+  end
+end
+
 return M
