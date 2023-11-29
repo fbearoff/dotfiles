@@ -17,7 +17,7 @@ return {
     { ft = { "r", "rdoc" }, mode = "x", "<leader><Space>", "<Plug>RDSendSelection", desc = "Send Selection to R" },
     { ft = { "r", "rdoc" }, "<LocalLeader>r:", ":RSend ", desc = "Send R Command" },
     { ft = { "r", "rdoc" }, "<LocalLeader>rf", "<Plug>RStart", desc = "Start R" },
-    { ft = { "r", "rdoc" }, "<LocalLeader>rq", "<Plug>RStop", desc = "Stop R" },
+    { ft = { "r", "rdoc" }, "<LocalLeader>rq", "<Plug>RClose", desc = "Stop R" },
     { ft = { "r", "rdoc" }, "<LocalLeader>rH", "<Plug>RHelp", desc = "R Help" },
     { ft = { "r", "rdoc" }, "<LocalLeader>rp", "<Plug>RObjectPr", desc = "Print Object" },
     { ft = { "r", "rdoc" }, "<LocalLeader>rs", "<Plug>RObjectStr", desc = "Print Structure" },
