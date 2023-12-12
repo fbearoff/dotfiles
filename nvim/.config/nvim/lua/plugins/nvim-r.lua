@@ -24,6 +24,8 @@ return {
     { ft = { "r", "rdoc" }, "<LocalLeader>rS", "<Plug>RSummary", desc = "Summary" },
     { ft = { "r", "rdoc" }, "<LocalLeader>rn", "<Plug>RObjectNames", desc = "View Names" },
     { ft = { "r", "rdoc" }, "<LocalLeader>rv", "<Plug>RViewDF", desc = "View DF" },
+    { ft = { "r", "rdoc" }, "<LocalLeader>rg", "<cmd>call RAction('glimpse')<CR>", desc = "Glimpse" },
+    { ft = { "r", "rdoc" }, "<LocalLeader>rc", "<cmd>call RAction('class')<CR>", desc = "View Class" },
     { ft = { "r", "rdoc" }, "<LocalLeader>rl", "<cmd>call RAction('levels')<CR>", desc = "View Levels" },
     { ft = { "r", "rdoc" }, "<LocalLeader>rh", "<cmd>call RAction('head')<CR>", desc = "View Head" },
     { ft = { "r", "rdoc" }, "<LocalLeader>rt", "<cmd>call RAction('tail')<CR>", desc = "View Tail" },
@@ -61,7 +63,6 @@ return {
       R_csv_app = ':TermExec direction=float cmd="vd %s"',
       R_hi_fun = false,
       rmd_fenced_languages = { "r" },
-      R_app = "radian",
       R_cmd = "R",
     }
     for k, v in pairs(options) do

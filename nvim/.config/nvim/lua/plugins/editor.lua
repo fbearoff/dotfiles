@@ -186,8 +186,8 @@ return {
         -- hunks
         map("n", "]g", gs.next_hunk, "Next Hunk")
         map("n", "[g", gs.prev_hunk, "Prev Hunk")
-        map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-        map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+        map({ "n", "v" }, "<leader>ghs", gs.stage_hunk, "Stage Hunk")
+        map({ "n", "v" }, "<leader>ghr", gs.reset_hunk, "Reset Hunk")
         map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
         map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
         map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
