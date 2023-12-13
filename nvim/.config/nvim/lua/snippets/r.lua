@@ -8,11 +8,11 @@ ls.add_snippets(nil, {
   r = {
     s({
       trig = ">>",
-      name = "mpipe",
-      dscr = "Magrittr Pipe (%>%)",
+      name = "pipe",
+      dscr = "Pipe (|>)",
       snippetType = "autosnippet",
     }, {
-      t({ "%>% " }),
+      t({ "|> " }),
     }),
     s({
       trig = "<<",
