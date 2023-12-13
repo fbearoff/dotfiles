@@ -48,17 +48,6 @@ if (Sys.getenv("TERM") == "xterm-256color") {
   )
 }
 
-# quietly autoload packages on startup
-sshhh <- function(a.package) {
-  suppressWarnings(suppressPackageStartupMessages(
-    library(a.package, character.only = TRUE)
-  ))
-}
-auto_loads <- c("tidyverse")
-if (interactive()) {
-  invisible(sapply(auto_loads, sshhh))
-}
-
 # tab-complete libraries
 utils::rc.settings(ipck = TRUE)
 
