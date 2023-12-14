@@ -14,8 +14,12 @@ if [[ -x "$(command -v docker)" ]]; then
   docker
   docker-compose
   )
-elif [[ $(uname -r) =~ (m|M)icrosoft ]]; then
+fi
+if [[ $(uname -r) =~ (m|M)icrosoft ]]; then
   plugins+=(ssh-agent)
+fi
+if [[ $HOST = (neuron|sd-55327) ]]; then
+  plugins+=(ufw)
 fi
 plugins+=(
   autoupdate
@@ -75,6 +79,8 @@ export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export ANSIBLE_HOME="$XDG_CACHE_HOME"/ansible
 export XCURSOR_PATH=/usr/share/icons:$XDG_DATA_HOME/icons
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 
 # source secrets file
 [ -f "$XDG_STATE_HOME"/zsh/zshrc.local ] && source "$XDG_STATE_HOME"/zsh/zshrc.local
