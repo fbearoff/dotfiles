@@ -37,6 +37,12 @@ return {
     },
     {
       ft = { "r", "rdoc" },
+      "<LocalLeader>rU",
+      "<cmd>RSend BiocManager::install()<CR>",
+      desc = "Update Bioconductor Packages",
+    },
+    {
+      ft = { "r", "rdoc" },
       "<LocalLeader>ri",
       function()
         local current_word = vim.call("expand", "<cword>")
