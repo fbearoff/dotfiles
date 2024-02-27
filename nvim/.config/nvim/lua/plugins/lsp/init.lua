@@ -215,10 +215,11 @@ return {
     opts = function()
       local nls = require("null-ls")
       return {
+        debug = true,
         sources = {
           nls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
           nls.builtins.formatting.shfmt,
-          nls.builtins.formatting.deno_fmt,
+          nls.builtins.formatting.mdformat,
           nls.builtins.formatting.stylua,
           nls.builtins.diagnostics.proselint,
           nls.builtins.code_actions.ts_node_action,
@@ -237,11 +238,11 @@ return {
     opts = {
       ensure_installed = {
         "shfmt",
-        "deno",
         "black",
         "proselint",
         "stylua",
         "ansible-lint",
+        "mdformat",
       },
       ui = {
         icons = {
