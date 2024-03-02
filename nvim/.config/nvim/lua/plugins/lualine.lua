@@ -91,14 +91,11 @@ return {
     }
 
     local grapple = {
-      function()
-        local key = require("grapple").key()
-        return " [" .. key .. "]"
-      end,
+      require("grapple").statusline,
       cond = require("grapple").exists,
       color = { fg = colors.theme.syn.fun },
       on_click = function()
-        vim.cmd("GrapplePopup tags")
+        vim.cmd("Grapple toggle_tags")
       end,
     }
 

@@ -259,7 +259,6 @@ return {
   -- Quick tagged file switching
   {
     "cbochs/grapple.nvim",
-    dependencies = "nvim-lua/plenary.nvim",
     keys = {
       {
         "<leader>!",
@@ -278,7 +277,7 @@ return {
       {
         "<leader>bg",
         function()
-          require("grapple").popup_tags()
+          require("grapple").toggle_tags()
         end,
         desc = "Grapple Tags",
       },
