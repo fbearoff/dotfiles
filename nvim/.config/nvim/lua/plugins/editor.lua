@@ -29,6 +29,7 @@ return {
         ["<leader>t"] = { name = "+Terminal" },
         ["<leader>u"] = { name = "+UI" },
         ["<leader>a"] = { name = "+AI", mode = { "n", "v" } },
+        ["<localleader>r"] = { name = "+R" },
       },
     },
     config = function(_, opts)

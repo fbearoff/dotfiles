@@ -9,7 +9,7 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-path",
-      "jalvesaq/cmp-nvim-r",
+      "R-nvim/cmp-r",
       "saadparwaiz1/cmp_luasnip",
       "max397574/cmp-greek",
       "hrsh7th/cmp-emoji",
@@ -83,7 +83,7 @@ return {
           end, { "i", "s" }),
         }),
         sources = cmp.config.sources({
-          { name = "cmp_nvim_r" },
+          { name = "cmp_r" },
           { name = "nvim_lsp", max_item_count = 10 },
           { name = "nvim_lua" },
           {
