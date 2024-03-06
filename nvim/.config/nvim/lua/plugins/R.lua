@@ -14,11 +14,41 @@ return {
     { "<LocalLeader>rS", "<Plug>RSummary", desc = "Summary" },
     { "<LocalLeader>rn", "<Plug>RObjectNames", desc = "View Names" },
     { "<LocalLeader>rv", "<Plug>RViewDF", desc = "View DF" },
-    { "<LocalLeader>rg", "<cmd>call RAction('glimpse')<CR>", desc = "Glimpse" },
-    { "<LocalLeader>rc", "<cmd>call RAction('class')<CR>", desc = "View Class" },
-    { "<LocalLeader>rl", "<cmd>call RAction('levels')<CR>", desc = "View Levels" },
-    { "<LocalLeader>rh", "<cmd>call RAction('head')<CR>", desc = "View Head" },
-    { "<LocalLeader>rt", "<cmd>call RAction('tail')<CR>", desc = "View Tail" },
+    {
+      "<LocalLeader>rg",
+      function()
+        require("r.run").action("glimpse")
+      end,
+      desc = "Glimpse",
+    },
+    {
+      "<LocalLeader>rc",
+      function()
+        require("r.run").action("class")
+      end,
+      desc = "View Class",
+    },
+    {
+      "<LocalLeader>rl",
+      function()
+        require("r.run").action("levels")
+      end,
+      desc = "View Levels",
+    },
+    {
+      "<LocalLeader>rh",
+      function()
+        require("r.run").action("head")
+      end,
+      desc = "View Head",
+    },
+    {
+      "<LocalLeader>rt",
+      function()
+        require("r.run").action("tail")
+      end,
+      desc = "View Tail",
+    },
     {
       "<LocalLeader>ru",
       "<cmd>RSend update.packages(ask = FALSE)<CR>",
