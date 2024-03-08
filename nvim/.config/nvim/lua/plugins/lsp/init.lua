@@ -54,6 +54,9 @@ return {
       inlay_hints = {
         enabled = false,
       },
+      codelens = {
+        enabled = false,
+      },
       servers = {
         -- mason = false, -- set to false if you don't want this server to be installed with mason
         ansiblels = {},
@@ -99,6 +102,9 @@ return {
               hint = {
                 enable = true,
               },
+              codeLens = {
+                enable = true,
+              },
             },
           },
         },
@@ -139,7 +145,19 @@ return {
           end
         end)
       end
-
+      -- code lens
+      if opts.codelens.enabled and vim.lsp.codelens then
+        Util.lsp.on_attach(function(client, buffer)
+          if client.supports_method("textDocument/codeLens") then
+            vim.lsp.codelens.refresh()
+            --- autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
+            vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+              buffer = buffer,
+              callback = vim.lsp.codelens.refresh,
+            })
+          end
+        end)
+      end
       if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
         opts.diagnostics.virtual_text.prefix = vim.fn.has("nvim-0.10.0") == 0
           or function(diagnostic)
