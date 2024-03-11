@@ -11,8 +11,8 @@ local({
     # Parallel apply-type functions via 'parallel' package
     mc.cores = n,
     repos = r,
-    # languageserver.server_capabilities =
-    #   list(completionProvider = FALSE, completionItemResolve = FALSE)
+    languageserver.server_capabilities =
+      list(completionProvider = FALSE, completionItemResolve = FALSE),
     max.print = 200,
     menu.graphics = FALSE,
     continue = "... ",
