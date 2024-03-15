@@ -82,6 +82,7 @@ return {
     source_args = "echo = TRUE, spaced = TRUE",
     specialplot = true,
     term_title = "R",
+    setwd = "file",
     user_maps_only = true,
   },
 }
