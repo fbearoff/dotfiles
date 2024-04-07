@@ -14,6 +14,7 @@ return {
     { "<LocalLeader>rS", "<Plug>RSummary", desc = "Summary" },
     { "<LocalLeader>rn", "<Plug>RObjectNames", desc = "View Names" },
     { "<LocalLeader>rv", "<Plug>RViewDF", desc = "View DF" },
+    { "<LocalLeader>rP", "<Plug>RSeparatePathPaste", desc = "Separate Path Paste" },
     {
       "<LocalLeader>rg",
       function()

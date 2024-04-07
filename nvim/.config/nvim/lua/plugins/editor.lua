@@ -235,6 +235,7 @@ return {
   -- Macro recording
   {
     "ecthelionvi/NeoComposer.nvim",
+    dependencies = { "kkharji/sqlite.lua" },
     opts = function()
       local colors = require("kanagawa.colors").setup()
       return {
@@ -557,7 +558,6 @@ return {
   -- Enhanced yank/put
   {
     "gbprod/yanky.nvim",
-    event = "BufReadPost",
     dependencies = {
       "kkharji/sqlite.lua",
     },
@@ -586,6 +586,9 @@ return {
       },
       ring = {
         storage = "sqlite",
+      },
+      system_clipboard = {
+        sync_with_ring = false, -- terminal unresponsive if true
       },
     },
   },
