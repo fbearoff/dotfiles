@@ -127,6 +127,7 @@ return {
         "query",
         "r",
         "regex",
+        "rnoweb",
         "toml",
         "vim",
         "vimdoc",
