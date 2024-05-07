@@ -72,7 +72,6 @@ return {
   },
   opts = {
     R_args = { "--quiet", "--no-save" },
-    assign = false,
     bracketed_paste = true,
     clear_console = false,
     clear_line = true,
