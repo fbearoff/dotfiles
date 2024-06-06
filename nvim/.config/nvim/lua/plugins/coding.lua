@@ -249,6 +249,7 @@ return {
       "ChatGPTRun",
     },
     keys = {
+      { "<leader>a", "", desc = "+AI", mode = { "n", "v" } },
       {
         mode = { "n", "x" },
         "<leader>ae",

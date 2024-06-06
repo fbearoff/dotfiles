@@ -28,8 +28,6 @@ return {
         ["<leader>s"] = { name = "+Search" },
         ["<leader>t"] = { name = "+Terminal" },
         ["<leader>u"] = { name = "+UI" },
-        ["<leader>a"] = { name = "+AI", mode = { "n", "v" } },
-        ["<localleader>r"] = { name = "+R" },
       },
     },
     config = function(_, opts)
@@ -83,17 +81,6 @@ return {
   -- todo comments
   {
     "folke/todo-comments.nvim",
-    -- which key integration
-    dependencies = {
-      {
-        "folke/which-key.nvim",
-        opts = function(_, opts)
-          if require("util").has("todo-comments.nvim") then
-            opts.defaults["<localleader>t"] = { name = "+TODO Comments" }
-          end
-        end,
-      },
-    },
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = { "BufReadPre", "BufNewFile" },
     opts = {
@@ -105,6 +92,11 @@ return {
       },
     },
     keys = {
+      {
+        "<localleader>t",
+        "",
+        desc = "+TODO Comments",
+      },
       {
         "]t",
         function()
@@ -216,17 +208,8 @@ return {
   {
     "chentoast/marks.nvim",
     event = "BufReadPost",
-    dependencies = {
-      {
-        "folke/which-key.nvim",
-        opts = function(_, opts)
-          if require("util").has("marks.nvim") then
-            opts.defaults["<leader>m"] = { name = "+Marks" }
-          end
-        end,
-      },
-    },
     keys = {
+      { "<leader>m", "", desc = "+Marks" },
       { "<leader>ms", "<Plug>(Marks-set)", desc = "Set" },
       { "<leader>mn", "<Plug>(Marks-setnext)", desc = "Set Next" },
       { "<leader>md", "<Plug>(Marks-deleteline)", desc = "Delete Line" },

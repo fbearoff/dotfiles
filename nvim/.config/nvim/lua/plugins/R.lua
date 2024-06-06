@@ -2,6 +2,7 @@ return {
   "R-nvim/R.nvim",
   ft = { "r", "rmd" },
   keys = {
+    { "<LocalLeader>r", "", desc = "+R" },
     { ft = { "r", "rdoc" }, "<leader><Space>", "<Plug>RDSendLine", desc = "which_key_ignore" },
     { ft = { "r", "rdoc" }, mode = "x", "<leader><Space>", "<Plug>RDSendSelection", desc = "Send Selection to R" },
     { "<LocalLeader>r:", ":RSend ", desc = "Send R Command" },

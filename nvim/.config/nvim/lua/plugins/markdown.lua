@@ -51,18 +51,10 @@ return {
     "quarto-dev/quarto-nvim",
     dependencies = {
       "jmbuhr/otter.nvim",
-      -- which key integration
-      {
-        "folke/which-key.nvim",
-        opts = function(_, opts)
-          if require("util").has("quarto-nvim") then
-            opts.defaults["<localleader>q"] = { name = "+Quarto" }
-          end
-        end,
-      },
     },
     ft = "quarto",
     keys = {
+      { ft = "quarto", "<localleader>q", "", desc = "+Quarto" },
       {
         ft = "quarto",
         "<localleader>qp",
@@ -98,21 +90,10 @@ return {
 
   {
     "jakewvincent/mkdnflow.nvim",
-    -- which key integration
-    dependencies = {
-      {
-        "folke/which-key.nvim",
-        opts = function(_, opts)
-          if require("util").has("mkdnflow.nvim") then
-            table.insert(opts.defaults, {
-              ["<localleader>m"] = { name = "+Markdown", mode = { "n", "v" }, t = { name = "+Table" } },
-            })
-          end
-        end,
-      },
-    },
-    ft = { "markdown", "quarto" },
+    enabled = true,
+    -- ft = { "markdown", "quarto" },
     keys = {
+      { ft = "markdown", "<localleader>m", "", desc = "+Markdown" },
       { ft = "markdown", mode = { "n", "x" }, "<localleader><CR>", desc = "MD Enter" },
       { ft = "markdown", "<localleader>mP", '""p', desc = "Paste Heading Reference" },
       { ft = "markdown", "<localleader>mtn", ":MkdnTable ", desc = "New Table (col row)" },
