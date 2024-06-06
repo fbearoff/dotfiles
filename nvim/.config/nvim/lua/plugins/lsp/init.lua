@@ -60,9 +60,7 @@ return {
       servers = {
         -- mason = false, -- set to false if you don't want this server to be installed with mason
         ansiblels = {},
-        bashls = {
-          filetypes = { "sh", "zsh" },
-        },
+        bashls = {},
         html = {},
         marksman = {
           filetypes = { "markdown", "quarto" },
