@@ -109,6 +109,9 @@ alias ldh="DOCKER_HOST=ssh://hosting lazydocker"
 # tmux
 alias ta="tmux a"
 
+# ansible
+alias up="cd ~/ansible && playbooks/update.yaml"
+
 # global aliases
 alias -g C='cat'
 alias -g H='| head'
