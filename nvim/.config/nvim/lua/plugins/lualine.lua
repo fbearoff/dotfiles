@@ -18,7 +18,7 @@ return {
       update_in_insert = false,
       always_visible = false,
       on_click = function()
-        vim.cmd("TroubleToggle document_diagnostics")
+        vim.cmd("Trouble diagnostics toggle")
       end,
     }
 
