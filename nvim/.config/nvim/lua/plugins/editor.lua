@@ -4,36 +4,34 @@ return {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
+      spec = {
+        {
+          { "<leader>b", group = "Buffer" },
+          { "<leader>d", group = "Diagnostics" },
+          { "<leader>f", group = "Files" },
+          { "<leader>g", group = "Git" },
+          { "<leader>gh", group = "Hunks" },
+          { "<leader>s", group = "Search" },
+          { "<leader>t", group = "Terminal" },
+          { "<leader>u", group = "UI" },
+          { "[", group = "Prev" },
+          { "]", group = "Next" },
+          { "g", group = "Goto" },
+          { "<leader>c", group = "Code", mode = { "n", "v" } },
+        },
+      },
+      icons = { rules = false },
       plugins = {
         marks = false,
         registers = false,
       },
-      key_labels = {
-        ["<leader>"] = "SPC",
-        ["<space>"] = "SPC",
-      },
-      window = { winblend = 5 },
+      win = { wo = { winblend = 5 } },
       layout = { align = "center" },
       show_help = false,
-      defaults = {
-        ["g"] = { name = "+Goto" },
-        ["]"] = { name = "+Next" },
-        ["["] = { name = "+Prev" },
-        ["<leader>b"] = { name = "+Buffer" },
-        ["<leader>c"] = { name = "+Code", mode = { "n", "v" } },
-        ["<leader>d"] = { name = "+Diagnostics" },
-        ["<leader>f"] = { name = "+Files" },
-        ["<leader>g"] = { name = "+Git" },
-        ["<leader>gh"] = { name = "+Hunks" },
-        ["<leader>s"] = { name = "+Search" },
-        ["<leader>t"] = { name = "+Terminal" },
-        ["<leader>u"] = { name = "+UI" },
-      },
     },
     config = function(_, opts)
       local wk = require("which-key")
       wk.setup(opts)
-      wk.register(opts.defaults)
     end,
   },
 
