@@ -26,13 +26,8 @@ return {
         registers = false,
       },
       win = { wo = { winblend = 5 } },
-      layout = { align = "center" },
       show_help = false,
     },
-    config = function(_, opts)
-      local wk = require("which-key")
-      wk.setup(opts)
-    end,
   },
 
   -- Better diagnostics list

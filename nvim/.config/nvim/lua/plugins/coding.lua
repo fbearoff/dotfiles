@@ -74,51 +74,57 @@ return {
     config = function(_, opts)
       -- register all text objects with which-key
       require("mini.ai").setup(opts)
-      local i = {
-        [" "] = "Whitespace",
-        ['"'] = 'Balanced "',
-        ["'"] = "Balanced '",
-        ["`"] = "Balanced `",
-        ["("] = "Balanced (",
-        [")"] = "Balanced ) including white-space",
-        [">"] = "Balanced > including white-space",
-        ["<lt>"] = "Balanced <",
-        ["]"] = "Balanced ] including white-space",
-        ["["] = "Balanced [",
-        ["}"] = "Balanced } including white-space",
-        ["{"] = "Balanced {",
-        ["?"] = "User Prompt",
-        a = "Assignment",
-        A = "Assignment LHS, RHS",
-        b = "Balanced ), ], }",
-        c = "Call, Class",
-        f = "Function",
-        ["#"] = "Number",
-        C = "Comment",
-        o = "Block, conditional, loop",
-        q = "Quote `, \", '",
-        t = "Tag",
-        ["|"] = "Pipe, Command",
-        g = "Entire Buffer",
+      local objects = {
+        { " ", desc = "Whitespace" },
+        { '"', desc = 'Balanced "' },
+        { "'", desc = "Balanced '" },
+        { "`", desc = "Balanced `" },
+        { "(", desc = "Balanced (" },
+        { ")", desc = "Balanced ) with ws" },
+        { ">", desc = "Balanced > with ws" },
+        { "<lt>", desc = "Balanced <" },
+        { "", desc = "Balanced ] with ws" },
+        { "[", desc = "Balanced [" },
+        { "}", desc = "Balanced } with ws" },
+        { "{", desc = "Balanced {" },
+        { "?", desc = "User Prompt" },
+        { "a", desc = "Assignment" },
+        { "A", desc = "Assignment LHS, RHS" },
+        { "b", desc = "Balanced ), ], }" },
+        { "c", desc = "Call, Class" },
+        { "f", desc = "Function" },
+        { "#", desc = "Number" },
+        { "C", desc = "Comment" },
+        { "o", desc = "Block, conditional, loop" },
+        { "q", desc = "Quote `\"'" },
+        { "t", desc = "Tag" },
+        { "|", desc = "Pipe, Command" },
+        { "g", desc = "Entire Buffer" },
       }
-      local a = vim.deepcopy(i)
-      for k, v in pairs(a) do
-        a[k] = v:gsub(" including.*", "")
-      end
+      local ret = { mode = { "o", "x" } }
+      local mappings = vim.tbl_extend("force", {}, {
+        around = "a",
+        inside = "i",
+        around_next = "an",
+        inside_next = "in",
+        around_last = "al",
+        inside_last = "il",
+      }, opts.mappings or {})
+      mappings.goto_left = nil
+      mappings.goto_right = nil
 
-      local ic = vim.deepcopy(i)
-      local ac = vim.deepcopy(a)
-      for key, name in pairs({ n = "Next", l = "Last" }) do
-        ---@diagnostic disable-next-line: assign-type-mismatch
-        i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " Textobject" }, ic)
-        ---@diagnostic disable-next-line: assign-type-mismatch
-        a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " Textobject" }, ac)
+      for name, prefix in pairs(mappings) do
+        name = name:gsub("^around_", ""):gsub("^inside_", "")
+        ret[#ret + 1] = { prefix, group = name }
+        for _, obj in ipairs(objects) do
+          local desc = obj.desc
+          if prefix:sub(1, 1) == "i" then
+            desc = desc:gsub(" with ws", "")
+          end
+          ret[#ret + 1] = { prefix .. obj[1], desc = obj.desc }
+        end
       end
-      require("which-key").register({
-        mode = { "o", "x" },
-        i = i,
-        a = a,
-      })
+      require("which-key").add(ret)
     end,
   },
 
