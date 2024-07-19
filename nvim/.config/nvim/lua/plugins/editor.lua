@@ -203,14 +203,62 @@ return {
     event = "BufReadPost",
     keys = {
       { "<leader>m", "", desc = "+Marks" },
-      { "<leader>ms", "<Plug>(Marks-set)", desc = "Set" },
-      { "<leader>mn", "<Plug>(Marks-setnext)", desc = "Set Next" },
-      { "<leader>md", "<Plug>(Marks-deleteline)", desc = "Delete Line" },
-      { "<leader>mD", "<Plug>(Marks-deletebuf)", desc = "Delete All" },
-      { "<leader>mj", "<Plug>(Marks-next)", desc = "Next" },
-      { "<leader>mk", "<Plug>(Marks-prev)", desc = "Previous" },
-      { "<leader>mp", "<Plug>(Marks-preview)", desc = "Preview" },
-      { "<leader>mt", "<cmd>MarksToggleSigns<cr>", desc = "Toggle Signs" },
+      {
+        "<leader>ms",
+        function()
+          require("marks").set()
+        end,
+        desc = "Set",
+      },
+      {
+        "<leader>mn",
+        function()
+          require("marks").set_next()
+        end,
+        desc = "Set Next",
+      },
+      {
+        "<leader>md",
+        function()
+          require("marks").delete_line()
+        end,
+        desc = "Delete Line",
+      },
+      {
+        "<leader>mD",
+        function()
+          require("marks").delete_buf()
+        end,
+        desc = "Delete All",
+      },
+      {
+        "<leader>mj",
+        function()
+          require("marks").next()
+        end,
+        desc = "Next",
+      },
+      {
+        "<leader>mk",
+        function()
+          require("marks").prev()
+        end,
+        desc = "Previous",
+      },
+      {
+        "<leader>mp",
+        function()
+          require("marks").preview()
+        end,
+        desc = "Preview",
+      },
+      {
+        "<leader>mt",
+        function()
+          require("marks").toggle_signs()
+        end,
+        desc = "Toggle Signs",
+      },
     },
     opts = {
       default_mappings = false,
