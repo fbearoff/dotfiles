@@ -61,7 +61,7 @@ return {
           {
             "<LocalLeader>rs",
             function()
-              require("r.run").action("str", "v")
+              require("r.run").action("str")
             end,
             desc = "Print Structure",
           },
@@ -89,9 +89,9 @@ return {
           {
             "<LocalLeader>rP",
             function()
-              require("r.path").separate("paste")
+              require("r.path").separate()
             end,
-            desc = "Separate Path Paste",
+            desc = "Separate Path",
           },
           {
             "<LocalLeader>rg",

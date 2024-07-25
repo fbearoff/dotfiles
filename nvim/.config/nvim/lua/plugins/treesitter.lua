@@ -12,7 +12,42 @@ return {
         desc = "Trigger Node Action",
       },
     },
-    opts = {},
+    opts = function()
+      local actions = require("ts-node-action.actions")
+      local helpers = require("ts-node-action.helpers")
+      --- @param node TSNode
+      local function toggle_multiline_args(node)
+        local structure = helpers.destructure_node(node)
+        if
+          type(structure.argument) == "table"
+          or (type(structure.argument) == "string")
+          or type(structure.parameter) == "table"
+          or (type(structure.parameter) == "string")
+        then
+        else
+          vim.print("No arguments")
+          return
+        end
+
+        local replacement
+
+        local tbl = actions.toggle_multiline(padding)
+        replacement = tbl[1][1](node)
+        return replacement,
+          {
+            format = true,
+            callback = function()
+              vim.lsp.buf.format()
+            end,
+          }
+      end
+      return {
+        r = {
+          ["arguments"] = { { toggle_multiline_args, name = "Toggle Multiline Arguments" } },
+          ["parameters"] = { { toggle_multiline_args, name = "Toggle Multiline Parameter" } },
+        },
+      }
+    end,
   },
 
   -- Show code context as top line
