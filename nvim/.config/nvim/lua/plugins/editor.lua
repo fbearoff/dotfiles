@@ -921,17 +921,6 @@ return {
     end,
   },
 
-  -- Custom operator mappings
-  {
-    "zdcthomas/yop.nvim",
-    keys = {
-      { mode = { "n", "x" }, "<leader>S", desc = "Sort" },
-    },
-    config = function()
-      require("yop").op_map({ "n", "x" }, "<leader>S", require("util").sort)
-    end,
-  },
-
   -- Escape from surrounds
   {
     "abecodes/tabout.nvim",

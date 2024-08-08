@@ -200,4 +200,28 @@ return {
       },
     },
   },
+
+  -- sort treesitter nodes
+  {
+    "mtrajano/tssorter.nvim",
+    opts = {
+      sortables = {
+        r = {
+          arguments = {
+            node = "argument",
+          },
+        },
+      },
+    },
+    keys = {
+      {
+        mode = { "n", "x" },
+        "<leader>S",
+        function()
+          require("tssorter").sort()
+        end,
+        desc = "Sort",
+      },
+    },
+  },
 }
