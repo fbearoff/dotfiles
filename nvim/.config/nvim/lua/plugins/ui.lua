@@ -288,7 +288,6 @@ return {
   -- Clickable status column items
   {
     "luukvbaal/statuscol.nvim",
-    branch = "0.10",
     event = "BufReadPost",
     opts = function()
       local builtin = require("statuscol.builtin")

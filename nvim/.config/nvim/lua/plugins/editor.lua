@@ -442,7 +442,7 @@ return {
   -- Better % matching
   {
     "andymass/vim-matchup",
-    enabled = false,
+    enabled = true,
     event = "BufReadPost",
     init = function()
       vim.o.matchpairs = "(:),{:},[:],<:>"
