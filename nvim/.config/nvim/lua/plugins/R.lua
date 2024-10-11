@@ -145,6 +145,11 @@ return {
             end,
             desc = "Install Missing Packages",
           },
+          {
+            "<LocalLeader>rr",
+            "<cmd>Roxygenize<CR>",
+            desc = "Roxygenize",
+          },
         })
       end,
     },
