@@ -80,7 +80,7 @@ return {
       end,
       icon = " :",
       on_click = function()
-        require("lspconfig.ui.lspinfo")()
+        vim.cmd("check lspconfig")
       end,
     }
 

@@ -13,7 +13,7 @@ function M.get()
     M._keys = {
       { "<leader>cd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
       { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
-      { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
+      { "<leader>cl", "<cmd>check lspconfig<cr>", desc = "Lsp Info" },
       { "<leader>dd", "<cmd>Telescope diagnostics<cr>", desc = "Document" },
       { "<leader>dD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace" },
       { "gd", function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end, desc = "Goto Definition", has = "definition" },
