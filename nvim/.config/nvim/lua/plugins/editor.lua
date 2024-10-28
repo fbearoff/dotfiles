@@ -623,7 +623,7 @@ return {
         storage = "sqlite",
       },
       system_clipboard = {
-        sync_with_ring = false, -- terminal unresponsive if true
+        sync_with_ring = true,
       },
     },
   },
