@@ -5,7 +5,15 @@ return {
   {
     "akinsho/toggleterm.nvim",
     keys = {
-      { [[<c-\>]], desc = "ToggleTerm" },
+      {
+        [[<c-\>]],
+        function()
+          local count = vim.v.count1
+          local dir = vim.api.nvim_buf_get_name(0)
+          require("toggleterm").toggle(count, 15, vim.fs.dirname(dir), "horizontal")
+        end,
+        desc = "ToggleTerm (CWD)",
+      },
       { "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", desc = "Float" },
       { "<leader>t-", "<cmd>ToggleTerm size=10 direction=horizontal<CR>", desc = "Horizontal" },
       { "<leader>t\\", "<cmd>ToggleTerm size=80 direction=vertical<CR>", desc = "Vertical" },
@@ -17,6 +25,7 @@ return {
       function _G.set_terminal_keymaps()
         local opts = { buffer = 0 }
         vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
+        vim.keymap.set("t", [[<c-\>]], [[<C-\><C-n>]], opts)
         vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
         vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
         vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
@@ -28,8 +37,7 @@ return {
         callback = set_terminal_keymaps,
       })
       return {
-        autochdir = true,
-        open_mapping = [[<c-\>]],
+        autochdir = false,
         shading_factor = 2,
         direction = "horizontal",
         float_opts = {
