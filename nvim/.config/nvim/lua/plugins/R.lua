@@ -150,6 +150,11 @@ return {
             "<cmd>Roxygenize<CR>",
             desc = "Roxygenize",
           },
+          {
+            "<LocalLeader>rG",
+            "<cmd>RSend httpgd::hgd(); httpgd::hgd_browse()<CR>",
+            desc = "Start httpgd",
+          },
         })
       end,
     },
