@@ -82,7 +82,7 @@ return {
           {
             "<LocalLeader>rv",
             function()
-              require("r.run").action("viewobj", "v")
+              require("r.run").action("viewobj")
             end,
             desc = "View DF",
           },
@@ -146,7 +146,7 @@ return {
             desc = "Install Missing Packages",
           },
           {
-            "<LocalLeader>rr",
+            "<LocalLeader>rR",
             "<cmd>Roxygenize<CR>",
             desc = "Roxygenize",
           },
@@ -155,6 +155,16 @@ return {
             "<cmd>RSend httpgd::hgd(); httpgd::hgd_browse()<CR>",
             desc = "Start httpgd",
           },
+          {
+            "<LocalLeader>rr",
+            "<cmd>RSend shiny::runApp('app.R')<CR>",
+            desc = "Start Shiny App",
+          },
+          {
+            "<LocalLeader>rQ",
+            "<cmd>RStop<CR>",
+            desc = "Stop R Command",
+          },
         })
       end,
     },
@@ -162,7 +172,9 @@ return {
     bracketed_paste = true,
     clear_console = false,
     clear_line = true,
-    csv_app = ':TermExec direction=float cmd="vd %s"',
+    view_df = {
+      open_app = ":split",
+    },
     editing_mode = "vi",
     esc_term = false,
     hl_term = false,

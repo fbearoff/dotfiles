@@ -949,7 +949,10 @@ return {
   -- Highlight csv column in rainbow colors
   {
     "cameron-wags/rainbow_csv.nvim",
-    opts = {},
+    opts = function()
+      vim.g.disable_rainbow_statusline = 1
+      vim.g.disable_rainbow_hover = 1
+    end,
     ft = {
       "csv",
       "tsv",
