@@ -125,7 +125,10 @@ return {
       "hiphish/rainbow-delimiters.nvim",
     },
     opts = {
-      highlight = { enable = true, disable = { "csv", "tsv" } },
+      highlight = {
+        enable = true,
+        disable = { "csv", "tsv" },
+      },
       indent = { enable = true },
       incremental_selection = {
         enable = true,

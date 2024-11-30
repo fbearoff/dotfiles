@@ -952,15 +952,25 @@ return {
     opts = function()
       vim.g.disable_rainbow_statusline = 1
       vim.g.disable_rainbow_hover = 1
+      vim.g.disable_rainbow_key_mappings = 1
     end,
     ft = {
       "csv",
       "tsv",
-      "csv_semicolon",
-      "csv_whitespace",
-      "csv_pipe",
-      "rfc_csv",
-      "rfc_semicolon",
+    },
+    keys = {
+      {
+        "<localleader>A",
+        "<cmd>RainbowAlign<cr>",
+        ft = { "csv", "tsv" },
+        desc = "Align Columns",
+      },
+      {
+        "<localleader>S",
+        "<cmd>RainbowShrink<cr>",
+        ft = { "csv", "tsv" },
+        desc = "Shrink Columns",
+      },
     },
   },
 

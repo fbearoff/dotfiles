@@ -197,18 +197,3 @@ let g:rainbow_active = 1
 
 "Vim-Slime
 let g:slime_target = "tmux"
-
-" NVim-R
-" let R_external_term = 1
-let R_args = ['--quiet']
-let R_clear_console = 0
-let R_csv_app = 'tmux new-window vd'
-let R_bracketed_paste = 1
-let R_source_args = 'echo = TRUE, spaced = TRUE'
-let R_commented_lines = 1
-let Rout_more_colors = 1
-" Press the space bar to send lines and selection to R:
-vmap <Space> <Plug>RDSendSelection
-nmap <Space> <Plug>RDSendLine
-" send arbitrary R command, NOTE space after function
-nmap <LocalLeader>: :RSend
