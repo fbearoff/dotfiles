@@ -142,13 +142,13 @@ return {
       {
         mode = { "o", "x" },
         "aS",
-        "<cmd>lua require('various-textobjs').subword(false)<cr>",
+        "<cmd>lua require('various-textobjs').subword('outer')<cr>",
         desc = "Subword",
       },
       {
         mode = { "o", "x" },
         "iS",
-        "<cmd>lua require('various-textobjs').subword(true)<cr>",
+        "<cmd>lua require('various-textobjs').subword('inner')<cr>",
         desc = "Subword",
       },
       {
@@ -166,13 +166,13 @@ return {
       {
         mode = { "o", "x" },
         "a_",
-        "<cmd>lua require('various-textobjs').lineCharacterwise(false)<cr>",
+        "<cmd>lua require('various-textobjs').lineCharacterwise('outer')<cr>",
         desc = "Line (CharWise)",
       },
       {
         mode = { "o", "x" },
         "i_",
-        "<cmd>lua require('various-textobjs').lineCharacterwise(true)<cr>",
+        "<cmd>lua require('various-textobjs').lineCharacterwise('inner')<cr>",
         desc = "Line (CharWise)",
       },
       {
@@ -184,25 +184,25 @@ return {
       {
         mode = { "o", "x" },
         "ak",
-        "<cmd>lua require('various-textobjs').key(false)<cr>",
+        "<cmd>lua require('various-textobjs').key('outer')<cr>",
         desc = "Key",
       },
       {
         mode = { "o", "x" },
         "ik",
-        "<cmd>lua require('various-textobjs').key(true)<cr>",
+        "<cmd>lua require('various-textobjs').key('inner')<cr>",
         desc = "Key",
       },
       {
         mode = { "o", "x" },
         "av",
-        "<cmd>lua require('various-textobjs').value(false)<cr>",
+        "<cmd>lua require('various-textobjs').value('outer')<cr>",
         desc = "Value",
       },
       {
         mode = { "o", "x" },
         "iv",
-        "<cmd>lua require('various-textobjs').value(true)<cr>",
+        "<cmd>lua require('various-textobjs').value('inner')<cr>",
         desc = "Value",
       },
       {
