@@ -191,16 +191,10 @@ return {
   {
     "yaocccc/nvim-hl-mdcodeblock.lua",
     dependencies = "nvim-treesitter/nvim-treesitter",
-    ft = { "markdown", "quarto" },
+    ft = "markdown",
     opts = {
       hl_group = "CursorLine",
       minumum_len = 15,
-      query_by_ft = {
-        quarto = {
-          "markdown", -- parser
-          "(fenced_code_block) @codeblock", -- query
-        },
-      },
     },
   },
 

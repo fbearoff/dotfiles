@@ -1,13 +1,4 @@
 return {
-  {
-    "ellisonleao/glow.nvim",
-    ft = "markdown",
-    cmd = "Glow",
-    keys = {
-      { ft = "markdown", "<localleader>mg", "<cmd>Glow<cr>", desc = "Glow" },
-    },
-    opts = {},
-  },
   -- Markdown live preview, needs `webkit2gtk`
   {
     "toppair/peek.nvim",
@@ -28,70 +19,13 @@ return {
       },
     },
     opts = {
-      filetype = { "markdown", "quarto" },
-    },
-  },
-
-  -- Edit fenced language in popup
-  {
-    "AckslD/nvim-FeMaco.lua",
-    cmd = "FeMaco",
-    keys = {
-      { ft = "markdown", "<localleader>mf", "<cmd>FeMaco<cr>", desc = "FeMaco" },
-    },
-    opts = {
-      ---@diagnostic disable-next-line: unused-local
-      ensure_newline = function(base_filetype)
-        return true
-      end,
-    },
-  },
-
-  {
-    "quarto-dev/quarto-nvim",
-    dependencies = {
-      "jmbuhr/otter.nvim",
-    },
-    ft = "quarto",
-    keys = {
-      { ft = "quarto", "<localleader>q", "", desc = "+Quarto" },
-      {
-        ft = "quarto",
-        "<localleader>qp",
-        function()
-          require("quarto").quartoPreview()
-        end,
-        desc = "Quarto Preview",
-      },
-      {
-        ft = "quarto",
-        "<localleader>qq",
-        function()
-          require("quarto").quartoClosePreview()
-        end,
-        desc = "Quarto Quit",
-      },
-    },
-    opts = {
-      lspFeatures = {
-        enabled = true,
-        languages = { "r", "python", "julia" },
-        chunks = "curly", -- 'curly' or 'all'
-        diagnostics = {
-          enabled = false,
-          triggers = { "BufWrite" },
-        },
-        completion = {
-          enabled = false,
-        },
-      },
+      filetype = { "markdown" },
     },
   },
 
   {
     "jakewvincent/mkdnflow.nvim",
     enabled = true,
-    -- ft = { "markdown", "quarto" },
     keys = {
       { ft = "markdown", "<localleader>m", "", desc = "+Markdown" },
       { ft = "markdown", mode = { "n", "x" }, "<localleader><CR>", desc = "MD Enter" },
@@ -102,7 +36,6 @@ return {
       filetypes = {
         md = true,
         markdown = true,
-        qmd = true,
       },
       mappings = {
         MkdnEnter = { { "n", "v", "i" }, "<CR>" },

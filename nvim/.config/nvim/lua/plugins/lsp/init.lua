@@ -63,9 +63,8 @@ return {
         bashls = {},
         html = {},
         marksman = {
-          filetypes = { "markdown", "quarto" },
+          filetypes = "markdown",
         },
-        pyright = {},
         r_language_server = {
           settings = {
             r = {
@@ -233,11 +232,9 @@ return {
       return {
         debug = true,
         sources = {
-          nls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
           nls.builtins.formatting.shfmt,
           nls.builtins.formatting.mdformat,
           nls.builtins.formatting.stylua,
-          nls.builtins.diagnostics.proselint,
           nls.builtins.code_actions.ts_node_action,
         },
       }
@@ -254,8 +251,6 @@ return {
     opts = {
       ensure_installed = {
         "shfmt",
-        "black",
-        "proselint",
         "stylua",
         "ansible-lint",
         "mdformat",
