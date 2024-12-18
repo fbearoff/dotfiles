@@ -3,7 +3,7 @@ return {
   event = "VeryLazy",
   opts = function()
     local icons = require("config.icons")
-    local colors = require("kanagawa.colors").setup()
+    -- local colors = require("kanagawa.colors").setup()
 
     local diagnostics = {
       "diagnostics",
@@ -57,6 +57,7 @@ return {
         unnamed = "[No Name]",
       },
       on_click = function()
+        ---@diagnostic disable-next-line: undefined-field
         print("cwd:" .. vim.uv.cwd())
       end,
     }
@@ -71,6 +72,7 @@ return {
           return msg
         end
         for _, client in ipairs(clients) do
+          ---@diagnostic disable-next-line: undefined-field
           local filetypes = client.config.filetypes
           if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
             return client.name
