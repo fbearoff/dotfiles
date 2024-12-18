@@ -874,6 +874,50 @@ return {
     "kevinhwang91/nvim-ufo",
     dependencies = "kevinhwang91/promise-async",
     event = "BufReadPost",
+    keys = {
+      {
+        "zR",
+        function()
+          require("ufo").openAllFolds()
+        end,
+        desc = "Open All Folds",
+      },
+      {
+        "zr",
+        function()
+          require("ufo").openFoldsExceptKinds()
+        end,
+        desc = "Open Folds Except Kinds",
+      },
+      {
+        "zM",
+        function()
+          require("ufo").closeAllFolds()
+        end,
+        desc = "Close All Folds",
+      },
+      {
+        "zp",
+        function()
+          require("ufo").peekFoldedLinesUnderCursor()
+        end,
+        desc = "Peek Fold",
+      },
+      {
+        "[z",
+        function()
+          require("ufo").goPreviousClosedFold()
+        end,
+        desc = "Previous Closed Fold",
+      },
+      {
+        "]z",
+        function()
+          require("ufo").goNextClosedFold()
+        end,
+        desc = "Next Closed Fold",
+      },
+    },
     opts = {
       ---@diagnostic disable-next-line: unused-local
       provider_selector = function(bufnr, filetype, buftype)
@@ -883,14 +927,6 @@ return {
         return ftMap[filetype]
       end,
     },
-    init = function()
-      vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open All Folds" })
-      vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds, { desc = "Open Folds Except Kinds" })
-      vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "Close All Folds" })
-      vim.keymap.set("n", "zp", require("ufo").peekFoldedLinesUnderCursor, { desc = "Peek Fold" })
-      vim.keymap.set("n", "[z", require("ufo").goPreviousClosedFold, { desc = "Previous Closed Fold" })
-      vim.keymap.set("n", "]z", require("ufo").goNextClosedFold, { desc = "Next Closed Fold" })
-    end,
   },
 
   -- Escape from surrounds
@@ -925,33 +961,6 @@ return {
         ft = { "csv", "tsv" },
         desc = "Shrink Columns",
       },
-    },
-  },
-
-  -- Buffer as file editor
-  {
-    "stevearc/oil.nvim",
-    lazy = false,
-    keys = {
-      {
-        "<M-->",
-        function()
-          require("oil").open()
-        end,
-        desc = "Open parent directory",
-      },
-    },
-    cmd = "Oil",
-    opts = {
-      columns = {
-        "icon",
-        "size",
-        "mtime",
-      },
-      skip_confirm_for_simple_edits = true,
-      delete_to_trash = true,
-      default_file_explorer = true,
-      trash_command = "trash",
     },
   },
 }
