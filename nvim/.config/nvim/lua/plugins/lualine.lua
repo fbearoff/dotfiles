@@ -90,15 +90,6 @@ return {
       end,
     }
 
-    local grapple = {
-      require("grapple").statusline,
-      cond = require("grapple").exists,
-      color = { fg = colors.theme.syn.fun },
-      on_click = function()
-        vim.cmd("Grapple toggle_tags")
-      end,
-    }
-
     local navic = {
       "navic",
       navic_opts = {
@@ -156,7 +147,7 @@ return {
       sections = {
         lualine_a = { "mode" },
         lualine_b = { "branch", diff },
-        lualine_c = { diagnostics, lightbulb, grapple, filename, navic },
+        lualine_c = { diagnostics, lightbulb, filename, navic },
         lualine_x = {
           escape_status,
           macro,

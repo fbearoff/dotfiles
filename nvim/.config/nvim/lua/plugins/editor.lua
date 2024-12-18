@@ -292,34 +292,6 @@ return {
     end,
   },
 
-  -- Quick tagged file switching
-  {
-    "cbochs/grapple.nvim",
-    keys = {
-      {
-        "<leader>!",
-        function()
-          require("grapple").toggle()
-        end,
-        desc = "Grapple Toggle",
-      },
-      {
-        "<leader><tab>",
-        function()
-          require("grapple").cycle_backward()
-        end,
-        desc = "Grapple Cycle",
-      },
-      {
-        "<leader>bg",
-        function()
-          require("grapple").toggle_tags()
-        end,
-        desc = "Grapple Tags",
-      },
-    },
-  },
-
   -- Show color of color values
   {
     "NvChad/nvim-colorizer.lua",
