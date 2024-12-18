@@ -923,27 +923,9 @@ return {
 
   -- Escape from surrounds
   {
-    "abecodes/tabout.nvim",
-    keys = {
-      { mode = "i", "<M-h>" },
-      { mode = "i", "<M-l>" },
-    },
-    opts = {
-      tabkey = "<M-l>",
-      backwards_tabkey = "<M-h>",
-      act_as_tab = false,
-      act_as_shift_tab = false,
-      completion = false,
-      tabouts = {
-        { open = "<", close = ">" },
-        { open = "'", close = "'" },
-        { open = '"', close = '"' },
-        { open = "`", close = "`" },
-        { open = "(", close = ")" },
-        { open = "[", close = "]" },
-        { open = "{", close = "}" },
-      },
-    },
+    "kawre/neotab.nvim",
+    event = "InsertEnter",
+    opts = {},
   },
 
   -- Highlight csv column in rainbow colors
