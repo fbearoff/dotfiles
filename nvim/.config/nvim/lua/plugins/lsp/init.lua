@@ -19,15 +19,6 @@ return {
           },
         },
       },
-      -- Automatically format on save
-      autoformat = true,
-      -- options for vim.lsp.buf.format
-      -- `bufnr` and `filter` is handled by the LazyVim formatter,
-      -- but can be also overridden when specified
-      format = {
-        formatting_options = nil,
-        timeout_ms = nil,
-      },
       diagnostics = {
         virtual_text = {
           source = "if_many",
@@ -108,8 +99,6 @@ return {
     },
     config = function(_, opts)
       local Util = require("util")
-      -- setup autoformat
-      require("plugins.lsp.format").setup(opts)
       -- setup  keymaps
       Util.on_attach(function(client, buffer)
         require("plugins.lsp.keymaps").on_attach(client, buffer)
@@ -216,25 +205,6 @@ return {
       if have_mason then
         mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
       end
-    end,
-  },
-
-  -- formatters
-  {
-    "nvimtools/none-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = { "mason.nvim" },
-    keys = { { "<leader>cN", "<cmd>NullLsInfo<cr>", desc = "None-LS Info" } },
-    opts = function()
-      local nls = require("null-ls")
-      return {
-        debug = true,
-        sources = {
-          nls.builtins.formatting.shfmt,
-          nls.builtins.formatting.mdformat,
-          nls.builtins.formatting.stylua,
-        },
-      }
     end,
   },
 

@@ -151,8 +151,6 @@ keymap("n", "<leader>uw", function()
   util.toggle("wrap")
 end, { desc = "Toggle Word Wrap" })
 
-keymap("n", "<leader>uf", require("plugins.lsp.format").toggle, { desc = "Toggle Format on Save" })
-
 if vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint then
   keymap("n", "<leader>uh", function()
     util.inlay_hints()
