@@ -22,9 +22,7 @@ return {
       on_attach = on_attach,
       disable_netrw = true,
       hijack_netrw = false,
-      open_on_tab = false,
       hijack_cursor = true,
-      update_cwd = true,
       reload_on_bufenter = true,
       renderer = {
         highlight_git = true,
@@ -46,19 +44,16 @@ return {
       respect_buf_cwd = true,
       update_focused_file = {
         enable = true,
-        update_cwd = true,
-        ignore_list = {},
+        update_root = true,
       },
       filters = {
         custom = { "^.git$" },
       },
       view = {
         width = 40,
-        adaptive_size = true,
       },
       trash = {
         cmd = "trash",
-        require_confirm = true,
       },
     }
   end,
