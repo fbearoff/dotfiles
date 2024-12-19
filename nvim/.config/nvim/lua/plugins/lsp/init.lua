@@ -233,7 +233,6 @@ return {
           nls.builtins.formatting.shfmt,
           nls.builtins.formatting.mdformat,
           nls.builtins.formatting.stylua,
-          nls.builtins.code_actions.ts_node_action,
         },
       }
     end,
