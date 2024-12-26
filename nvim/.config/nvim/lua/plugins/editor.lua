@@ -757,28 +757,28 @@ return {
       },
       -- navigate buffers
       {
-        "<C-h>",
+        "<leader>h",
         function()
           require("smart-splits").move_cursor_left()
         end,
         desc = "Move to Left Window",
       },
       {
-        "<C-j>",
+        "<leader>j",
         function()
           require("smart-splits").move_cursor_down()
         end,
         desc = "Move to Lower Window",
       },
       {
-        "<C-k>",
+        "<leader>k",
         function()
           require("smart-splits").move_cursor_up()
         end,
         desc = "Move to Upper Window",
       },
       {
-        "<C-l>",
+        "<leader>l",
         function()
           require("smart-splits").move_cursor_right()
         end,

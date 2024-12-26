@@ -56,14 +56,14 @@ return {
         desc = "Previous Number",
       },
       {
-        "]x",
+        "<C-S-l>",
         function()
           require("nvim-treesitter.textobjects.swap").swap_next("@parameter.inner")
         end,
         desc = "Swap Next Sibling",
       },
       {
-        "[x",
+        "<C-S-h>",
         function()
           require("nvim-treesitter.textobjects.swap").swap_previous("@parameter.inner")
         end,
@@ -167,6 +167,64 @@ return {
           require("tssorter").sort()
         end,
         desc = "Sort",
+      },
+    },
+  },
+
+  -- navigate around treesitter nodes
+  {
+    "aaronik/treewalker.nvim",
+    opts = {},
+    keys = {
+      -- movement
+      {
+        "<C-j>",
+        mode = { "n", "v" },
+        function()
+          require("treewalker").move_down()
+        end,
+        desc = "Move Down TS Node",
+      },
+      {
+        "<C-k>",
+        mode = { "n", "v" },
+        function()
+          require("treewalker").move_up()
+        end,
+        desc = "Move Up TS Node",
+      },
+      {
+        "<C-h>",
+        mode = { "n", "v" },
+        function()
+          require("treewalker").move_out()
+        end,
+        desc = "Move Out of TS Node",
+      },
+      {
+        "<C-l>",
+        mode = { "n", "v" },
+        function()
+          require("treewalker").move_in()
+        end,
+        desc = "Move Into TS Node",
+      },
+      -- swaps
+      {
+        "<C-S-j>",
+        mode = { "n", "v" },
+        function()
+          require("treewalker").swap_down()
+        end,
+        desc = "Swap TS Node Down",
+      },
+      {
+        "<C-S-k>",
+        mode = { "n", "v" },
+        function()
+          require("treewalker").swap_up()
+        end,
+        desc = "Swap TS Node Up",
       },
     },
   },
