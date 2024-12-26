@@ -1,4 +1,9 @@
 {
+  "toc": {
+    "body": "<!-- toc -->",
+    "description": "add table of contents stub",
+    "prefix": "toc"
+  },
   "bibliography": {
     "body": "bibliography: main.bib",
     "description": "add bibliography yaml",

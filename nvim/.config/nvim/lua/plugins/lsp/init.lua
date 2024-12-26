@@ -221,6 +221,7 @@ return {
         "stylua",
         "ansible-lint",
         "mdformat",
+        "markdown-toc",
       },
       ui = {
         icons = {
