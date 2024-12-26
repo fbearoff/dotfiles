@@ -119,7 +119,7 @@ if not util.has("trouble.nvim") then
 end
 
 -- Lazy
-keymap("n", "<leader>l", "<cmd>Lazy<CR>", { desc = "Lazy" })
+keymap("n", "<leader>L", "<cmd>Lazy<CR>", { desc = "Lazy" })
 
 -- StackOverflow Search
 keymap("n", "<leader>sO", function()
@@ -160,8 +160,6 @@ end
 keymap("n", "<leader>ud", function()
   util.toggle_diagnostics()
 end, { desc = "Toggle Diagnostics" })
-
-keymap("n", "<leader>ut", "<cmd>TrimToggle<cr>", { desc = "Toggle Trim" })
 
 -- highlights under cursor
 keymap("n", "<leader>sH", vim.show_pos, { desc = "Highlight Groups" })

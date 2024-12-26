@@ -64,17 +64,6 @@ return {
     opts = {},
   },
 
-  -- Remove trailing lines and whitespace
-  {
-    "cappyzawa/trim.nvim",
-    event = "BufReadPost",
-    opts = {
-      ft_blocklist = { "markdown" },
-      patterns = {
-        [[%s/\r//g]], --strip windows end of line character
-      },
-    },
-  },
   -- makes some plugins dot-repeatable
   { "tpope/vim-repeat", event = "VeryLazy" },
 

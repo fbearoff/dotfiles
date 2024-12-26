@@ -296,6 +296,7 @@ return {
         lua = { "stylua" },
         sh = { "shfmt" },
         markdown = { "mdformat" },
+        ["_"] = { "trim_whitespace", "trim_newlines" },
       },
     },
   },
