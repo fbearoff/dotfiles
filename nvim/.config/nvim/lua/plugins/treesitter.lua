@@ -212,7 +212,6 @@ return {
       -- swaps
       {
         "<C-S-j>",
-        mode = { "n", "v" },
         function()
           require("treewalker").swap_down()
         end,
@@ -220,7 +219,6 @@ return {
       },
       {
         "<C-S-k>",
-        mode = { "n", "v" },
         function()
           require("treewalker").swap_up()
         end,

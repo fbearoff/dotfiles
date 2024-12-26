@@ -557,6 +557,7 @@ return {
             signed = false,
             point_char = ".",
           }),
+          augend.misc.alias.markdown_header,
         },
       })
     end,
