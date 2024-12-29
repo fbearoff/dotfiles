@@ -964,4 +964,26 @@ return {
       },
     },
   },
+
+  -- navigation hints
+  {
+    "tris203/precognition.nvim",
+    opts = {},
+    keys = {
+      {
+        "<leader>up",
+        function()
+          require("precognition").toggle()
+        end,
+        desc = "Toggle Precognition",
+      },
+      {
+        "<leader>p",
+        function()
+          require("precognition").peek()
+        end,
+        desc = "Peek Precognition",
+      },
+    },
+  },
 }
