@@ -12,7 +12,7 @@ return {
             function()
               require("r.send").line(true)
             end,
-            desc = "which_key_ignore",
+            desc = "Send Line to R",
           },
           {
             mode = "x",
@@ -22,7 +22,11 @@ return {
             end,
             desc = "Send Selection to R",
           },
-          { "<LocalLeader>r:", ":RSend ", desc = "Send R Command" },
+          {
+            "<LocalLeader>r:",
+            ":RSend ",
+            desc = "Send R Command",
+          },
           {
             "<LocalLeader>rf",
             function()
@@ -191,7 +195,6 @@ return {
     hl_term = false,
     source_args = "echo = TRUE, spaced = TRUE",
     specialplot = true,
-    term_title = "R",
     setwd = "file",
     user_maps_only = true,
   },
