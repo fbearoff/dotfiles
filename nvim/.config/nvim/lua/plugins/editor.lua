@@ -968,7 +968,10 @@ return {
   -- navigation hints
   {
     "tris203/precognition.nvim",
-    opts = {},
+    opts = {
+      startVisible = false,
+    },
+    cmd = "Precognition",
     keys = {
       {
         "<leader>up",
