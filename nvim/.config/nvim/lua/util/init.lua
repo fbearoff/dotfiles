@@ -208,24 +208,6 @@ function M.so_input()
   end)
 end
 
--- Sort operator
-function M.sort(lines, _)
-  local utils = require("yop.utils")
-  local sort_without_leading_space = function(a, b)
-    local pattern = [[^%W*]]
-    return string.gsub(a, pattern, "") < string.gsub(b, pattern, "")
-  end
-  if #lines == 1 then
-    local delimeter = ","
-    local split = vim.split(lines[1], delimeter, { trimempty = true })
-    table.sort(split, sort_without_leading_space)
-    return { utils.join(split, delimeter) }
-  else
-    table.sort(lines, sort_without_leading_space)
-    return lines
-  end
-end
-
 --insert PMID from clipboard
 function M.cite()
   local clipboard = vim.fn.getreg("+"):gsub("\n", "")
@@ -235,25 +217,6 @@ function M.cite()
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "x", true) -- exits to Normal mode
   else
     vim.api.nvim_put({ "CITE: " }, "c", true, true)
-  end
-end
-
-function M.on_rename(from, to)
-  local clients = vim.lsp.get_clients()
-  for _, client in ipairs(clients) do
-    if client.supports_method("workspace/willRenameFiles") then
-      local resp = client.request_sync("workspace/willRenameFiles", {
-        files = {
-          {
-            oldUri = vim.uri_from_fname(from),
-            newUri = vim.uri_from_fname(to),
-          },
-        },
-      }, 1000)
-      if resp and resp.result ~= nil then
-        vim.lsp.util.apply_workspace_edit(resp.result, client.offset_encoding)
-      end
-    end
   end
 end
 
