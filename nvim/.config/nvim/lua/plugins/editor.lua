@@ -18,6 +18,7 @@ return {
           { "]", group = "Next" },
           { "g", group = "Goto" },
           { "<leader>c", group = "Code", mode = { "n", "v" } },
+          { "<localleader>m", group = "Markdown" },
         },
       },
       icons = { rules = false },

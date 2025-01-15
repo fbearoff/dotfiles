@@ -137,16 +137,6 @@ return {
     end,
   },
 
-  {
-    "yaocccc/nvim-hl-mdcodeblock.lua",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    ft = "markdown",
-    opts = {
-      hl_group = "CursorLine",
-      minumum_len = 15,
-    },
-  },
-
   -- sort treesitter nodes
   {
     "mtrajano/tssorter.nvim",

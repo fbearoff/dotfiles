@@ -93,6 +93,7 @@ return {
           { name = "greek" },
           { name = "emoji" },
           { name = "cmp_pandoc" },
+          { name = "render-markdown" },
         }),
         formatting = {
           fields = { "kind", "abbr", "menu" },
