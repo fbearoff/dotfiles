@@ -558,7 +558,29 @@ return {
             signed = false,
             point_char = ".",
           }),
+          -- markdown
           augend.misc.alias.markdown_header,
+          augend.constant.new({
+            elements = { "[ ]", "[-]", "[x]" },
+            word = false,
+            cyclic = true,
+          }),
+          -- R
+          augend.constant.new({
+            elements = { "%>%", "|>" },
+            word = false,
+            cyclic = true,
+          }),
+          augend.constant.new({
+            elements = { "&", "|" },
+            word = false,
+            cyclic = true,
+          }),
+          augend.constant.new({
+            elements = { "==", "!=" },
+            word = false,
+            cyclic = true,
+          }),
         },
       })
     end,
