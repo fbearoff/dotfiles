@@ -30,12 +30,12 @@ alias cpv='rsync -ah --info=progress2'
 # always create parent directories
 alias mkdir="mkdir -pv"
 
-# use exa for colors
-alias ls="exa"
-alias l="exa -lga --icons --git"
-alias ll="exa -lg --icons --git"
-alias lls="exa -lg --icons --git --sort new"
-alias llt="exa -lg --icons --git --tree --level 3"
+# use eza for colors
+alias ls="eza"
+alias l="eza -lga --icons --git"
+alias ll="eza -lg --icons --git"
+alias lls="eza -lg --icons --git --sort new"
+alias llt="eza -lg --icons --git --tree --level 3"
 
 # easier to read disk
 alias df="df -h"     # human-readable sizes
