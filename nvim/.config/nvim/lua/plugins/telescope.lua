@@ -285,17 +285,6 @@ return {
     end,
   },
 
-  -- search and insert bibtext entries
-  {
-    "nvim-telescope/telescope-bibtex.nvim",
-    keys = {
-      { "<leader>sb", "<cmd>Telescope bibtex<cr>", desc = "Bibtex" },
-    },
-    config = function()
-      require("telescope").load_extension("bibtex")
-    end,
-  },
-
   -- search snippets
   {
     "benfowler/telescope-luasnip.nvim",
