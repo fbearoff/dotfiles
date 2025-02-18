@@ -5,6 +5,15 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    keys = {
+      {
+        "<leader>fu",
+        function()
+          Snacks.picker.undo()
+        end,
+        desc = "Undo History",
+      },
+    },
     opts = {
       bigfile = { enabled = false },
       dashboard = {

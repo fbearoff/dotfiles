@@ -6,7 +6,6 @@ return {
     keys = {
       { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Search Buffer" },
       { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-      { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Undo" },
       { "<leader>ff", Util.telescope("files"), desc = "Find Files (Root)" },
       { "<leader>fF", Util.telescope("files", { cwd = false }), desc = "Find Files (CWD)" },
       { "<leader>fg", "<cmd>Telescope live_grep theme=ivy<cr>", desc = "Live Grep" },
@@ -79,30 +78,29 @@ return {
     },
     dependencies = {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      "debugloop/telescope-undo.nvim",
-      {
-        "ahmedkhalf/project.nvim",
-        event = "VeryLazy",
-        keys = {
-          { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Projects" },
-        },
-        opts = {
-          detection_methods = {
-            "pattern",
-            "lsp",
-          },
-          patterns = {
-            ".git",
-            "Makefile",
-            "package.json",
-            "DESCRIPTION",
-          },
-        },
-        config = function(_, opts)
-          require("project_nvim").setup(opts)
-          require("telescope").load_extension("projects")
-        end,
-      },
+      -- {
+      --   "ahmedkhalf/project.nvim",
+      --   event = "VeryLazy",
+      --   keys = {
+      --     { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Projects" },
+      --   },
+      --   opts = {
+      --     detection_methods = {
+      --       "pattern",
+      --       "lsp",
+      --     },
+      --     patterns = {
+      --       ".git",
+      --       "Makefile",
+      --       "package.json",
+      --       "DESCRIPTION",
+      --     },
+      --   },
+      --   config = function(_, opts)
+      --     require("project_nvim").setup(opts)
+      --     require("telescope").load_extension("projects")
+      --   end,
+      -- },
     },
     opts = function()
       -- Don't preview binaries
@@ -189,24 +187,8 @@ return {
         })
       end
 
-      local undo = require("telescope-undo.actions")
       return {
         extensions = {
-          undo = {
-            layout_strategy = "horizontal",
-            mappings = {
-              i = {
-                ["<C-a>"] = undo.yank_additions,
-                ["<C-r>"] = undo.yank_deletions,
-                ["<cr>"] = undo.restore,
-              },
-              n = {
-                ["<C-a>"] = undo.yank_additions,
-                ["<C-r>"] = undo.yank_deletions,
-                ["<cr>"] = undo.restore,
-              },
-            },
-          },
           heading = {
             treesitter = true,
           },
@@ -265,7 +247,6 @@ return {
     config = function(_, opts)
       require("telescope").setup(opts)
       require("telescope").load_extension("fzf")
-      require("telescope").load_extension("undo")
     end,
   },
 
