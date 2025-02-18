@@ -208,12 +208,6 @@ return {
               },
             },
           },
-          bibtex = {
-            global_files = { "~/onedrive/Documents/papers/bibfile.bib" },
-            context = true,
-            context_fallback = true,
-            wrap = true,
-          },
           heading = {
             treesitter = true,
           },
