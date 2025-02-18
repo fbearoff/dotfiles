@@ -78,29 +78,6 @@ return {
     },
     dependencies = {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      -- {
-      --   "ahmedkhalf/project.nvim",
-      --   event = "VeryLazy",
-      --   keys = {
-      --     { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Projects" },
-      --   },
-      --   opts = {
-      --     detection_methods = {
-      --       "pattern",
-      --       "lsp",
-      --     },
-      --     patterns = {
-      --       ".git",
-      --       "Makefile",
-      --       "package.json",
-      --       "DESCRIPTION",
-      --     },
-      --   },
-      --   config = function(_, opts)
-      --     require("project_nvim").setup(opts)
-      --     require("telescope").load_extension("projects")
-      --   end,
-      -- },
     },
     opts = function()
       -- Don't preview binaries

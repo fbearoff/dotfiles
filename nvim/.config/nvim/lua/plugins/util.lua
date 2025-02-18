@@ -13,6 +13,13 @@ return {
         end,
         desc = "Undo History",
       },
+      {
+        "<leader>sp",
+        function()
+          Snacks.picker.projects()
+        end,
+        desc = "Projects",
+      },
     },
     opts = {
       bigfile = { enabled = false },
