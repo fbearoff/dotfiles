@@ -30,7 +30,7 @@ return {
         ft = "markdown",
         "<localleader>mH",
         function()
-          require("render-markdown").toggle()
+          require("render-markdown").buf_toggle()
         end,
         desc = "Toggle Markdown Rendering",
       },
