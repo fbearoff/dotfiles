@@ -134,7 +134,7 @@ return {
         section_separators = { left = "", right = "" },
         disabled_filetypes = {
           statusline = {
-            "alpha",
+            "snacks_dashboard",
             "dashboard",
           },
         },

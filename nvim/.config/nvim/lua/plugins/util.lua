@@ -1,23 +1,43 @@
 return {
   "nvim-lua/plenary.nvim",
+
   {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
     opts = {
       bigfile = { enabled = false },
-      dashboard = { enabled = false },
-      explorer = { enabled = false },
-      indent = { enabled = false },
-      input = { enabled = true },
-      picker = { enabled = true },
-      notifier = { enabled = false },
-      quickfile = { enabled = false },
-      scope = { enabled = false },
-      scroll = { enabled = false },
-      statuscolumn = { enabled = false },
-      words = { enabled = false },
+      dashboard = {
+        preset = {
+          header = [[
+       ___       __   ___  ___  ________  _________       ___  ___  ________  ___  ___  ___
+      |\  \     |\  \|\  \|\  \|\   __  \|\___   ___\    |\  \|\  \|\   __  \|\  \|\  \|\  \
+      \ \  \    \ \  \ \  \\\  \ \  \|\  \|___ \  \_|    \ \  \\\  \ \  \|\  \ \  \ \  \ \  \
+       \ \  \  __\ \  \ \   __  \ \   __  \   \ \  \      \ \  \\\  \ \   ____\ \  \ \  \ \  \
+        \ \  \|\__\_\  \ \  \ \  \ \  \ \  \   \ \  \      \ \  \\\  \ \  \___|\ \__\ \__\ \__\
+         \ \____________\ \__\ \__\ \__\ \__\   \ \__\      \ \_______\ \__\    \|__|\|__|\|__|
+          \|____________|\|__|\|__|\|__|\|__|    \|__|       \|_______|\|__|        ___  ___  ___
+                                                                                   |\__\|\__\|\__\
+                                                                                   \|__|\|__|\|__|
+   ]],
+        },
+        sections = {
+          { section = "header" },
+          { section = "keys", gap = 1, padding = 1 },
+          { section = "startup", icon = "💪 " },
+        },
+      },
     },
+    explorer = { enabled = false },
+    indent = { enabled = false },
+    input = { enabled = true },
+    picker = { enabled = true },
+    notifier = { enabled = false },
+    quickfile = { enabled = false },
+    scope = { enabled = false },
+    scroll = { enabled = false },
+    statuscolumn = { enabled = false },
+    words = { enabled = false },
   },
   -- Easy terminal access
   {
