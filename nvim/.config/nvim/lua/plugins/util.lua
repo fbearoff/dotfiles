@@ -20,6 +20,13 @@ return {
         end,
         desc = "Projects",
       },
+      {
+        "<leader>se",
+        function()
+          Snacks.picker.icons()
+        end,
+        desc = "Emoji/Icons",
+      },
     },
     opts = {
       bigfile = { enabled = false },

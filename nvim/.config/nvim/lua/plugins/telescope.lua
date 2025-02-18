@@ -246,12 +246,4 @@ return {
       require("telescope").load_extension("luasnip")
     end,
   },
-
-  -- search emojis
-  {
-    "nvim-telescope/telescope-symbols.nvim",
-    keys = {
-      { "<leader>se", "<cmd>Telescope symbols<cr>", desc = "Emoji" },
-    },
-  },
 }
