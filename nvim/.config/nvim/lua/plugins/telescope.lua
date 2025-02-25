@@ -4,77 +4,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     keys = {
-      { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Search Buffer" },
-      { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-      { "<leader>ff", Util.telescope("files"), desc = "Find Files (Root)" },
-      { "<leader>fF", Util.telescope("files", { cwd = false }), desc = "Find Files (CWD)" },
-      { "<leader>fg", "<cmd>Telescope live_grep theme=ivy<cr>", desc = "Live Grep" },
-      { "<leader>bb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-      {
-        "<leader>sc",
-        function()
-          pcall(vim.api.nvim_command, "doautocmd User LoadColorSchemes")
-          pcall(require("telescope.builtin").colorscheme, { enable_preview = true })
-        end,
-        desc = "Colorscheme",
-      },
-      { "<leader>sw", Util.telescope("grep_string"), desc = "Word (Root)" },
-      { "<leader>sW", Util.telescope("grep_string", { cwd = false }), desc = "Word (CWD)" },
       { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
-      { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
-      {
-        "<leader>sh",
-        function()
-          require("telescope.builtin").help_tags({ default_text = vim.call("expand", "<cword>") })
-        end,
-        desc = "Help",
-      },
-      { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
-      { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
-      { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
-      { "<leader>fR", Util.telescope("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent (CWD)" },
-      { "<leader>sr", "<cmd>Telescope registers<cr>", desc = "Registers" },
-      { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
-      {
-        "<leader>ss",
-        Util.telescope("lsp_document_symbols", {
-          symbols = {
-            "Class",
-            "Function",
-            "Method",
-            "Constructor",
-            "Interface",
-            "Module",
-            "Struct",
-            "Trait",
-            "Field",
-            "Property",
-            "Enum",
-            "Constant",
-          },
-        }),
-        desc = "Goto Symbol",
-      },
-      {
-        "<leader>sS",
-        Util.telescope("lsp_dynamic_workspace_symbols", {
-          symbols = {
-            "Class",
-            "Function",
-            "Method",
-            "Constructor",
-            "Interface",
-            "Module",
-            "Struct",
-            "Trait",
-            "Field",
-            "Property",
-            "Enum",
-            "Constant",
-          },
-        }),
-        desc = "Goto Symbol (Workspace)",
-      },
     },
     dependencies = {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
