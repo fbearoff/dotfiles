@@ -8,7 +8,7 @@ return {
       {
         "<leader>n",
         "",
-        desc = "+Noice",
+        desc = "+Notifications",
       },
       {
         "<S-Enter>",
@@ -23,21 +23,14 @@ return {
         function()
           require("noice").cmd("last")
         end,
-        desc = "Noice Last Message",
-      },
-      {
-        "<leader>nh",
-        function()
-          require("noice").cmd("history")
-        end,
-        desc = "Noice History",
+        desc = "Last Message",
       },
       {
         "<leader>na",
         function()
           require("noice").cmd("all")
         end,
-        desc = "Noice All",
+        desc = "All",
       },
       {
         "<leader>nd",

@@ -189,6 +189,27 @@ return {
         end,
         desc = "Lazygit",
       },
+      {
+        "<leader>gB",
+        function()
+          Snacks.gitbrowse()
+        end,
+        desc = "Gitbrowse",
+      },
+      {
+        "<leader>nh",
+        function()
+          Snacks.notifier.show_history()
+        end,
+        desc = "History",
+      },
+      {
+        "<leader>.",
+        function()
+          Snacks.scratch()
+        end,
+        desc = "Toggle Scratch Buffer",
+      },
     },
     opts = {
       bigfile = { enabled = false },
