@@ -28,6 +28,7 @@ return {
     priority = 1000,
     lazy = false,
     keys = {
+      -- Pickers
       -- core
       {
         "<leader>/",
@@ -180,6 +181,14 @@ return {
         desc = "Visual selection or word",
         mode = { "n", "x" },
       },
+      -- Other
+      {
+        "<leader>gg",
+        function()
+          Snacks.lazygit()
+        end,
+        desc = "Lazygit",
+      },
     },
     opts = {
       bigfile = { enabled = false },
@@ -255,8 +264,8 @@ return {
           end,
         },
       },
-      notifier = { enabled = false },
-      quickfile = { enabled = false },
+      notifier = { timeout = 2000 },
+      quickfile = { enabled = true },
       scope = { enabled = false },
       scroll = { enabled = false },
       statuscolumn = {
@@ -272,6 +281,19 @@ return {
         refresh = 50,
       },
       words = { enabled = false },
+      styles = {
+        notification = {
+          wo = {
+            winblend = 10,
+          },
+        },
+        -- used by pickers
+        float = {
+          wo = {
+            winblend = 10,
+          },
+        },
+      },
     },
   },
   -- Easy terminal access

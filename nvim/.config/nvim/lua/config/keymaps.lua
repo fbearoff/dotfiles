@@ -96,11 +96,6 @@ keymap("n", string.upper(cut_key), "D", { desc = "Cut To EOL" })
 keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear Hlsearch" })
 
 -- Leader Mappings
--- Lazygit
-keymap("n", "<leader>gg", function()
-  require("util").open_term("lazygit", { direction = "float" })
-end, { desc = "Lazygit" })
-
 -- Splits
 keymap("n", "<leader>-", "<cmd>split<CR>", { desc = "Split" })
 keymap("n", "<leader>\\", "<cmd>vsplit<CR>", { desc = "VSplit" })
