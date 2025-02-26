@@ -159,9 +159,18 @@ return {
         end
 
         -- general git
-        map("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", "Checkout Branch")
-        map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", "Checkout Commit")
-        map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", "Git Status")
+        map("n", "<leader>gb", function()
+          Snacks.picker.git_branches()
+        end, "Branchs")
+        map("n", "<leader>gc", function()
+          Snacks.picker.git_log()
+        end, "Commit Log")
+        map("n", "<leader>gs", function()
+          Snacks.picker.git_status()
+        end, "Git Status")
+        map("n", "<leader>gf", function()
+          Snacks.picker.git_log_file()
+        end, "Git Log File")
         map("n", "<leader>gl", gs.toggle_linehl, "Toggle Line Highlight")
         map("n", "<leader>gL", gs.toggle_current_line_blame, "Toggle Line Blame")
         map("n", "<leader>gw", gs.toggle_word_diff, "Toggle Word Diff")

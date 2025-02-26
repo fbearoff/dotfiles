@@ -1,6 +1,28 @@
 return {
   "nvim-lua/plenary.nvim",
 
+  -- needed for properly setting project root
+  {
+    "ahmedkhalf/project.nvim",
+    event = "VeryLazy",
+    opts = {
+      detection_methods = {
+        "pattern",
+        "lsp",
+      },
+      patterns = {
+        ".git",
+        "Makefile",
+        "package.json",
+        "DESCRIPTION",
+      },
+    },
+    config = function(_, opts)
+      require("project_nvim").setup(opts)
+    end,
+  },
+
+  -- collection of util plugins
   {
     "folke/snacks.nvim",
     priority = 1000,
@@ -32,21 +54,21 @@ return {
       {
         "<leader>ff",
         function()
-          Snacks.picker.files({ cwd = vim.fn.expand("%:h") })
-        end,
-        desc = "Find Files ()",
-      },
-      {
-        "<leader>fF",
-        function()
-          Snacks.picker.files()
+          Snacks.picker.files({ hidden = true })
         end,
         desc = "Find Files",
       },
       {
+        "<leader>fF",
+        function()
+          Snacks.picker.files({ cwd = vim.fn.expand("%:h") })
+        end,
+        desc = "Find Files (CWD)",
+      },
+      {
         "<leader>fg",
         function()
-          Snacks.picker.grep({ layout = { preset = "ivy" } })
+          Snacks.picker.grep({ hidden = true, layout = { preset = "ivy" } })
         end,
         desc = "Grep",
       },
@@ -144,11 +166,11 @@ return {
         desc = "Registers",
       },
       {
-        "<leader>sR",
+        "<leader>r",
         function()
           Snacks.picker.resume()
         end,
-        desc = "Resume",
+        desc = "Resume Picker",
       },
       {
         "<leader>sw",
@@ -179,7 +201,7 @@ return {
               icon = " ",
               key = "f",
               desc = "Find File",
-              action = ":lua Snacks.dashboard.pick('files',{ cwd = vim.fn.expand('%:h')})",
+              action = ":lua Snacks.dashboard.pick('files')",
             },
             { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
             { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
