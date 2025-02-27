@@ -116,11 +116,6 @@ end
 -- Lazy
 keymap("n", "<leader>L", "<cmd>Lazy<CR>", { desc = "Lazy" })
 
--- StackOverflow Search
-keymap("n", "<leader>sO", function()
-  require("util").so_input()
-end, { desc = "StackOverflow" })
-
 -- UI Toggles
 keymap("n", "<leader>uc", function()
   local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3

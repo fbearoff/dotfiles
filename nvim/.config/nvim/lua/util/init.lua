@@ -170,44 +170,6 @@ function M.telescope(builtin, opts)
   end
 end
 
--- For creating new Terminal Instance
-function M.open_term(cmd, opts)
-  local TERMINAL = require("toggleterm.terminal").Terminal
-  opts = opts or {}
-  opts.size = opts.size or vim.o.columns * 0.5
-  opts.direction = opts.direction or "vertical"
-  opts.on_open = opts.on_open
-  opts.on_exit = opts.on_exit or nil
-
-  local new_term = TERMINAL:new({
-    cmd = cmd,
-    dir = "git_dir",
-    auto_scroll = false,
-    close_on_exit = false,
-    start_in_insert = false,
-    on_open = opts.on_open,
-    on_exit = opts.on_exit,
-  })
-  new_term:open(opts.size, opts.direction)
-end
-
--- For StackOverflow Assistance
-function M.so_input()
-  local file_type = vim.api.nvim_get_option_value("filetype", {})
-  local current_word = vim.call("expand", "<cword>")
-  vim.ui.input({ prompt = "StackOverflow input: ", default = file_type .. " " .. current_word }, function(input)
-    local cmd = ""
-    if input == "" or not input then
-      return
-    elseif input == "h" then
-      cmd = "-h"
-    else
-      cmd = input
-    end
-    M.open_term("so " .. cmd, { direction = "float" })
-  end)
-end
-
 --insert PMID from clipboard
 function M.cite()
   local clipboard = vim.fn.getreg("+"):gsub("\n", "")

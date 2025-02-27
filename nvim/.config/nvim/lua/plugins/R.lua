@@ -191,7 +191,7 @@ return {
       open_app = ":split",
     },
     editing_mode = "vi",
-    esc_term = false,
+    esc_term = true,
     hl_term = false,
     source_args = "echo = TRUE, spaced = TRUE",
     specialplot = true,

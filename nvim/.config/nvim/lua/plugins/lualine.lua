@@ -163,7 +163,6 @@ return {
       },
       extensions = {
         "nvim-tree",
-        "toggleterm",
         "trouble",
         "lazy",
       },
