@@ -19,6 +19,7 @@ return {
           { "g", group = "Goto" },
           { "<leader>c", group = "Code", mode = { "n", "v" } },
           { "<localleader>m", group = "Markdown" },
+          { "<LocalLeader>t", desc = "TodoComments" },
         },
       },
       icons = { rules = false },
@@ -75,22 +76,14 @@ return {
   -- todo comments
   {
     "folke/todo-comments.nvim",
-    cmd = { "TodoTrouble", "TodoTelescope" },
+    cmd = "TodoTrouble",
     event = { "BufReadPre", "BufNewFile" },
     opts = {
-      keywords = {
-        CITE = { icon = "", color = "warning" },
-      },
       highlight = {
         multiline = false,
       },
     },
     keys = {
-      {
-        "<localleader>t",
-        "",
-        desc = "+TODO Comments",
-      },
       {
         "]t",
         function()
@@ -106,17 +99,9 @@ return {
         desc = "Previous Todo Comment",
       },
       { "<leader>dt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
-      { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
       { "<localleader>tt", "<cmd>lua require('Comment.api').insert.linewise.above()<cr>TODO: ", desc = "TODO" },
       { "<localleader>tn", "<cmd>lua require('Comment.api').insert.linewise.above()<cr>NOTE: ", desc = "NOTE" },
       { "<localleader>tf", "<cmd>lua require('Comment.api').insert.linewise.above()<cr>FIX: ", desc = "FIX" },
-      {
-        "<localleader>tc",
-        function()
-          require("util").cite()
-        end,
-        desc = "CITE",
-      },
     },
   },
 
@@ -226,10 +211,6 @@ return {
           cycle_prev = "<m-p>",
         },
       }
-    end,
-    config = function(_, opts)
-      require("NeoComposer").setup(opts)
-      require("telescope").load_extension("macros")
     end,
   },
 

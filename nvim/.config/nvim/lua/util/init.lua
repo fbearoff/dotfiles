@@ -170,18 +170,6 @@ function M.telescope(builtin, opts)
   end
 end
 
---insert PMID from clipboard
-function M.cite()
-  local clipboard = vim.fn.getreg("+"):gsub("\n", "")
-  require("Comment.api").insert.linewise.above()
-  if tonumber(clipboard) ~= nil then
-    vim.api.nvim_put({ "CITE:  <PMID: " .. clipboard .. ">" }, "c", true, true)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "x", true) -- exits to Normal mode
-  else
-    vim.api.nvim_put({ "CITE: " }, "c", true, true)
-  end
-end
-
 function M.inlay_hints(bufnr)
   bufnr = bufnr or 0
   local inlay_hint = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint
