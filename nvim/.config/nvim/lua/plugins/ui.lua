@@ -3,6 +3,9 @@ return {
   -- Fancy UI elements
   {
     "folke/noice.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
     event = "VeryLazy",
     keys = {
       {
@@ -276,7 +279,4 @@ return {
 
   -- icons
   "nvim-tree/nvim-web-devicons",
-
-  -- ui components
-  "MunifTanjim/nui.nvim",
 }

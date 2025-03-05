@@ -13,7 +13,6 @@ return {
       "saadparwaiz1/cmp_luasnip",
       "max397574/cmp-greek",
       "hrsh7th/cmp-emoji",
-      { "aspeddro/cmp-pandoc.nvim", opts = {} },
     },
     config = function()
       vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
@@ -92,7 +91,6 @@ return {
           { name = "path" },
           { name = "greek" },
           { name = "emoji" },
-          { name = "cmp_pandoc" },
           { name = "render-markdown" },
         }),
         formatting = {
@@ -110,7 +108,6 @@ return {
                 nvim_lua = "[Lua]",
                 greek = "[Greek]",
                 emoji = "[Emoji]",
-                cmp_pandoc = "[Ref]",
               })[_.source.name]
             end
             return item

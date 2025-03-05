@@ -516,6 +516,14 @@ return {
       { mode = { "n", "x" }, "y", "<Plug>(YankyYank)", desc = "Yanky Yank" },
       { mode = { "n", "x" }, "p", "<Plug>(YankyPutAfter)", desc = "Yanky Put After" },
       { mode = { "n", "x" }, "P", "<Plug>(YankyPutBefore)", desc = "Yanky Put Before" },
+      {
+        mode = { "o", "x" },
+        "iy",
+        function()
+          require("yanky.textobj").last_put()
+        end,
+        desc = "Last Put",
+      },
       { "[y", "<Plug>(YankyCycleForward)", desc = "Yanky Cycle Forward" },
       { "]y", "<Plug>(YankyCycleBackward)", desc = "Yanky Cycle Backward" },
       { "]p", "<Plug>(YankyPutAfterFilter)", desc = "Put After Filter" },
@@ -540,6 +548,9 @@ return {
       },
       system_clipboard = {
         sync_with_ring = true,
+      },
+      textobj = {
+        enabled = true,
       },
     },
   },
