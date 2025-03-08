@@ -12,7 +12,13 @@ local({
     mc.cores = n,
     repos = r,
     languageserver.server_capabilities =
-      list(completionProvider = FALSE, completionItemResolve = FALSE),
+      list(
+        completionProvider = FALSE,
+        completionItemResolve = FALSE,
+        # turn off formatting in favor of air
+        documentFormattingProvider = FALSE,
+        documentRangeFormattingProvider = FALSE
+      ),
     max.print = 200,
     menu.graphics = FALSE,
     continue = "... ",

@@ -294,6 +294,7 @@ return {
       end,
       formatters_by_ft = {
         lua = { "stylua" },
+        r = { "air" },
         sh = { "shfmt" },
         markdown = { "mdformat", "markdown-toc" },
         ["_"] = { "trim_whitespace", "trim_newlines" },
