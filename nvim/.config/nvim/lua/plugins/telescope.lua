@@ -95,11 +95,6 @@ return {
       end
 
       return {
-        extensions = {
-          heading = {
-            treesitter = true,
-          },
-        },
         defaults = {
           prompt_prefix = " ",
           selection_caret = " ",
@@ -154,15 +149,6 @@ return {
     config = function(_, opts)
       require("telescope").setup(opts)
       require("telescope").load_extension("fzf")
-    end,
-  },
-
-  -- heading search for markdown and help
-  {
-    "crispgm/telescope-heading.nvim",
-    keys = { { ft = "markdown", "<localleader>mh", "<cmd>Telescope heading<cr>", desc = "Heading" } },
-    config = function()
-      require("telescope").load_extension("heading")
     end,
   },
 
