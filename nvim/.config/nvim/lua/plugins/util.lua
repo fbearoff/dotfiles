@@ -139,6 +139,13 @@ return {
         desc = "Help Pages",
       },
       {
+        "<leader>sL",
+        function()
+          Snacks.picker.lazy()
+        end,
+        desc = "Lazy Spec",
+      },
+      {
         "<leader>sp",
         function()
           Snacks.picker.projects()

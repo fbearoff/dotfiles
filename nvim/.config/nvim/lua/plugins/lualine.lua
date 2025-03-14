@@ -3,7 +3,6 @@ return {
   event = "VeryLazy",
   opts = function()
     local icons = require("config.icons")
-    -- local colors = require("kanagawa.colors").setup()
 
     local diagnostics = {
       "diagnostics",
@@ -63,24 +62,8 @@ return {
     }
 
     -- Lsp server name .
-    local lsp_server = {
-      function()
-        local msg = "No Active Lsp"
-        local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
-        local clients = vim.lsp.get_clients()
-        if next(clients) == nil then
-          return msg
-        end
-        for _, client in ipairs(clients) do
-          ---@diagnostic disable-next-line: undefined-field
-          local filetypes = client.config.filetypes
-          if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-            return client.name
-          end
-        end
-        return msg
-      end,
-      icon = " :",
+    local lsp_status = {
+      "lsp_status",
       on_click = function()
         vim.cmd("check lspconfig")
       end,
@@ -153,7 +136,7 @@ return {
         lualine_x = {
           escape_status,
           macro,
-          lsp_server,
+          lsp_status,
           "fileformat",
           "encoding",
           filetype,

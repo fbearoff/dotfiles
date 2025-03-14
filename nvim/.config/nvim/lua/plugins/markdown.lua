@@ -28,7 +28,7 @@ return {
     keys = {
       {
         ft = "markdown",
-        "<localleader>mH",
+        "<localleader>mr",
         function()
           require("render-markdown").buf_toggle()
         end,
