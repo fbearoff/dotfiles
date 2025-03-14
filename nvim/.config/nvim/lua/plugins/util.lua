@@ -342,13 +342,6 @@ return {
     end,
   },
 
-  -- Quicker escape from insert mode with jj/jk
-  {
-    "max397574/better-escape.nvim",
-    event = "InsertEnter",
-    opts = {},
-  },
-
   -- makes some plugins dot-repeatable
   { "tpope/vim-repeat", event = "VeryLazy" },
 

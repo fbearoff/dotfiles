@@ -103,12 +103,6 @@ return {
       end,
     }
 
-    local escape_status = {
-      function()
-        return require("better_escape").waiting and "󰠚" or ""
-      end,
-    }
-
     return {
       options = {
         icons_enabled = true,
@@ -134,7 +128,6 @@ return {
         lualine_b = { "branch", diff },
         lualine_c = { diagnostics, lightbulb, filename, navic },
         lualine_x = {
-          escape_status,
           macro,
           lsp_status,
           "fileformat",
