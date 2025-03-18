@@ -530,8 +530,9 @@ return {
       { "[p", "<Plug>(YankyPutBeforeFilter)", desc = "Put Before Filter" },
       {
         "<leader>v",
+        mode = { "n", "x" },
         function()
-          require("telescope").extensions.yank_history.yank_history({})
+          Snacks.picker.yanky()
         end,
         desc = "Yank History",
       },
