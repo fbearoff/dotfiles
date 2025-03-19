@@ -23,12 +23,6 @@ return {
 
       cmp.setup({
         enabled = function()
-          -- disable autocompletion in prompt (wasn't playing well with telescope)
-          local buftype = vim.api.nvim_get_option_value("buftype", { buf = 0 })
-          if buftype == "prompt" then
-            return false
-          end
-
           local context = require("cmp.config.context")
           -- disable autocompletion in comments
           return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
@@ -231,7 +225,7 @@ return {
 
               ret[#ret + 1] = { a(icon, 2), hl, virtual = true }
               ret[#ret + 1] = { "  " }
-              ret[#ret + 1] = { item.ft }
+              ret[#ret + 1] = { a(item.ft, 3) }
               ret[#ret + 1] = { "  " }
               ret[#ret + 1] = { a(item.snippet.name, 21) }
               ret[#ret + 1] = { "  " }

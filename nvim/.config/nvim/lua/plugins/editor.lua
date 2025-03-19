@@ -244,9 +244,7 @@ return {
         "!Trouble",
         "!lir",
         "!Outline",
-        "!spectre_panel",
         "!snacks_terminal",
-        "!TelescopePrompt",
         "!rbrowser",
         "!rdoc",
       },
@@ -362,7 +360,7 @@ return {
       ts_config = {
         lua = { "string", "source", "comment" },
       },
-      disable_filetype = { "TelescopePrompt", "spectre_panel" },
+      disable_filetype = { "snacks_picker_input" },
       -- enable_check_bracket_line = true,
       fast_wrap = {},
     },
@@ -640,7 +638,6 @@ return {
         "Outline",
         "spectre_panel",
         "snacks_terminal",
-        "TelescopePrompt",
       },
     },
     config = function(_, opts)
