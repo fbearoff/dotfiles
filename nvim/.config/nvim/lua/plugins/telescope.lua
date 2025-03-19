@@ -156,7 +156,7 @@ return {
   {
     "benfowler/telescope-luasnip.nvim",
     keys = {
-      { "<leader>sl", "<cmd>Telescope luasnip<cr>", desc = "Luasnips" },
+      -- { "<leader>sl", "<cmd>Telescope luasnip<cr>", desc = "Luasnips" },
     },
     config = function()
       require("telescope").load_extension("luasnip")

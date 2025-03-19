@@ -192,6 +192,83 @@ return {
         end,
         desc = "Edit Snippets",
       },
+      {
+        "<leader>sl",
+        function()
+          local Snacks = require("snacks")
+
+          Snacks.picker({
+            title = "Luasnips",
+            finder = function()
+              local items = {}
+
+              local snippets_by_language = require("luasnip").available(function(s)
+                return s
+              end)
+
+              for language, snippets_list in pairs(snippets_by_language) do
+                for _, snippet in ipairs(snippets_list) do
+                  local context = { ft = language, snippet = snippet, text = snippet.name }
+                  table.insert(items, context)
+                end
+              end
+
+              table.sort(items, function(a, b)
+                if a.ft ~= b.ft then
+                  return a.ft > b.ft
+                elseif a.snippet.name ~= b.snippet.name then
+                  return a.snippet.name > b.snippet.name
+                else
+                  return a.snippet.trigger > b.snippet.trigger
+                end
+              end)
+              return items
+            end,
+            format = function(item)
+              local ret = {}
+              local icon, hl = Snacks.util.icon(item.ft, "filetype")
+              local a = Snacks.picker.util.align
+
+              ret[#ret + 1] = { a(icon, 2), hl, virtual = true }
+              ret[#ret + 1] = { "  " }
+              ret[#ret + 1] = { item.ft }
+              ret[#ret + 1] = { "  " }
+              ret[#ret + 1] = { a(item.snippet.name, 21) }
+              ret[#ret + 1] = { "  " }
+              ret[#ret + 1] = { a(item.snippet.trigger, 8, { align = "left" }), "SnacksPickerDelim" }
+              ret[#ret + 1] = { "  " }
+              ret[#ret + 1] = { table.concat(item.snippet.description, " "):sub(1, 40) }
+              return ret
+            end,
+            preview = function(ctx)
+              local lines
+              if type(ctx.item.snippet.docstring) == "string" then
+                lines = ctx.item.snippet.docstring and vim.split(ctx.item.snippet.docstring, "\n") or {}
+              else
+                lines = tostring(ctx.item.snippet.docstring[1])
+                    and vim.split(tostring(ctx.item.snippet.docstring[1]), "\n")
+                  or {}
+              end
+              ctx.preview:reset()
+              ctx.preview:set_lines(lines)
+              ctx.preview:set_title(ctx.item.snippet.name)
+              ctx.preview:highlight({ ft = ctx.item.ft })
+            end,
+            actions = {
+              confirm = function(picker)
+                picker:close()
+                local selected = picker:selected({ fallback = true })
+                if vim.tbl_count(selected) == 1 then
+                  vim.cmd("startinsert!")
+                  require("luasnip").snip_expand(selected[1].snippet)
+                  return
+                end
+              end,
+            },
+          })
+        end,
+        desc = "Luasnips",
+      },
     },
   },
 }
