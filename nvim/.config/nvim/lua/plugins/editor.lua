@@ -360,8 +360,6 @@ return {
       ts_config = {
         lua = { "string", "source", "comment" },
       },
-      disable_filetype = { "snacks_picker_input" },
-      -- enable_check_bracket_line = true,
       fast_wrap = {},
     },
     config = function(_, opts)
