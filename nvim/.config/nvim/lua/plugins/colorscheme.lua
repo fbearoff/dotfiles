@@ -31,6 +31,10 @@ return {
         overrides = function(colors)
           local theme = colors.theme
           return {
+            -- for Snacks words
+            LspReferenceText = { bg = "none", underline = true },
+            LspReferenceWrite = { bg = "none", underline = true },
+
             -- Popup menu
             Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
             PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
