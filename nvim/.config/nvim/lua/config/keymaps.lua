@@ -116,41 +116,6 @@ end
 -- Lazy
 keymap("n", "<leader>L", "<cmd>Lazy<CR>", { desc = "Lazy" })
 
--- UI Toggles
-keymap("n", "<leader>uc", function()
-  local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
-  util.toggle("conceallevel", false, { 0, conceallevel })
-end, { desc = "Toggle Conceal" })
-
-keymap("n", "<leader>uz", function()
-  util.toggle("foldcolumn", false, { "0", "1" })
-end, { desc = "Toggle Foldcolumn" })
-
-keymap("n", "<leader>ul", function()
-  util.toggle_number()
-end, { desc = "Toggle Line Number " })
-keymap("n", "<leader>uL", function()
-  util.toggle("relativenumber")
-end, { desc = "Toggle Relative Line Numbers" })
-
-keymap("n", "<leader>us", function()
-  util.toggle("spell")
-end, { desc = "Toggle Spell" })
-
-keymap("n", "<leader>uw", function()
-  util.toggle("wrap")
-end, { desc = "Toggle Word Wrap" })
-
-if vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint then
-  keymap("n", "<leader>uh", function()
-    util.inlay_hints()
-  end, { desc = "Toggle Inlay Hints" })
-end
-
-keymap("n", "<leader>ud", function()
-  util.toggle_diagnostics()
-end, { desc = "Toggle Diagnostics" })
-
 -- highlights under cursor
 keymap("n", "<leader>sH", vim.show_pos, { desc = "Highlight Groups" })
 

@@ -37,33 +37,6 @@ function M.on_load(name, fn)
   end
 end
 
--- Toggle diagnostics
-local enabled = true
-function M.toggle_diagnostics()
-  enabled = not enabled
-  if enabled then
-    vim.diagnostic.enable()
-    require("lazy.core.util").info("Enabled diagnostics", { title = "Diagnostics" })
-  else
-    vim.diagnostic.enable(false)
-    require("lazy.core.util").warn("Disabled diagnostics", { title = "Diagnostics" })
-  end
-end
-
-local nu = { number = true, relativenumber = true }
-function M.toggle_number()
-  if vim.opt_local.number:get() or vim.opt_local.relativenumber:get() then
-    nu = { number = vim.opt_local.number:get(), relativenumber = vim.opt_local.relativenumber:get() }
-    vim.opt_local.number = false
-    vim.opt_local.relativenumber = false
-    require("lazy.core.util").warn("Disabled line numbers", { title = "Option" })
-  else
-    vim.opt_local.number = nu.number
-    vim.opt_local.relativenumber = nu.relativenumber
-    require("lazy.core.util").info("Enabled line numbers", { title = "Option" })
-  end
-end
-
 -- LSP on_attach
 function M.on_attach(on_attach)
   vim.api.nvim_create_autocmd("LspAttach", {
@@ -73,30 +46,6 @@ function M.on_attach(on_attach)
       on_attach(client, buffer)
     end,
   })
-end
-
--- Toggle opts
-function M.toggle(option, silent, values)
-  if values then
-    if vim.opt_local[option]:get() == values[1] then
-      vim.opt_local[option] = values[2]
-    else
-      vim.opt_local[option] = values[1]
-    end
-    return vim.notify(
-      "Set " .. option .. " to " .. vim.opt_local[option]:get(),
-      vim.log.levels.INFO,
-      { title = "Option" }
-    )
-  end
-  vim.opt_local[option] = not vim.opt_local[option]:get()
-  if not silent then
-    vim.notify(
-      (vim.opt_local[option]:get() and "Enabled" or "Disabled") .. " " .. option,
-      vim.log.levels.INFO,
-      { title = "Option" }
-    )
-  end
 end
 
 -- returns the root directory based on:
@@ -132,16 +81,6 @@ function M.get_root()
     root = root and vim.fs.dirname(root) or vim.uv.cwd()
   end
   return root
-end
-
-function M.inlay_hints(bufnr)
-  bufnr = bufnr or 0
-  local inlay_hint = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint
-  if inlay_hint.enable then
-    vim.lsp.inlay_hint.enable(bufnr, not inlay_hint.is_enabled())
-  else
-    vim.lsp.inlay_hint(bufnr, nil)
-  end
 end
 
 return M
