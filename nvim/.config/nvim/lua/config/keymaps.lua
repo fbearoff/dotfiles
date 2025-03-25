@@ -14,8 +14,6 @@ local function keymap(mode, lhs, rhs, opts)
   end
 end
 
-local util = require("util")
-
 -- Insert --
 keymap("i", "<M-BS>", "<Esc>cvb", { desc = "Delete Word Before Cursor" })
 -- Add undo break-points
@@ -108,10 +106,6 @@ keymap("n", "<leader>w", "<cmd>w!<CR>", { desc = "Save" })
 -- Quickfix/Location list
 keymap("n", "<leader>dl", "<cmd>lopen<cr>", { desc = "Location List" })
 keymap("n", "<leader>dq", "<cmd>copen<cr>", { desc = "Quickfix List" })
-if not util.has("trouble.nvim") then
-  keymap("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
-  keymap("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
-end
 
 -- Lazy
 keymap("n", "<leader>L", "<cmd>Lazy<CR>", { desc = "Lazy" })
