@@ -217,6 +217,7 @@ return {
     build = ":MasonUpdate",
     opts = {
       ensure_installed = {
+        "air",
         "shfmt",
         "stylua",
         "ansible-lint",
