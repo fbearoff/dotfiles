@@ -1,9 +1,23 @@
 return {
   "nvim-lua/plenary.nvim",
 
+  -- setup project root
+  {
+    "echasnovski/mini.misc",
+    event = "VeryLazy",
+    config = function()
+      require("mini.misc").setup()
+      ---@diagnostic disable-next-line: undefined-global
+      MiniMisc.setup_auto_root(nil, function(path)
+        return vim.fs.dirname(path)
+      end)
+    end,
+  },
+
   -- needed for properly setting project root
   {
     "ahmedkhalf/project.nvim",
+    enabled = false,
     event = "VeryLazy",
     opts = {
       detection_methods = {
