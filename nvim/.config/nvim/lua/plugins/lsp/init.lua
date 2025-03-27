@@ -1,3 +1,4 @@
+local icons = require("config.icons")
 return {
   -- lspconfig
   {
@@ -33,6 +34,14 @@ return {
           },
         },
         severity_sort = true,
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+            [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
+            [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+            [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+          },
+        },
         float = {
           focusable = true,
           style = "minimal",
@@ -114,11 +123,7 @@ return {
         require("plugins.lsp.keymaps").on_attach(client, buffer)
         return ret
       end
-      -- diagnostics
-      for name, icon in pairs(require("config.icons").diagnostics) do
-        name = "DiagnosticSign" .. name
-        vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-      end
+
       -- inlay hints
       local inlay_hint = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint.enable
 
