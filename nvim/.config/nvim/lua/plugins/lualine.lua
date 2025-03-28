@@ -33,7 +33,7 @@ return {
         return vim.fn.winwidth(0) > 80
       end,
       on_click = function()
-        package.loaded.gitsigns.diffthis()
+        Snacks.lazygit()
       end,
     }
 
@@ -65,7 +65,7 @@ return {
     local lsp_status = {
       "lsp_status",
       on_click = function()
-        vim.cmd("check lspconfig")
+        vim.cmd("checkhealth vim.lsp")
       end,
     }
 
