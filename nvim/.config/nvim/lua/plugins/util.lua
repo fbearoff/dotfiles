@@ -4,6 +4,7 @@ return {
   -- setup project root
   {
     "echasnovski/mini.misc",
+    enabled = false,
     event = "VeryLazy",
     config = function()
       require("mini.misc").setup()
@@ -16,8 +17,9 @@ return {
 
   -- needed for properly setting project root
   {
-    "ahmedkhalf/project.nvim",
-    enabled = false,
+    "DrKJeff16/project.nvim",
+    -- "ahmedkhalf/project.nvim",
+    enabled = true,
     event = "VeryLazy",
     opts = {
       detection_methods = {
