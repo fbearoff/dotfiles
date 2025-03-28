@@ -38,10 +38,6 @@ keymap("n", "<tab>", "<C-w>w", { desc = "Next window" })
 keymap({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Insert newline without leaving Normal mode
-keymap("n", "gO", "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = "Insert Newline Above" })
-keymap("n", "go", "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", { desc = "Insert Newline Below" })
-
 -- Change word with <c-c>
 keymap("n", "<C-c>", "<cmd>normal! ciw<cr>a", { desc = "Change Inner Word" })
 
