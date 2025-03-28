@@ -39,6 +39,16 @@ function M.has(buffer, method)
   return false
 end
 
+-- Return options
+M.opts = function(name)
+  local plugin = require("lazy.core.config").plugins[name]
+  if not plugin then
+    return {}
+  end
+  local Plugin = require("lazy.core.plugin")
+  return Plugin.values(plugin, "opts", false)
+end
+
 function M.resolve(buffer)
   local Keys = require("lazy.core.handler.keys")
   if not Keys.resolve then
@@ -46,7 +56,7 @@ function M.resolve(buffer)
   end
 
   local spec = M.get()
-  local opts = require("util").opts("nvim-lspconfig")
+  local opts = M.opts("nvim-lspconfig")
   local clients = vim.lsp.get_clients({ bufnr = buffer })
   for _, client in ipairs(clients) do
     local maps = opts.servers[client.name] and opts.servers[client.name].keys or {}
