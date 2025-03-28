@@ -21,6 +21,9 @@ return {
         },
       },
       diagnostics = {
+        jump = {
+          float = true,
+        },
         virtual_text = {
           source = "if_many",
           prefix = "icons",
@@ -51,14 +54,7 @@ return {
           prefix = "",
         },
       },
-      inlay_hints = {
-        enabled = false,
-      },
-      codelens = {
-        enabled = false,
-      },
       servers = {
-        -- mason = false, -- set to false if you don't want this server to be installed with mason
         ansiblels = {},
         bashls = {},
         html = {},
@@ -67,7 +63,6 @@ return {
           settings = {
             r = {
               lsp = {
-                rich_documentation = false,
                 max_completions = 20,
               },
             },
@@ -104,7 +99,6 @@ return {
           },
         },
       },
-      setup = {},
     },
     config = function(_, opts)
       local Util = require("util")
@@ -124,39 +118,15 @@ return {
         return ret
       end
 
-      -- inlay hints
-      local inlay_hint = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint.enable
-
-      if opts.inlay_hints.enabled and inlay_hint then
-        Util.on_attach(function(client, buffer)
-          if client.supports_method("textDocument/inlayHint") then
-            inlay_hint(buffer, true)
-          end
-        end)
-      end
-      -- code lens
-      if opts.codelens.enabled and vim.lsp.codelens then
-        Util.lsp.on_attach(function(client, buffer)
-          if client.supports_method("textDocument/codeLens") then
-            vim.lsp.codelens.refresh()
-            --- autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
-            vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-              buffer = buffer,
-              callback = vim.lsp.codelens.refresh,
-            })
-          end
-        end)
-      end
+      -- diagnostic icons in virtual text
       if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
-        opts.diagnostics.virtual_text.prefix = vim.fn.has("nvim-0.10.0") == 0
-          or function(diagnostic)
-            local icons = require("config.icons").diagnostics
-            for d, icon in pairs(icons) do
-              if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
-                return icon
-              end
+        opts.diagnostics.virtual_text.prefix = function(diagnostic)
+          for d, icon in pairs(icons.diagnostics) do
+            if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
+              return icon
             end
           end
+        end
       end
 
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
@@ -175,35 +145,17 @@ return {
           capabilities = vim.deepcopy(capabilities),
         }, servers[server] or {})
 
-        if opts.setup[server] then
-          if opts.setup[server](server, server_opts) then
-            return
-          end
-        elseif opts.setup["*"] then
-          if opts.setup["*"](server, server_opts) then
-            return
-          end
-        end
         require("lspconfig")[server].setup(server_opts)
       end
 
       -- get all the servers that are available through mason-lspconfig
       local have_mason, mlsp = pcall(require, "mason-lspconfig")
-      local all_mslp_servers = {}
-      if have_mason then
-        all_mslp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
-      end
 
       local ensure_installed = {}
       for server, server_opts in pairs(servers) do
         if server_opts then
           server_opts = server_opts == true and {} or server_opts
-          -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
-          if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
-            setup(server)
-          else
-            ensure_installed[#ensure_installed + 1] = server
-          end
+          ensure_installed[#ensure_installed + 1] = server
         end
       end
 
