@@ -11,6 +11,72 @@ return {
         "hrsh7th/cmp-nvim-lsp",
       },
     },
+    keys = {
+      { "<leader>cd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
+      { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
+      { "<leader>cl", "<cmd>checkhealth vim.lsp<cr>", desc = "Lsp Info" },
+      {
+        "<leader>dd",
+        function()
+          Snacks.picker.diagnostics()
+        end,
+        desc = "Document",
+      },
+      {
+        "<leader>dD",
+        function()
+          Snacks.picker.diagnostics_buffer()
+        end,
+        desc = "Workspace",
+      },
+      {
+        "gd",
+        function()
+          Snacks.picker.lsp_definitions()
+        end,
+        desc = "Goto Definition",
+      },
+      {
+        "grr",
+        function()
+          Snacks.picker.lsp_references()
+        end,
+        desc = "Goto References",
+      },
+      {
+        "gD",
+        function()
+          Snacks.picker.lsp_declarations()
+        end,
+        desc = "Goto Declaration",
+      },
+      {
+        "gri",
+        function()
+          Snacks.picker.lsp_implementations()
+        end,
+        desc = "Goto Implementation",
+      },
+      {
+        "gy",
+        function()
+          Snacks.picker.lsp_type_definitions()
+        end,
+        desc = "Goto Type Definition",
+      },
+      {
+        "gO",
+        function()
+          Snacks.picker.lsp_symbols()
+        end,
+        desc = "Goto Document Symbols",
+      },
+      { "gK", vim.lsp.buf.signature_help, desc = "Signature Help" },
+      { "gra", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },
+      { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },
+      { "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "v" } },
+      { "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh & Display Codelens" },
+    },
     opts = {
       capabilities = {
         textDocument = {
@@ -101,31 +167,6 @@ return {
       },
     },
     config = function(_, opts)
-      local on_attach = function(on_attach)
-        vim.api.nvim_create_autocmd("LspAttach", {
-          callback = function(args)
-            local buffer = args.buf
-            local client = vim.lsp.get_client_by_id(args.data.client_id)
-            on_attach(client, buffer)
-          end,
-        })
-      end
-      -- setup  keymaps
-      on_attach(function(client, buffer)
-        require("plugins.lsp.keymaps").on_attach(client, buffer)
-      end)
-
-      local register_capability = vim.lsp.handlers["client/registerCapability"]
-
-      vim.lsp.handlers["client/registerCapability"] = function(err, res, ctx)
-        local ret = register_capability(err, res, ctx)
-        local client_id = ctx.client_id
-        local client = vim.lsp.get_client_by_id(client_id)
-        local buffer = vim.api.nvim_get_current_buf()
-        require("plugins.lsp.keymaps").on_attach(client, buffer)
-        return ret
-      end
-
       -- diagnostic icons in virtual text
       if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
         opts.diagnostics.virtual_text.prefix = function(diagnostic)
