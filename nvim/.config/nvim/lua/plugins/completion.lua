@@ -1,73 +1,77 @@
 return {
-  -- {
-  --   "saghen/blink.compat",
-  --   opts = {},
-  -- },
-  -- {
-  --   "saghen/blink.cmp",
-  --   dependencies = { "R-nvim/cmp-r" },
-  --   version = "1.*",
-  --   opts = {
-  --     keymap = {
-  --       preset = "none",
-  --       ["<C-b>"] = { "scroll_documentation_up" },
-  --       ["<C-f>"] = { "scroll_documentation_down" },
-  --       ["<C-e>"] = { "hide" },
-  --       ["<Up>"] = { "select_prev", "fallback" },
-  --       ["<Down>"] = { "select_next", "fallback" },
-  --       ["Tab"] = { "select_next", "snippet_forward", "fallback" },
-  --       ["<Tab>"] = {
-  --         function(cmp)
-  --           if cmp.is_visible() then
-  --             return cmp.select_next()
-  --           elseif cmp.snippet_active() then
-  --             return cmp.accept()
-  --           else
-  --             return cmp.select_and_accept()
-  --           end
-  --         end,
-  --         "snippet_forward",
-  --         "fallback",
-  --       },
-  --       ["<S-Tab>"] = {
-  --         function(cmp)
-  --           if cmp.is_visible() then
-  --             return cmp.select_prev()
-  --           end
-  --         end,
-  --         "snippet_backward",
-  --         "fallback",
-  --       },
-  --       ["<CR>"] = { "select_and_accept", "fallback" },
-  --     },
-  --     appearance = {
-  --       nerd_font_variant = "normal",
-  --     },
-  --     completion = {
-  --       documentation = { auto_show = true },
-  --       trigger = {
-  --         show_on_trigger_character = true,
-  --       },
-  --       menu = {
-  --         draw = {
-  --           columns = { { "kind_icon", "kind" }, { "label", "label_description", "source_name", gap = 1 } },
-  --         },
-  --       },
-  --     },
-  --     snippets = { preset = "luasnip" },
-  --     sources = {
-  --       default = { "cmp_nvim_r", "lsp", "path", "snippets", "buffer" },
-  --       providers = {
-  --         cmp_nvim_r = {
-  --           name = "cmp_nvim_r",
-  --           module = "blink.compat.source",
-  --         },
-  --       },
-  --     },
-  --     fuzzy = { implementation = "prefer_rust_with_warning" },
-  --   },
-  --   opts_extend = { "sources.default" },
-  -- },
+  {
+    "saghen/blink.cmp",
+    enabled = false,
+    dependencies = { "saghen/blink.compat", "R-nvim/cmp-r" },
+    version = "1.*",
+    opts = {
+      keymap = {
+        preset = "none",
+        ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+        ["<C-b>"] = { "scroll_documentation_up" },
+        ["<C-f>"] = { "scroll_documentation_down" },
+        ["<C-e>"] = { "hide" },
+        ["<Up>"] = { "select_prev", "fallback" },
+        ["<Down>"] = { "select_next", "fallback" },
+        ["<Tab>"] = {
+          function(cmp)
+            if cmp.is_visible() then
+              return cmp.select_next()
+            elseif cmp.snippet_active() then
+              return cmp.accept()
+            else
+              return cmp.select_and_accept()
+            end
+          end,
+          "snippet_forward",
+          "fallback",
+        },
+        ["<S-Tab>"] = {
+          function(cmp)
+            if cmp.is_visible() then
+              return cmp.select_prev()
+            end
+          end,
+          "snippet_backward",
+          "fallback",
+        },
+        ["<CR>"] = { "select_and_accept", "fallback" },
+      },
+      appearance = {
+        nerd_font_variant = "normal",
+      },
+      completion = {
+        documentation = { auto_show = true },
+        trigger = {
+          show_on_trigger_character = true,
+        },
+        ghost_text = {
+          enabled = true,
+        },
+        menu = {
+          draw = {
+            columns = {
+              { "kind_icon" },
+              { "label", "source_name", gap = 1 },
+            },
+          },
+        },
+      },
+      snippets = { preset = "luasnip" },
+      signature = { enabled = true },
+      sources = {
+        default = { "cmp_nvim_r", "lsp", "path", "snippets", "buffer" },
+        providers = {
+          cmp_nvim_r = {
+            name = "cmp_r",
+            module = "blink.compat.source",
+          },
+        },
+      },
+      fuzzy = { implementation = "prefer_rust_with_warning" },
+    },
+    opts_extend = { "sources.default" },
+  },
   -- completion engine
   {
     "hrsh7th/nvim-cmp",
