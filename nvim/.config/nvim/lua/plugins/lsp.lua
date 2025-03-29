@@ -11,72 +11,110 @@ return {
         "hrsh7th/cmp-nvim-lsp",
       },
     },
-    keys = {
-      { "<leader>cd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
-      { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
-      { "<leader>cl", "<cmd>checkhealth vim.lsp<cr>", desc = "Lsp Info" },
-      {
-        "<leader>dd",
-        function()
-          Snacks.picker.diagnostics()
-        end,
-        desc = "Document",
-      },
-      {
-        "<leader>dD",
-        function()
-          Snacks.picker.diagnostics_buffer()
-        end,
-        desc = "Workspace",
-      },
-      {
-        "gd",
-        function()
-          Snacks.picker.lsp_definitions()
-        end,
-        desc = "Goto Definition",
-      },
-      {
-        "grr",
-        function()
-          Snacks.picker.lsp_references()
-        end,
-        desc = "Goto References",
-      },
-      {
-        "gD",
-        function()
-          Snacks.picker.lsp_declarations()
-        end,
-        desc = "Goto Declaration",
-      },
-      {
-        "gri",
-        function()
-          Snacks.picker.lsp_implementations()
-        end,
-        desc = "Goto Implementation",
-      },
-      {
-        "gy",
-        function()
-          Snacks.picker.lsp_type_definitions()
-        end,
-        desc = "Goto Type Definition",
-      },
-      {
-        "gO",
-        function()
-          Snacks.picker.lsp_symbols()
-        end,
-        desc = "Goto Document Symbols",
-      },
-      { "gK", vim.lsp.buf.signature_help, desc = "Signature Help" },
-      { "gra", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },
-      { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },
-      { "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "v" } },
-      { "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh & Display Codelens" },
-    },
+    keys = function()
+      local function jumpWithVirtLineDiags(jumpCount)
+        pcall(vim.api.nvim_del_augroup_by_name, "jumpWithVirtLineDiags") -- prevent autocmd for repeated jumps
+
+        vim.diagnostic.jump({ count = jumpCount })
+
+        local initialVirtTextConf = vim.diagnostic.config().virtual_text
+        vim.diagnostic.config({
+          virtual_text = false,
+          virtual_lines = { current_line = true },
+        })
+
+        vim.defer_fn(function() -- deferred to not trigger by jump itself
+          vim.api.nvim_create_autocmd("CursorMoved", {
+            desc = "User(once): Reset diagnostics virtual lines",
+            once = true,
+            group = vim.api.nvim_create_augroup("jumpWithVirtLineDiags", {}),
+            callback = function()
+              vim.diagnostic.config({ virtual_lines = false, virtual_text = initialVirtTextConf })
+            end,
+          })
+        end, 1)
+      end
+      return {
+        {
+          "]d",
+          function()
+            jumpWithVirtLineDiags(1)
+          end,
+          desc = "Next Diagnostic",
+        },
+        {
+          "[d",
+          function()
+            jumpWithVirtLineDiags(-1)
+          end,
+          desc = "Prev Diagnostic",
+        },
+        { "<leader>cd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
+        { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
+        { "<leader>cl", "<cmd>checkhealth vim.lsp<cr>", desc = "Lsp Info" },
+        {
+          "<leader>dd",
+          function()
+            Snacks.picker.diagnostics()
+          end,
+          desc = "Document",
+        },
+        {
+          "<leader>dD",
+          function()
+            Snacks.picker.diagnostics_buffer()
+          end,
+          desc = "Workspace",
+        },
+        {
+          "gd",
+          function()
+            Snacks.picker.lsp_definitions()
+          end,
+          desc = "Goto Definition",
+        },
+        {
+          "grr",
+          function()
+            Snacks.picker.lsp_references()
+          end,
+          desc = "Goto References",
+        },
+        {
+          "gD",
+          function()
+            Snacks.picker.lsp_declarations()
+          end,
+          desc = "Goto Declaration",
+        },
+        {
+          "gri",
+          function()
+            Snacks.picker.lsp_implementations()
+          end,
+          desc = "Goto Implementation",
+        },
+        {
+          "gy",
+          function()
+            Snacks.picker.lsp_type_definitions()
+          end,
+          desc = "Goto Type Definition",
+        },
+        {
+          "gO",
+          function()
+            Snacks.picker.lsp_symbols()
+          end,
+          desc = "Goto Document Symbols",
+        },
+        { "gK", vim.lsp.buf.signature_help, desc = "Signature Help" },
+        { "gra", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },
+        { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },
+        { "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "v" } },
+        { "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh & Display Codelens" },
+      }
+    end,
     opts = {
       capabilities = {
         textDocument = {
@@ -87,9 +125,6 @@ return {
         },
       },
       diagnostics = {
-        jump = {
-          float = true,
-        },
         virtual_text = {
           source = "if_many",
           prefix = "icons",
