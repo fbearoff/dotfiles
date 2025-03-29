@@ -188,41 +188,6 @@ return {
     },
   },
 
-  -- Floating filename
-  {
-    "b0o/incline.nvim",
-    event = "BufReadPre",
-    opts = function()
-      local colors = require("kanagawa.colors").setup()
-      return {
-        highlight = {
-          groups = {
-            InclineNormal = {
-              guibg = colors.theme.ui.bg,
-              guifg = colors.theme.ui.fg,
-              gui = "bold",
-            },
-            InclineNormalNC = {
-              guifg = colors.theme.ui.fg,
-              guibg = colors.theme.ui.bg_dim,
-            },
-          },
-        },
-        window = {
-          margin = {
-            vertical = 0,
-            horizontal = 1,
-          },
-        },
-        render = function(props)
-          local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-          local icon, color = require("nvim-web-devicons").get_icon_color(filename)
-          return { { icon, guifg = color }, { " " }, { filename } }
-        end,
-      }
-    end,
-  },
-
   -- Show code context
   {
     "SmiteshP/nvim-navic",
@@ -245,6 +210,7 @@ return {
       autocmd = {
         enabled = true,
       },
+      code_lenses = true,
       sign = {
         enabled = false,
       },
