@@ -159,10 +159,6 @@ return {
         map("n", "<leader>gl", gs.toggle_linehl, "Toggle Line Highlight")
         map("n", "<leader>gL", gs.toggle_current_line_blame, "Toggle Line Blame")
         map("n", "<leader>gw", gs.toggle_word_diff, "Toggle Word Diff")
-        map("n", "<leader>gd", gs.diffthis, "Diff This")
-        map("n", "<leader>gD", function()
-          gs.diffthis("~")
-        end, "Diff This ~")
 
         -- hunks
         map("n", "]h", function()
@@ -187,7 +183,7 @@ return {
         map("n", "<leader>ghb", function()
           gs.blame_line({ full = true })
         end, "Blame Line")
-        map({ "o", "x" }, "ig", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+        map({ "o", "x" }, "ih", gs.select_hunk, "GitSigns Select Hunk")
       end,
     },
   },
