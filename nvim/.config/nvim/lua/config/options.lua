@@ -15,7 +15,9 @@ local options = {
   fillchars = { foldopen = "", foldclose = "", fold = " ", foldsep = " ", diff = "╱", eob = " " },
   foldcolumn = "1",
   foldenable = true, -- enable folding
-  foldlevel = 99, -- Using ufo provider need a large value, feel free to decrease the value
+  foldmethod = "expr",
+  foldexpr = "v:lua.vim.treesitter.foldexpr()", -- Default to treesitter folding
+  foldlevel = 99,
   foldlevelstart = 99,
   foldnestmax = 10, -- max fold nesting level
   hlsearch = true, -- highlight all matches on previous search pattern
@@ -65,7 +67,3 @@ end
 
 vim.opt.iskeyword:append("-") -- hyphenated words recognized by searches
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode.
-
-vim.g.markdown_fenced_languages = { "html", "python", "bash=sh", "R=r" }
--- fix markdown indentation settings
-vim.g.markdown_recommended_style = 0
