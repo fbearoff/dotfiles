@@ -146,14 +146,6 @@ return {
             [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
           },
         },
-        float = {
-          focusable = true,
-          style = "minimal",
-          border = "rounded",
-          source = "if_many",
-          header = "",
-          prefix = "",
-        },
       },
       servers = {
         ansiblels = {},
@@ -232,8 +224,7 @@ return {
         "force",
         {},
         vim.lsp.protocol.make_client_capabilities(),
-        -- require("blink.cmp").get_lsp_capabilities(),
-        require("cmp_nvim_lsp").default_capabilities(),
+        require("blink.cmp").get_lsp_capabilities(),
         opts.capabilities or {}
       )
 
