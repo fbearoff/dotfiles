@@ -357,7 +357,6 @@ return {
       npairs.setup(opts)
       local Rule = require("nvim-autopairs.rule")
       npairs.add_rule(Rule("<", ">", "lua"))
-      require("cmp").event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())
     end,
   },
 

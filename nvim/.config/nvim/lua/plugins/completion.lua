@@ -1,44 +1,29 @@
 return {
+  -- completion engine
   {
     "saghen/blink.cmp",
-    enabled = false,
-    dependencies = { "saghen/blink.compat", "R-nvim/cmp-r" },
+    dependencies = {
+      "saghen/blink.compat",
+      "R-nvim/cmp-r",
+    },
     version = "1.*",
     opts = {
       keymap = {
-        preset = "none",
-        ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-        ["<C-b>"] = { "scroll_documentation_up" },
-        ["<C-f>"] = { "scroll_documentation_down" },
-        ["<C-e>"] = { "hide" },
-        ["<Up>"] = { "select_prev", "fallback" },
-        ["<Down>"] = { "select_next", "fallback" },
-        ["<Tab>"] = {
-          function(cmp)
-            if cmp.is_visible() then
-              return cmp.select_next()
-            elseif cmp.snippet_active() then
-              return cmp.accept()
-            else
-              return cmp.select_and_accept()
-            end
-          end,
-          "snippet_forward",
-          "fallback",
-        },
-        ["<S-Tab>"] = {
-          function(cmp)
-            if cmp.is_visible() then
-              return cmp.select_prev()
-            end
-          end,
-          "snippet_backward",
-          "fallback",
-        },
-        ["<CR>"] = { "select_and_accept", "fallback" },
-      },
-      appearance = {
-        nerd_font_variant = "normal",
+        preset = "enter",
+        ["<TAB>"] = { "select_next", "snippet_forward", "fallback" },
+        ["<S-TAB>"] = { "select_prev", "snippet_backward", "fallback" },
+        -- stylua: ignore start
+        ['<A-1>'] = { function(cmp) cmp.accept({ index = 1 }) end },
+        ['<A-2>'] = { function(cmp) cmp.accept({ index = 2 }) end },
+        ['<A-3>'] = { function(cmp) cmp.accept({ index = 3 }) end },
+        ['<A-4>'] = { function(cmp) cmp.accept({ index = 4 }) end },
+        ['<A-5>'] = { function(cmp) cmp.accept({ index = 5 }) end },
+        ['<A-6>'] = { function(cmp) cmp.accept({ index = 6 }) end },
+        ['<A-7>'] = { function(cmp) cmp.accept({ index = 7 }) end },
+        ['<A-8>'] = { function(cmp) cmp.accept({ index = 8 }) end },
+        ['<A-9>'] = { function(cmp) cmp.accept({ index = 9 }) end },
+        ['<A-0>'] = { function(cmp) cmp.accept({ index = 10 }) end },
+        -- stylua: ignore end
       },
       completion = {
         documentation = { auto_show = true },
@@ -51,14 +36,22 @@ return {
         menu = {
           draw = {
             columns = {
+              { "item_idx" },
               { "kind_icon" },
-              { "label", "source_name", gap = 1 },
+              { "label" },
+              { "source_name" },
+            },
+            components = {
+              item_idx = {
+                text = function(ctx)
+                  return ctx.idx == 10 and "0" or ctx.idx >= 10 and " " or tostring(ctx.idx)
+                end,
+              },
             },
           },
         },
       },
       snippets = { preset = "luasnip" },
-      signature = { enabled = true },
       sources = {
         default = { "cmp_nvim_r", "lsp", "path", "snippets", "buffer" },
         providers = {
@@ -68,143 +61,7 @@ return {
           },
         },
       },
-      fuzzy = { implementation = "prefer_rust_with_warning" },
     },
-    opts_extend = { "sources.default" },
-  },
-  -- completion engine
-  {
-    "hrsh7th/nvim-cmp",
-    enabled = true,
-    event = "InsertEnter",
-    dependencies = {
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-path",
-      "R-nvim/cmp-r",
-      "saadparwaiz1/cmp_luasnip",
-      "max397574/cmp-greek",
-      "hrsh7th/cmp-emoji",
-    },
-    config = function()
-      vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
-
-      -- Setup nvim-cmp.
-      local cmp = require("cmp")
-      local luasnip = require("luasnip")
-
-      cmp.setup({
-        enabled = function()
-          local context = require("cmp.config.context")
-          -- disable autocompletion in comments
-          return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
-        end,
-        completion = {
-          completeopt = "menu,menuone,noselect",
-        },
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-          ["<S-CR>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-          }),
-          ["<Tab>"] = cmp.mapping(function()
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
-            else
-              require("neotab").tabout()
-            end
-          end, { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-        }),
-        sources = cmp.config.sources({
-          { name = "cmp_r" },
-          { name = "nvim_lsp", max_item_count = 10 },
-          { name = "nvim_lua" },
-          {
-            name = "buffer",
-            -- get words from visible buffers
-            keyword_length = 5,
-            max_item_count = 3,
-            get_bufnrs = function()
-              local bufs = {}
-              for _, win in ipairs(vim.api.nvim_list_wins()) do
-                bufs[vim.api.nvim_win_get_buf(win)] = true
-              end
-              return vim.tbl_keys(bufs)
-            end,
-          },
-          { name = "luasnip", keyword_length = 3, max_item_count = 3 },
-          { name = "path" },
-          { name = "greek" },
-          { name = "emoji" },
-          { name = "render-markdown" },
-        }),
-        formatting = {
-          fields = { "kind", "abbr", "menu" },
-          format = function(_, item)
-            local icons = require("config.icons").kinds
-            if icons[item.kind] then
-              item.kind = string.format("%s", icons[item.kind])
-              item.menu = ({
-                cmp_nvim_r = "[R]",
-                nvim_lsp = "[LSP]",
-                luasnip = "[Snip]",
-                buffer = "[Buffer]",
-                path = "[Path]",
-                nvim_lua = "[Lua]",
-                greek = "[Greek]",
-                emoji = "[Emoji]",
-              })[_.source.name]
-            end
-            return item
-          end,
-        },
-        window = {
-          documentation = cmp.config.window.bordered(),
-          completion = cmp.config.window.bordered(),
-        },
-        experimental = {
-          ghost_text = {
-            hl_group = "CmpGhostText",
-          },
-        },
-      })
-      cmp.setup.cmdline({ "/", "?" }, {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = "buffer" },
-        },
-      })
-      cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = "path" },
-          { name = "cmdline" },
-        }),
-      })
-    end,
   },
 
   -- snippets
@@ -230,15 +87,6 @@ return {
       }
     end,
     keys = {
-      {
-        "<tab>",
-        function()
-          return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
-        end,
-        expr = true,
-        silent = true,
-        mode = "i",
-      },
       {
         "<C-d>",
         function()

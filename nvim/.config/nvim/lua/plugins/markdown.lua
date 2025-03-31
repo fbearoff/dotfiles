@@ -36,7 +36,7 @@ return {
       },
     },
     opts = {
-      enabled = true,
+      completions = { blink = { enabled = true } },
       code = {
         sign = false,
         width = "block",
