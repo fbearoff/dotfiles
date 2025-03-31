@@ -1,7 +1,4 @@
 return {
-  { "ellisonleao/gruvbox.nvim", event = "User LoadColorSchemes" },
-
-  { "folke/tokyonight.nvim", event = "User LoadColorSchemes" },
   {
     "rebelot/kanagawa.nvim",
     event = "VimEnter",
