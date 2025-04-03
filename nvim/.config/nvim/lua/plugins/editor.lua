@@ -325,20 +325,11 @@ return {
   {
     "andymass/vim-matchup",
     event = "BufReadPost",
-    init = function()
-      vim.o.matchpairs = "(:),{:},[:],<:>"
-    end,
     config = function()
       vim.g.matchup_matchparen_deferred = 1
       vim.g.matchup_matchparen_offscreen = { method = "status_manual" }
+      vim.g.matchup_matchparen_hi_surround_always = 1
     end,
-  },
-
-  -- Highlight outer brackets
-  {
-    "utilyre/sentiment.nvim",
-    event = "BufReadPost",
-    opts = {},
   },
 
   -- Auto insert matching pair character
