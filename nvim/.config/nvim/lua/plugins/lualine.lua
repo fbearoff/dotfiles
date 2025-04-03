@@ -70,9 +70,16 @@ return {
     }
 
     local macro = {
-      function()
-        return require("NeoComposer.ui").status_recording()
+      "macro",
+      fmt = function()
+        local reg = vim.fn.reg_recording()
+        if reg ~= "" then
+          return "REC @" .. reg
+        end
+        return nil
       end,
+      color = { fg = "#C34043" },
+      draw_empty = false,
     }
 
     local navic = {
