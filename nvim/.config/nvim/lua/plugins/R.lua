@@ -10,7 +10,7 @@ return {
           {
             "<leader><Space>",
             function()
-              require("r.send").line(true)
+              require("r.send").line("move")
             end,
             desc = "Send Line to R",
           },
