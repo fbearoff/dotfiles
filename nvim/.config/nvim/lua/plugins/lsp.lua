@@ -113,14 +113,6 @@ return {
       }
     end,
     opts = {
-      capabilities = {
-        textDocument = {
-          foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
-          },
-        },
-      },
       diagnostics = {
         virtual_text = {
           source = "if_many",
@@ -217,35 +209,20 @@ return {
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
       local servers = opts.servers
-      local capabilities = vim.tbl_deep_extend(
-        "force",
-        {},
-        vim.lsp.protocol.make_client_capabilities(),
-        require("blink.cmp").get_lsp_capabilities(),
-        opts.capabilities or {}
-      )
-
-      local function setup(server)
-        local server_opts = vim.tbl_deep_extend("force", {
-          capabilities = vim.deepcopy(capabilities),
-        }, servers[server] or {})
-
-        require("lspconfig")[server].setup(server_opts)
+      for server, settings in pairs(servers) do
+        vim.lsp.config(server, settings)
+        vim.lsp.enable(server)
       end
-
       -- get all the servers that are available through mason-lspconfig
       local have_mason, mlsp = pcall(require, "mason-lspconfig")
 
-      local ensure_installed = {}
-      for server, server_opts in pairs(servers) do
-        if server_opts then
-          server_opts = server_opts == true and {} or server_opts
-          ensure_installed[#ensure_installed + 1] = server
-        end
+      local ensure_installed = vim.tbl_keys(opts.servers or {})
+      for server, _ in pairs(servers) do
+        ensure_installed[#ensure_installed + 1] = server
       end
 
       if have_mason then
-        mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
+        mlsp.setup({ ensure_installed = ensure_installed })
       end
     end,
   },

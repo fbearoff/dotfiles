@@ -2,11 +2,11 @@ return {
   -- completion engine
   {
     "saghen/blink.cmp",
-    enabled = true,
     dependencies = {
       "saghen/blink.compat",
       "R-nvim/cmp-r",
     },
+    event = "InsertEnter",
     version = "1.*",
     opts = {
       keymap = {
