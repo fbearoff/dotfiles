@@ -190,7 +190,6 @@ return {
     view_df = {
       open_app = ":split",
     },
-    editing_mode = "vi",
     esc_term = true,
     hl_term = false,
     source_args = "echo = TRUE, spaced = TRUE",
