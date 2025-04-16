@@ -1,6 +1,4 @@
 return {
-  -- "nvim-lua/plenary.nvim",
-
   -- setup project root
   {
     "echasnovski/mini.misc",

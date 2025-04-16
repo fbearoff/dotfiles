@@ -71,7 +71,7 @@ return {
       },
     },
     dependencies = {
-      "hiphish/rainbow-delimiters.nvim",
+      { "hiphish/rainbow-delimiters.nvim", submodules = false },
     },
     opts = {
       highlight = {
