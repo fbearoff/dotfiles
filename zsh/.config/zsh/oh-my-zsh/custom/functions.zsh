@@ -47,10 +47,11 @@ function fb() {
 
 # music
 function am() {
-  for d in ~/downloads/music/* ; do
-    if [[ -d "$d" && ! -L "$d" ]]
-      mv "$d"/*.flac /mnt/d/Music
-  done
+  find \
+     "$HOME/downloads/music" \
+    -type f \
+    -name '*.flac' \
+    -exec mv -v {} /mnt/d/Music \;
 }
 
 # fix x11
