@@ -66,3 +66,9 @@ function zhead() {
 function ztail() {
   zcat "$1" | tail -n 50
 }
+
+# combine celldrop CSV files
+function celldrop() {
+  Rscript $HOME/.local/bin/celldrop.R
+  cat out.csv
+}
