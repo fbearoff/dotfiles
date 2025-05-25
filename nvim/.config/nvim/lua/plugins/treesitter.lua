@@ -24,6 +24,9 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
+    dependencies = {
+      { "hiphish/rainbow-delimiters.nvim", submodules = false },
+    },
     keys = {
       { "<C-space>", desc = "Increment selection" },
       { "<bs>", desc = "Decrement selection", mode = "x" },
@@ -69,9 +72,6 @@ return {
         end,
         desc = "Swap Previous Sibling",
       },
-    },
-    dependencies = {
-      { "hiphish/rainbow-delimiters.nvim", submodules = false },
     },
     opts = {
       highlight = {

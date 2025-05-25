@@ -1,10 +1,10 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
+    "actions":
     [
         {
-            "command": 
+            "command":
             {
                 "action": "splitPane",
                 "split": "auto",
@@ -41,7 +41,7 @@
             "keys": "ctrl+shift+v"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "copy",
                 "singleLine": false
@@ -54,7 +54,7 @@
             "keys": "ctrl+shift+f"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "sendInput",
                 "input": "\u001b[13;6u"
@@ -67,7 +67,7 @@
             "id": "User.paste"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "sendInput",
                 "input": "\u001b[13;5u"
@@ -76,7 +76,7 @@
             "keys": "ctrl+enter"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "sendInput",
                 "input": "\u001b[74;5u"
@@ -85,7 +85,7 @@
 			 "keys": "ctrl+shift+j"
         },
 		{
-            "command": 
+            "command":
             {
                 "action": "sendInput",
                 "input": "\u001b[75;5u"
@@ -94,7 +94,7 @@
 			"keys": "ctrl+shift+k"
         },
 		{
-            "command": 
+            "command":
             {
                 "action": "sendInput",
                 "input": "\u001b[72;5u"
@@ -103,7 +103,7 @@
 			"keys": "ctrl+shift+h"
         },
 		{
-            "command": 
+            "command":
             {
                 "action": "sendInput",
                 "input": "\u001b[76;5u"
@@ -112,7 +112,7 @@
 			"keys": "ctrl+shift+l"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "sendInput",
                 "input": "\u001b[13;2u"
@@ -121,7 +121,7 @@
             "keys": "shift+enter"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "nextTab"
             },
@@ -132,16 +132,16 @@
     "copyFormatting": "none",
     "copyOnSelect": true,
     "defaultProfile": "{a5a97cb8-8961-5535-816d-772efe0c6a3f}",
-    "newTabMenu": 
+    "newTabMenu":
     [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
+    "profiles":
     {
         "defaults": {},
-        "list": 
+        "list":
         [
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
@@ -160,7 +160,7 @@
                 "antialiasingMode": "grayscale",
                 "bellStyle": "none",
                 "colorScheme": "Kanagawa",
-                "font": 
+                "font":
                 {
                     "face": "JetBrainsMono Nerd Font",
                     "size": 13,
@@ -175,7 +175,7 @@
             }
         ]
     },
-    "schemes": 
+    "schemes":
     [
         {
             "background": "#1E1E2E",
