@@ -237,7 +237,7 @@ return {
       "t",
       "T",
       {
-        "<C-s>",
+        "<Enter>",
         mode = { "n", "x", "o" },
         function()
           require("flash").jump()
@@ -245,7 +245,7 @@ return {
         desc = "Flash",
       },
       {
-        "<M-s>",
+        "<M-Enter>",
         mode = { "n", "x", "o" },
         function()
           require("flash").jump({
@@ -257,7 +257,7 @@ return {
         desc = "Flash Lines",
       },
       {
-        "<M-S>",
+        "<S-Enter>",
         mode = { "n", "o", "x" },
         function()
           require("flash").treesitter()
@@ -287,14 +287,6 @@ return {
           })
         end,
         desc = "Treesitter Search",
-      },
-      {
-        "<c-s>",
-        mode = { "c" },
-        function()
-          require("flash").toggle()
-        end,
-        desc = "Toggle Flash Search",
       },
     },
   },
