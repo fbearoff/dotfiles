@@ -4,7 +4,7 @@ return {
     "nvim-treesitter/nvim-treesitter-context",
     event = "BufReadPre",
     keys = {
-      { "<leader>uT", "<cmd>TSContextToggle<cr>", desc = "Toggle TS Context" },
+      { "<leader>uT", "<cmd>TSContext toggle<cr>", desc = "Toggle TS Context" },
       {
         "gC",
         function()
