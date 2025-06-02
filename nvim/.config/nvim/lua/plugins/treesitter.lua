@@ -88,9 +88,6 @@ return {
           node_decremental = "<bs>",
         },
       },
-      autopairs = {
-        enable = true,
-      },
       matchup = {
         enable = true,
         enable_quotes = true,
