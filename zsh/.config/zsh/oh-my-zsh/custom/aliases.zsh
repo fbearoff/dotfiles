@@ -106,6 +106,9 @@ alias ba="rsync ~/aur hosting:~/backup/ -rlv --info=progress2"
 # docker
 alias ldh="DOCKER_HOST=ssh://hosting lazydocker"
 
+# multiqc docker
+alias multiqc="docker run -t -v `pwd`:`pwd` -w `pwd` multiqc/multiqc multiqc \."
+
 # tmux
 alias ta="tmux a"
 
