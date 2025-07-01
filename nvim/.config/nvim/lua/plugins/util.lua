@@ -16,9 +16,7 @@ return {
   -- needed for properly setting project root
   {
     "DrKJeff16/project.nvim",
-    -- "ahmedkhalf/project.nvim",
-    enabled = true,
-    event = "VeryLazy",
+    lazy = false,
     opts = {
       detection_methods = {
         "pattern",
