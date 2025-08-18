@@ -29,9 +29,6 @@ return {
         "DESCRIPTION",
       },
     },
-    config = function(_, opts)
-      require("project_nvim").setup(opts)
-    end,
   },
 
   -- collection of util plugins
