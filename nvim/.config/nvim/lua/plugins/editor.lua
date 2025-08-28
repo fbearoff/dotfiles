@@ -711,7 +711,7 @@ return {
 
   -- Better text moving
   {
-    "echasnovski/mini.move",
+    "nvim-mini/mini.move",
     event = "BufReadPre",
     keys = {
       { "<M-h>", mode = { "n", "x" } },

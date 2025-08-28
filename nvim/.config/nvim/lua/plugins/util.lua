@@ -1,7 +1,7 @@
 return {
   -- setup project root
   {
-    "echasnovski/mini.misc",
+    "nvim-mini/mini.misc",
     enabled = false,
     event = "VeryLazy",
     config = function()
