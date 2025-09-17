@@ -23,7 +23,11 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
-    build = ":TSUpdate",
+    build = function()
+      local TS = require("nvim-treesitter")
+      TS.update(nil, { summary = true })
+    end,
+    lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       { "hiphish/rainbow-delimiters.nvim", submodules = false },
@@ -102,40 +106,34 @@ return {
     config = function(_, opts)
       local TS = require("nvim-treesitter")
 
+      TS.setup(opts)
+
+      UtilTS.get_installed(true) -- initialize the installed langs
+
       -- install missing parsers
-      local installed = nil
-
-      local function get_installed(force)
-        if not installed or force then
-          installed = {}
-          for _, lang in ipairs(require("nvim-treesitter").get_installed("parsers")) do
-            installed[lang] = lang
-          end
-        end
-        return installed
-      end
-
-      local function have(ft)
-        local lang = vim.treesitter.language.get_lang(ft)
-        return lang and get_installed()[lang]
-      end
-
       local install = vim.tbl_filter(function(lang)
-        return not have(lang)
+        return not UtilTS.have(lang)
       end, opts.ensure_installed or {})
       if #install > 0 then
         TS.install(install, { summary = true }):await(function()
-          get_installed(true) -- refresh the installed langs
+          UtilTS.get_installed(true) -- refresh the installed langs
         end)
       end
 
-      -- treesitter highlighting, folding, and indent
+      -- treesitter highlighting
       vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("treesitter", { clear = true }),
         callback = function(ev)
-          if have(ev.match) then
+          if UtilTS.have(ev.match) then
             pcall(vim.treesitter.start)
-            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-            vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+            -- check if ftplugins changed foldexpr/indentexpr
+            for _, option in ipairs({ "foldexpr", "indentexpr" }) do
+              local expr = "v:lua.UtilTS." .. option .. "()"
+              if vim.opt_global[option]:get() == expr then
+                vim.opt_local[option] = expr
+              end
+            end
           end
         end,
       })

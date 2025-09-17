@@ -15,12 +15,14 @@ local options = {
   fillchars = { foldopen = "", foldclose = "", fold = " ", foldsep = " ", diff = "╱", eob = " " },
   foldcolumn = "1",
   foldenable = true, -- enable folding
+  foldexpr = "v:lua.UtilTS.foldexpr()",
   foldmethod = "expr",
   foldlevel = 99,
   foldlevelstart = 99,
   foldnestmax = 10, -- max fold nesting level
   hlsearch = true, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
+  indentexpr = "v:lua.UtilTS.indentexpr()", -- treesitter indents
   joinspaces = false, -- No double spaces with join after a dot
   laststatus = 0, -- not needed with lualine
   linebreak = true, -- break lines at delimiter chars

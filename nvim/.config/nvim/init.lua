@@ -10,3 +10,5 @@ vim.api.nvim_create_autocmd("User", {
     require("config.keymaps")
   end,
 })
+
+_G.UtilTS = require("util.treesitter")

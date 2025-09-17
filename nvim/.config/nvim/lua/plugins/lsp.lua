@@ -242,6 +242,7 @@ return {
         "ansible-lint",
         "mdformat",
         "markdown-toc",
+        "tree-sitter-cli",
       },
       ui = {
         icons = {
