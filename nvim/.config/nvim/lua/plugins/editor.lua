@@ -288,6 +288,19 @@ return {
         end,
         desc = "Treesitter Search",
       },
+      {
+        "<C-space>",
+        mode = { "n", "o", "x" },
+        function()
+          require("flash").treesitter({
+            actions = {
+              ["<c-space>"] = "next",
+              ["<BS>"] = "prev",
+            },
+          })
+        end,
+        desc = "Treesitter Incremental Seelction",
+      },
     },
   },
 

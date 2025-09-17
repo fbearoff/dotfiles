@@ -28,8 +28,6 @@ return {
       { "hiphish/rainbow-delimiters.nvim", submodules = false },
     },
     keys = {
-      { "<C-space>", desc = "Increment selection" },
-      { "<bs>", desc = "Decrement selection", mode = "x" },
       {
         "]C",
         function()
@@ -79,15 +77,6 @@ return {
         disable = { "csv", "tsv" },
       },
       indent = { enable = true },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<C-space>",
-          node_incremental = "<C-space>",
-          scope_incremental = false,
-          node_decremental = "<bs>",
-        },
-      },
       auto_install = true,
       ensure_installed = {
         "bash",
