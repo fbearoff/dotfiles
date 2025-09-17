@@ -16,7 +16,6 @@ local options = {
   foldcolumn = "1",
   foldenable = true, -- enable folding
   foldmethod = "expr",
-  foldexpr = "v:lua.vim.treesitter.foldexpr()", -- Default to treesitter folding
   foldlevel = 99,
   foldlevelstart = 99,
   foldnestmax = 10, -- max fold nesting level

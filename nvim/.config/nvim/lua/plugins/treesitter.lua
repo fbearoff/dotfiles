@@ -22,6 +22,7 @@ return {
   -- Code tree based highlighting and other features
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
@@ -31,53 +32,47 @@ return {
       {
         "]C",
         function()
-          require("nvim-treesitter.textobjects.move").goto_next_start("@comment.outer")
+          require("nvim-treesitter-textobjects.move").goto_next_start("@comment.outer")
         end,
         desc = "Next Comment",
       },
       {
         "[C",
         function()
-          require("nvim-treesitter.textobjects.move").goto_previous_start("@comment.outer")
+          require("nvim-treesitter-textobjects.move").goto_previous_start("@comment.outer")
         end,
         desc = "Previous Comment",
       },
       {
         "]#",
         function()
-          require("nvim-treesitter.textobjects.move").goto_next_start("@number.inner")
+          require("nvim-treesitter-textobjects.move").goto_next_start("@number.inner")
         end,
         desc = "Next Number",
       },
       {
         "[#",
         function()
-          require("nvim-treesitter.textobjects.move").goto_previous_start("@number.inner")
+          require("nvim-treesitter-textobjects.move").goto_previous_start("@number.inner")
         end,
         desc = "Previous Number",
       },
       {
         "<C-S-l>",
         function()
-          require("nvim-treesitter.textobjects.swap").swap_next("@parameter.inner")
+          require("nvim-treesitter-textobjects.swap").swap_next("@parameter.inner")
         end,
         desc = "Swap Next Sibling",
       },
       {
         "<C-S-h>",
         function()
-          require("nvim-treesitter.textobjects.swap").swap_previous("@parameter.inner")
+          require("nvim-treesitter-textobjects.swap").swap_previous("@parameter.inner")
         end,
         desc = "Swap Previous Sibling",
       },
     },
     opts = {
-      highlight = {
-        enable = true,
-        disable = { "csv", "tsv" },
-      },
-      indent = { enable = true },
-      auto_install = true,
       ensure_installed = {
         "bash",
         "diff",
@@ -105,17 +100,45 @@ return {
       },
     },
     config = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        local added = {}
-        opts.ensure_installed = vim.tbl_filter(function(lang)
-          if added[lang] then
-            return false
+      local TS = require("nvim-treesitter")
+
+      -- install missing parsers
+      local installed = nil
+
+      local function get_installed(force)
+        if not installed or force then
+          installed = {}
+          for _, lang in ipairs(require("nvim-treesitter").get_installed("parsers")) do
+            installed[lang] = lang
           end
-          added[lang] = true
-          return true
-        end, opts.ensure_installed)
+        end
+        return installed
       end
-      require("nvim-treesitter.configs").setup(opts)
+
+      local function have(ft)
+        local lang = vim.treesitter.language.get_lang(ft)
+        return lang and get_installed()[lang]
+      end
+
+      local install = vim.tbl_filter(function(lang)
+        return not have(lang)
+      end, opts.ensure_installed or {})
+      if #install > 0 then
+        TS.install(install, { summary = true }):await(function()
+          get_installed(true) -- refresh the installed langs
+        end)
+      end
+
+      -- treesitter highlighting, folding, and indent
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(ev)
+          if have(ev.match) then
+            pcall(vim.treesitter.start)
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+          end
+        end,
+      })
     end,
   },
 

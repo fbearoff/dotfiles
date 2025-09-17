@@ -31,8 +31,8 @@ return {
   -- Better text-objects
   {
     "nvim-mini/mini.ai",
-    event = "VeryLazy",
-    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
     opts = function()
       local ai = require("mini.ai")
       return {
