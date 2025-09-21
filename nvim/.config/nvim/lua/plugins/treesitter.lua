@@ -27,7 +27,6 @@ return {
       local TS = require("nvim-treesitter")
       TS.update(nil, { summary = true })
     end,
-    lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       { "hiphish/rainbow-delimiters.nvim", submodules = false },
