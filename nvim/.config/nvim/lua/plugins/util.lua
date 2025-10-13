@@ -17,18 +17,21 @@ return {
   {
     "DrKJeff16/project.nvim",
     lazy = false,
-    opts = {
-      detection_methods = {
-        "pattern",
-        "lsp",
-      },
-      patterns = {
-        ".git",
-        "Makefile",
-        "package.json",
-        "DESCRIPTION",
-      },
-    },
+    opts = function()
+      vim.g.project_lsp_nowarn = 1
+      return {
+        detection_methods = {
+          "pattern",
+          "lsp",
+        },
+        patterns = {
+          ".git",
+          "Makefile",
+          "package.json",
+          "DESCRIPTION",
+        },
+      }
+    end,
   },
 
   -- collection of util plugins
