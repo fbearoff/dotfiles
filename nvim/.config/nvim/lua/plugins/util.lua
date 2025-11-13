@@ -18,18 +18,9 @@ return {
     "DrKJeff16/project.nvim",
     lazy = false,
     opts = function()
-      vim.g.project_lsp_nowarn = 1
+      -- vim.g.project_lsp_nowarn = 1
       return {
-        detection_methods = {
-          "pattern",
-          "lsp",
-        },
-        patterns = {
-          ".git",
-          "Makefile",
-          "package.json",
-          "DESCRIPTION",
-        },
+        enable_autochdir = true,
       }
     end,
   },
