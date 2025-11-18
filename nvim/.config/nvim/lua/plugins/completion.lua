@@ -2,10 +2,6 @@ return {
   -- completion engine
   {
     "saghen/blink.cmp",
-    dependencies = {
-      "saghen/blink.compat",
-      "R-nvim/cmp-r",
-    },
     event = "InsertEnter",
     version = "1.*",
     opts = {
@@ -54,13 +50,7 @@ return {
       },
       snippets = { preset = "luasnip" },
       sources = {
-        default = { "cmp_nvim_r", "lsp", "path", "snippets", "buffer" },
-        providers = {
-          cmp_nvim_r = {
-            name = "cmp_r",
-            module = "blink.compat.source",
-          },
-        },
+        default = { "lsp", "path", "snippets", "buffer" },
       },
     },
   },

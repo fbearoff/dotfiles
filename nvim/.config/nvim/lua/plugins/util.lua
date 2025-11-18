@@ -17,12 +17,7 @@ return {
   {
     "DrKJeff16/project.nvim",
     lazy = false,
-    opts = function()
-      -- vim.g.project_lsp_nowarn = 1
-      return {
-        enable_autochdir = true,
-      }
-    end,
+    opts = {},
   },
 
   -- collection of util plugins
