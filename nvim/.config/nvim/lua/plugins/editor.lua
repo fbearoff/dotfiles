@@ -19,7 +19,6 @@ return {
           { "g", group = "Goto" },
           { "<leader>c", group = "Code", mode = { "n", "v" } },
           { "<localleader>m", group = "Markdown" },
-          { "<LocalLeader>t", desc = "TodoComments" },
         },
       },
       icons = { rules = false },
@@ -70,56 +69,6 @@ return {
         end,
         desc = "Next trouble/quickfix item",
       },
-    },
-  },
-
-  -- todo comments
-  {
-    "folke/todo-comments.nvim",
-    cmd = "TodoTrouble",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      highlight = {
-        multiline = false,
-      },
-    },
-    keys = {
-      {
-        "]t",
-        function()
-          require("todo-comments").jump_next()
-        end,
-        desc = "Next Todo Comment",
-      },
-      {
-        "[t",
-        function()
-          require("todo-comments").jump_prev()
-        end,
-        desc = "Previous Todo Comment",
-      },
-      { "<leader>dt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
-      { "<localleader>tt", "<cmd>lua require('Comment.api').insert.linewise.above()<cr>TODO: ", desc = "TODO" },
-      { "<localleader>tn", "<cmd>lua require('Comment.api').insert.linewise.above()<cr>NOTE: ", desc = "NOTE" },
-      { "<localleader>tf", "<cmd>lua require('Comment.api').insert.linewise.above()<cr>FIX: ", desc = "FIX" },
-    },
-  },
-
-  -- Easy commenting
-  {
-    "numToStr/Comment.nvim",
-    event = "BufReadPost",
-    dependencies = {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      opts = function()
-        vim.g.skip_ts_context_commentstring_module = true
-        return { enable_autocmd = false }
-      end,
-    },
-    opts = {
-      pre_hook = function()
-        require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()
-      end,
     },
   },
 
