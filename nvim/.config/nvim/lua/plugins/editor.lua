@@ -693,32 +693,33 @@ return {
 
   -- Highlight csv column in rainbow colors
   {
-    "cameron-wags/rainbow_csv.nvim",
-    opts = function()
-      vim.g.disable_rainbow_statusline = 1
-      vim.g.disable_rainbow_hover = 1
-      vim.g.disable_rainbow_key_mappings = 1
-    end,
-    ft = {
-      "csv",
-      "tsv",
-    },
+    "hat0uma/csvview.nvim",
+    ft = { "csv", "tsv" },
     keys = {
       {
-        "<localleader>A",
-        "<cmd>RainbowAlign<cr>",
-        ft = { "csv", "tsv" },
-        desc = "Align Columns",
-      },
-      {
-        "<localleader>S",
-        "<cmd>RainbowShrink<cr>",
-        ft = { "csv", "tsv" },
-        desc = "Shrink Columns",
+        "<localleader>t",
+        function()
+          require("csvview").toggle()
+        end,
+        desc = "Toggle CSV View",
       },
     },
-  },
+    opts = {
+      parser = { comments = { "#", "//" } },
+      keymaps = {
+        -- Text objects for selecting fields
+        textobject_field_inner = { "if", mode = { "o", "x" } },
+        textobject_field_outer = { "af", mode = { "o", "x" } },
 
+        jump_next_field_start = { "w", mode = { "n", "v" } },
+        jump_prev_field_start = { "b", mode = { "n", "v" } },
+      },
+      view = {
+        display_mode = "border",
+      },
+    },
+    cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+  },
   -- navigation hints
   {
     "tris203/precognition.nvim",

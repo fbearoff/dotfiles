@@ -173,10 +173,10 @@ return {
         -- auto align output from RViewDF
         vim.api.nvim_create_autocmd("BufReadPost", {
           desc = "Align TSV output from R.nvim",
-          group = vim.api.nvim_create_augroup("rainbow_csv_align", { clear = true }),
+          group = vim.api.nvim_create_augroup("CsvView", { clear = true }),
           callback = function(opts)
             if vim.bo[opts.buf].filetype == "tsv" then
-              vim.cmd("RainbowAlign")
+              vim.cmd("CsvViewToggle")
               vim.keymap.set("n", "q", "<cmd>bd<cr>", { buffer = opts.buf, silent = true })
             end
           end,
