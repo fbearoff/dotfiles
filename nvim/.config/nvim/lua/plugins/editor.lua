@@ -695,6 +695,7 @@ return {
   {
     "hat0uma/csvview.nvim",
     ft = { "csv", "tsv" },
+    cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
     keys = {
       {
         "<localleader>t",
@@ -718,7 +719,10 @@ return {
         display_mode = "border",
       },
     },
-    cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+    config = function(_, opts)
+      require("csvview").setup(opts)
+      require("csvview").enable()
+    end,
   },
   -- navigation hints
   {
