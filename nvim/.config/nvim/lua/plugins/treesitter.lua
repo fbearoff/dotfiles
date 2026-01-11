@@ -84,7 +84,6 @@ return {
         "html",
         "ini",
         "json",
-        "jsonc",
         "lua",
         "luadoc",
         "luap",
