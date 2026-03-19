@@ -78,6 +78,7 @@ return {
     opts = {
       ensure_installed = {
         "bash",
+        "dockerfile",
         "diff",
         "git_rebase",
         "gitignore",
