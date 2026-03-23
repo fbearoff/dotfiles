@@ -12,13 +12,32 @@ local({
     mc.cores = n,
     repos = r,
     languageserver.server_capabilities = list(
+      # suggested settings from https://github.com/R-nvim/R.nvim-config-examples/tree/main
       hoverProvider = FALSE,
       signatureHelpProvider = FALSE,
       completionProvider = FALSE,
       completionItemResolve = FALSE,
+      definitionProvider = FALSE,
+      referencesProvider = FALSE,
+      documentHighlightProvider = FALSE,
+      documentSymbolProvider = FALSE,
+
       # turn off formatting in favor of air
       documentFormattingProvider = FALSE,
-      documentRangeFormattingProvider = FALSE
+      documentRangeFormattingProvider = FALSE,
+      documentOnTypeFormattingProvider = FALSE,
+
+      # Are these useful?
+      documentLinkProvider = FALSE, # links are clickable in WezTerm
+      colorProvider = FALSE, # We don't need 657 color names
+      workspaceSymbolProvider = FALSE,
+      selectionRangeProvider = FALSE,
+      callHierarchyProvider = FALSE,
+      typeHierarchyProvider = FALSE,
+
+      # Use the languageserver
+      codeActionProvider = TRUE,
+      renameProvider = TRUE
     ),
     max.print = 200,
     menu.graphics = FALSE,
