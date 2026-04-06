@@ -1,18 +1,4 @@
 return {
-  -- setup project root
-  {
-    "nvim-mini/mini.misc",
-    enabled = false,
-    event = "VeryLazy",
-    config = function()
-      require("mini.misc").setup()
-      ---@diagnostic disable-next-line: undefined-global
-      MiniMisc.setup_auto_root(nil, function(path)
-        return vim.fs.dirname(path)
-      end)
-    end,
-  },
-
   -- needed for properly setting project root
   {
     "DrKJeff16/project.nvim",
