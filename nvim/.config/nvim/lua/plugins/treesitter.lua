@@ -1,3 +1,28 @@
+-- Incremental Selection
+vim.keymap.set({ "x" }, "<C-k>", function()
+  require("vim.treesitter._select").select_prev(vim.v.count1)
+end, { desc = "Select previous treesitter node" })
+
+vim.keymap.set({ "x" }, "<C-j>", function()
+  require("vim.treesitter._select").select_next(vim.v.count1)
+end, { desc = "Select next treesitter node" })
+
+vim.keymap.set({ "x", "o" }, "<C-l>", function()
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require("vim.treesitter._select").select_parent(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(vim.v.count1)
+  end
+end, { desc = "Select parent treesitter node or outer incremental lsp selections" })
+
+vim.keymap.set({ "x", "o" }, "<C-h>", function()
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require("vim.treesitter._select").select_child(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(-vim.v.count1)
+  end
+end, { desc = "Select child treesitter node or inner incremental lsp selections" })
+
 return {
   -- Show code context as top line
   {
@@ -172,7 +197,6 @@ return {
       -- movement
       {
         "<C-j>",
-        mode = { "n", "v" },
         function()
           require("treewalker").move_down()
         end,
@@ -180,7 +204,6 @@ return {
       },
       {
         "<C-k>",
-        mode = { "n", "v" },
         function()
           require("treewalker").move_up()
         end,
@@ -188,7 +211,6 @@ return {
       },
       {
         "<C-h>",
-        mode = { "n", "v" },
         function()
           require("treewalker").move_out()
         end,
@@ -196,7 +218,6 @@ return {
       },
       {
         "<C-l>",
-        mode = { "n", "v" },
         function()
           require("treewalker").move_in()
         end,
