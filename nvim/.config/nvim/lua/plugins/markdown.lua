@@ -1,27 +1,4 @@
 return {
-  -- Markdown live preview, needs `webkit2gtk`
-  {
-    "toppair/peek.nvim",
-    build = "deno task --quiet build:fast",
-    keys = {
-      {
-        ft = "markdown",
-        "<localleader>mp",
-        function()
-          local peek = require("peek")
-          if peek.is_open() then
-            peek.close()
-          else
-            peek.open()
-          end
-        end,
-        desc = "Peek",
-      },
-    },
-    opts = {
-      filetype = { "markdown" },
-    },
-  },
   {
     "MeanderingProgrammer/render-markdown.nvim",
     ft = { "markdown" },
