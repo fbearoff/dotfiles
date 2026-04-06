@@ -21,6 +21,7 @@ local({
       referencesProvider = FALSE,
       documentHighlightProvider = FALSE,
       documentSymbolProvider = FALSE,
+      workspaceSymbolProvider = FALSE,
 
       # turn off formatting in favor of air
       documentFormattingProvider = FALSE,
