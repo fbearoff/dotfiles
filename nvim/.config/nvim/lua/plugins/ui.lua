@@ -1,143 +1,45 @@
-return {
-
-  -- Fancy UI elements
-  {
-    "folke/noice.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
+require("vim._core.ui2").enable({
+  enable = true,
+  msg = {
+    targets = {
+      [""] = "msg",
+      empty = "cmd",
+      bufwrite = "msg",
+      confirm = "cmd",
+      emsg = "pager",
+      echo = "msg",
+      echomsg = "msg",
+      echoerr = "pager",
+      completion = "cmd",
+      list_cmd = "pager",
+      lua_error = "pager",
+      lua_print = "msg",
+      progress = "pager",
+      rpc_error = "pager",
+      quickfix = "msg",
+      search_cmd = "cmd",
+      search_count = "cmd",
+      shell_cmd = "pager",
+      shell_err = "pager",
+      shell_out = "pager",
+      shell_ret = "msg",
+      undo = "msg",
+      verbose = "pager",
+      wildlist = "cmd",
+      wmsg = "msg",
+      typed_cmd = "cmd",
     },
-    event = "VeryLazy",
-    keys = {
-      {
-        "<leader>n",
-        "",
-        desc = "+Notifications",
-      },
-      {
-        "<S-Enter>",
-        function()
-          require("noice").redirect(vim.fn.getcmdline())
-        end,
-        mode = "c",
-        desc = "Redirect Cmdline",
-      },
-      {
-        "<leader>nl",
-        function()
-          require("noice").cmd("last")
-        end,
-        desc = "Last Message",
-      },
-      {
-        "<leader>na",
-        function()
-          require("noice").cmd("all")
-        end,
-        desc = "All",
-      },
-      {
-        "<leader>nd",
-        function()
-          require("noice").cmd("dismiss")
-        end,
-        desc = "Dismiss All",
-      },
-      {
-        "<leader>nm",
-        "<cmd>messages<cr>",
-        desc = "Messages",
-      },
-      {
-        "<c-f>",
-        function()
-          if not require("noice.lsp").scroll(4) then
-            return "<c-f>"
-          end
-        end,
-        silent = true,
-        expr = true,
-        desc = "Scroll forward",
-        mode = { "i", "n", "s" },
-      },
-      {
-        "<c-b>",
-        function()
-          if not require("noice.lsp").scroll(-4) then
-            return "<c-b>"
-          end
-        end,
-        silent = true,
-        expr = true,
-        desc = "Scroll backward",
-        mode = { "i", "n", "s" },
-      },
+    msg = {
+      height = 0.3,
+      timeout = 5000,
     },
-    opts = {
-      lsp = {
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-        },
-        progress = {
-          enabled = true,
-        },
-      },
-      presets = {
-        bottom_search = true,
-        command_palette = true,
-        long_message_to_split = true,
-        inc_rename = true,
-        lsp_doc_border = true,
-      },
-      routes = {
-        {
-          filter = {
-            event = "msg_show",
-            any = {
-              { find = "%d+L, %d+B" },
-              { find = "; after" },
-              { find = "; before" },
-            },
-          },
-          view = "mini",
-        },
-        {
-          filter = {
-            event = "msg_show",
-            kind = "search_count",
-          },
-          opts = { skip = true },
-        },
-        { -- filter annoying buffer messages
-          filter = {
-            event = "msg_show",
-            kind = "",
-            any = {
-              { find = "line" },
-              { find = "written" },
-            },
-          },
-          opts = { skip = true },
-        },
-        {
-          filter = {
-            event = "notify",
-            find = "No node found at cursor",
-          },
-          opts = { skip = true },
-        },
-        {
-          filter = {
-            event = "lsp",
-            kind = "progress",
-            find = "code_action",
-          },
-          opts = { skip = true },
-        },
-      },
+    pager = {
+      height = 0.5,
     },
   },
+})
 
+return {
   -- UI to rename items incrementally
   {
     "smjonas/inc-rename.nvim",
