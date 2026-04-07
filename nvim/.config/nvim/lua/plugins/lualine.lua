@@ -17,7 +17,7 @@ return {
       update_in_insert = false,
       always_visible = false,
       on_click = function()
-        vim.cmd("Trouble diagnostics toggle")
+        Snacks.picker.diagnostics()
       end,
     }
 
@@ -146,7 +146,6 @@ return {
       },
       extensions = {
         "nvim-tree",
-        "trouble",
         "lazy",
       },
     }
