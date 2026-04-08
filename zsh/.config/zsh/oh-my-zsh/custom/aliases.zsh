@@ -122,3 +122,6 @@ alias -g T='| tail'
 alias -g L='| less'
 alias -g G='| rg -S' #smartcase
 alias -g W='| wc -l'
+
+# sync natural history
+alias nh="rsync -rv --progress --chown=frank:database_users \"$HOME\"/onedrive/Master\ Clinical\ Research\ Folder/Natural\ History\ Projects/Natural_History_Data_Downloads/ frank@neuron:/mnt/tank/data/database/sharepoint_cache/natural_history/uploaded"
