@@ -188,13 +188,6 @@ return {
         desc = "Gitbrowse",
       },
       {
-        "<leader>nh",
-        function()
-          Snacks.notifier.show_history()
-        end,
-        desc = "History",
-      },
-      {
         "<leader>.",
         function()
           Snacks.scratch()
