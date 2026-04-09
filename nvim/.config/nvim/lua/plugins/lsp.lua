@@ -108,8 +108,6 @@ return {
         { "gK", vim.lsp.buf.signature_help, desc = "Signature Help" },
         { "gra", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },
         { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },
-        { "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "v" } },
-        { "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh & Display Codelens" },
       }
     end,
     opts = {
@@ -174,9 +172,6 @@ return {
                 enable = false,
               },
               hint = {
-                enable = true,
-              },
-              codeLens = {
                 enable = true,
               },
             },
