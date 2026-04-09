@@ -3,7 +3,9 @@ return {
   {
     "DrKJeff16/project.nvim",
     lazy = false,
-    opts = {},
+    opts = {
+      snacks = { enabled = true },
+    },
   },
 
   -- collection of util plugins

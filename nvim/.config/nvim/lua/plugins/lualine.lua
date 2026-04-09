@@ -61,6 +61,17 @@ return {
       end,
     }
 
+    local project = {
+      "project",
+      enclose_pair = { "<", ">" },
+      on_click = function()
+        require("project.extensions.snacks").pick()
+      end,
+      cond = function()
+        return require("project").get_project_root() ~= nil
+      end,
+    }
+
     -- Lsp server name .
     local lsp_status = {
       "lsp_status",
@@ -133,7 +144,13 @@ return {
       sections = {
         lualine_a = { "mode" },
         lualine_b = { "branch", diff },
-        lualine_c = { diagnostics, lightbulb, filename, navic },
+        lualine_c = {
+          diagnostics,
+          lightbulb,
+          project,
+          filename,
+          navic,
+        },
         lualine_x = {
           macro,
           lsp_status,

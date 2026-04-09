@@ -139,7 +139,6 @@ return {
         bashls = {},
         dockerls = {},
         docker_compose_language_service = {},
-        html = {},
         marksman = {},
         r_language_server = {
           settings = {
