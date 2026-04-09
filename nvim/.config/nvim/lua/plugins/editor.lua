@@ -211,38 +211,6 @@ return {
     },
   },
 
-  -- Better % matching
-  {
-    "andymass/vim-matchup",
-    event = "BufReadPost",
-    opts = {
-      deferred = true,
-      offscreen = {
-        method = "status_manual",
-      },
-      hi_surround_always = true,
-    },
-  },
-
-  -- Auto insert matching pair character
-  {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    opts = {
-      check_ts = true,
-      ts_config = {
-        lua = { "string", "source", "comment" },
-      },
-      fast_wrap = {},
-    },
-    config = function(_, opts)
-      local npairs = require("nvim-autopairs")
-      npairs.setup(opts)
-      local Rule = require("nvim-autopairs.rule")
-      npairs.add_rule(Rule("<", ">", "lua"))
-    end,
-  },
-
   -- Better increment/decrement
   {
     "monaqa/dial.nvim",
@@ -681,5 +649,26 @@ return {
       require("csvview").setup(opts)
       require("csvview").enable()
     end,
+  },
+
+  -- autopairs
+  {
+    "saghen/blink.pairs",
+    event = "BufReadPost",
+    version = "*",
+    dependencies = "saghen/blink.lib",
+    opts = {
+      mappings = {
+        cmdline = false,
+        pairs = {
+          ["<"] = { ">", languages = { "lua" } },
+        },
+      },
+      highlights = {
+        matchparen = {
+          include_surrounding = true,
+        },
+      },
+    },
   },
 }

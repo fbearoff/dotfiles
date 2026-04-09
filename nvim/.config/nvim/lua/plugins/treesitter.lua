@@ -53,9 +53,6 @@ return {
       TS.update(nil, { summary = true })
     end,
     event = { "BufReadPost", "BufNewFile" },
-    dependencies = {
-      { "hiphish/rainbow-delimiters.nvim", submodules = false },
-    },
     keys = {
       {
         "]C",

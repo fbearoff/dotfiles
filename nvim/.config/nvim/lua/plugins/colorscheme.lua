@@ -37,14 +37,12 @@ return {
           PmenuSbar = { bg = theme.ui.bg_m1 },
           PmenuThumb = { bg = theme.ui.bg_p2 },
 
-          -- nvim-ts-rainbow2
-          RainbowDelimiterRed = { fg = colors.palette.autumnRed },
-          RainbowDelimiterYellow = { fg = colors.palette.carpYellow },
-          RainbowDelimiterBlue = { fg = colors.palette.dragonBlue },
-          RainbowDelimiterOrange = { fg = colors.palette.surimiOrange },
-          RainbowDelimiterGreen = { fg = colors.palette.springGreen },
-          RainbowDelimiterViolet = { fg = colors.palette.oniViolet },
-          RainbowDelimiterCyan = { fg = colors.palette.waveAqua1 },
+          -- blink.pairs
+          BlinkPairsOrange = { fg = colors.palette.surimiOrange },
+          BlinkPairsBlue = { fg = colors.palette.dragonBlue },
+          BlinkPairsPurple = { fg = colors.palette.oniViolet },
+          BlinkPairsUnmatched = { fg = colors.palette.waveAqua1 },
+          BlinkPairsMatchParen = { fg = colors.palette.surimiOrange, bold = true },
         }
       end,
       theme = "wave", -- Load "wave" theme when 'background' option is not set
