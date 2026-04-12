@@ -85,18 +85,4 @@ vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<CR>", { desc = "VSplit" })
 
 -- Core file commands
 vim.keymap.set("n", "<leader>fn", "<cmd>enew<CR>", { desc = "New File" })
-vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>w", "<cmd>w!<CR>", { desc = "Save" })
-
--- Quickfix/Location list
-vim.keymap.set("n", "<leader>dl", "<cmd>lopen<cr>", { desc = "Location List" })
-vim.keymap.set("n", "<leader>dq", "<cmd>copen<cr>", { desc = "Quickfix List" })
-
--- Lazy
-vim.keymap.set("n", "<leader>L", "<cmd>Lazy<CR>", { desc = "Lazy" })
-
--- highlights under cursor
-vim.keymap.set("n", "<leader>sH", vim.show_pos, { desc = "Highlight Groups" })
-
--- View Code Tree
-vim.keymap.set("n", "<leader>si", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })

@@ -1,3 +1,4 @@
+-- TS keymaps
 -- Incremental Selection
 vim.keymap.set({ "x" }, "<C-k>", function()
   require("vim.treesitter._select").select_prev(vim.v.count1)
@@ -22,6 +23,9 @@ vim.keymap.set({ "x", "o" }, "<C-h>", function()
     vim.lsp.buf.selection_range(-vim.v.count1)
   end
 end, { desc = "Select child treesitter node or inner incremental lsp selections" })
+
+-- View Code Tree
+vim.keymap.set("n", "<leader>si", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 
 return {
   -- Show code context as top line
