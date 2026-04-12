@@ -141,7 +141,7 @@ return {
         else
           vim.g.disable_autoformat = true
         end
-        require("lazy.core.util").info("Autoformat Disabled", { title = "Option" })
+        vim.notify("Autoformat Disabled")
       end, {
         desc = "Disable autoformat-on-save",
         bang = true,
@@ -149,7 +149,7 @@ return {
       vim.api.nvim_create_user_command("FormatEnable", function()
         vim.b.disable_autoformat = false
         vim.g.disable_autoformat = false
-        require("lazy.core.util").info("Autoformat Enabled", { title = "Option" })
+        vim.notify("Autoformat Enabled")
       end, {
         desc = "Re-enable autoformat-on-save",
       })
