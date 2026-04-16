@@ -47,16 +47,14 @@ return {
       line_numbers = true,
     },
   },
-
-  -- Code tree based highlighting and other features
+  -- extended textobjects
   {
-    "nvim-treesitter/nvim-treesitter",
+    "nvim-treesitter/nvim-treesitter-textobjects",
     branch = "main",
-    build = function()
-      local TS = require("nvim-treesitter")
-      TS.update(nil, { summary = true })
+    init = function()
+      vim.g.no_plugin_maps = true
     end,
-    event = { "BufReadPost", "BufNewFile" },
+    opts = {},
     keys = {
       {
         "]C",
@@ -101,6 +99,16 @@ return {
         desc = "Swap Previous Sibling",
       },
     },
+  },
+  -- Code tree based highlighting and other features
+  {
+    "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    build = function()
+      local TS = require("nvim-treesitter")
+      TS.update(nil, { summary = true })
+    end,
+    event = { "BufReadPost", "BufNewFile" },
     opts = {
       ensure_installed = {
         "bash",
@@ -165,7 +173,6 @@ return {
       })
     end,
   },
-
   -- sort treesitter nodes
   {
     "mtrajano/tssorter.nvim",
@@ -189,7 +196,6 @@ return {
       },
     },
   },
-
   -- navigate around treesitter nodes
   {
     "aaronik/treewalker.nvim",
