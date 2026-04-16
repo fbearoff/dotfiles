@@ -22,6 +22,7 @@ local({
       documentHighlightProvider = FALSE,
       documentSymbolProvider = FALSE,
       workspaceSymbolProvider = FALSE,
+      renameProvider = FALSE,
 
       # turn off formatting in favor of air
       documentFormattingProvider = FALSE,
@@ -29,7 +30,7 @@ local({
       documentOnTypeFormattingProvider = FALSE,
 
       # Are these useful?
-      documentLinkProvider = FALSE, # links are clickable in WezTerm
+      documentLinkProvider = FALSE, 
       colorProvider = FALSE, # We don't need 657 color names
       workspaceSymbolProvider = FALSE,
       selectionRangeProvider = FALSE,
@@ -37,8 +38,7 @@ local({
       typeHierarchyProvider = FALSE,
 
       # Use the languageserver
-      codeActionProvider = TRUE,
-      renameProvider = TRUE
+      codeActionProvider = TRUE
     ),
     max.print = 200,
     menu.graphics = FALSE,

@@ -14,6 +14,9 @@ local function on_jump(diagnostic, bufnr)
   )
 end
 
+-- LSPs not in mason
+vim.lsp.enable({ "jarl" })
+
 return {
   -- lspconfig
   {
@@ -118,15 +121,7 @@ return {
         dockerls = {},
         docker_compose_language_service = {},
         marksman = {},
-        r_language_server = {
-          settings = {
-            r = {
-              lsp = {
-                max_completions = 20,
-              },
-            },
-          },
-        },
+        r_language_server = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -135,7 +130,7 @@ return {
               },
               workspace = {
                 library = {
-                  [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                  vim.env.VIMRUNTIME,
                 },
                 checkThirdParty = false,
                 diagnostics = {
@@ -147,9 +142,6 @@ return {
               },
               format = {
                 enable = false,
-              },
-              hint = {
-                enable = true,
               },
             },
           },
