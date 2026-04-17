@@ -36,6 +36,22 @@ vim.keymap.set("n", "J", "m`J``", { desc = "Keep Cursor in Place When Joining Li
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll Down and Center Page" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll Up and Center Page" })
 
+-- Move lines up and down
+vim.keymap.set("n", "<M-j>", function()
+  return ":<C-U>m +" .. vim.v.count1 .. "<CR>"
+end, { expr = true, desc = "Move Line Down" })
+
+vim.keymap.set("n", "<M-k>", function()
+  return ":<C-U>m -" .. vim.v.count1 + 1 .. "<CR>"
+end, { expr = true, desc = "Move Line Down" })
+
+vim.keymap.set("v", "<M-j>", function()
+  return ":m '>+" .. vim.v.count1 .. "<CR>gv=gv"
+end, { expr = true, desc = "Move Selected Lines Down" })
+vim.keymap.set("v", "<M-k>", function()
+  return ":m '<-" .. vim.v.count1 + 1 .. "<CR>gv=gv"
+end, { expr = true, desc = "Move Selected Lines Down" })
+
 -- Reselect latest changed, put, or yanked text
 vim.keymap.set(
   "n",
