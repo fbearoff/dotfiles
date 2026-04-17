@@ -44,11 +44,82 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     branch = "main",
+    event = "BufReadPost",
     init = function()
       vim.g.no_plugin_maps = true
     end,
-    opts = {},
+    opts = {
+      select = {
+        lookahead = true,
+      },
+    },
     keys = {
+      {
+        mode = { "x", "o" },
+        "aq",
+        function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@string.outer", "textobjects")
+        end,
+        desc = "Quote",
+      },
+      {
+        mode = { "x", "o" },
+        "iq",
+        function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@string.inner", "textobjects")
+        end,
+        desc = "Quote",
+      },
+      -- define new textobjects
+      {
+        mode = { "x", "o" },
+        "af",
+        function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
+        end,
+        desc = "Function",
+      },
+      {
+        mode = { "x", "o" },
+        "if",
+        function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
+        end,
+        desc = "Function",
+      },
+      {
+        mode = { "x", "o" },
+        "iC",
+        function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@comment.inner", "textobjects")
+        end,
+        desc = "Comment",
+      },
+      {
+        mode = { "x", "o" },
+        "aC",
+        function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@comment.outer", "textobjects")
+        end,
+        desc = "Comment",
+      },
+      {
+        mode = { "x", "o" },
+        "aC",
+        function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@comment.outer", "textobjects")
+        end,
+        desc = "Comment",
+      },
+      {
+        mode = { "x", "o" },
+        "#",
+        function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@number.inner", "textobjects")
+        end,
+        desc = "Number",
+      },
+      -- next/previous textobject
       {
         "]C",
         function()
