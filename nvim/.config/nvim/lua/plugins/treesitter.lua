@@ -1,14 +1,7 @@
 -- TS keymaps
 -- Incremental Selection
-vim.keymap.set({ "x" }, "<C-k>", function()
-  require("vim.treesitter._select").select_prev(vim.v.count1)
-end, { desc = "Select previous treesitter node" })
 
-vim.keymap.set({ "x" }, "<C-j>", function()
-  require("vim.treesitter._select").select_next(vim.v.count1)
-end, { desc = "Select next treesitter node" })
-
-vim.keymap.set({ "x", "o" }, "<C-l>", function()
+vim.keymap.set({ "x", "o" }, "aa", function()
   if vim.treesitter.get_parser(nil, nil, { error = false }) then
     require("vim.treesitter._select").select_parent(vim.v.count1)
   else
@@ -16,7 +9,7 @@ vim.keymap.set({ "x", "o" }, "<C-l>", function()
   end
 end, { desc = "Select parent treesitter node or outer incremental lsp selections" })
 
-vim.keymap.set({ "x", "o" }, "<C-h>", function()
+vim.keymap.set({ "x", "o" }, "ii", function()
   if vim.treesitter.get_parser(nil, nil, { error = false }) then
     require("vim.treesitter._select").select_child(vim.v.count1)
   else
