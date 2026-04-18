@@ -58,7 +58,7 @@ return {
         mode = { "x", "o" },
         "aq",
         function()
-          require("nvim-treesitter-textobjects.select").select_textobject("@string.outer", "textobjects")
+          require("nvim-treesitter-textobjects.select").select_textobject("@string.outer")
         end,
         desc = "Quote",
       },
@@ -66,7 +66,7 @@ return {
         mode = { "x", "o" },
         "iq",
         function()
-          require("nvim-treesitter-textobjects.select").select_textobject("@string.inner", "textobjects")
+          require("nvim-treesitter-textobjects.select").select_textobject("@string.inner")
         end,
         desc = "Quote",
       },
@@ -75,7 +75,7 @@ return {
         mode = { "x", "o" },
         "af",
         function()
-          require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
+          require("nvim-treesitter-textobjects.select").select_textobject("@function.outer")
         end,
         desc = "Function",
       },
@@ -83,7 +83,7 @@ return {
         mode = { "x", "o" },
         "if",
         function()
-          require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
+          require("nvim-treesitter-textobjects.select").select_textobject("@function.inner")
         end,
         desc = "Function",
       },
@@ -91,7 +91,7 @@ return {
         mode = { "x", "o" },
         "iC",
         function()
-          require("nvim-treesitter-textobjects.select").select_textobject("@comment.inner", "textobjects")
+          require("nvim-treesitter-textobjects.select").select_textobject("@comment.inner")
         end,
         desc = "Comment",
       },
@@ -99,15 +99,7 @@ return {
         mode = { "x", "o" },
         "aC",
         function()
-          require("nvim-treesitter-textobjects.select").select_textobject("@comment.outer", "textobjects")
-        end,
-        desc = "Comment",
-      },
-      {
-        mode = { "x", "o" },
-        "aC",
-        function()
-          require("nvim-treesitter-textobjects.select").select_textobject("@comment.outer", "textobjects")
+          require("nvim-treesitter-textobjects.select").select_textobject("@comment.outer")
         end,
         desc = "Comment",
       },
@@ -115,7 +107,7 @@ return {
         mode = { "x", "o" },
         "#",
         function()
-          require("nvim-treesitter-textobjects.select").select_textobject("@number.inner", "textobjects")
+          require("nvim-treesitter-textobjects.select").select_textobject("@number.inner")
         end,
         desc = "Number",
       },
@@ -257,57 +249,6 @@ return {
           require("tssorter").sort()
         end,
         desc = "Sort",
-      },
-    },
-  },
-  -- navigate around treesitter nodes
-  {
-    "aaronik/treewalker.nvim",
-    opts = {},
-    keys = {
-      -- movement
-      {
-        "<C-j>",
-        function()
-          require("treewalker").move_down()
-        end,
-        desc = "Move Down TS Node",
-      },
-      {
-        "<C-k>",
-        function()
-          require("treewalker").move_up()
-        end,
-        desc = "Move Up TS Node",
-      },
-      {
-        "<C-h>",
-        function()
-          require("treewalker").move_out()
-        end,
-        desc = "Move Out of TS Node",
-      },
-      {
-        "<C-l>",
-        function()
-          require("treewalker").move_in()
-        end,
-        desc = "Move Into TS Node",
-      },
-      -- swaps
-      {
-        "<C-S-j>",
-        function()
-          require("treewalker").swap_down()
-        end,
-        desc = "Swap TS Node Down",
-      },
-      {
-        "<C-S-k>",
-        function()
-          require("treewalker").swap_up()
-        end,
-        desc = "Swap TS Node Up",
       },
     },
   },
