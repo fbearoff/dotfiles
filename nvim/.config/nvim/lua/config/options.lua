@@ -7,23 +7,18 @@ local options = {
   clipboard = "unnamedplus", -- allows neovim to access the system clipboard
   cmdheight = 0, -- more space in the neovim command line for displaying messages
   completeopt = { "menu", "menuone", "noselect" }, -- mostly just for cmp
-  conceallevel = 0, -- Hide * markup for bold and italic
   confirm = true,
   cursorline = true, -- highlight the current line
   expandtab = true, -- convert tabs to spaces
-  fileencoding = "utf-8", -- the encoding written to a file
   fillchars = { foldopen = "", foldclose = "", fold = " ", foldsep = " ", diff = "╱", eob = " " },
   foldcolumn = "1",
-  foldenable = true, -- enable folding
   foldexpr = "v:lua.UtilTS.foldexpr()",
   foldmethod = "expr",
   foldlevel = 99,
   foldlevelstart = 99,
   foldnestmax = 10, -- max fold nesting level
-  hlsearch = true, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
   indentexpr = "v:lua.UtilTS.indentexpr()", -- treesitter indents
-  joinspaces = false, -- No double spaces with join after a dot
   laststatus = 0, -- not needed with lualine
   linebreak = true, -- break lines at delimiter chars
   mouse = "a", -- default value of "a", "nv" disables in insert
@@ -36,7 +31,6 @@ local options = {
   scrolloff = 8, -- lines of ceontext
   shiftround = true, -- round indent
   shiftwidth = 2, -- the number of spaces inserted for each indentation
-  shortmess = "filnxtToOFWIcC", -- remove short message fluff
   showmatch = true, -- show matching paren on creation
   showmode = false, -- we don't need to see things like -- INSERT -- anymore
   showtabline = 0, -- always show tabs
@@ -46,7 +40,6 @@ local options = {
   smartindent = true, -- make indenting smarter again
   smoothscroll = true,
   softtabstop = 2, -- how many spaces is a tab press worth
-  spelllang = "en_us",
   splitbelow = true, -- force all horizontal splits to go below current window
   splitkeep = "screen", -- stabilize screen position on split
   splitright = true, -- force all vertical splits to go to the right of current window
@@ -58,7 +51,6 @@ local options = {
   updatetime = 300, -- faster completion (4000ms default)
   whichwrap = "bs<>[]hl", -- which "horizontal" keys are allowed to travel to prev/next line
   wildmode = "longest:full,full", -- Command-line completion mode
-  wrap = true, -- display lines as one long line
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 }
 
@@ -66,5 +58,6 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
+vim.opt.shortmess:append({ W = true, I = true, c = true })
 vim.opt.iskeyword:append("-") -- hyphenated words recognized by searches
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode.
