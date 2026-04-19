@@ -101,4 +101,8 @@ vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<CR>", { desc = "VSplit" })
 
 -- Core file commands
 vim.keymap.set("n", "<leader>fn", "<cmd>enew<CR>", { desc = "New File" })
-vim.keymap.set("n", "<leader>w", "<cmd>w!<CR>", { desc = "Save" })
+vim.keymap.set("n", "<leader>w", "<cmd>silent w!<CR>", { desc = "Save" })
+
+-- Silence undo/redo
+vim.keymap.set("n", "u", ":silent undo<cr>")
+vim.keymap.set("n", "U", ":silent redo<cr>")
