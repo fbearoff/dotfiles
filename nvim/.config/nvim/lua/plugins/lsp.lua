@@ -133,9 +133,6 @@ return {
                   vim.env.VIMRUNTIME,
                 },
                 checkThirdParty = false,
-                diagnostics = {
-                  globals = { "vim" },
-                },
               },
               completion = {
                 callSnippet = "Replace",
