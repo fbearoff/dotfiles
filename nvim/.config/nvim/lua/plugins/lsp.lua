@@ -158,6 +158,9 @@ return {
         end,
       })
 
+      -- show colors as virtual text
+      vim.lsp.document_color.enable(true, nil, { style = "virtual" })
+
       -- diagnostic icons in virtual text
       if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
         opts.diagnostics.virtual_text.prefix = function(diagnostic)

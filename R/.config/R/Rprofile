@@ -31,8 +31,6 @@ local({
 
       # Are these useful?
       documentLinkProvider = FALSE, 
-      colorProvider = FALSE, # We don't need 657 color names
-      workspaceSymbolProvider = FALSE,
       selectionRangeProvider = FALSE,
       callHierarchyProvider = FALSE,
       typeHierarchyProvider = FALSE,

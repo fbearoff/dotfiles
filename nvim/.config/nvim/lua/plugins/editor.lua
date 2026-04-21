@@ -98,44 +98,6 @@ return {
     },
   },
 
-  -- Show color of color values
-  {
-    "catgoose/nvim-colorizer.lua",
-    event = "BufReadPre",
-    keys = { { "<leader>uC", "<cmd>ColorizerToggle<CR>", desc = "Toggle Colorizer" } },
-    opts = {
-      lazy_load = true,
-      user_default_options = {
-        names = false, -- "Name" codes like Blue
-        RRGGBBAA = true, -- #RRGGBBAA hex codes
-        mode = "virtualtext",
-        virtualtext = "⬤",
-      },
-      filetypes = {
-        "*",
-        "!dirvish",
-        "!fugitive",
-        "!alpha",
-        "!snacks_dashboard",
-        "!NvimTree",
-        "!Lazy",
-        "!lir",
-        "!Outline",
-        "!snacks_terminal",
-        "!rbrowser",
-        "!rdoc",
-      },
-      -- all the sub-options of filetypes apply to buftypes
-      buftypes = {
-        "!nofile",
-        "!prompt",
-        "!popup",
-        "!scratch",
-        "!unlisted",
-      },
-    },
-  },
-
   -- Location jumping and enhanced f/t
   {
     "folke/flash.nvim",
