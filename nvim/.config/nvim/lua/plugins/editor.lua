@@ -17,6 +17,8 @@ return {
           { "[", group = "Prev" },
           { "]", group = "Next" },
           { "g", group = "Goto" },
+          { "a", group = "Around", mode = { "o", "x" } },
+          { "i", group = "Inside", mode = { "o", "x" } },
           { "<leader>c", group = "Code", mode = { "n", "v" } },
           { "<localleader>m", group = "Markdown" },
         },
@@ -352,16 +354,6 @@ return {
       { mode = { "n", "x" }, "y", "<Plug>(YankyYank)", desc = "Yanky Yank" },
       { mode = { "n", "x" }, "p", "<Plug>(YankyPutAfter)", desc = "Yanky Put After" },
       { mode = { "n", "x" }, "P", "<Plug>(YankyPutBefore)", desc = "Yanky Put Before" },
-      {
-        mode = { "o", "x" },
-        "iy",
-        function()
-          require("yanky.textobj").last_put()
-        end,
-        desc = "Last Put",
-      },
-      { "[y", "<Plug>(YankyCycleForward)", desc = "Yanky Cycle Forward" },
-      { "]y", "<Plug>(YankyCycleBackward)", desc = "Yanky Cycle Backward" },
       { "]p", "<Plug>(YankyPutAfterFilter)", desc = "Put After Filter" },
       { "[p", "<Plug>(YankyPutBeforeFilter)", desc = "Put Before Filter" },
       {
@@ -374,20 +366,8 @@ return {
       },
     },
     opts = {
-      highlight = {
-        timer = 200,
-      },
-      preserve_cursor_position = {
-        enabled = true,
-      },
       ring = {
         storage = "sqlite",
-      },
-      system_clipboard = {
-        sync_with_ring = true,
-      },
-      textobj = {
-        enabled = true,
       },
     },
   },
@@ -460,13 +440,6 @@ return {
     "mrjones2014/smart-splits.nvim",
     event = "BufReadPost",
     keys = {
-      {
-        "<leader>br",
-        function()
-          require("smart-splits").start_resize_mode()
-        end,
-        desc = "Resize Windows",
-      },
       -- swap buffers
       {
         "<leader>bh",
