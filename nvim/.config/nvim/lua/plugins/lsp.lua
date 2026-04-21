@@ -73,7 +73,7 @@ return {
         desc = "Goto Implementation",
       },
       {
-        "gy",
+        "grt",
         function()
           Snacks.picker.lsp_type_definitions()
         end,

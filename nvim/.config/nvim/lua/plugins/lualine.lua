@@ -16,9 +16,6 @@ return {
       colored = true,
       update_in_insert = false,
       always_visible = false,
-      on_click = function()
-        Snacks.picker.diagnostics()
-      end,
     }
 
     local diff = {
@@ -32,14 +29,6 @@ return {
       cond = function()
         return vim.fn.winwidth(0) > 80
       end,
-      on_click = function()
-        Snacks.lazygit()
-      end,
-    }
-
-    local filetype = {
-      "filetype",
-      icons_enabled = true,
     }
 
     local location = {
@@ -55,28 +44,13 @@ return {
         readonly = "[-]",
         unnamed = "[No Name]",
       },
-      on_click = function()
-        ---@diagnostic disable-next-line: undefined-field
-        print("cwd:" .. vim.uv.cwd())
-      end,
     }
 
     local project = {
       "project",
       enclose_pair = { "<", ">" },
-      on_click = function()
-        require("project.extensions.snacks").pick()
-      end,
       cond = function()
         return require("project").get_project_root() ~= nil
-      end,
-    }
-
-    -- Lsp server name .
-    local lsp_status = {
-      "lsp_status",
-      on_click = function()
-        vim.cmd("checkhealth vim.lsp")
       end,
     }
 
@@ -95,9 +69,6 @@ return {
 
     local navic = {
       "navic",
-      navic_opts = {
-        click = true,
-      },
       color_correction = "static",
       padding = { left = 1, right = 0 },
     }
@@ -107,24 +78,16 @@ return {
         return require("lazy.status").updates()
       end,
       cond = require("lazy.status").has_updates,
-      on_click = function()
-        vim.cmd("Lazy")
-      end,
     }
 
     local lightbulb = {
       function()
         return require("nvim-lightbulb").get_status_text()
       end,
-      on_click = function()
-        vim.lsp.buf.code_action()
-      end,
     }
 
     return {
       options = {
-        icons_enabled = true,
-        theme = "auto",
         component_separators = { left = "|", right = "|" },
         section_separators = { left = "", right = "" },
         disabled_filetypes = {
@@ -133,13 +96,7 @@ return {
             "dashboard",
           },
         },
-        always_divide_middle = true,
         globalstatus = true,
-        refresh = {
-          statusline = 1000,
-          tabline = 1000,
-          winbar = 1000,
-        },
       },
       sections = {
         lualine_a = { "mode" },
@@ -153,10 +110,10 @@ return {
         },
         lualine_x = {
           macro,
-          lsp_status,
+          "lsp_status",
           "fileformat",
           "encoding",
-          filetype,
+          "filetype",
         },
         lualine_y = { location },
         lualine_z = { "searchcount", lazy },
