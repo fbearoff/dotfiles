@@ -1,13 +1,4 @@
 return {
-  -- needed for properly setting project root
-  {
-    "DrKJeff16/project.nvim",
-    lazy = false,
-    opts = {
-      snacks = { enabled = true },
-    },
-  },
-
   -- collection of util plugins
   {
     "folke/snacks.nvim",

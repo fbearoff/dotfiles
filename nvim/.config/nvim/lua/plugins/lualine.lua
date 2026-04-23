@@ -36,14 +36,6 @@ return {
       path = 1,
     }
 
-    local project = {
-      "project",
-      enclose_pair = { "<", ">" },
-      cond = function()
-        return require("project").get_project_root() ~= nil
-      end,
-    }
-
     local macro = {
       "macro",
       fmt = function()
@@ -94,7 +86,6 @@ return {
         lualine_c = {
           diagnostics,
           lightbulb,
-          project,
           filename,
           navic,
         },
