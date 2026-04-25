@@ -32,7 +32,7 @@ return {
       {
         "<leader>ff",
         function()
-          Snacks.picker.files({ hidden = true })
+          Snacks.picker.files({ hidden = true, cwd = vim.lsp.buf.list_workspace_folders()[1] })
         end,
         desc = "Find Files",
       },
@@ -191,7 +191,7 @@ return {
         [[<c-\>]],
         mode = { "n", "t" },
         function()
-          Snacks.terminal.toggle()
+          Snacks.terminal.toggle(nil, { cwd = vim.lsp.buf.list_workspace_folders()[1] })
         end,
         desc = "Toggle Terminal",
       },
