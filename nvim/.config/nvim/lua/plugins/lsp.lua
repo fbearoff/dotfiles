@@ -31,14 +31,14 @@ return {
       { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
       { "<leader>cl", "<cmd>checkhealth vim.lsp<cr>", desc = "Lsp Info" },
       {
-        "<leader>dd",
+        "<leader>dD",
         function()
           Snacks.picker.diagnostics()
         end,
         desc = "Document",
       },
       {
-        "<leader>dD",
+        "<leader>dd",
         function()
           Snacks.picker.diagnostics_buffer()
         end,
