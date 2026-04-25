@@ -46,7 +46,8 @@ local({
     pillar.bold = TRUE,
     pillar.subtle = TRUE,
     pillar.print_min = 20,
-    pillar.advice = FALSE
+    pillar.advice = FALSE,
+    nvimcom.build_messages = FALSE
   )
 })
 
