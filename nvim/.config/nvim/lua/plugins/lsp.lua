@@ -35,14 +35,14 @@ return {
         function()
           Snacks.picker.diagnostics()
         end,
-        desc = "Document",
+        desc = "Workspace",
       },
       {
         "<leader>dd",
         function()
           Snacks.picker.diagnostics_buffer()
         end,
-        desc = "Workspace",
+        desc = "Document",
       },
       {
         "gd",
