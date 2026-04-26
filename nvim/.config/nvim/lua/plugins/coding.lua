@@ -88,17 +88,6 @@ return {
         mode = "",
         desc = "Format buffer",
       },
-      {
-        "<leader>uf",
-        function()
-          if vim.b.disable_autoformat or vim.g.disable_autoformat then
-            vim.cmd("FormatEnable")
-          else
-            vim.cmd("FormatDisable")
-          end
-        end,
-        desc = "Toggle Autoformat",
-      },
     },
     opts = {
       default_format_opts = {

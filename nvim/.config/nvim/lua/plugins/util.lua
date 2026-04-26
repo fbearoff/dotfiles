@@ -332,6 +332,17 @@ return {
             :map("<leader>uc")
           Snacks.toggle.inlay_hints():map("<leader>uh")
           Snacks.toggle.indent():map("<leader>ug")
+          Snacks.toggle
+            .new({
+              name = "Autoformat",
+              get = function()
+                return not vim.g.disable_autoformat
+              end,
+              set = function(state)
+                vim.g.disable_autoformat = not state
+              end,
+            })
+            :map("<leader>uf")
         end,
       })
     end,
