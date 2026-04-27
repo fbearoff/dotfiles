@@ -21,6 +21,13 @@ return {
         end,
         desc = "Command History",
       },
+      {
+        "<leader>n",
+        function()
+          Snacks.picker.notifications()
+        end,
+        desc = "Notification History",
+      },
       -- Files
       {
         "<leader>fc",
@@ -332,6 +339,7 @@ return {
             :map("<leader>uc")
           Snacks.toggle.inlay_hints():map("<leader>uh")
           Snacks.toggle.indent():map("<leader>ug")
+          -- Conform
           Snacks.toggle
             .new({
               name = "Autoformat",
