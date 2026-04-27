@@ -5,6 +5,10 @@ local({
   ## Set CRAN Mirror:
   r <- getOption("repos")
   r["CRAN"] <- "https://cloud.r-project.org/"
+
+  # Use static V8 
+  Sys.setenv(DOWNLOAD_STATIC_LIBV8 = 1)
+
   options(
     # Parallel package installation in install.packages()
     Ncpus = n,

@@ -134,7 +134,7 @@ return {
           },
           {
             "<LocalLeader>ru",
-            "<cmd>RSend update.packages(ask = FALSE)<CR>",
+            "<cmd>RSend update.packages(checkBuilt = TRUE, ask = FALSE)<CR>",
             desc = "Update Packages",
           },
           {
