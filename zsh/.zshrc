@@ -23,7 +23,6 @@ if [[ $HOST = (neuron|sd-55327) ]]; then
 fi
 plugins+=(
   autoupdate
-  sudo
   zsh-autopair
   zsh-syntax-highlighting
 )
