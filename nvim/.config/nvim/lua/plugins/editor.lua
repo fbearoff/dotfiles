@@ -7,12 +7,10 @@ return {
       spec = {
         {
           { "<leader>b", group = "Buffer" },
-          { "<leader>d", group = "Diagnostics" },
           { "<leader>f", group = "Files" },
           { "<leader>g", group = "Git" },
           { "<leader>gh", group = "Hunks" },
           { "<leader>s", group = "Search" },
-          { "<leader>t", group = "Terminal" },
           { "<leader>u", group = "UI" },
           { "[", group = "Prev" },
           { "]", group = "Next" },
@@ -66,9 +64,38 @@ return {
         map("n", "<leader>gf", function()
           Snacks.picker.git_log_file()
         end, "Git Log File")
-        map("n", "<leader>gl", gs.toggle_linehl, "Toggle Line Highlight")
-        map("n", "<leader>gL", gs.toggle_current_line_blame, "Toggle Line Blame")
-        map("n", "<leader>gw", gs.toggle_word_diff, "Toggle Word Diff")
+
+        map("n", "<leader>gW", function()
+          gs.blame()
+        end, "Git Blame")
+
+        Snacks.toggle({
+          name = "Line Blame",
+          get = function()
+            return require("gitsigns.config").config.current_line_blame
+          end,
+          set = function(state)
+            gs.toggle_current_line_blame(state)
+          end,
+        }):map("<leader>gL")
+        Snacks.toggle({
+          name = "Word Diff",
+          get = function()
+            return require("gitsigns.config").config.word_diff
+          end,
+          set = function(state)
+            gs.toggle_word_diff(state)
+          end,
+        }):map("<leader>gw")
+        Snacks.toggle({
+          name = "Line Highlight",
+          get = function()
+            return require("gitsigns.config").config.linehl
+          end,
+          set = function(state)
+            gs.toggle_linehl(state)
+          end,
+        }):map("<leader>gl")
 
         -- hunks
         map("n", "]h", function()

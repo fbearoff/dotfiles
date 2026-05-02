@@ -72,15 +72,13 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 -- q to quit these filetypes
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = {
-    "PlenaryTestPopup",
     "checkhealth",
     "help",
     "lspinfo",
     "man",
     "notify",
     "qf",
-    "startuptime",
-    "tsplayground",
+    "gitsigns-blame",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

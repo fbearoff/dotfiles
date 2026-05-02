@@ -27,18 +27,17 @@ return {
       "mason-org/mason-lspconfig.nvim",
     },
     keys = {
-      { "<leader>cd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
       { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
       { "<leader>cl", "<cmd>checkhealth vim.lsp<cr>", desc = "Lsp Info" },
       {
-        "<leader>dD",
+        "<leader>cD",
         function()
           Snacks.picker.diagnostics()
         end,
         desc = "Workspace",
       },
       {
-        "<leader>dd",
+        "<leader>cd",
         function()
           Snacks.picker.diagnostics_buffer()
         end,
