@@ -128,7 +128,20 @@ return {
   -- Location jumping and enhanced f/t
   {
     "folke/flash.nvim",
-    opts = {},
+    init = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "qf",
+        callback = function()
+          vim.keymap.set("n", "<CR>", "<CR>", { buffer = true })
+        end,
+      })
+      vim.api.nvim_create_autocmd("CmdwinEnter", {
+        pattern = "*",
+        callback = function()
+          vim.keymap.set("n", "<CR>", "<CR>", { buffer = true })
+        end,
+      })
+    end,
     keys = {
       "f",
       "F",
@@ -155,36 +168,12 @@ return {
         desc = "Flash Lines",
       },
       {
-        "<S-Enter>",
-        mode = { "n", "o", "x" },
-        function()
-          require("flash").treesitter()
-        end,
-        desc = "Flash Treesitter",
-      },
-      {
         "r",
         mode = "o",
         function()
           require("flash").remote()
         end,
         desc = "Remote Flash",
-      },
-      {
-        "R",
-        mode = { "o", "x" },
-        function()
-          require("flash").treesitter_search({
-
-            label = {
-              rainbow = {
-                enabled = true,
-                shade = 5,
-              },
-            },
-          })
-        end,
-        desc = "Treesitter Search",
       },
       {
         "<C-space>",
