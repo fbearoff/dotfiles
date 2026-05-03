@@ -34,14 +34,14 @@ return {
         function()
           Snacks.picker.diagnostics()
         end,
-        desc = "Workspace",
+        desc = "Diagnostics (Workspace)",
       },
       {
         "<leader>cd",
         function()
           Snacks.picker.diagnostics_buffer()
         end,
-        desc = "Document",
+        desc = "Diagnostics (Document)",
       },
       {
         "gd",
