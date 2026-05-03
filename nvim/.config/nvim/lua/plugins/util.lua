@@ -176,7 +176,7 @@ return {
       {
         "<leader>gg",
         function()
-          Snacks.lazygit()
+          Snacks.lazygit({ cwd = vim.lsp.buf.list_workspace_folders()[1] })
         end,
         desc = "Lazygit",
       },
