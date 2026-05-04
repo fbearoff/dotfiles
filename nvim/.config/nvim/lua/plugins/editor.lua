@@ -336,9 +336,6 @@ return {
   -- Enhanced yank/put
   {
     "gbprod/yanky.nvim",
-    dependencies = {
-      "kkharji/sqlite.lua",
-    },
     keys = {
       { mode = { "n", "x" }, "y", "<Plug>(YankyYank)", desc = "Yanky Yank" },
       { mode = { "n", "x" }, "p", "<Plug>(YankyPutAfter)", desc = "Yanky Put After" },
@@ -354,11 +351,7 @@ return {
         desc = "Yank History",
       },
     },
-    opts = {
-      ring = {
-        storage = "sqlite",
-      },
-    },
+    opts = {},
   },
 
   -- Enhanced substitute/exchange operator
