@@ -12,7 +12,7 @@ local options = {
   expandtab = true, -- convert tabs to spaces
   fillchars = { foldopen = "", foldclose = "", fold = " ", foldsep = " ", diff = "╱", eob = " " },
   foldcolumn = "1",
-  foldexpr = "v:lua.UtilTS.foldexpr()",
+  foldexpr = "v:lua.vim.treesitter.foldexpr()", -- use treesitter for folds, lsp overides
   foldmethod = "expr",
   foldlevel = 99,
   foldlevelstart = 99,

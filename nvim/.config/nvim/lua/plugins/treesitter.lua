@@ -230,12 +230,10 @@ return {
           if UtilTS.have(ev.match) then
             pcall(vim.treesitter.start)
 
-            -- check if ftplugins changed foldexpr/indentexpr
-            for _, option in ipairs({ "foldexpr", "indentexpr" }) do
-              local expr = "v:lua.UtilTS." .. option .. "()"
-              if vim.opt_global[option]:get() == expr then
-                vim.opt_local[option] = expr
-              end
+            -- check if ftplugins changed indentexpr
+            local expr = "v:lua.UtilTS.indentexpr()"
+            if vim.opt_global["indentexpr"]:get() == expr then
+              vim.opt_local["indentexpr"] = expr
             end
           end
         end,
