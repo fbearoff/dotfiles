@@ -36,6 +36,7 @@ return {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
     opts = {
+      numhl = true,
       signs = {
         add = { text = "│" },
         change = { text = "│" },
@@ -96,6 +97,16 @@ return {
             gs.toggle_linehl(state)
           end,
         }):map("<leader>gl")
+
+        Snacks.toggle({
+          name = "Number Highlight",
+          get = function()
+            return require("gitsigns.config").config.numhl
+          end,
+          set = function(state)
+            gs.toggle_numhl(state)
+          end,
+        }):map("<leader>gn")
 
         -- hunks
         map("n", "]h", function()
