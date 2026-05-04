@@ -54,13 +54,13 @@ return {
 
         -- general git
         map("n", "<leader>gb", function()
-          Snacks.picker.git_branches()
+          Snacks.picker.git_branches({ cwd = vim.lsp.buf.list_workspace_folders()[1] })
         end, "Branchs")
         map("n", "<leader>gc", function()
-          Snacks.picker.git_log()
+          Snacks.picker.git_log({ cwd = vim.lsp.buf.list_workspace_folders()[1] })
         end, "Commit Log")
         map("n", "<leader>gs", function()
-          Snacks.picker.git_status()
+          Snacks.picker.git_status({ cwd = vim.lsp.buf.list_workspace_folders()[1] })
         end, "Git Status")
         map("n", "<leader>gf", function()
           Snacks.picker.git_log_file()
