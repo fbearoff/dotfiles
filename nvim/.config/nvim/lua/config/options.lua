@@ -12,13 +12,10 @@ local options = {
   expandtab = true, -- convert tabs to spaces
   fillchars = { foldopen = "", foldclose = "", fold = " ", foldsep = " ", diff = "╱", eob = " " },
   foldcolumn = "1",
-  foldexpr = "v:lua.vim.treesitter.foldexpr()", -- use treesitter for folds, lsp overides
-  foldmethod = "expr",
   foldlevel = 99,
   foldlevelstart = 99,
   foldnestmax = 10, -- max fold nesting level
   ignorecase = true, -- ignore case in search patterns
-  indentexpr = "v:lua.UtilTS.indentexpr()", -- treesitter indents
   laststatus = 0, -- not needed with lualine
   linebreak = true, -- break lines at delimiter chars
   mouse = "", -- default value of "a", "nv" disables in insert
