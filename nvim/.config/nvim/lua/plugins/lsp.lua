@@ -28,6 +28,7 @@ return {
     },
     keys = {
       { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
+      { "grx", vim.lsp.codelens.run, desc = "Run Codelens" },
       { "<leader>cl", "<cmd>checkhealth vim.lsp<cr>", desc = "Lsp Info" },
       {
         "<leader>cD",

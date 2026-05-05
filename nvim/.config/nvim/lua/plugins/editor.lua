@@ -15,6 +15,7 @@ return {
           { "[", group = "Prev" },
           { "]", group = "Next" },
           { "g", group = "Goto" },
+          { "gr", group = "LSP Actions" },
           { "a", group = "Around", mode = { "o", "x" } },
           { "i", group = "Inside", mode = { "o", "x" } },
           { "<leader>c", group = "Code", mode = { "n", "v" } },
