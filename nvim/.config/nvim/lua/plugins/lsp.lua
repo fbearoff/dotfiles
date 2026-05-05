@@ -1,18 +1,44 @@
 local icons = require("config.icons")
 
--- use virtual lines for jumps
--- help diagnostic-on-jump-example
-local function on_jump(diagnostic, bufnr)
-  if not diagnostic then
-    return
-  end
-  vim.diagnostic.show(
-    diagnostic.namespace,
-    bufnr,
-    { diagnostic },
-    { virtual_lines = { current_line = true }, virtual_text = false }
-  )
-end
+-- diagnostics
+vim.diagnostic.config({
+  severity_sort = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+      [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
+      [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+      [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+    },
+  },
+  virtual_text = {
+    source = "if_many",
+    prefix = "",
+    severity = {
+      min = vim.diagnostic.severity.ERROR,
+    },
+  },
+  underline = {
+    severity = {
+      min = vim.diagnostic.severity.HINT,
+    },
+  },
+  jump = {
+    -- use virtual lines for jumps
+    -- help diagnostic-on-jump-example
+    on_jump = function(diagnostic, bufnr)
+      if not diagnostic then
+        return
+      end
+      vim.diagnostic.show(
+        diagnostic.namespace,
+        bufnr,
+        { diagnostic },
+        { virtual_lines = { current_line = true }, virtual_text = false }
+      )
+    end,
+  },
+})
 
 -- LSPs not in mason
 vim.lsp.enable({ "jarl" })
@@ -91,30 +117,6 @@ return {
       { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },
     },
     opts = {
-      diagnostics = {
-        virtual_text = {
-          source = "if_many",
-          prefix = "icons",
-          severity = {
-            min = vim.diagnostic.severity.ERROR,
-          },
-        },
-        underline = {
-          severity = {
-            min = vim.diagnostic.severity.HINT,
-          },
-        },
-        jump = { on_jump = on_jump },
-        severity_sort = true,
-        signs = {
-          text = {
-            [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
-            [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
-            [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
-            [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
-          },
-        },
-      },
       servers = {
         ansiblels = {},
         bashls = {},
@@ -160,19 +162,6 @@ return {
 
       -- show colors as virtual text
       vim.lsp.document_color.enable(true, nil, { style = "virtual" })
-
-      -- diagnostic icons in virtual text
-      if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
-        opts.diagnostics.virtual_text.prefix = function(diagnostic)
-          for d, icon in pairs(icons.diagnostics) do
-            if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
-              return icon
-            end
-          end
-        end
-      end
-
-      vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
       local servers = opts.servers
       for server, settings in pairs(servers) do
