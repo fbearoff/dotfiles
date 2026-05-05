@@ -48,6 +48,15 @@ return {
           },
         },
       },
+      cmdline = {
+        keymap = {
+          preset = "inherit",
+          ["<Tab>"] = { "show_and_insert_or_accept_single", "select_next" },
+          ["<S-Tab>"] = { "show_and_insert_or_accept_single", "select_prev" },
+          ["<CR>"] = { "accept_and_enter", "fallback" },
+        },
+        completion = { menu = { auto_show = true } },
+      },
       snippets = { preset = "luasnip" },
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
