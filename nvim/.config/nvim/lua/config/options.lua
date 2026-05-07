@@ -3,7 +3,9 @@ vim.g.maplocalleader = "\\"
 
 vim.o.backup = false -- creates a backup file
 vim.o.breakindent = true -- preserve indent on wrapped lines
-vim.o.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
+vim.schedule(function()
+  vim.o.clipboard = "unnamedplus" -- use system clipboard, schedule to speed up start
+end)
 vim.o.cmdheight = 0 -- more space in the neovim command line for displaying messages
 vim.o.confirm = true
 vim.o.cursorline = true -- highlight the current line
