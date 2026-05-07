@@ -13,10 +13,19 @@ vim.keymap.set("i", "<C-k>", "<up>", { desc = "Move Cursor Up" })
 
 -- Normal --
 -- movement between buffers
-vim.keymap.set("n", "<s-tab>", function()
-  vim.cmd("bn")
-end, { desc = "Buffer Next" })
+vim.keymap.set("n", "<leader>h", "<C-w>h", { desc = "Go to Left Window" })
+vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "Go to Lower Window" })
+vim.keymap.set("n", "<leader>k", "<C-w>k", { desc = "Go to Upper Window" })
+vim.keymap.set("n", "<leader>l", "<C-w>l", { desc = "Go to Right Window" })
+
+vim.keymap.set("n", "<s-tab>", "<cmd>bn<CR>", { desc = "Buffer Next" })
 vim.keymap.set("n", "<tab>", "<C-w>w", { desc = "Next window" })
+
+-- Resize window using <ctrl> arrow keys
+vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
 -- Remap for dealing with word wrap
 vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
