@@ -71,6 +71,10 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous Search Item" })
 -- Select whole line
 vim.keymap.set("n", "vv", "V", { desc = "Select Whole Line" })
 
+-- Silence undo/redo
+vim.keymap.set("n", "u", ":silent undo<cr>")
+vim.keymap.set("n", "U", ":silent redo<cr>")
+
 -- Visual --
 -- Stay in indent mode
 vim.keymap.set("v", "<", "<gv^", { desc = "Shift Selection Left" })
@@ -94,7 +98,10 @@ vim.keymap.set("n", string.upper(cut_key), "D", { desc = "Cut To EOL" })
 -- Clear search with <esc>
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear Hlsearch" })
 
--- Leader Mappings
+-- Leader Mappings --
+vim.keymap.set("n", "<leader>r", "<cmd>restart<CR>", { desc = "Restart" })
+vim.keymap.set("x", "<leader>S", ":sort<CR>", { desc = "Sort" })
+
 -- Splits
 vim.keymap.set("n", "<leader>-", "<cmd>split<CR>", { desc = "Split" })
 vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<CR>", { desc = "VSplit" })
@@ -102,7 +109,3 @@ vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<CR>", { desc = "VSplit" })
 -- Core file commands
 vim.keymap.set("n", "<leader>fn", "<cmd>enew<CR>", { desc = "New File" })
 vim.keymap.set("n", "<leader>w", "<cmd>silent w!<CR>", { desc = "Save" })
-
--- Silence undo/redo
-vim.keymap.set("n", "u", ":silent undo<cr>")
-vim.keymap.set("n", "U", ":silent redo<cr>")

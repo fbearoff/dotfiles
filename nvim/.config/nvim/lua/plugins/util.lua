@@ -158,7 +158,7 @@ return {
         desc = "Registers",
       },
       {
-        "<leader>r",
+        "<leader><return>",
         function()
           Snacks.picker.resume()
         end,
