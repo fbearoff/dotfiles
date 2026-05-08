@@ -39,7 +39,10 @@ return {
       {
         "<leader>ff",
         function()
-          Snacks.picker.files({ hidden = true, cwd = vim.lsp.buf.list_workspace_folders()[1] })
+          Snacks.picker.files({
+            hidden = true,
+            cwd = vim.lsp.buf.list_workspace_folders()[1] or vim.fn.expand("%:h"),
+          })
         end,
         desc = "Find Files",
       },
@@ -81,20 +84,6 @@ return {
       },
       -- search
       {
-        "<leader>ss",
-        function()
-          Snacks.picker.lsp_symbols()
-        end,
-        desc = "LSP Symbols",
-      },
-      {
-        "<leader>sS",
-        function()
-          Snacks.picker.lsp_workspace_symbols()
-        end,
-        desc = "LSP Workspace Symbols",
-      },
-      {
         "<leader>sk",
         function()
           Snacks.picker.keymaps()
@@ -123,13 +112,6 @@ return {
         desc = "Help Pages",
       },
       {
-        "<leader>sL",
-        function()
-          Snacks.picker.lazy()
-        end,
-        desc = "Lazy Spec",
-      },
-      {
         "<leader>sp",
         function()
           Snacks.picker.projects()
@@ -149,13 +131,6 @@ return {
           Snacks.picker.man()
         end,
         desc = "Man Pages",
-      },
-      {
-        "<leader>sr",
-        function()
-          Snacks.picker.registers()
-        end,
-        desc = "Registers",
       },
       {
         "<leader><return>",
@@ -198,7 +173,7 @@ return {
         [[<c-\>]],
         mode = { "n", "t" },
         function()
-          Snacks.terminal.toggle(nil, { cwd = vim.lsp.buf.list_workspace_folders()[1] })
+          Snacks.terminal.toggle(nil, { cwd = vim.lsp.buf.list_workspace_folders()[1] or vim.fn.expand("%:h") })
         end,
         desc = "Toggle Terminal",
       },

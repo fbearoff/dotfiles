@@ -8,9 +8,9 @@ return {
         {
           { "<leader>b", group = "Buffer" },
           { "<leader>f", group = "Files" },
-          { "<leader>g", group = "Git" },
-          { "<leader>gh", group = "Hunks" },
-          { "<leader>s", group = "Search" },
+          { "<leader>g", group = "Git", mode = { "n", "x" } },
+          { "<leader>gh", group = "Hunks", mode = { "n", "x" } },
+          { "<leader>s", group = "Search", mode = { "n", "x" } },
           { "<leader>u", group = "UI" },
           { "[", group = "Prev" },
           { "]", group = "Next" },
@@ -345,7 +345,6 @@ return {
       { "[p", "<Plug>(YankyPutBeforeFilter)", desc = "Put Before Filter" },
       {
         "<leader>v",
-        mode = { "n", "x" },
         function()
           Snacks.picker.yanky()
         end,

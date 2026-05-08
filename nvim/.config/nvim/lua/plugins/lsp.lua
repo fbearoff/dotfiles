@@ -112,6 +112,20 @@ return {
         end,
         desc = "Goto Document Symbols",
       },
+      {
+        "<leader>cs",
+        function()
+          Snacks.picker.lsp_symbols()
+        end,
+        desc = "LSP Symbols",
+      },
+      {
+        "<leader>cS",
+        function()
+          Snacks.picker.lsp_workspace_symbols()
+        end,
+        desc = "LSP Workspace Symbols",
+      },
       { "gK", vim.lsp.buf.signature_help, desc = "Signature Help" },
       { "gra", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },
       { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },

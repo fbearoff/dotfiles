@@ -110,6 +110,7 @@ vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and 
 -- Leader Mappings --
 vim.keymap.set("n", "<leader>r", "<cmd>restart<CR>", { desc = "Restart" })
 vim.keymap.set("x", "<leader>S", ":sort<CR>", { desc = "Sort" })
+vim.keymap.set("x", "<leader>U", ":sort u<CR>", { desc = "Sort Unique" })
 
 -- Splits
 vim.keymap.set("n", "<leader>-", "<cmd>split<CR>", { desc = "Split" })
