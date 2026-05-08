@@ -2,7 +2,7 @@
 vim.keymap.set("n", "<leader>sH", vim.show_pos, { desc = "Highlight Groups" })
 return {
   {
-    "rebelot/kanagawa.nvim",
+    "https://github.com/rebelot/kanagawa.nvim",
     event = "VimEnter",
     priority = 1000,
     opts = {

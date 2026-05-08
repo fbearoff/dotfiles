@@ -46,11 +46,11 @@ vim.lsp.enable({ "jarl" })
 return {
   -- lspconfig
   {
-    "neovim/nvim-lspconfig",
+    "https://github.com/neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      "mason-org/mason.nvim",
-      "mason-org/mason-lspconfig.nvim",
+      "https://github.com/mason-org/mason.nvim",
+      "https://github.com/mason-org/mason-lspconfig.nvim",
     },
     keys = {
       { "gl", vim.diagnostic.open_float, desc = "Line Diagnostics" },
@@ -199,7 +199,7 @@ return {
   -- cmdline tools and lsp servers
   {
 
-    "mason-org/mason.nvim",
+    "https://github.com/mason-org/mason.nvim",
     cmd = "Mason",
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
     build = ":MasonUpdate",

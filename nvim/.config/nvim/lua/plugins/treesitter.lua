@@ -23,7 +23,7 @@ vim.keymap.set("n", "<leader>si", "<cmd>InspectTree<cr>", { desc = "Inspect Tree
 return {
   -- Code tree based highlighting and other features
   {
-    "nvim-treesitter/nvim-treesitter",
+    "https://github.com/nvim-treesitter/nvim-treesitter",
     branch = "main",
     build = function()
       local TS = require("nvim-treesitter")
@@ -109,7 +109,7 @@ return {
   },
   -- Show code context as top line
   {
-    "nvim-treesitter/nvim-treesitter-context",
+    "https://github.com/nvim-treesitter/nvim-treesitter-context",
     event = "BufReadPre",
     keys = {
       {
@@ -141,7 +141,7 @@ return {
   },
   -- extended textobjects
   {
-    "nvim-treesitter/nvim-treesitter-textobjects",
+    "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
     branch = "main",
     event = "BufReadPost",
     init = function()

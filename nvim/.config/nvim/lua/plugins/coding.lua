@@ -1,7 +1,7 @@
 return {
   -- surround
   {
-    "kylechui/nvim-surround",
+    "https://github.com/kylechui/nvim-surround",
     keys = {
       { mode = "i", "<C-g>s", "<Plug>(nvim-surround-insert)", desc = "Surround" },
       { mode = "i", "<C-g>S", "<Plug>(nvim-surround-insert-line)", desc = "Surround Line" },
@@ -19,7 +19,7 @@ return {
 
   -- Code block joing/splitting
   {
-    "Wansmer/treesj",
+    "https://github.com/wansmer/treesj",
     keys = {
       {
         mode = { "n", "x" },
@@ -47,7 +47,7 @@ return {
 
   -- Autoformat
   {
-    "stevearc/conform.nvim",
+    "https://github.com/stevearc/conform.nvim",
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
     init = function()

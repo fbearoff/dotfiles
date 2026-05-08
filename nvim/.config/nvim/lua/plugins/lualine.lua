@@ -1,5 +1,5 @@
 return {
-  "nvim-lualine/lualine.nvim",
+  "https://github.com/nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   opts = function()
     local icons = require("config.icons")

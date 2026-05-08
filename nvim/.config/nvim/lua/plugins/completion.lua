@@ -1,9 +1,9 @@
 return {
   -- completion engine
   {
-    "saghen/blink.cmp",
+    "https://github.com/saghen/blink.cmp",
     event = "InsertEnter",
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = { "https://github.com/rafamadriz/friendly-snippets" },
     version = "1.*",
     opts = {
       keymap = {

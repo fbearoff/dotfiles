@@ -1,5 +1,5 @@
 return {
-  "R-nvim/R.nvim",
+  "https://github.com/R-nvim/R.nvim",
   ft = { "r", "rmd" },
   opts = {
     hook = {

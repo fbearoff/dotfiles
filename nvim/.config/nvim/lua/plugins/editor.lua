@@ -1,7 +1,7 @@
 return {
   -- Key hinting
   {
-    "folke/which-key.nvim",
+    "https://github.com/folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
       spec = {
@@ -34,7 +34,7 @@ return {
 
   -- Git signs in status column
   {
-    "lewis6991/gitsigns.nvim",
+    "https://github.com/lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       numhl = true,
@@ -139,7 +139,7 @@ return {
 
   -- Location jumping and enhanced f/t
   {
-    "folke/flash.nvim",
+    "https://github.com/folke/flash.nvim",
     init = function()
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "qf",
@@ -205,7 +205,7 @@ return {
 
   -- Better increment/decrement
   {
-    "monaqa/dial.nvim",
+    "https://github.com/monaqa/dial.nvim",
     keys = {
       {
         "<C-a>",
@@ -336,7 +336,7 @@ return {
 
   -- Enhanced yank/put
   {
-    "gbprod/yanky.nvim",
+    "https://github.com/gbprod/yanky.nvim",
     keys = {
       { mode = { "n", "x" }, "y", "<Plug>(YankyYank)", desc = "Yanky Yank" },
       { mode = { "n", "x" }, "p", "<Plug>(YankyPutAfter)", desc = "Yanky Put After" },
@@ -356,7 +356,7 @@ return {
 
   -- Enhanced substitute/exchange operator
   {
-    "gbprod/substitute.nvim",
+    "https://github.com/gbprod/substitute.nvim",
     keys = {
       {
         "s",
@@ -419,14 +419,14 @@ return {
 
   -- Escape from surrounds
   {
-    "kawre/neotab.nvim",
+    "https://github.com/kawre/neotab.nvim",
     event = "InsertEnter",
     opts = {},
   },
 
   -- Highlight csv column in rainbow colors
   {
-    "hat0uma/csvview.nvim",
+    "https://github.com/hat0uma/csvview.nvim",
     ft = { "csv", "tsv" },
     cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
     keys = {
@@ -460,10 +460,10 @@ return {
 
   -- autopairs
   {
-    "saghen/blink.pairs",
+    "https://github.com/saghen/blink.pairs",
     event = "BufReadPost",
     version = "*",
-    dependencies = "saghen/blink.lib",
+    dependencies = "https://github.com/saghen/blink.lib",
     opts = {
       mappings = {
         cmdline = false,

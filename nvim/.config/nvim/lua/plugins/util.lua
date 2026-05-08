@@ -1,7 +1,7 @@
 return {
   -- collection of util plugins
   {
-    "folke/snacks.nvim",
+    "https://github.com/folke/snacks.nvim",
     priority = 1000,
     lazy = false,
     keys = {
@@ -333,7 +333,7 @@ return {
 
   -- Highlight undo
   {
-    "tzachar/highlight-undo.nvim",
+    "https://github.com/tzachar/highlight-undo.nvim",
     keys = { "u", "<C-r>" },
     opts = {},
   },

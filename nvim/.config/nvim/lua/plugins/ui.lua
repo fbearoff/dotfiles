@@ -60,7 +60,7 @@ end
 return {
   -- UI to rename items incrementally
   {
-    "smjonas/inc-rename.nvim",
+    "https://github.com/smjonas/inc-rename.nvim",
     cmd = "IncRename",
     keys = {
       {
@@ -85,7 +85,7 @@ return {
 
   -- Scrollbar
   {
-    "petertriho/nvim-scrollbar",
+    "https://github.com/petertriho/nvim-scrollbar",
     event = { "BufReadPost", "BufNewFile" },
     opts = {
       show_in_active_only = true,
@@ -109,7 +109,7 @@ return {
 
   -- Show code context
   {
-    "SmiteshP/nvim-navic",
+    "https://github.com/SmiteshP/nvim-navic",
     opts = {
       highlight = true,
       depth_limit = 5,
@@ -124,7 +124,7 @@ return {
 
   -- Show available code actions as lightbulb character
   {
-    "kosayoda/nvim-lightbulb",
+    "https://github.com/kosayoda/nvim-lightbulb",
     opts = {
       autocmd = {
         enabled = true,
@@ -142,7 +142,7 @@ return {
 
   -- Bufferline
   {
-    "romgrk/barbar.nvim",
+    "https://github.com/romgrk/barbar.nvim",
     event = "VeryLazy",
     keys = {
       { "<M-,>", "<cmd>BufferPrevious<CR>", desc = "Previous Buffer" },
@@ -181,5 +181,5 @@ return {
   },
 
   -- icons
-  "nvim-tree/nvim-web-devicons",
+  "https://github.com/nvim-tree/nvim-web-devicons",
 }
