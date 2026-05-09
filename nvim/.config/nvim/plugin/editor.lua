@@ -304,9 +304,18 @@ require("csvview").setup({
   },
 })
 
-vim.keymap.set("n", "<localleader>t", function()
-  require("csvview").toggle()
-end, { desc = "Toggle CSV View" })
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = {
+    "csv",
+    "tsv",
+  },
+  callback = function()
+    vim.keymap.set("n", "<localleader>t", function()
+      require("csvview").toggle()
+    end, { desc = "Toggle CSV View", buf = 0 })
+    require("csvview").enable()
+  end,
+})
 
 -- autopairs
 require("blink.pairs").setup({

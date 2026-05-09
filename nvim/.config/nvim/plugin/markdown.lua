@@ -20,6 +20,11 @@ require("render-markdown").setup({
   },
 })
 
-vim.keymap.set("n", "<localleader>mr", function()
-  require("render-markdown").buf_toggle()
-end, { desc = "Toggle Markdown Rendering" })
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "markdown" },
+  callback = function()
+    vim.keymap.set("n", "<localleader>mr", function()
+      require("render-markdown").buf_toggle()
+    end, { desc = "Toggle Markdown Rendering", buf = 0 })
+  end,
+})
