@@ -123,17 +123,15 @@ require("nvim-lightbulb").setup({
 
 -- Bufferline
 require("barbar").setup({
-  opts = {
-    sidebar_filetypes = {
-      NvimTree = { text = "NvimTree" },
-    },
-    tabpages = false,
-    icons = {
-      buffer_index = true,
-    },
-    highlight_visible = false,
-    maximum_padding = 1,
+  sidebar_filetypes = {
+    NvimTree = { text = "NvimTree" },
   },
+  tabpages = false,
+  icons = {
+    buffer_index = true,
+  },
+  highlight_visible = false,
+  maximum_padding = 1,
 })
 
 vim.keymap.set("n", "<M-,>", "<cmd>BufferPrevious<CR>", { desc = "Previous Buffer" })
