@@ -1,48 +1,3 @@
-local icons = require("config.icons")
-
--- diagnostics
-vim.diagnostic.config({
-  severity_sort = true,
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
-      [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
-      [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
-      [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
-    },
-  },
-  virtual_text = {
-    source = "if_many",
-    prefix = "",
-    severity = {
-      min = vim.diagnostic.severity.ERROR,
-    },
-  },
-  underline = {
-    severity = {
-      min = vim.diagnostic.severity.HINT,
-    },
-  },
-  jump = {
-    -- use virtual lines for jumps
-    -- help diagnostic-on-jump-example
-    on_jump = function(diagnostic, bufnr)
-      if not diagnostic then
-        return
-      end
-      vim.diagnostic.show(
-        diagnostic.namespace,
-        bufnr,
-        { diagnostic },
-        { virtual_lines = { current_line = true }, virtual_text = false }
-      )
-    end,
-  },
-})
-
--- LSPs not in mason
-vim.lsp.enable({ "jarl" })
-
 vim.pack.add({
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/mason-org/mason.nvim",
@@ -79,6 +34,9 @@ local servers = {
   },
 }
 
+-- Enable LSPs not in mason
+vim.lsp.enable({ "jarl" })
+
 -- Prefer LSP folding if client supports it
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
@@ -98,6 +56,7 @@ for server, settings in pairs(servers) do
   vim.lsp.config(server, settings)
   vim.lsp.enable(server)
 end
+
 -- cmdline tools and lsp servers
 require("mason").setup({
   ui = {

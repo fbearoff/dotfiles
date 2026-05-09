@@ -18,6 +18,7 @@ require("render-markdown").setup({
     left_pad = 2,
     right_pad = 4,
   },
+  latex = { enabled = false },
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
