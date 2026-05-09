@@ -108,6 +108,9 @@ vim.keymap.set("n", string.upper(cut_key), "D", { desc = "Cut To EOL" })
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear Hlsearch" })
 
 -- Leader Mappings --
+vim.keymap.set("n", "<leader>p", function()
+  vim.pack.update()
+end, { desc = "Pack" })
 vim.keymap.set("n", "<leader>r", "<cmd>restart<CR>", { desc = "Restart" })
 vim.keymap.set("x", "<leader>S", ":sort<CR>", { desc = "Sort" })
 vim.keymap.set("x", "<leader>U", ":sort u<CR>", { desc = "Sort Unique" })
