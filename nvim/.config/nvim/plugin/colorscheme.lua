@@ -1,5 +1,3 @@
--- Highlights HL group under cursor
-vim.keymap.set("n", "<leader>sH", vim.show_pos, { desc = "Highlight Groups" })
 vim.pack.add({
   "https://github.com/rebelot/kanagawa.nvim",
 })
@@ -53,3 +51,6 @@ require("kanagawa").setup({
 })
 
 vim.cmd("colorscheme kanagawa")
+
+-- Highlights HL group under cursor
+vim.keymap.set("n", "<leader>sH", vim.show_pos, { desc = "Highlight Groups" })

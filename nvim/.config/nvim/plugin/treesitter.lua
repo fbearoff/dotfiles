@@ -1,34 +1,10 @@
--- TS keymaps
--- Incremental Selection
-vim.keymap.set({ "x", "o" }, "aa", function()
-  if vim.treesitter.get_parser(nil, nil, { error = false }) then
-    require("vim.treesitter._select").select_parent(vim.v.count1)
-  else
-    vim.lsp.buf.selection_range(vim.v.count1)
-  end
-end, { desc = "Select parent treesitter node or outer incremental lsp selections" })
-
-vim.keymap.set({ "x", "o" }, "ii", function()
-  if vim.treesitter.get_parser(nil, nil, { error = false }) then
-    require("vim.treesitter._select").select_child(vim.v.count1)
-  else
-    vim.lsp.buf.selection_range(-vim.v.count1)
-  end
-end, { desc = "Select child treesitter node or inner incremental lsp selections" })
-
--- View Code Tree
-vim.keymap.set("n", "<leader>si", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
-
 vim.pack.add({
   { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
   "https://github.com/nvim-treesitter/nvim-treesitter-context",
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
 })
--- Code tree based highlighting and other features
-local TS = require("nvim-treesitter")
-TS.update(nil, { summary = true })
 
-local ensure_installed = {
+local parsers = {
   "bash",
   "dockerfile",
   "diff",
@@ -54,8 +30,7 @@ local ensure_installed = {
   "yaml",
   "zsh",
 }
-
-TS.install(ensure_installed)
+require("nvim-treesitter").install(parsers)
 local function treesitter_try_attach(buf, language)
   -- Check if a parser exists and load it
   if not vim.treesitter.language.add(language) then
@@ -65,17 +40,18 @@ local function treesitter_try_attach(buf, language)
   vim.treesitter.start(buf, language)
 
   -- Enable treesitter based folds
-  -- LSP overrides this
   vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
   vim.wo.foldmethod = "expr"
 
-  -- Enable treesitter based indentation if available
-  if vim.treesitter.query.get(language, "indents") ~= nil then
+  local has_indent_query = vim.treesitter.query.get(language, "indents") ~= nil
+
+  -- Enable treesitter based indentation
+  if has_indent_query then
     vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
   end
 end
 
-local available_parsers = TS.get_available()
+local available_parsers = require("nvim-treesitter").get_available()
 vim.api.nvim_create_autocmd("FileType", {
   callback = function(args)
     local buf, filetype = args.buf, args.match
@@ -85,14 +61,14 @@ vim.api.nvim_create_autocmd("FileType", {
       return
     end
 
-    local installed_parsers = TS.get_installed("parsers")
+    local installed_parsers = require("nvim-treesitter").get_installed("parsers")
 
     if vim.tbl_contains(installed_parsers, language) then
       -- Enable the parser if it is already installed
       treesitter_try_attach(buf, language)
     elseif vim.tbl_contains(available_parsers, language) then
       -- If a parser is available in `nvim-treesitter`, auto-install it and enable it after the installation is done
-      TS.install(language):await(function()
+      require("nvim-treesitter").install(language):await(function()
         treesitter_try_attach(buf, language)
       end)
     else
@@ -102,6 +78,25 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Incremental Selection
+vim.keymap.set({ "x", "o" }, "aa", function()
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require("vim.treesitter._select").select_parent(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(vim.v.count1)
+  end
+end, { desc = "Select parent treesitter node or outer incremental lsp selections" })
+
+vim.keymap.set({ "x", "o" }, "ii", function()
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require("vim.treesitter._select").select_child(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(-vim.v.count1)
+  end
+end, { desc = "Select child treesitter node or inner incremental lsp selections" })
+
+-- View Code Tree
+vim.keymap.set("n", "<leader>si", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 -- Show code context as top line
 local tsc = require("treesitter-context")
 tsc.setup({

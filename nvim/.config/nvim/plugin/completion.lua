@@ -1,12 +1,12 @@
 vim.pack.add({
-  { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
+  "https://github.com/saghen/blink.lib",
+  "https://github.com/saghen/blink.cmp",
   "https://github.com/rafamadriz/friendly-snippets",
 })
 
-local cmp = require("blink.cmp")
-cmp.build():wait(60000)
-cmp.setup({
-  fuzzy = { implementation = "lua" },
+require("blink.cmp").build():wait(60000)
+require("blink.cmp").setup({
+  signature = { enabled = true },
   keymap = {
     preset = "enter",
     ["<TAB>"] = { "select_next", "snippet_forward", "fallback" },

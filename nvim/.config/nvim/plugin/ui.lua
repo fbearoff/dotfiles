@@ -5,6 +5,7 @@ vim.pack.add({
   "https://github.com/SmiteshP/nvim-navic",
   "https://github.com/kosayoda/nvim-lightbulb",
   "https://github.com/romgrk/barbar.nvim",
+  "https://github.com/tzachar/highlight-undo.nvim",
 })
 
 -- use new ui2 interface
@@ -74,6 +75,7 @@ end, { expr = true, desc = "Rename" })
 vim.keymap.set("n", "grn", function()
   return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true, desc = "Rename" })
+
 -- Scrollbar
 require("scrollbar").setup({
   show_in_active_only = true,
@@ -155,3 +157,8 @@ vim.keymap.set("n", "<M-8>", "<cmd>BufferGoto 8<CR>", { desc = "Buffer 8" })
 vim.keymap.set("n", "<M-9>", "<cmd>BufferGoto 9<CR>", { desc = "Buffer 9" })
 vim.keymap.set("n", "<M-0>", "<cmd>BufferLast<CR>", { desc = "Last Buffer" })
 vim.keymap.set("n", "<M-c>", "<cmd>BufferClose<CR>", { desc = "Close Buffer" })
+
+-- Highlight undo
+vim.schedule(function()
+  require("highlight-undo").setup()
+end)
