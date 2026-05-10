@@ -80,6 +80,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "qf",
     "gitsigns-blame",
     "nvim-pack",
+    "nvim-undotree",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

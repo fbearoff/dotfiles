@@ -92,6 +92,8 @@ vim.keymap.set("v", ">", ">gv^", { desc = "Shift Selection Right" })
 -- Better paste
 vim.keymap.set("v", "p", '"_dP', { desc = "Paste Over Selection" })
 
+vim.keymap.set("n", "gm", "m", { desc = "Set Mark" })
+
 -- Send deletions to blackhole register
 for _, lhs in ipairs({ "c", "C", "d", "D", "x", "X" }) do
   vim.keymap.set({ "n", "x" }, lhs, '"_' .. lhs, { desc = "which_key_ignore" })
@@ -122,3 +124,12 @@ vim.keymap.set("n", "<leader>\\", "<cmd>vsplit<CR>", { desc = "VSplit" })
 -- Core file commands
 vim.keymap.set("n", "<leader>fn", "<cmd>enew<CR>", { desc = "New File" })
 vim.keymap.set("n", "<leader>w", "<cmd>silent w!<CR>", { desc = "Save" })
+
+vim.keymap.set("n", "<leader>bm", "<cmd>delmark!<cr>", { desc = "Delete Marks" })
+
+vim.keymap.set("n", "<leader>U", function()
+  vim.cmd("packadd nvim.undotree")
+  require("undotree").open({
+    command = math.floor(vim.api.nvim_win_get_width(0) / 3) .. "vnew",
+  })
+end, { desc = "Undotree" })
