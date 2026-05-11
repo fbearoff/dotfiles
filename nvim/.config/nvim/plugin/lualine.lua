@@ -1,6 +1,6 @@
 vim.pack.add({ "https://github.com/nvim-lualine/lualine.nvim" })
 
-local icons = require("config.icons")
+local icons = require("icons")
 local diagnostics = {
   "diagnostics",
   symbols = {

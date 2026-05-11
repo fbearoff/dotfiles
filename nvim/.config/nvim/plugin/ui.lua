@@ -98,7 +98,7 @@ require("scrollbar").setup({
 require("nvim-navic").setup({
   highlight = true,
   depth_limit = 5,
-  icons = require("config.icons").kinds,
+  icons = require("icons").kinds,
   safe_output = true,
   lazy_update_context = true,
   lsp = {

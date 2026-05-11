@@ -23,7 +23,7 @@ vim.g.loaded_vimballPlugin = true
 vim.g.loaded_zip = true
 vim.g.loaded_zipPlugin = true
 
-require("config.options")
-require("config.autocmds")
-require("config.keymaps")
-require("config.diagnostics")
+require("options")
+require("autocmds")
+require("keymaps")
+require("diagnostics")
