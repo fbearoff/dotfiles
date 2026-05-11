@@ -1,15 +1,14 @@
 vim.pack.add({
   "https://github.com/neovim/nvim-lspconfig",
-  "https://github.com/mason-org/mason.nvim",
-  "https://github.com/mason-org/mason-lspconfig.nvim",
 })
 
 local servers = {
   ansiblels = {},
   bashls = {},
-  dockerls = {},
   docker_compose_language_service = {},
+  dockerls = {},
   marksman = {},
+  jarl = {},
   r_language_server = {},
   lua_ls = {
     settings = {
@@ -34,9 +33,6 @@ local servers = {
   },
 }
 
--- Enable LSPs not in mason
-vim.lsp.enable({ "jarl" })
-
 -- Prefer LSP folding if client supports it
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
@@ -55,56 +51,6 @@ vim.lsp.document_color.enable(true, nil, { style = "virtual" })
 for server, settings in pairs(servers) do
   vim.lsp.config(server, settings)
   vim.lsp.enable(server)
-end
-
--- cmdline tools and lsp servers
-require("mason").setup({
-  ui = {
-    icons = {
-      package_installed = "✓",
-      package_pending = "➜",
-      package_uninstalled = "✗",
-    },
-  },
-})
-
-local tools = {
-  "air",
-  "shfmt",
-  "stylua",
-  "ansible-lint",
-  "mdformat",
-  "markdown-toc",
-  "tree-sitter-cli",
-}
-
-local mr = require("mason-registry")
-local function install_tools()
-  for _, tool in ipairs(tools) do
-    local p = mr.get_package(tool)
-    if not p:is_installed() then
-      p:install()
-    end
-  end
-end
-if mr.refresh then
-  mr.refresh(install_tools)
-else
-  install_tools()
-end
-
-vim.keymap.set("n", "<leader>cm", "<cmd>Mason<cr>", { desc = "Mason" })
-
--- get all the servers that are available through mason-lspconfig
-local have_mason, mlsp = pcall(require, "mason-lspconfig")
-
-local ensure_installed = vim.tbl_keys(servers or {})
-for server, _ in pairs(servers) do
-  ensure_installed[#ensure_installed + 1] = server
-end
-
-if have_mason then
-  mlsp.setup({ ensure_installed = servers })
 end
 
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
