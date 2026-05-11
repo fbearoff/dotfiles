@@ -1,48 +1,9 @@
 vim.pack.add({
   "https://github.com/folke/snacks.nvim",
 })
+
 require("snacks").setup({
-  bigfile = { enabled = false },
-  dashboard = {
-    preset = {
-      header = [[
-       ___       __   ___  ___  ________  _________       ___  ___  ________  ___  ___  ___
-      |\  \     |\  \|\  \|\  \|\   __  \|\___   ___\    |\  \|\  \|\   __  \|\  \|\  \|\  \
-      \ \  \    \ \  \ \  \\\  \ \  \|\  \|___ \  \_|    \ \  \\\  \ \  \|\  \ \  \ \  \ \  \
-       \ \  \  __\ \  \ \   __  \ \   __  \   \ \  \      \ \  \\\  \ \   ____\ \  \ \  \ \  \
-        \ \  \|\__\_\  \ \  \ \  \ \  \ \  \   \ \  \      \ \  \\\  \ \  \___|\ \__\ \__\ \__\
-         \ \____________\ \__\ \__\ \__\ \__\   \ \__\      \ \_______\ \__\    \|__|\|__|\|__|
-          \|____________|\|__|\|__|\|__|\|__|    \|__|       \|_______|\|__|        ___  ___  ___
-                                                                                   |\__\|\__\|\__\
-                                                                                   \|__|\|__|\|__|
-   ]],
-      keys = {
-        {
-          icon = " ",
-          key = "f",
-          desc = "Find File",
-          action = ":lua Snacks.dashboard.pick('files')",
-        },
-        { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-        { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
-        { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-        {
-          icon = " ",
-          key = "c",
-          desc = "Config",
-          action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
-        },
-        { icon = " ", key = "p", desc = "Projects", action = ":lua Snacks.dashboard.pick('projects')" },
-        { icon = " ", key = "q", desc = "Quit", action = ":qa" },
-      },
-    },
-    sections = {
-      { section = "header" },
-      { section = "keys", gap = 1, padding = 1 },
-    },
-  },
   indent = { enabled = true },
-  input = { enabled = true },
   picker = {
     win = {
       input = {
@@ -75,8 +36,6 @@ require("snacks").setup({
   },
   notifier = { timeout = 2000 },
   quickfile = { enabled = true },
-  scope = { enabled = false },
-  scroll = { enabled = false },
   statuscolumn = {
     left = { "git" },
     right = { "sign", "mark", "fold" },
@@ -89,7 +48,7 @@ require("snacks").setup({
     },
     refresh = 50,
   },
-  words = {},
+  words = { enabled = true },
   styles = {
     notification = {
       wo = {
