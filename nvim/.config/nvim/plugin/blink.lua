@@ -2,6 +2,7 @@ vim.pack.add({
   "https://github.com/saghen/blink.lib",
   "https://github.com/saghen/blink.cmp",
   "https://github.com/rafamadriz/friendly-snippets",
+  { src = "https://github.com/saghen/blink.pairs", version = vim.version.range("*") },
 })
 
 require("blink.cmp").build():wait(60000)
@@ -71,6 +72,21 @@ require("blink.cmp").setup({
           return 0
         end,
       },
+    },
+  },
+})
+
+-- autopairs
+require("blink.pairs").setup({
+  mappings = {
+    cmdline = false,
+    pairs = {
+      ["<"] = { ">", languages = { "lua" } },
+    },
+  },
+  highlights = {
+    matchparen = {
+      include_surrounding = true,
     },
   },
 })

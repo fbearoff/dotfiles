@@ -1,6 +1,5 @@
 vim.pack.add({
   "https://github.com/kylechui/nvim-surround",
-  "https://github.com/wansmer/treesj",
 })
 
 -- surround
@@ -15,15 +14,3 @@ vim.keymap.set("x", "gS", "<Plug>(nvim-surround-visual-line)", { desc = "Surroun
 vim.keymap.set("n", "ds", "<Plug>(nvim-surround-delete)", { desc = "Delete" })
 vim.keymap.set("n", "cs", "<Plug>(nvim-surround-change)", { desc = "Change" })
 vim.keymap.set("n", "cS", "<Plug>(nvim-surround-change-line)", { desc = "Change Line" })
-
--- Code block joing/splitting
--- treesj
-require("treesj").setup({ use_default_keymaps = false, max_join_length = 150 })
-
-vim.keymap.set({ "n", "x" }, "gj", function()
-  require("treesj").join()
-end, { desc = "Join Line" })
-
-vim.keymap.set({ "n", "x" }, "gk", function()
-  require("treesj").split()
-end, { desc = "Split Line" })

@@ -1,0 +1,11 @@
+vim.pack.add({ "https://github.com/gbprod/yanky.nvim" })
+
+require("yanky").setup()
+vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)", { desc = "Yanky Yank" })
+vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", { desc = "Yanky Put After" })
+vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", { desc = "Yanky Put Before" })
+vim.keymap.set("n", "]p", "<Plug>(YankyPutAfterFilter)", { desc = "Put After Filter" })
+vim.keymap.set("n", "[p", "<Plug>(YankyPutBeforeFilter)", { desc = "Put Before Filter" })
+vim.keymap.set("n", "<leader>v", function()
+  Snacks.picker.yanky()
+end, { desc = "Yank History" })
