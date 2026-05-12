@@ -41,12 +41,7 @@ require("snacks").setup({
     right = { "sign", "mark", "fold" },
     folds = {
       open = true,
-      git_hl = false,
     },
-    git = {
-      patterns = { "GitSign", "MiniDiffSign" },
-    },
-    refresh = 50,
   },
   words = { enabled = true },
   styles = {
@@ -135,9 +130,10 @@ end, { desc = "Gitbrowse" })
 vim.keymap.set("n", "<leader>.", function()
   Snacks.scratch()
 end, { desc = "Toggle Scratch Buffer" })
-vim.keymap.set({ "n", "t" }, [[<c-\>]], function()
+vim.keymap.set("n", [[<c-\>]], function()
   Snacks.terminal.toggle(nil, { cwd = vim.lsp.buf.list_workspace_folders()[1] or vim.fn.expand("%:h") })
 end, { desc = "Toggle Terminal" })
+vim.keymap.set("t", [[<c-\>]], "<cmd>close<cr>", { desc = "Toggle Terminal" })
 vim.keymap.set({ "n", "t" }, "]]", function()
   Snacks.words.jump(vim.v.count1)
 end, { desc = "Next Reference" })
@@ -152,7 +148,7 @@ Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leade
 Snacks.toggle.diagnostics():map("<leader>ud")
 Snacks.toggle.line_number():map("<leader>ul")
 Snacks.toggle
-  .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+  .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2, name = "Conceallevel" })
   :map("<leader>uc")
 Snacks.toggle.inlay_hints():map("<leader>uh")
 Snacks.toggle.indent():map("<leader>ug")
