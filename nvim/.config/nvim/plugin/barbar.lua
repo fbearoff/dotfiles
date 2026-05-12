@@ -3,17 +3,20 @@ vim.pack.add({
   "https://github.com/romgrk/barbar.nvim",
 })
 
--- Bufferline
 require("barbar").setup({
+  auto_hide = 1,
   sidebar_filetypes = {
     NvimTree = { text = "NvimTree" },
   },
   tabpages = false,
   icons = {
+    separator_at_end = false,
+    separator = { left = "│" },
     buffer_index = true,
+    button = false,
   },
-  highlight_visible = false,
-  maximum_padding = 1,
+  minimum_padding = 0,
+  maximum_padding = 0,
 })
 
 vim.keymap.set("n", "<M-,>", "<cmd>BufferPrevious<CR>", { desc = "Previous Buffer" })
