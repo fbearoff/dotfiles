@@ -1,12 +1,12 @@
 vim.pack.add({
   "https://github.com/folke/which-key.nvim",
-  "https://github.com/kawre/neotab.nvim",
 })
 
 require("which-key").setup({
   spec = {
     {
       { "<leader>b", group = "Buffer" },
+      { "<leader>c", group = "Code", mode = { "n", "v" } },
       { "<leader>f", group = "Files" },
       { "<leader>g", group = "Git", mode = { "n", "x" } },
       { "<leader>gh", group = "Hunks", mode = { "n", "x" } },
@@ -14,12 +14,10 @@ require("which-key").setup({
       { "<leader>u", group = "UI" },
       { "[", group = "Prev" },
       { "]", group = "Next" },
+      { "a", group = "Around", mode = { "o", "x" } },
       { "g", group = "Goto" },
       { "gr", group = "LSP Actions" },
-      { "a", group = "Around", mode = { "o", "x" } },
       { "i", group = "Inside", mode = { "o", "x" } },
-      { "<leader>c", group = "Code", mode = { "n", "v" } },
-      { "<localleader>m", group = "Markdown" },
     },
   },
   icons = { rules = false },
@@ -27,6 +25,5 @@ require("which-key").setup({
     marks = false,
     registers = false,
   },
-  win = { wo = { winblend = 5 } },
   show_help = false,
 })
