@@ -32,8 +32,10 @@ require("blink.cmp").setup({
     },
     ghost_text = {
       enabled = true,
+      show_with_menu = false,
     },
     menu = {
+      auto_show = false,
       draw = {
         columns = {
           { "item_idx" },
