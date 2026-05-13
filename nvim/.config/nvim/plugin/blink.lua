@@ -81,7 +81,6 @@ require("blink.cmp").setup({
 -- autopairs
 require("blink.pairs").setup({
   mappings = {
-    cmdline = false,
     pairs = {
       ["<"] = { ">", languages = { "lua" } },
     },
