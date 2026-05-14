@@ -11,12 +11,11 @@ require("gitsigns").setup({
     untracked = { text = "│" },
   },
   on_attach = function(buffer)
-    local gs = package.loaded.gitsigns
+    local gs = require("gitsigns")
 
     local function map(mode, l, r, desc)
       vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
     end
-
     -- general git
     map("n", "<leader>gb", function()
       Snacks.picker.git_branches({ cwd = vim.lsp.buf.list_workspace_folders()[1] })
@@ -81,7 +80,7 @@ require("gitsigns").setup({
       gs.nav_hunk("last")
     end, "Last Hunk")
     map("n", "[h", function()
-      gs.nav_hunk("pre")
+      gs.nav_hunk("prev")
     end, "Prev Hunk")
     map("n", "[H", function()
       gs.nav_hunk("first")

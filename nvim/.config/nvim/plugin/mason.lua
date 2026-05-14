@@ -18,7 +18,7 @@ local tools = {
   "dockerfile-language-server",
   "marksman",
   "r-languageserver",
-  "lua-language-server",
+  "emmylua_ls",
   -- tools
   "air",
   "shfmt",

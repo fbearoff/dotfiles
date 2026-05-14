@@ -1,0 +1,8 @@
+{
+  "diagnostics": {
+    "disable": [
+      "unresolved-require"
+    ],
+    "globals": ["Snacks"]
+  }
+}
