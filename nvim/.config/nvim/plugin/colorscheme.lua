@@ -14,19 +14,26 @@ require("kanagawa").setup({
     local theme = colors.theme
     return {
       -- Floats
-      NormalFloat = { bg = "none" },
-      FloatBorder = { bg = "none" },
-      FloatTitle = { bg = "none" },
+      FloatTitle = { fg = colors.fg_dark, bg = colors.sumiInk1 },
+      NormalFloat = { fg = colors.fg_dark, bg = colors.sumiInk1 },
+      FloatBorder = { fg = colors.fg_border, bg = colors.sumiInk1 },
 
-      -- for Snacks words
+      -- SnacksWords
       LspReferenceText = { bg = "none", underline = true },
       LspReferenceWrite = { bg = "none", underline = true },
+
+      -- SnacksPicker
+      SnacksPickerListCursorLine = { link = "CursorLine" },
 
       -- Popup menu
       Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
       PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
       PmenuSbar = { bg = theme.ui.bg_m1 },
       PmenuThumb = { bg = theme.ui.bg_p2 },
+
+      -- blink.cmp
+      BlinkCmpLabelDetail = { link = "Pmenu" },
+      BlinkCmpSource = { link = "Pmenu" },
 
       -- blink.pairs
       BlinkPairsOrange = { fg = colors.palette.surimiOrange },
