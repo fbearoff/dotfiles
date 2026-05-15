@@ -1,5 +1,4 @@
 *.swp
-nvim/.config/nvim/lazy-lock.json
 radian/.config/radian/history
 lazygit/.config/lazygit/state.yml
 lftp/.local/share/lftp
