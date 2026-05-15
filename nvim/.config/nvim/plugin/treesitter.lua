@@ -128,13 +128,6 @@ require("nvim-treesitter-textobjects").setup({
   },
 })
 
-vim.keymap.set({ "x", "o" }, "aq", function()
-  require("nvim-treesitter-textobjects.select").select_textobject("@string.outer")
-end, { desc = "Quote" })
-vim.keymap.set({ "x", "o" }, "iq", function()
-  require("nvim-treesitter-textobjects.select").select_textobject("@string.inner")
-end, { desc = "Quote" })
-
 vim.keymap.set({ "x", "o" }, "af", function()
   require("nvim-treesitter-textobjects.select").select_textobject("@function.outer")
 end, { desc = "Function" })
