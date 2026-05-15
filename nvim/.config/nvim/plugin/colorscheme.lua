@@ -2,21 +2,9 @@ vim.pack.add({
   "https://github.com/rebelot/kanagawa.nvim",
 })
 require("kanagawa").setup({
-  undercurl = true, -- enable undercurls
-  commentStyle = { italic = false },
-  functionStyle = {},
-  keywordStyle = { italic = true },
-  statementStyle = { bold = true },
-  typeStyle = {},
-  transparent = false, -- do not set background color
-  dimInactive = true, -- dim inactive window `:h hl-NormalNC`
-  terminalColors = true, -- define vim.g.terminal_color_{0,17}
-  colors = { -- add/modify theme and palette colors
-    palette = {},
+  dimInactive = true,
+  colors = {
     theme = {
-      wave = {},
-      lotus = {},
-      dragon = {},
       all = {
         ui = { bg_gutter = "none" },
       },
@@ -25,6 +13,11 @@ require("kanagawa").setup({
   overrides = function(colors)
     local theme = colors.theme
     return {
+      -- Floats
+      NormalFloat = { bg = "none" },
+      FloatBorder = { bg = "none" },
+      FloatTitle = { bg = "none" },
+
       -- for Snacks words
       LspReferenceText = { bg = "none", underline = true },
       LspReferenceWrite = { bg = "none", underline = true },
@@ -43,11 +36,6 @@ require("kanagawa").setup({
       BlinkPairsMatchParen = { fg = colors.palette.surimiOrange, bold = true },
     }
   end,
-  theme = "wave", -- Load "wave" theme when 'background' option is not set
-  background = { -- map the value of 'background' option to a theme
-    dark = "wave", -- try "dragon" !
-    light = "lotus",
-  },
 })
 
 vim.cmd("colorscheme kanagawa")

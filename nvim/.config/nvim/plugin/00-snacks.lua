@@ -50,12 +50,6 @@ require("snacks").setup({
         winblend = 10,
       },
     },
-    -- used by pickers
-    float = {
-      wo = {
-        winblend = 10,
-      },
-    },
   },
 })
 -- Pickers
