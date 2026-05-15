@@ -16,23 +16,19 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
   end,
 })
 
--- Show cursor line only in active window
-vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
+-- show cursorline only in active window enable
+vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+  group = vim.api.nvim_create_augroup("active_cursorline", { clear = true }),
   callback = function()
-    local ok, cl = pcall(vim.api.nvim_win_get_var, 0, "auto-cursorline")
-    if ok and cl then
-      vim.wo.cursorline = true
-      vim.api.nvim_win_del_var(0, "auto-cursorline")
-    end
+    vim.opt_local.cursorline = true
   end,
 })
-vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
+
+-- show cursorline only in active window disable
+vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
+  group = "active_cursorline",
   callback = function()
-    local cl = vim.wo.cursorline
-    if cl then
-      vim.api.nvim_win_set_var(0, "auto-cursorline", cl)
-      vim.wo.cursorline = false
-    end
+    vim.opt_local.cursorline = false
   end,
 })
 
@@ -43,7 +39,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     if event.match:match("^%w%w+://") then
       return
     end
-    ---@diagnostic disable-next-line: undefined-field
     local file = vim.uv.fs_realpath(event.match) or event.match
 
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
