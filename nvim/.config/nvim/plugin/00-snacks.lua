@@ -146,3 +146,15 @@ Snacks.toggle
   :map("<leader>uc")
 Snacks.toggle.inlay_hints():map("<leader>uh")
 Snacks.toggle.indent():map("<leader>ug")
+Snacks.toggle
+  .new({
+    id = "document_color",
+    name = "Document Color",
+    get = function()
+      return vim.lsp.document_color.is_enabled({ bufnr = 0 })
+    end,
+    set = function(state)
+      vim.lsp.document_color.enable(state, { bufnr = 0 })
+    end,
+  })
+  :map("<leader>uW")
