@@ -98,6 +98,7 @@ end, { desc = "Select child treesitter node or inner incremental lsp selections"
 
 -- View Code Tree
 vim.keymap.set("n", "<leader>si", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
+
 -- Show code context as top line
 local tsc = require("treesitter-context")
 tsc.setup({
@@ -117,11 +118,7 @@ Snacks.toggle({
   end,
 }):map("<leader>uT")
 
-vim.keymap.set("n", "gC", function()
-  require("treesitter-context").go_to_context()
-end, { desc = "Goto Context" })
-
--- extended textobjects
+-- treesitter-textobjects
 vim.g.no_plugin_maps = true
 require("nvim-treesitter-textobjects").setup({
   select = {
@@ -141,9 +138,13 @@ end, { desc = "Comment" })
 vim.keymap.set({ "x", "o" }, "aC", function()
   require("nvim-treesitter-textobjects.select").select_textobject("@comment.outer")
 end, { desc = "Comment" })
-vim.keymap.set({ "x", "o" }, "#", function()
-  require("nvim-treesitter-textobjects.select").select_textobject("@number.inner")
-end, { desc = "Number" })
+vim.keymap.set({ "x", "o" }, "aA", function()
+  require("nvim-treesitter-textobjects.select").select_textobject("@assignment.outer")
+end, { desc = "Assignment" })
+vim.keymap.set({ "x", "o" }, "iA", function()
+  require("nvim-treesitter-textobjects.select").select_textobject("@assignment.inner")
+end, { desc = "Assignment" })
+
 -- next/previous textobject
 vim.keymap.set("n", "]C", function()
   require("nvim-treesitter-textobjects.move").goto_next_start("@comment.outer")
@@ -157,6 +158,8 @@ end, { desc = "Next Number" })
 vim.keymap.set("n", "[#", function()
   require("nvim-treesitter-textobjects.move").goto_previous_start("@number.inner")
 end, { desc = "Previous Number" })
+
+-- swap
 vim.keymap.set("n", "<C-S-l>", function()
   require("nvim-treesitter-textobjects.swap").swap_next("@parameter.inner")
 end, { desc = "Swap Next Sibling" })
