@@ -10,6 +10,7 @@ local servers = {
   marksman = {},
   jarl = {},
   r_language_server = {},
+  openscad_lsp = {},
   emmylua_ls = {
     settings = {
       Lua = {

@@ -13,11 +13,18 @@ require("conform").setup({
     end
     return { timeout_ms = 500, lsp_fallback = true }
   end,
+  formatters = {
+    topiary = {
+      command = "topiary format",
+      args = { "$FILENAME" },
+    },
+  },
   formatters_by_ft = {
     lua = { "stylua" },
     r = { "air" },
     sh = { "shfmt" },
     markdown = { "mdformat", "markdown-toc" },
+    openscad = { "topiary" },
     ["_"] = { "trim_whitespace", "trim_newlines" },
   },
 })
