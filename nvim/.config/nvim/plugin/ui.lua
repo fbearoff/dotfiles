@@ -3,7 +3,6 @@ vim.pack.add({
   "https://github.com/petertriho/nvim-scrollbar",
   "https://github.com/SmiteshP/nvim-navic",
   "https://github.com/kosayoda/nvim-lightbulb",
-  "https://github.com/tzachar/highlight-undo.nvim",
 })
 
 -- use new ui2 interface
@@ -119,8 +118,3 @@ require("nvim-lightbulb").setup({
     enabled = true,
   },
 })
-
--- Highlight undo
-vim.schedule(function()
-  require("highlight-undo").setup()
-end)
