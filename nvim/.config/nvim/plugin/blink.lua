@@ -1,11 +1,12 @@
 vim.pack.add({
   "https://github.com/saghen/blink.lib",
-  "https://github.com/saghen/blink.cmp",
+  { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
   "https://github.com/rafamadriz/friendly-snippets",
   { src = "https://github.com/saghen/blink.pairs", version = vim.version.range("*") },
 })
 
-require("blink.cmp").build():wait(60000)
+-- needed for blink 2.0
+-- require("blink.cmp").build():wait(60000)
 require("blink.cmp").setup({
   signature = { enabled = true },
   keymap = {
@@ -54,6 +55,14 @@ require("blink.cmp").setup({
     },
   },
   cmdline = {
+    -- turn off blink for / and ? search
+    sources = function()
+      local type = vim.fn.getcmdtype()
+      if type == ":" or type == "@" then
+        return { "cmdline", "buffer" }
+      end
+      return {}
+    end,
     keymap = {
       preset = "inherit",
       ["<Tab>"] = { "show_and_insert_or_accept_single", "select_next" },
