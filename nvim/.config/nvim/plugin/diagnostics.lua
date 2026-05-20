@@ -1,6 +1,6 @@
 local icons = require("icons")
 
--- diagnostics
+---@diagnostic disable-next-line: param-type-mismatch
 vim.diagnostic.config({
   severity_sort = true,
   signs = {

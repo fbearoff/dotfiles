@@ -22,8 +22,3 @@ vim.g.loaded_vimball = true
 vim.g.loaded_vimballPlugin = true
 vim.g.loaded_zip = true
 vim.g.loaded_zipPlugin = true
-
-require("options")
-require("autocmds")
-require("keymaps")
-require("diagnostics")
