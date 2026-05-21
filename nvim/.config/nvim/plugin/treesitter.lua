@@ -126,24 +126,7 @@ require("nvim-treesitter-textobjects").setup({
   },
 })
 
-vim.keymap.set({ "x", "o" }, "af", function()
-  require("nvim-treesitter-textobjects.select").select_textobject("@function.outer")
-end, { desc = "Function" })
-vim.keymap.set({ "x", "o" }, "if", function()
-  require("nvim-treesitter-textobjects.select").select_textobject("@function.inner")
-end, { desc = "Function" })
-vim.keymap.set({ "x", "o" }, "iC", function()
-  require("nvim-treesitter-textobjects.select").select_textobject("@comment.inner")
-end, { desc = "Comment" })
-vim.keymap.set({ "x", "o" }, "aC", function()
-  require("nvim-treesitter-textobjects.select").select_textobject("@comment.outer")
-end, { desc = "Comment" })
-vim.keymap.set({ "x", "o" }, "aA", function()
-  require("nvim-treesitter-textobjects.select").select_textobject("@assignment.outer")
-end, { desc = "Assignment" })
-vim.keymap.set({ "x", "o" }, "iA", function()
-  require("nvim-treesitter-textobjects.select").select_textobject("@assignment.inner")
-end, { desc = "Assignment" })
+-- select is handled by mini.ai
 
 -- next/previous textobject
 vim.keymap.set("n", "]C", function()
