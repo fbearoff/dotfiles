@@ -1,18 +1,17 @@
 ; comments
 (line_comment) @comment.outer
 
-; function
+(block_comment) @comment.outer
+
+; functions
 (function_item
   "function"
-  _+ @function.inner
-) @function.outer
+  _+ @function.inner) @function.outer
 
-; module
 (module_item
-  body: (_)+ @function.inner
-) @function.outer
+  body: (_)+ @function.inner) @function.outer
 
-; parameter
+; parameters
 ((parameter
   .
   (_) @parameter.inner )
@@ -25,12 +24,35 @@
   .
   ","? ))
 
- (arguments
+(arguments
   ((_) @parameter.inner
   .
   ","?))
 
-; assignment
+; assignments
+(assignment) @assignment.outer
+
 (assignment
-  name: (_) @assignment.lhs
-  value: (_) @assignment.inner @assignment.rhs) @assignment.outer
+  value: (_) @assignment.inner @assignment.rhs)
+
+(assignment
+  name: (_) @assignment.inner @assignment.lhs)
+
+; loops
+(for_block
+  body: (
+    (_)+ @loop.inner)) @loop.outer
+
+(intersection_for_block
+  body: (
+    (_)+ @loop.inner)) @loop.outer
+
+; conditionals
+(if_block
+ condition: (_) @conditional.inner) @conditional.outer
+
+(if_block
+  consequence: (_) @conditional.inner) @conditional.outer
+
+(if_block
+  alternative: (_)? @conditional.inner) @conditional.outer
