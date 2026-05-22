@@ -3,7 +3,8 @@
   "contributes": {
     "snippets": [
       { "language": [ "markdown" ], "path": "./markdown.json" },
-      { "language": [ "json" ], "path": "./json.json" }
+      { "language": [ "json" ], "path": "./json.json" },
+      { "language": [ "global", "all" ], "path": "./global.json" }
     ]
   }
 }

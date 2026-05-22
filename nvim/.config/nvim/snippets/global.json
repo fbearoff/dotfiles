@@ -1,0 +1,7 @@
+{
+  "vimft": {
+    "body":["$LINE_COMMENT vim:ft="],
+    "description": "Add vim ft comment",
+    "prefix": "vimft"
+  }
+}
