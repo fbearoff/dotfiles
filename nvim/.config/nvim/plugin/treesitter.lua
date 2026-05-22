@@ -18,7 +18,6 @@ local parsers = {
   "luap",
   "markdown",
   "markdown_inline",
-  "openscad",
   "python",
   "query",
   "r",

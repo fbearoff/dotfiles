@@ -15,14 +15,15 @@ require("conform").setup({
   end,
   formatters = {
     topiary = {
-      command = "topiary format",
-      args = { "$FILENAME" },
+      command = "topiary",
+      args = { "format", "$FILENAME" },
     },
   },
   formatters_by_ft = {
     lua = { "stylua" },
     r = { "air" },
     sh = { "shfmt" },
+    zsh = { "shfmt" },
     markdown = { "mdformat", "markdown-toc" },
     openscad = { "topiary" },
     ["_"] = { "trim_whitespace", "trim_newlines" },

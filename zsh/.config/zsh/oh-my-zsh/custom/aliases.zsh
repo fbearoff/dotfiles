@@ -85,9 +85,9 @@ alias -s md=glow
 alias sp="pacman -Qeq > $HOME/.dotfiles/packages"
 
 # bat
-if (( $+commands[bat] )); then
+if (($+commands[bat])); then
   alias cat='bat'
-elif (( $+commands[batcat] )); then
+elif (($+commands[batcat])); then
   alias cat='batcat'
 fi
 
@@ -107,7 +107,7 @@ alias ba="rsync ~/aur hosting:~/backup/ -rlv --info=progress2"
 alias ldh="DOCKER_HOST=ssh://hosting lazydocker"
 
 # multiqc docker
-alias multiqc="docker run -t -v `pwd`:`pwd` -w `pwd` multiqc/multiqc multiqc \."
+alias multiqc="docker run -t -v $(pwd):$(pwd) -w $(pwd) multiqc/multiqc multiqc \."
 
 # tmux
 alias ta="tmux a"

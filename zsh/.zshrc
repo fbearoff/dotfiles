@@ -11,8 +11,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 if [[ -x "$(command -v docker)" ]]; then
   plugins=(
-  docker
-  docker-compose
+    docker
+    docker-compose
   )
 fi
 if [[ $(uname -r) =~ (m|M)icrosoft ]]; then
