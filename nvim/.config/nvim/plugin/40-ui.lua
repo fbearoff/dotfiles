@@ -1,5 +1,4 @@
 vim.pack.add({
-  "https://github.com/smjonas/inc-rename.nvim",
   "https://github.com/kosayoda/nvim-lightbulb",
   "https://github.com/nvim-mini/mini.icons",
 })
@@ -50,15 +49,6 @@ ui2.enable({
 -- icon set
 require("mini.icons").setup()
 require("mini.icons").mock_nvim_web_devicons()
-
--- UI to rename items incrementally
-require("inc_rename").setup()
-vim.keymap.set("n", "<leader>cr", function()
-  return ":IncRename " .. vim.fn.expand("<cword>")
-end, { expr = true, desc = "Rename" })
-vim.keymap.set("n", "grn", function()
-  return ":IncRename " .. vim.fn.expand("<cword>")
-end, { expr = true, desc = "Rename" })
 
 -- Show available code actions as lightbulb character
 require("nvim-lightbulb").setup({

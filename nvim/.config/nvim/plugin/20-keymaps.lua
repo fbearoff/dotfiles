@@ -31,9 +31,6 @@ vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increa
 vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Change word with <c-c>
-vim.keymap.set("n", "<C-c>", "<cmd>normal! ciw<cr>a", { desc = "Change Inner Word" })
-
 -- H and L go to begining/end of line
 vim.keymap.set("n", "H", "^", { desc = "Go to Beginning of Line" })
 vim.keymap.set("n", "L", "$", { desc = "Go to End of Line" })
@@ -60,6 +57,9 @@ end, { expr = true, desc = "Move Selected Lines Down" })
 vim.keymap.set("v", "<M-k>", function()
   return ":m '<-" .. vim.v.count1 + 1 .. "<CR>gv=gv"
 end, { expr = true, desc = "Move Selected Lines Down" })
+
+-- Substitute word under cursor
+vim.keymap.set("n", "gsw", ":%s/<C-r><C-w>//g<left><left>", { desc = "Substitute Word under Cursor" })
 
 -- Reselect latest changed, put, or yanked text
 vim.keymap.set(
@@ -92,6 +92,7 @@ vim.keymap.set("v", ">", ">gv^", { desc = "Shift Selection Right" })
 -- Better paste
 vim.keymap.set("v", "p", '"_dP', { desc = "Paste Over Selection" })
 
+-- Remap marks operator
 vim.keymap.set("n", "gm", "m", { desc = "Set Mark" })
 
 -- Send deletions to blackhole register

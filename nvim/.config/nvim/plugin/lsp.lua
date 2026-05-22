@@ -55,6 +55,7 @@ for server, settings in pairs(servers) do
 end
 
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+vim.keymap.set("n", "grn", vim.lsp.buf.rename, { desc = "Rename" })
 vim.keymap.set("n", "grx", vim.lsp.codelens.run, { desc = "Run Codelens" })
 vim.keymap.set("n", "<leader>cl", "<cmd>checkhealth vim.lsp<cr>", { desc = "Lsp Info" })
 vim.keymap.set("n", "<leader>cD", function()
