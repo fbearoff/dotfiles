@@ -5,6 +5,21 @@ vim.pack.add({
   { src = "https://github.com/saghen/blink.pairs", version = vim.version.range("*") },
 })
 
+-- use mini.icons for kinds
+local get_mini_icon = function(ctx)
+  if vim.tbl_contains({ "Path" }, ctx.source_name) then
+    local is_unknown_type =
+      vim.tbl_contains({ "link", "socket", "fifo", "char", "block", "unknown" }, ctx.item.data.type)
+    local mini_icon, mini_hl, _ =
+      require("mini.icons").get(is_unknown_type and "os" or ctx.item.data.type, is_unknown_type and "" or ctx.label)
+    if mini_icon then
+      return mini_icon, mini_hl
+    end
+  end
+  local mini_icon, mini_hl, _ = require("mini.icons").get("lsp", ctx.kind)
+  return mini_icon, mini_hl
+end
+
 -- needed for blink 2.0
 -- require("blink.cmp").build():wait(60000)
 require("blink.cmp").setup({
@@ -45,6 +60,23 @@ require("blink.cmp").setup({
           { "source_name" },
         },
         components = {
+          kind_icon = {
+            text = function(ctx)
+              local mini_icon, _mini_hl = get_mini_icon(ctx)
+              return mini_icon
+            end,
+            highlight = function(ctx)
+              local _mini_icon, mini_hl = get_mini_icon(ctx)
+              return mini_hl
+            end,
+          },
+          kind = {
+            --  use highlights from mini.icons
+            highlight = function(ctx)
+              local _mini_icon, mini_hl = get_mini_icon(ctx)
+              return mini_hl
+            end,
+          },
           item_idx = {
             text = function(ctx)
               return ctx.idx == 10 and "0" or ctx.idx >= 10 and " " or tostring(ctx.idx)
