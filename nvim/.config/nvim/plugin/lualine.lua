@@ -46,12 +46,6 @@ local macro = {
   draw_empty = false,
 }
 
-local navic = {
-  "navic",
-  color_correction = "static",
-  padding = { left = 1, right = 0 },
-}
-
 local lightbulb = {
   function()
     return require("nvim-lightbulb").get_status_text()
@@ -71,7 +65,6 @@ require("lualine").setup({
       diagnostics,
       lightbulb,
       filename,
-      navic,
     },
     lualine_x = {
       macro,

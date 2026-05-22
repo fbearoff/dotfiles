@@ -1,7 +1,5 @@
 vim.pack.add({
   "https://github.com/smjonas/inc-rename.nvim",
-  "https://github.com/petertriho/nvim-scrollbar",
-  "https://github.com/SmiteshP/nvim-navic",
   "https://github.com/kosayoda/nvim-lightbulb",
 })
 
@@ -72,38 +70,6 @@ end, { expr = true, desc = "Rename" })
 vim.keymap.set("n", "grn", function()
   return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true, desc = "Rename" })
-
--- Scrollbar
-require("scrollbar").setup({
-  show_in_active_only = true,
-  marks = {
-    GitAdd = {
-      text = "│",
-    },
-    GitChange = {
-      text = "│",
-    },
-  },
-  excluded_buftypes = {
-    "terminal",
-    "nofile",
-  },
-  handlers = {
-    gitsigns = true,
-  },
-})
-
--- Show code context
-require("nvim-navic").setup({
-  highlight = true,
-  depth_limit = 5,
-  icons = require("icons").kinds,
-  safe_output = true,
-  lazy_update_context = true,
-  lsp = {
-    auto_attach = true,
-  },
-})
 
 -- Show available code actions as lightbulb character
 require("nvim-lightbulb").setup({
