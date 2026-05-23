@@ -17,6 +17,7 @@ require("which-key").setup({
       { "a", group = "Around", mode = { "o", "x" } },
       { "g", group = "Goto" },
       { "gr", group = "LSP Actions" },
+      { "gs", group = "Surround & Custom Maps" },
       { "i", group = "Inside", mode = { "o", "x" } },
     },
   },

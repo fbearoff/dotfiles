@@ -60,6 +60,7 @@ end, { expr = true, desc = "Move Selected Lines Down" })
 
 -- Substitute word under cursor
 vim.keymap.set("n", "gsw", ":%s/<C-r><C-w>//g<left><left>", { desc = "Substitute Word under Cursor" })
+vim.keymap.set("n", "gsW", ":s/<C-r><C-w>//g<left><left>", { desc = "Substitute Word under Cursor (Current Line)" })
 
 -- Reselect latest changed, put, or yanked text
 vim.keymap.set(
