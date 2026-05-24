@@ -43,15 +43,13 @@ require("blink.cmp").setup({
   },
   completion = {
     documentation = { auto_show = true },
-    trigger = {
-      show_on_trigger_character = true,
-    },
     ghost_text = {
       enabled = true,
       show_with_menu = false,
     },
     menu = {
       auto_show = false,
+      auto_show_delay_ms = 500,
       draw = {
         columns = {
           { "item_idx" },
@@ -87,32 +85,16 @@ require("blink.cmp").setup({
     },
   },
   cmdline = {
-    -- turn off blink for / and ? search
-    sources = function()
-      local type = vim.fn.getcmdtype()
-      if type == ":" or type == "@" then
-        return { "cmdline", "buffer" }
-      end
-      return {}
-    end,
     keymap = {
       preset = "inherit",
       ["<Tab>"] = { "show_and_insert_or_accept_single", "select_next" },
       ["<S-Tab>"] = { "show_and_insert_or_accept_single", "select_prev" },
       ["<CR>"] = { "accept", "fallback" },
     },
-    completion = { menu = { auto_show = true } },
-  },
-  sources = {
-    default = { "lsp", "path", "snippets", "buffer" },
-    providers = {
-      cmdline = {
-        min_keyword_length = function(ctx)
-          -- when typing a command, only show when the keyword is 3 characters or longer
-          if ctx.mode == "cmdline" and string.find(ctx.line, " ") == nil then
-            return 3
-          end
-          return 0
+    completion = {
+      menu = {
+        auto_show = function()
+          return vim.fn.getcmdtype() == ":"
         end,
       },
     },
