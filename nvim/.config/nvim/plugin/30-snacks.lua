@@ -78,7 +78,11 @@ vim.keymap.set("n", "<leader>fF", function()
   Snacks.picker.files({ cwd = vim.fn.expand("%:h") })
 end, { desc = "Find Files (CWD)" })
 vim.keymap.set("n", "<leader>fg", function()
-  Snacks.picker.grep({ hidden = true, layout = { preset = "ivy" } })
+  Snacks.picker.grep({
+    hidden = true,
+    layout = { preset = "ivy" },
+    cwd = vim.lsp.buf.list_workspace_folders()[1] or vim.fn.expand("%:h"),
+  })
 end, { desc = "Grep" })
 vim.keymap.set("n", "<leader>fr", function()
   Snacks.picker.recent()
