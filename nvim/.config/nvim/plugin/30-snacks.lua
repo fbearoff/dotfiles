@@ -52,8 +52,12 @@ require("snacks").setup({
     },
   },
 })
+
 -- Pickers
 -- core
+vim.keymap.set("n", "<leader>e", function()
+  Snacks.explorer({ cwd = vim.lsp.buf.list_workspace_folders()[1] })
+end, { desc = "File Explorer" })
 vim.keymap.set("n", "<leader>/", function()
   Snacks.picker.smart()
 end, { desc = "Smart Find Files" })

@@ -5,7 +5,7 @@ vim.pack.add({
 require("barbar").setup({
   auto_hide = 1,
   sidebar_filetypes = {
-    NvimTree = { text = "NvimTree" },
+    snacks_picker_list = true,
   },
   tabpages = false,
   icons = {
