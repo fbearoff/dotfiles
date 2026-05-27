@@ -9,3 +9,5 @@ vim.api.nvim_create_autocmd("User", {
     }
   end,
 })
+
+vim.keymap.set("n", "<localleader>o", "<cmd>!wsl-open %<cr>", { desc = "Open in OpenSCAD", buf = 0 })
