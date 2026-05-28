@@ -56,3 +56,20 @@
 
 (if_block
   alternative: (_)? @conditional.inner) @conditional.outer
+
+; blocks
+(let_block
+  body: (_) @block.inner) @block.outer
+
+; calls
+(module_call
+  (arguments
+    "("
+    .
+    (
+     (_)
+     ","?
+     )+ @call.inner
+    .
+    ")")
+  ) @call.outer

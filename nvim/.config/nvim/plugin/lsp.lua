@@ -11,6 +11,7 @@ local servers = {
   jarl = {},
   r_language_server = {},
   openscad_lsp = {},
+  ts_query_ls = {},
   emmylua_ls = {
     settings = {
       Lua = {
