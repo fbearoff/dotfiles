@@ -19,6 +19,7 @@ local tools = {
   "marksman",
   "r-languageserver",
   "emmylua_ls",
+  "ts_query_ls",
   -- tools
   "air",
   "shfmt",
