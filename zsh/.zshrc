@@ -5,25 +5,19 @@ ZSH_THEME="bira"
 
 # update automatically without asking
 zstyle ':omz:update' mode auto
-ENABLE_CORRECTION="true"
-COMPLETION_WAITING_DOTS="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+zstyle ':omz:update' verbose silent # only errors
+COMPLETION_WAITING_DOTS=true
+DISABLE_UNTRACKED_FILES_DIRTY=true
+ZSH_CUSTOM_AUTOUPDATE_QUIET=true
 
-if [[ -x "$(command -v docker)" ]]; then
-  plugins=(
-    docker
-    docker-compose
-  )
-fi
 if [[ $(uname -r) =~ (m|M)icrosoft ]]; then
-  plugins+=(ssh-agent)
+  plugins=(ssh-agent)
 fi
 if [[ $HOST = (neuron|sd-55327) ]]; then
   plugins+=(ufw)
 fi
 plugins+=(
   autoupdate
-  zsh-autopair
   zsh-syntax-highlighting
 )
 

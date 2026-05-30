@@ -34,12 +34,6 @@ path() {
            print }"
 }
 
-# get number of files opened
-function lfo() {
-  nums=$(lsof | awk '{ print $2 " " $1; }' | sort -rn | uniq -c | sort -rn | head -20 | awk '{ sub(/^[ \t]+/, ""); print }')
-  echo "# PID Process\n$nums"
-}
-
 # find binary
 function fb() {
   which "$1"

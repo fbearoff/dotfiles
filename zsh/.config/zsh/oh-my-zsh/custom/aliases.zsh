@@ -42,21 +42,13 @@ alias df="df -h"     # human-readable sizes
 alias free="free -h" # show sizes in MB
 alias du="du -h"     # human readable sizes
 
-# get top process eating memory
-alias psmem="ps auxf | sort -nr -k 4 | head -5"
-
-# get top process eating cpu ##
-alias pscpu="ps auxf | sort -nr -k 3 | head -5"
-
 # R
 alias R="R --quiet --no-save"
-alias radian="radian --quiet"
 
 # music management
 alias bm="beet ls -a missing:1.. -f '$year-$albumartist-$album https://musicbrainz.org/release-group/$mb_releasegroupid $missing'"
 alias sm="rsync -v -rltO --chmod=a=rw,Da+x --delete --exclude='*.jpg' --exclude='*.ini' --progress \"/mnt/d/Music/\" \"omv:$HOME/media/music\""
 alias bum="rsync -v -rlt --chmod=a=rw,Da+x --delete --exclude='*.jpg' --exclude='*.ini' --progress \"/mnt/d/Music/\" \"/mnt/e/Music/\""
-alias mi="mediainfo"
 alias gm="cd ~/downloads/music && lftp hosting -e 'cd red'"
 
 # git
@@ -91,17 +83,9 @@ elif (($+commands[batcat])); then
   alias cat='batcat'
 fi
 
-# rclone
-alias rclone="nocorrect rclone"
-alias rcc="rclone mount cloud:/files/ $HOME/cloud --daemon"
-alias rccd="cd $HOME && fusermount -u $HOME/cloud"
-
 # wsl
 alias sw="/mnt/c/Windows/System32/wsl.exe --shutdown"
 alias uw="/mnt/c/Windows/System32/wsl.exe --update"
-
-# backup AUR files
-alias ba="rsync ~/aur hosting:~/backup/ -rlv --info=progress2"
 
 # docker
 alias ldh="DOCKER_HOST=ssh://hosting lazydocker"
