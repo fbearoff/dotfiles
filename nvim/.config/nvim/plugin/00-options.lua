@@ -20,7 +20,7 @@ vim.o.numberwidth = 2 -- set number column width to 2 {default 4}
 vim.o.pumheight = 10 -- pop up menu height
 vim.o.relativenumber = true -- set relative numbered lines
 vim.o.ruler = false
-vim.o.scrolloff = 8 -- lines of ceontext
+vim.o.scrolloff = 8 -- lines of context
 vim.o.shiftround = true -- round indent
 vim.o.shiftwidth = 2 -- the number of spaces inserted for each indentation
 vim.o.showmatch = true -- show matching paren on creation
@@ -59,7 +59,7 @@ vim.opt.fillchars = {
   foldsep = " ",
 }
 
-vim.opt.completeopt = { "menu", "menuone", "noselect" } -- mostly just for cmp
+vim.opt.completeopt = { "menu", "menuone", "noselect" } -- native completion menu options
 vim.opt.shortmess:append({ W = true, I = true, c = true })
 vim.opt.iskeyword:append("-") -- hyphenated words recognized by searches
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode.

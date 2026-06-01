@@ -1,5 +1,4 @@
 -- Insert --
-vim.keymap.set("i", "<M-BS>", "<Esc>cvb", { desc = "Delete Word Before Cursor" })
 -- Add undo break-points
 vim.keymap.set("i", ",", ",<c-g>u")
 vim.keymap.set("i", ".", ".<c-g>u")
@@ -18,8 +17,7 @@ vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "Go to Lower Window" })
 vim.keymap.set("n", "<leader>k", "<C-w>k", { desc = "Go to Upper Window" })
 vim.keymap.set("n", "<leader>l", "<C-w>l", { desc = "Go to Right Window" })
 
-vim.keymap.set("n", "<s-tab>", "<cmd>bn<CR>", { desc = "Buffer Next" })
-vim.keymap.set("n", "<tab>", "<C-w>w", { desc = "Next window" })
+vim.keymap.set("n", "<tab>", "<cmd>bn<CR>", { desc = "Buffer Next" })
 
 -- Resize window using <ctrl> arrow keys
 vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
@@ -61,14 +59,6 @@ end, { expr = true, desc = "Move Selected Lines Down" })
 -- Substitute word under cursor
 vim.keymap.set("n", "gsw", ":%s/<C-r><C-w>//g<left><left>", { desc = "Substitute Word under Cursor" })
 vim.keymap.set("n", "gsW", ":s/<C-r><C-w>//g<left><left>", { desc = "Substitute Word under Cursor (Current Line)" })
-
--- Reselect latest changed, put, or yanked text
-vim.keymap.set(
-  "n",
-  "gV",
-  '"`[" . strpart(getregtype(), 0, 1) . "`]"',
-  { expr = true, desc = "Visually Select Changed Text" }
-)
 
 -- Correct latest misspelled word by taking first suggestion
 vim.keymap.set("n", "<C-z>", "[s1z=", { desc = "Correct Latest Misspelled Word" })
