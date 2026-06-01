@@ -1,7 +1,19 @@
 vim.pack.add({ "https://github.com/folke/flash.nvim" })
-require("flash").setup()
+require("flash").setup({
+  -- double space for EOL
+  search = {
+    mode = function(str)
+      if str:find("^  $") then
+        return "$"
+      elseif str:find("^   +$") then
+        return str:sub(1, -2)
+      end
+      return str
+    end,
+  },
+})
 
--- turn off in filetyps and commandline
+-- turn off in filetypes and command line
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "qf", "nvim-undotree" },
   callback = function()
