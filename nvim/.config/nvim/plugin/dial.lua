@@ -3,7 +3,7 @@ vim.pack.add({ "https://github.com/monaqa/dial.nvim" })
 local augend = require("dial.augend")
 require("dial.config").augends:register_group({
   default = {
-    augend.integer.alias.decimal,
+    augend.integer.alias.decimal_int,
     augend.integer.alias.hex,
     augend.date.alias["%Y/%m/%d"],
     augend.semver.alias.semver,
