@@ -14,7 +14,7 @@ local servers = {
   ts_query_ls = {},
   emmylua_ls = {
     settings = {
-      Lua = {
+      emmylua = {
         runtime = {
           version = "LuaJIT",
         },
