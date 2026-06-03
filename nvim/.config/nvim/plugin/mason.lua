@@ -16,17 +16,17 @@ local tools = {
   "bash-language-server",
   "docker-compose-language-service",
   "dockerfile-language-server",
+  "emmylua_ls",
   "marksman",
   "r-languageserver",
-  "emmylua_ls",
   "ts_query_ls",
   -- tools
   "air",
+  "ansible-lint",
+  "markdown-toc",
+  "mdformat",
   "shfmt",
   "stylua",
-  "ansible-lint",
-  "mdformat",
-  "markdown-toc",
   "tree-sitter-cli",
 }
 

@@ -26,6 +26,7 @@ require("conform").setup({
     zsh = { "shfmt" },
     markdown = { "mdformat", "markdown-toc" },
     openscad = { "topiary" },
+    json = { "jq" },
     ["_"] = { "trim_whitespace", "trim_newlines" },
   },
 })
