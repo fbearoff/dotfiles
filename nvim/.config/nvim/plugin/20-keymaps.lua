@@ -4,12 +4,6 @@ vim.keymap.set("i", ",", ",<c-g>u")
 vim.keymap.set("i", ".", ".<c-g>u")
 vim.keymap.set("i", ";", ";<c-g>u")
 
--- Home row navigation
-vim.keymap.set("i", "<C-h>", "<left>", { desc = "Move Cursor Left" })
-vim.keymap.set("i", "<C-l>", "<right>", { desc = "Move Cursor Right" })
-vim.keymap.set("i", "<C-j>", "<down>", { desc = "Move Cursor Down" })
-vim.keymap.set("i", "<C-k>", "<up>", { desc = "Move Cursor Up" })
-
 -- Normal --
 -- movement between buffers
 vim.keymap.set("n", "<leader>h", "<C-w>h", { desc = "Go to Left Window" })
