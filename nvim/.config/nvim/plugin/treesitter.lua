@@ -80,20 +80,12 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Incremental Selection
 vim.keymap.set({ "x", "o" }, "aa", function()
-  if vim.treesitter.get_parser(nil, nil, { error = false }) then
-    require("vim.treesitter._select").select_parent(vim.v.count1)
-  else
-    vim.lsp.buf.selection_range(vim.v.count1)
-  end
-end, { desc = "Select parent treesitter node or outer incremental lsp selections" })
+  vim.treesitter.select("parent")
+end, { desc = "Select parent treesitter node" })
 
 vim.keymap.set({ "x", "o" }, "ii", function()
-  if vim.treesitter.get_parser(nil, nil, { error = false }) then
-    require("vim.treesitter._select").select_child(vim.v.count1)
-  else
-    vim.lsp.buf.selection_range(-vim.v.count1)
-  end
-end, { desc = "Select child treesitter node or inner incremental lsp selections" })
+  vim.treesitter.select("child")
+end, { desc = "Select child treesitter node" })
 
 -- View Code Tree
 vim.keymap.set("n", "<leader>si", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
