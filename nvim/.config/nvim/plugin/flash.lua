@@ -15,7 +15,7 @@ require("flash").setup({
 
 -- turn off in filetypes and command line
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "qf", "nvim-undotree" },
+  pattern = { "qf", "nvim-undotree", "nvim-pack" },
   callback = function()
     vim.keymap.set("n", "<CR>", "<CR>", { buffer = true })
   end,
