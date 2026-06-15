@@ -25,6 +25,7 @@ local tools = {
   "ansible-lint",
   "markdown-toc",
   "mdformat",
+  "shellcheck",
   "shfmt",
   "stylua",
   "tree-sitter-cli",
