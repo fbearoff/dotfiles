@@ -102,8 +102,7 @@ require("blink.cmp").setup({
 })
 
 -- autopairs
-require("blink.pairs").build():pwait(60000)
--- require("blink.pairs").download():pwait(60000) -- broken on v0.6.0
+require("blink.pairs").download():pwait(60000)
 require("blink.pairs").setup({
   mappings = {
     pairs = {

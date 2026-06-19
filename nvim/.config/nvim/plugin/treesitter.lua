@@ -9,6 +9,7 @@ local parsers = {
   "dockerfile",
   "diff",
   "git_rebase",
+  "gitcommit",
   "gitignore",
   "html",
   "ini",
