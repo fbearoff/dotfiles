@@ -84,6 +84,12 @@ require("blink.cmp").setup({
       },
     },
   },
+  sources = {
+    providers = {
+      -- defaults to `{ 'buffer' }`
+      lsp = { fallbacks = {} },
+    },
+  },
   cmdline = {
     keymap = {
       preset = "inherit",
