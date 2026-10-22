@@ -1,9 +1,9 @@
 vim.pack.add({
-  "https://github.com/petertriho/nvim-scrollbar",
+  { src = "https://github.com/petertriho/nvim-scrollbar", version = "refactor/v2" },
 })
 
 require("scrollbar").setup({
-  show_in_active_only = true,
+  scrollbar = { visibility = "active" },
   marks = {
     GitAdd = {
       text = "│",
@@ -12,11 +12,5 @@ require("scrollbar").setup({
       text = "│",
     },
   },
-  excluded_buftypes = {
-    "terminal",
-    "nofile",
-  },
-  handlers = {
-    gitsigns = true,
-  },
+  providers = { gitsigns = true },
 })
